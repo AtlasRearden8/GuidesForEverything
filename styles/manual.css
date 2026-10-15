@@ -376,16 +376,15 @@ td:first-child { font-weight: 600; }
   text-transform: uppercase;
   color: var(--accent-ink);
 }
-ol.steps { list-style: none; padding: 0; margin: 0; counter-reset: step; }
+ol.steps { list-style: none; padding: 0; margin: 0; }
 ol.steps > li {
-  counter-increment: step;
   position: relative;
   margin: 0;
   padding: 0 0 10pt 30pt;
   break-inside: avoid;
 }
 ol.steps > li::before {
-  content: counter(step);
+  content: attr(data-step);
   position: absolute;
   left: 0; top: 0.05em;
   width: 18pt; height: 18pt;
@@ -448,10 +447,10 @@ ol.steps > li ul, ol.steps > li ol { margin-top: 0.2em; }
 .block-cols > * { break-inside: avoid; }
 
 /* :::compact — denser tables (directory) */
-.block-compact table { font-size: 7.7pt; line-height: 1.36; }
-.block-compact td { padding: 3.6pt 6pt; }
-.block-compact th { padding: 4pt 6pt; }
-.block-compact .table-wrap { margin-top: 0.4em; }
+.block-compact table, .table-wrap.compact table { font-size: 7.7pt; line-height: 1.36; }
+.block-compact td, .table-wrap.compact td { padding: 3.6pt 6pt; }
+.block-compact th, .table-wrap.compact th { padding: 4pt 6pt; }
+.block-compact .table-wrap, .table-wrap.compact { margin-top: 0.4em; }
 
 /* :::cheatsheet — boxed quick reference */
 .block-cheatsheet {
@@ -671,3 +670,10 @@ dl.glossary { margin: 0.4em 0 0; }
 /* Added before layout by the template script (see templates/manual.html). */
 .keep-together { break-inside: avoid; }
 .table-wrap.table-short { break-inside: avoid; }
+/* A long table split in two: the head chunk stays with its heading. */
+.table-wrap.table-head-chunk { margin-bottom: 0; break-inside: avoid; }
+.table-wrap.table-tail { margin-top: 0 !important; }
+.steps-block.steps-head { margin-bottom: 0; break-inside: avoid; }
+.steps-block.steps-head ol.steps > li:last-child { padding-bottom: 10pt; }
+.steps-block.steps-head ol.steps > li:last-child::after { display: block; bottom: 0; }
+.steps-block.steps-tail { margin-top: 0; }
