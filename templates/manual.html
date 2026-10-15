@@ -14,6 +14,29 @@
 <script>
   window.PagedConfig = {
     auto: true,
+    before: () => {
+      // Paged.js mostly ignores `break-after: avoid`, so keep headings with
+      // the block that follows them by wrapping both in an unbreakable box.
+      const isShort = (el) => {
+        if (!el) return false;
+        if (el.matches('p, aside.callout, figure.code-short, .block-summary, .block-definition')) return true;
+        if (el.matches('ul, ol')) return el.querySelectorAll(':scope > li').length <= 4;
+        if (el.matches('.table-wrap')) return el.querySelectorAll('tbody tr').length <= 4;
+        return false;
+      };
+      document.querySelectorAll('.manual-body h2, .manual-body h3, .manual-body h4').forEach((h) => {
+        const next = h.nextElementSibling;
+        if (!isShort(next)) return;
+        const keep = document.createElement('div');
+        keep.className = 'keep-together';
+        h.before(keep);
+        keep.append(h, next);
+      });
+      // Short tables never split; their header can't be stranded.
+      document.querySelectorAll('.table-wrap').forEach((t) => {
+        if (t.querySelectorAll('tbody tr').length <= 14) t.classList.add('table-short');
+      });
+    },
     after: () => {
       if (document.body.classList.contains('chapter-break')) {
         document.querySelectorAll('.pagedjs_page').forEach((pg) => {
