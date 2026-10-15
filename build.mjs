@@ -340,6 +340,19 @@ function coverArt(slug, motif) {
       for (let x = 0; x <= W + 20; x += 16) d += ` L ${x} ${(y0 + Math.sin(x / 90 + ph + k * 0.25) * amp * (x / W)).toFixed(1)}`;
       parts.push(`<path d="${d}" fill="none" stroke="${k % 5 === 2 ? 'var(--accent-2)' : 'var(--accent)'}" stroke-width="${k % 5 === 2 ? 3 : 1.4}" opacity="${(0.25 + (k / 22) * 0.75).toFixed(2)}"/>`);
     }
+  } else if (style === 'pages') {
+    // stacked note cards with "text lines"
+    for (let k = 0; k < 9; k++) {
+      const w = 210 + rnd() * 70, h = 270 + rnd() * 60;
+      const x = 330 + k * 46 + rnd() * 20, y = 120 + (k % 3) * 34 + rnd() * 40;
+      const rot = (rnd() - 0.5) * 18;
+      const fill = k === 6 ? 'var(--accent-2)' : 'var(--accent)';
+      parts.push(`<g transform="rotate(${rot.toFixed(1)} ${(x + w / 2).toFixed(0)} ${(y + h / 2).toFixed(0)})" opacity="${(0.35 + k / 14).toFixed(2)}">`);
+      parts.push(`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="10" fill="#15161c" stroke="${fill}" stroke-width="2"/>`);
+      parts.push(`<rect x="${(x + 18).toFixed(1)}" y="${(y + 22).toFixed(1)}" width="${(w * 0.55).toFixed(1)}" height="12" rx="4" fill="${fill}"/>`);
+      for (let l = 0; l < 7; l++) parts.push(`<rect x="${(x + 18).toFixed(1)}" y="${(y + 52 + l * 22).toFixed(1)}" width="${((w - 36) * (0.5 + rnd() * 0.5)).toFixed(1)}" height="5" rx="2.5" fill="${fill}" opacity="0.6"/>`);
+      parts.push('</g>');
+    }
   } else if (style === 'network') {
     const nodes = [];
     for (let k = 0; k < 34; k++) {

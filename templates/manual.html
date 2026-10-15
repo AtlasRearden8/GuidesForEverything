@@ -34,7 +34,7 @@
       });
       // Short tables never split; their header can't be stranded.
       document.querySelectorAll('.table-wrap').forEach((t) => {
-        if (t.querySelectorAll('tbody tr').length <= 14) t.classList.add('table-short');
+        if (t.querySelectorAll('tbody tr').length <= 10) t.classList.add('table-short');
       });
     },
     after: () => {
