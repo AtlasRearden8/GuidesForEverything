@@ -20,6 +20,14 @@ Each manual gets a designed cover, an inside cover with a reading legend, a tabl
 
 Facts (install commands, settings, menu paths, flags, pricing) were checked against official documentation in October 2026.
 
+## The website
+
+Every build also writes **`index.html`**, a landing page with every manual's cover, page count, and Read/Download links, generated from `output/manifest.json` and [`templates/site.html`](templates/site.html). Covers are saved to `output/covers/`.
+
+To publish it with **GitHub Pages** (free for public repos), do this once: repository **Settings › Pages**, then under **Build and deployment** set **Source** to **Deploy from a branch**, choose **`main`** and **`/ (root)`**, and click **Save**. The site appears at `https://<your-username>.github.io/GuidesForEverything/` and updates every time you push rebuilt manuals.
+
+Regenerate only the page (no PDF rebuild) with `node build.mjs --site`.
+
 ## Build
 
 Requires Node.js 20+.
@@ -30,6 +38,7 @@ node build.mjs              # build every manual in content/
 node build.mjs github       # build one manual by slug (its file name)
 node build.mjs --list       # list manuals
 node build.mjs mcp --html   # also keep the intermediate HTML in output/ for debugging
+node build.mjs --site       # regenerate only the landing page (index.html)
 ```
 
 The build uses Playwright's bundled Chromium. If it isn't installed yet, run `npx playwright install chromium`, or use a browser you already have:
@@ -50,7 +59,7 @@ pdftoppm -png -r 50 output/github.pdf /tmp/github
 
 1. Copy [`content/_template.md`](content/_template.md) to `content/<slug>.md`. The template documents every option and shows every building block.
 2. Edit the front matter (title, subtitle, volume, accent colors, cover motif) and write the content.
-3. Run `node build.mjs <slug>`. Your PDF appears at `output/<slug>.pdf`.
+3. Run `node build.mjs <slug>`. Your PDF appears at `output/<slug>.pdf`, and the landing page picks it up automatically.
 
 That's it. No template or stylesheet changes are needed. Files whose names start with `_` are skipped when building everything.
 
@@ -122,6 +131,9 @@ output/<slug>.pdf   (US Letter, embedded fonts, PDF bookmarks)
 | `build.mjs` | The build: Markdown → HTML → PDF |
 | `templates/manual.html` | Page skeleton: cover, inside cover, contents, body |
 | `templates/layout.js` | Pre-pagination layout fixes (keep-with-next, table and step splitting) |
+| `templates/site.html` | The landing page template; `build.mjs` fills in the manuals |
+| `index.html` | Generated landing page (GitHub Pages serves it from the repo root) |
+| `output/manifest.json`, `output/covers/` | Generated manual details and cover images for the site |
 | `styles/manual.css` | The whole design: page setup, typography, components |
 | `styles/fonts.css` | Self-hosted fonts (Fraunces, Inter, Source Serif 4, JetBrains Mono; all SIL Open Font License) |
 | `styles/code.css` | Print-friendly syntax colors |

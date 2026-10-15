@@ -28,6 +28,9 @@ const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const CONTENT = path.join(ROOT, 'content');
 const OUTPUT = path.join(ROOT, 'output');
 const TEMPLATE = path.join(ROOT, 'templates', 'manual.html');
+const SITE_TEMPLATE = path.join(ROOT, 'templates', 'site.html');
+const COVERS = path.join(OUTPUT, 'covers');
+const MANIFEST = path.join(OUTPUT, 'manifest.json');
 
 /* ------------------------------------------------------------------ utils */
 
@@ -449,6 +452,75 @@ function marked(md) {
   return new Marked({ gfm: true }).parse(md);
 }
 
+/* ------------------------------------------------------------------ site */
+
+/**
+ * The landing page (index.html at the repository root, served by GitHub
+ * Pages) is generated from output/manifest.json, which every build updates
+ * with each manual's details, page count, and file size.
+ */
+function readManifest() {
+  try {
+    return JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
+  } catch {
+    return {};
+  }
+}
+
+function writeManifest(manifest) {
+  // Drop manuals whose Markdown file no longer exists.
+  for (const slug of Object.keys(manifest)) if (!fs.existsSync(path.join(CONTENT, `${slug}.md`))) delete manifest[slug];
+  fs.writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + '\n');
+}
+
+function manifestEntry(slug, pages, pdfPath) {
+  const { data: meta } = matter(fs.readFileSync(path.join(CONTENT, `${slug}.md`), 'utf8'));
+  return {
+    slug,
+    title: meta.title || slug,
+    subtitle: meta.subtitle || '',
+    volume: meta.volume ?? null,
+    kicker: meta.kicker || 'A Beginner’s Manual',
+    edition: meta.edition || '',
+    accent: meta.accent || '#D97757',
+    pages,
+    bytes: fs.statSync(pdfPath).size,
+  };
+}
+
+function buildSite(manifest, { out = path.join(ROOT, 'index.html'), pdfHref = (s) => `output/${s}.pdf`, downloadHref = pdfHref } = {}) {
+  if (!fs.existsSync(SITE_TEMPLATE)) return;
+  const manuals = Object.values(manifest).sort((a, b) => (a.volume ?? 99) - (b.volume ?? 99) || a.title.localeCompare(b.title));
+  const mb = (bytes) => `${(bytes / 1048576).toFixed(1)} MB`;
+  const cards = manuals
+    .map((m) => {
+      const vol = m.volume != null ? `Vol. ${String(m.volume).padStart(2, '0')}` : '';
+      return `<li class="book" style="--book: ${escapeHtml(m.accent)}">
+  <a class="cover" href="${pdfHref(m.slug)}" aria-label="Open ${escapeHtml(m.title)} (PDF)"><img src="output/covers/${m.slug}.jpg" alt="Cover of ${escapeHtml(m.title)}" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">${vol}<span>${escapeHtml(m.kicker)}</span></p>
+    <h3>${escapeHtml(m.title)}</h3>
+    <p class="sub">${escapeHtml(m.subtitle)}</p>
+    <p class="meta">${m.pages} pages · ${mb(m.bytes)} · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="${pdfHref(m.slug)}">Read</a>
+      <a class="btn" href="${downloadHref(m.slug)}" download>Download</a>
+    </div>
+  </div>
+</li>`;
+    })
+    .join('\n');
+  const editions = [...new Set(manuals.map((m) => m.edition).filter(Boolean))];
+  const vars = {
+    cards,
+    count: String(manuals.length),
+    total_pages: String(manuals.reduce((n, m) => n + m.pages, 0)),
+    edition: escapeHtml(editions.join(' & ') || ''),
+  };
+  fs.writeFileSync(out, fill(fs.readFileSync(SITE_TEMPLATE, 'utf8'), vars));
+  console.log(`✓ site                        ${manuals.length} manuals          → ${path.relative(ROOT, out)}`);
+}
+
 /* ---------------------------------------------------------------- server */
 
 const MIME = {
@@ -504,6 +576,11 @@ async function main() {
   for (const s of slugs) if (!fs.existsSync(path.join(CONTENT, `${s}.md`))) throw new Error(`No manual named "${s}" in content/ (have: ${all.join(', ')})`);
 
   fs.mkdirSync(OUTPUT, { recursive: true });
+  const manifest = readManifest();
+  if (args.includes('--site')) {
+    buildSite(manifest);
+    return;
+  }
   const pages = new Map();
   const server = await startServer(pages);
   const base = `http://127.0.0.1:${server.address().port}`;
@@ -529,6 +606,10 @@ async function main() {
       await page.waitForFunction(() => window.__pagedDone === true, null, { timeout: 300_000 });
       const pageCount = await page.evaluate(() => document.querySelectorAll('.pagedjs_page').length);
       const pdfPath = path.join(OUTPUT, `${slug}.pdf`);
+      if (!slug.startsWith('_')) {
+        fs.mkdirSync(COVERS, { recursive: true });
+        await page.locator('.pagedjs_page').first().screenshot({ path: path.join(COVERS, `${slug}.jpg`), type: 'jpeg', quality: 86 });
+      }
       await page.pdf({
         path: pdfPath,
         preferCSSPageSize: true,
@@ -537,6 +618,7 @@ async function main() {
         tagged: true,
       });
       await page.close();
+      if (!slug.startsWith('_')) manifest[slug] = manifestEntry(slug, pageCount, pdfPath);
       if (errors.length) console.warn(`  ! ${slug}: ${errors.length} browser message(s):\n    ${errors.slice(0, 5).join('\n    ')}`);
       console.log(`✓ ${slug.padEnd(26)} ${String(pageCount).padStart(3)} pages  ${((Date.now() - t0) / 1000).toFixed(1)}s  → output/${slug}.pdf`);
     }
@@ -544,6 +626,8 @@ async function main() {
     await browser.close();
     server.close();
   }
+  writeManifest(manifest);
+  buildSite(manifest);
 }
 
 main().catch((e) => {

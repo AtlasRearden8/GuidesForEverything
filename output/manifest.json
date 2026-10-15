@@ -1,0 +1,101 @@
+{
+  "ai-tools": {
+    "slug": "ai-tools",
+    "title": "Everyday AI Tools",
+    "subtitle": "Chat assistants, research, images, video, voice, and everyday AI, explained for beginners",
+    "volume": 4,
+    "kicker": "A Beginner’s Manual",
+    "edition": "October 2026",
+    "accent": "#0B8A8A",
+    "pages": 26,
+    "bytes": 556384
+  },
+  "ai-tools-directory": {
+    "slug": "ai-tools-directory",
+    "title": "AI Tools, Connectors & MCP Directory",
+    "subtitle": "Hundreds of AI tools, connectors, and MCP servers, sorted by category, each with a plain-English description and a price label",
+    "volume": 9,
+    "kicker": "A Field Guide",
+    "edition": "October 2026",
+    "accent": "#5B4BDB",
+    "pages": 28,
+    "bytes": 1320970
+  },
+  "claude-code": {
+    "slug": "claude-code",
+    "title": "Claude Code",
+    "subtitle": "Your first AI coding partner, from installation to everyday mastery",
+    "volume": 1,
+    "kicker": "A Beginner’s Manual",
+    "edition": "October 2026",
+    "accent": "#C8603C",
+    "pages": 40,
+    "bytes": 1174159
+  },
+  "github": {
+    "slug": "github",
+    "title": "GitHub",
+    "subtitle": "Save, share, and collaborate on your work, with Git explained from zero",
+    "volume": 2,
+    "kicker": "A Beginner’s Manual",
+    "edition": "October 2026",
+    "accent": "#1F883D",
+    "pages": 31,
+    "bytes": 1018360
+  },
+  "maximum-autonomy": {
+    "slug": "maximum-autonomy",
+    "title": "Maximum Autonomy",
+    "subtitle": "Every setting, flag, config file, and token choice for hands-off AI agents, tool by tool",
+    "volume": 8,
+    "kicker": "A Power-User's Guide",
+    "edition": "October 2026",
+    "accent": "#D9480F",
+    "pages": 32,
+    "bytes": 1102849
+  },
+  "mcp": {
+    "slug": "mcp",
+    "title": "MCP",
+    "subtitle": "The Model Context Protocol, the universal way to plug AI into your apps, files, and tools",
+    "volume": 5,
+    "kicker": "A Beginner’s Manual",
+    "edition": "October 2026",
+    "accent": "#2F6FDE",
+    "pages": 27,
+    "bytes": 793363
+  },
+  "n8n": {
+    "slug": "n8n",
+    "title": "n8n",
+    "subtitle": "Automate your work and build AI agents, visually, one node at a time",
+    "volume": 6,
+    "kicker": "A Beginner’s Manual",
+    "edition": "October 2026",
+    "accent": "#E8456B",
+    "pages": 28,
+    "bytes": 764591
+  },
+  "notion": {
+    "slug": "notion",
+    "title": "Notion",
+    "subtitle": "One workspace for notes, docs, projects, and databases, with AI built in",
+    "volume": 7,
+    "kicker": "A Beginner’s Manual",
+    "edition": "October 2026",
+    "accent": "#C2711B",
+    "pages": 24,
+    "bytes": 694246
+  },
+  "vibe-coding": {
+    "slug": "vibe-coding",
+    "title": "Vibe Coding",
+    "subtitle": "Build real apps and websites by describing them in plain English",
+    "volume": 3,
+    "kicker": "A Beginner’s Manual",
+    "edition": "October 2026",
+    "accent": "#7C4DDB",
+    "pages": 30,
+    "bytes": 623040
+  }
+}
