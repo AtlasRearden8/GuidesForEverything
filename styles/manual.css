@@ -199,7 +199,7 @@ code {
   background: #f1f2f5;
   border: 0.5pt solid #e1e3e8;
   color: #23262f;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   hyphens: none;
   font-variant-ligatures: none;
   font-feature-settings: "liga" 0, "calt" 0;

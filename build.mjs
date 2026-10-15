@@ -340,6 +340,20 @@ function coverArt(slug, motif) {
       for (let x = 0; x <= W + 20; x += 16) d += ` L ${x} ${(y0 + Math.sin(x / 90 + ph + k * 0.25) * amp * (x / W)).toFixed(1)}`;
       parts.push(`<path d="${d}" fill="none" stroke="${k % 5 === 2 ? 'var(--accent-2)' : 'var(--accent)'}" stroke-width="${k % 5 === 2 ? 3 : 1.4}" opacity="${(0.25 + (k / 22) * 0.75).toFixed(2)}"/>`);
     }
+  } else if (style === 'network') {
+    const nodes = [];
+    for (let k = 0; k < 34; k++) {
+      nodes.push({ x: 260 + rnd() * (W - 280), y: 110 + rnd() * (H - 150), r: 3 + rnd() * 9 });
+    }
+    for (let a = 0; a < nodes.length; a++)
+      for (let b = a + 1; b < nodes.length; b++) {
+        const d = Math.hypot(nodes[a].x - nodes[b].x, nodes[a].y - nodes[b].y);
+        if (d < 150) parts.push(`<line x1="${nodes[a].x.toFixed(1)}" y1="${nodes[a].y.toFixed(1)}" x2="${nodes[b].x.toFixed(1)}" y2="${nodes[b].y.toFixed(1)}" stroke="var(--accent)" stroke-width="1.2" opacity="${(0.85 - d / 190).toFixed(2)}"/>`);
+      }
+    nodes.forEach((n, k) => {
+      parts.push(`<circle cx="${n.x.toFixed(1)}" cy="${n.y.toFixed(1)}" r="${(n.r + 5).toFixed(1)}" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.35"/>`);
+      parts.push(`<circle cx="${n.x.toFixed(1)}" cy="${n.y.toFixed(1)}" r="${n.r.toFixed(1)}" fill="${k % 6 === 0 ? 'var(--accent-2)' : 'var(--accent)'}"/>`);
+    });
   } else {
     // blocks
     let x = 300;
