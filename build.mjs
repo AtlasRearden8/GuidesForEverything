@@ -326,7 +326,7 @@ function coverArt(slug, motif) {
     parts.push(`<circle cx="${cx}" cy="${cy}" r="30" fill="var(--accent)"/>`);
   } else if (style === 'grid') {
     const s = 34;
-    for (let y = s; y < H; y += s)
+    for (let y = s * 3; y < H; y += s)
       for (let x = s; x < W; x += s) {
         const d = Math.hypot(x - W * 0.75, y - H * 0.45) / 520;
         const v = rnd();
@@ -345,7 +345,7 @@ function coverArt(slug, motif) {
     let x = 300;
     while (x < W) {
       const w = 40 + rnd() * 110;
-      let y = 40 + rnd() * 120;
+      let y = 130 + rnd() * 110;
       while (y < H - 20) {
         const h = 30 + rnd() * 160;
         const c = rnd();

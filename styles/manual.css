@@ -512,9 +512,15 @@ dl.glossary { margin: 0.4em 0 0; }
   /* fade art into the background behind the title */
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(17,18,24,0) 45%, rgba(17,18,24,1) 100%);
+  background:
+    linear-gradient(to bottom, rgba(17,18,24,0.92) 0, rgba(17,18,24,0) 1.15in),
+    linear-gradient(to bottom, rgba(17,18,24,0) 45%, rgba(17,18,24,1) 100%);
 }
-.cover-light .cover-art-wrap::after { background: linear-gradient(to bottom, rgba(246,243,236,0) 45%, rgba(246,243,236,1) 100%); }
+.cover-light .cover-art-wrap::after {
+  background:
+    linear-gradient(to bottom, rgba(246,243,236,0.92) 0, rgba(246,243,236,0) 1.15in),
+    linear-gradient(to bottom, rgba(246,243,236,0) 45%, rgba(246,243,236,1) 100%);
+}
 .cover-top {
   position: absolute; z-index: 2;
   top: 0.6in; left: 0.75in; right: 0.75in;
