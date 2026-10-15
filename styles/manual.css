@@ -413,6 +413,7 @@ ol.steps > li:last-child { padding-bottom: 2pt; }
 }
 ol.steps > li > p:first-child .step-title,
 ol.steps > li > .step-title { display: block; margin-bottom: 1.5pt; }
+ol.steps .step-title.step-title-inline { display: inline; margin: 0; }
 ol.steps figure.code, ol.steps .callout { margin: 0.45em 0 0.5em; }
 ol.steps > li ul, ol.steps > li ol { margin-top: 0.2em; }
 

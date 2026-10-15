@@ -282,7 +282,12 @@ function renderManual(markdown, meta) {
   html = html.replace(/<!--BLOCK:(\d+)-->/g, (_, n) => renderBlock(blocks[Number(n)]));
   // Steps: turn a leading **bold** phrase of each step into a step title.
   html = html.replace(/<ol class="steps"[\s\S]*?<\/ol>/g, (ol) =>
-    ol.replace(/<li>(\s*<p>)?\s*<strong>([\s\S]*?)<\/strong>\s*(?:[—–:-]\s*|<br>\s*)?/g, (_, p, t) => `<li>${p || ''}<span class="step-title">${t}</span> `),
+    ol.replace(/<li>(\s*<p>)?\s*<strong>([\s\S]*?)<\/strong>(\s*(?:[—–:-]\s*|<br>\s*)?)/g, (m, p, t, sep) => {
+      // A bold phrase that is a complete sentence becomes a block step title;
+      // otherwise it stays inline so the sentence reads naturally.
+      const isTitle = /[.:!?]["”’)\]]*\s*$/.test(stripTags(t)) || /^[—–:-]/.test(sep.trim());
+      return isTitle ? `<li>${p || ''}<span class="step-title">${t}</span> ` : `<li>${p || ''}<span class="step-title step-title-inline">${t}</span>${sep}`;
+    }),
   );
 
   html = inlineExtensions(html);
