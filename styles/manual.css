@@ -500,7 +500,9 @@ dl.glossary { margin: 0.4em 0 0; }
   background: #111218;
   font-family: var(--sans);
 }
-.cover-light { background: #f6f3ec; color: var(--ink); }
+.cover-light { background: #fff; color: var(--ink); }
+.cover-light .cover-volume { color: var(--accent-ink); }
+.cover-light .cover-kicker { color: var(--accent-ink); }
 .cover-art-wrap {
   position: absolute;
   top: 0; left: 0; right: 0;
@@ -517,8 +519,8 @@ dl.glossary { margin: 0.4em 0 0; }
 }
 .cover-light .cover-art-wrap::after {
   background:
-    linear-gradient(to bottom, rgba(246,243,236,0.92) 0, rgba(246,243,236,0) 1.15in),
-    linear-gradient(to bottom, rgba(246,243,236,0) 45%, rgba(246,243,236,1) 100%);
+    linear-gradient(to bottom, #fff 0, #fff 0.7in, rgba(255,255,255,0) 1.3in),
+    linear-gradient(to bottom, rgba(255,255,255,0) 45%, rgba(255,255,255,1) 100%);
 }
 .cover-top {
   position: absolute; z-index: 2;
