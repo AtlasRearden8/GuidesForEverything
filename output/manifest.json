@@ -97,5 +97,16 @@
     "accent": "#7C4DDB",
     "pages": 30,
     "bytes": 610272
+  },
+  "ai-trading": {
+    "slug": "ai-trading",
+    "title": "Autonomous AI Trading for Beginners",
+    "subtitle": "Build, test, and supervise a hands-off trading bot, step by step, with paper money first",
+    "volume": 10,
+    "kicker": "A Beginner’s Manual",
+    "edition": "October 2026",
+    "accent": "#2F7D5B",
+    "pages": 39,
+    "bytes": 800391
   }
 }
