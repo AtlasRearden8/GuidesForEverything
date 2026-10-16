@@ -525,7 +525,7 @@ Chapter 8 introduced building your own server. This chapter takes you all the wa
 
 :::summary In this chapter
 - The three things a server can offer
-- A Python server with FastMCP
+- A Python server with the official SDK (MCPServer)
 - A TypeScript server
 - Testing with MCP Inspector
 - Connecting it to Claude
@@ -539,7 +539,10 @@ Chapter 8 introduced building your own server. This chapter takes you all the wa
 | **Resource** | Data the app can read in as context | `notes://today` |
 | **Prompt** | A reusable template the *user* picks | "Summarise this meeting" |
 
-## Python, with FastMCP
+## Python, with the official SDK
+
+> [!NOTE] SDK version
+> These examples target version 2.x of the official Python SDK (`pip install "mcp[cli]"`, tested with 2.3.0 in October 2026). In 2.x, the class many tutorials call `FastMCP` (`from mcp.server.fastmcp import FastMCP`) was renamed `MCPServer`. If you follow an older tutorial, either use the new import or pin `mcp<2`. See the migration guide at [py.sdk.modelcontextprotocol.io/v2/migration](https://py.sdk.modelcontextprotocol.io/v2/migration/).
 
 :::steps
 1. **Make a folder and environment.**
@@ -551,9 +554,9 @@ Chapter 8 introduced building your own server. This chapter takes you all the wa
 2. **Write the server.**
    ```python title=server.py
    from pathlib import Path
-   from mcp.server.fastmcp import FastMCP
+   from mcp.server.mcpserver import MCPServer
 
-   mcp = FastMCP("notes")
+   mcp = MCPServer("notes")
    NOTES = Path.home() / "mcp-notes.txt"
 
    @mcp.tool()
@@ -612,7 +615,7 @@ server.tool("roll", { sides: z.number().int().min(2).max(100) },
 await server.connect(new StdioServerTransport());
 ```
 
-Test with `npx @modelcontextprotocol/inspector node server.mjs`. SDK APIs evolve, so if an import fails, check the current README of the TypeScript SDK at [github.com/modelcontextprotocol/typescript-sdk](https://github.com/modelcontextprotocol/typescript-sdk).
+Test with `npx @modelcontextprotocol/inspector node server.mjs`. Tested with `@modelcontextprotocol/sdk` 1.32.1 and `zod` 4 in October 2026. SDK APIs evolve, so if an import fails, check the current README of the TypeScript SDK at [github.com/modelcontextprotocol/typescript-sdk](https://github.com/modelcontextprotocol/typescript-sdk).
 
 > [!WARNING] stdio servers must not print
 > A stdio server talks to the app through standard output. A stray `print()` or `console.log()` corrupts the conversation. Log to standard error or a file instead.
@@ -675,14 +678,17 @@ MCP messages are **JSON-RPC 2.0**. Each message is a small JSON object. A **requ
 
 ## The lifecycle
 
-:::steps
-1. **Initialize.** The client (the app) sends `initialize` with its protocol version and capabilities. The server replies with its own.
-2. **Initialized.** The client sends an `initialized` notification. Normal work can begin.
-3. **Discovery.** The client calls `tools/list`, `resources/list`, and `prompts/list` to learn what's available.
-4. **Use.** The AI decides to use a tool, and the client sends `tools/call`.
-5. **Change notices.** The server can notify the client that its list of tools changed.
-6. **Shutdown.** The client closes the connection, or ends the server process for stdio.
-:::
+How a connection starts depends on the protocol **version**. The current version, according to [modelcontextprotocol.io/specification/versioning](https://modelcontextprotocol.io/specification/versioning), is **2026-07-28**. Many apps and servers still speak the earlier **2025-11-25** version, and clients and servers may support several versions at once.
+
+| Step | 2025-11-25 (and earlier) | 2026-07-28 (current) |
+|---|---|---|
+| Agree on a version | `initialize` request, then an `initialized` notification | Every request names its version in `_meta`. Optional `server/discover` up front |
+| Learn what's offered | `tools/list`, `resources/list`, `prompts/list` | Same |
+| Use a tool | `tools/call` | Same |
+| Change notices | `notifications/tools/list_changed` and others | Same, plus `subscriptions/listen` for a long-lived notification channel |
+| Health check | `ping` | No `ping` in the current schema |
+
+If a server doesn't support the version a request asks for, it replies with an error listing the versions it does support, and the client can retry.
 
 ## A real tool call
 
@@ -775,6 +781,199 @@ Chapter 9 covered the basics. This chapter goes symptom by symptom, with the exa
 3. **Check the app's logs.** For Claude Code, use `claude --debug` or `--debug=mcp`. Other apps usually have an MCP or developer log in settings.
 4. **Simplify.** Remove every other server and test this one alone.
 5. **Update** the app and the server package.
+:::
+
+# Protocol Method Reference
+
+Every JSON-RPC method in the two protocol versions you're most likely to meet. The lists were generated from the official schema files (`schema/2025-11-25/schema.ts` and `schema/2026-07-28/schema.ts` in [github.com/modelcontextprotocol/modelcontextprotocol](https://github.com/modelcontextprotocol/modelcontextprotocol)) in October 2026.
+
+:::summary In this chapter
+- Every method in the current (2026-07-28) version, with its purpose
+- What changed from 2025-11-25
+- How to read a method name
+:::
+
+## Reading a method name
+
+Methods are named `area/action`. `tools/call` means "in the tools area, call one." Anything starting with `notifications/` is fire-and-forget, so no reply comes back. Who sends each message matters. Most requests go **client → server** (the app asks the server). `sampling/createMessage`, `elicitation/create`, and `roots/list` go **server → client** (the server asks the app).
+
+## Current version: 2026-07-28
+
+:::compact
+| Method | Kind | Schema type | Purpose |
+|---|---|---|---|
+| `completion/complete` | Request | CompleteRequest | A request from the client to the server, to ask for completion options. |
+| `elicitation/create` | Request | ElicitRequest | A request from the server to elicit additional information from the user via the client. |
+| `notifications/cancelled` | Notification | CancelledNotification | This notification is sent by the client to indicate that it is cancelling a request it previously issued.  On stdio, the server also sends this notification, so |
+| `notifications/message` | Notification | LoggingMessageNotification | JSONRPCNotification of a log message passed from server to client. |
+| `notifications/progress` | Notification | ProgressNotification | An out-of-band notification used to inform the receiver of a progress update for a long-running request. |
+| `notifications/prompts/list_changed` | Notification | PromptListChangedNotification | An optional notification from the server to the client, informing it that the list of prompts it offers has changed. |
+| `notifications/resources/list_changed` | Notification | ResourceListChangedNotification | An optional notification from the server to the client, informing it that the list of resources it can read from has changed. |
+| `notifications/resources/updated` | Notification | ResourceUpdatedNotification | A notification from the server to the client, informing it that a resource has changed and may need to be read again. |
+| `notifications/subscriptions/acknowledged` | Notification | SubscriptionsAcknowledgedNotification | Sent by the server to acknowledge that a {. |
+| `notifications/tools/list_changed` | Notification | ToolListChangedNotification | An optional notification from the server to the client, informing it that the list of tools it offers has changed. |
+| `prompts/get` | Request | GetPromptRequest | Used by the client to get a prompt provided by the server. |
+| `prompts/list` | Request | ListPromptsRequest | Sent from the client to request a list of prompts and prompt templates the server has. |
+| `resources/list` | Request | ListResourcesRequest | Sent from the client to request a list of resources the server has. |
+| `resources/read` | Request | ReadResourceRequestParams | Parameters for a `resources/read` request. |
+| `resources/templates/list` | Request | ListResourceTemplatesRequest | Sent from the client to request a list of resource templates the server has. |
+| `roots/list` | Request | ListRootsRequest | Sent from the server to request a list of root URIs from the client. |
+| `sampling/createMessage` | Request | CreateMessageRequest | A request from the server to sample an LLM via the client. |
+| `server/discover` | Request | DiscoverRequest | A request from the client asking the server to advertise its supported protocol versions, capabilities, and other metadata. |
+| `subscriptions/listen` | Request | SubscriptionsListenRequest | Sent from the client to open a long-lived channel for receiving notifications outside the context of a specific request. |
+| `tools/call` | Request | CallToolRequest | Used by the client to invoke a tool provided by the server. |
+| `tools/list` | Request | ListToolsRequest | Sent from the client to request a list of tools the server has. |
+:::
+
+## What changed from 2025-11-25
+
+:::compact
+| In 2025-11-25 | In 2026-07-28 |
+|---|---|
+| `initialize` + `notifications/initialized` handshake | Removed. Each request carries its version in `_meta`. `server/discover` is mandatory for servers |
+| `ping` | Not in the current schema |
+| `logging/setLevel` | Not in the current schema. Servers still send `notifications/message` log lines |
+| `resources/subscribe`, `resources/unsubscribe` | Replaced by `subscriptions/listen` and `notifications/subscriptions/acknowledged` |
+| `tasks/get`, `tasks/list`, `tasks/result`, `tasks/cancel`, `notifications/tasks/status` | Not in the current schema |
+| `notifications/roots/list_changed`, `notifications/elicitation/complete` | Not in the current schema |
+:::
+
+> [!NOTE]
+> "Not in the current schema" means the method name doesn't appear in the 2026-07-28 schema file. The specification's deprecated-features registry explains migration paths. You only need this detail if you build servers or clients. The SDKs handle versions for you.
+
+# Projects: Build Three Useful Servers
+
+Three more complete servers to build after Chapter 11. Each adds one new skill. All use the Python `MCPServer` API shown there.
+
+:::summary In this chapter
+- Project A: a read-only folder search server (safe file access)
+- Project B: a weather server that calls a web API (HTTP and errors)
+- Project C: a to-do server with a confirmation step (safe writes)
+- Sharing your server with others
+:::
+
+## Project A: Folder search (read-only)
+
+```python title=search_server.py
+from pathlib import Path
+from mcp.server.mcpserver import MCPServer
+
+ROOT = Path.home() / "Documents"          # the ONLY folder it may read
+mcp = MCPServer("doc-search")
+
+def safe(p: str) -> Path:
+    full = (ROOT / p).resolve()
+    if not full.is_relative_to(ROOT.resolve()):
+        raise ValueError("Path outside allowed folder")
+    return full
+
+@mcp.tool()
+def find_files(word: str, limit: int = 20) -> list[str]:
+    """Find text files under Documents whose name or content contains `word`."""
+    hits = []
+    for f in ROOT.rglob("*.txt"):
+        try:
+            if word.lower() in f.name.lower() or word.lower() in f.read_text(errors="ignore").lower():
+                hits.append(str(f.relative_to(ROOT)))
+        except OSError:
+            continue
+        if len(hits) >= limit:
+            break
+    return hits
+
+@mcp.tool()
+def read_file(path: str, max_chars: int = 5000) -> str:
+    """Read a text file (relative to Documents), truncated to max_chars."""
+    return safe(path).read_text(errors="ignore")[:max_chars]
+
+if __name__ == "__main__":
+    mcp.run()
+```
+
+**What you learned:** restrict paths with `resolve()` plus `is_relative_to()` so `../../` tricks can't escape the folder, and cap output size so you don't flood the AI's context.
+
+## Project B: Weather from a web API
+
+This uses the free Open-Meteo API, which needs no key. Install `httpx` first: `pip install httpx`.
+
+```python title=weather_server.py
+import httpx
+from mcp.server.mcpserver import MCPServer
+
+mcp = MCPServer("weather")
+
+@mcp.tool()
+async def forecast(latitude: float, longitude: float) -> str:
+    """Today's max/min temperature (°C) for a location."""
+    url = "https://api.open-meteo.com/v1/forecast"
+    params = {"latitude": latitude, "longitude": longitude,
+              "daily": "temperature_2m_max,temperature_2m_min", "timezone": "auto",
+              "forecast_days": 1}
+    try:
+        async with httpx.AsyncClient(timeout=10) as c:
+            r = await c.get(url, params=params)
+            r.raise_for_status()
+    except httpx.HTTPError as e:
+        return f"Weather service error: {e}"
+    d = r.json()["daily"]
+    return f"Max {d['temperature_2m_max'][0]}°C, min {d['temperature_2m_min'][0]}°C"
+
+if __name__ == "__main__":
+    mcp.run()
+```
+
+**What you learned:** async tools, timeouts, and returning a readable error instead of crashing. Check the API's current docs at [open-meteo.com](https://open-meteo.com) if parameters change.
+
+## Project C: To-dos with a confirmation step
+
+```python title=todo_server.py
+import json
+from pathlib import Path
+from mcp.server.mcpserver import MCPServer
+
+DB = Path.home() / "mcp-todos.json"
+mcp = MCPServer("todos")
+
+def load():  return json.loads(DB.read_text()) if DB.exists() else []
+def save(x): DB.write_text(json.dumps(x, indent=2))
+
+@mcp.tool()
+def list_todos() -> list[dict]:
+    """List all to-dos."""
+    return load()
+
+@mcp.tool()
+def add_todo(title: str) -> str:
+    """Add a to-do."""
+    items = load(); items.append({"title": title, "done": False}); save(items)
+    return f"Added: {title}"
+
+@mcp.tool()
+def delete_todo(index: int, confirm: bool = False) -> str:
+    """Delete a to-do by its position. Requires confirm=true; first call without it to preview."""
+    items = load()
+    if not 0 <= index < len(items):
+        return "No such to-do."
+    if not confirm:
+        return f"Will delete '{items[index]['title']}'. Call again with confirm=true to proceed."
+    removed = items.pop(index); save(items)
+    return f"Deleted: {removed['title']}"
+
+if __name__ == "__main__":
+    mcp.run()
+```
+
+**What you learned:** keep destructive tools separate and add a preview-then-confirm pattern. Most apps will also show you a permission prompt before running it.
+
+## Sharing your server
+
+:::checklist
+- Put it in a GitHub repository with a README covering install, configuration, and tools
+- Pin dependencies (`requirements.txt` or `pyproject.toml`)
+- Document every environment variable it needs
+- Say clearly what it can read and write
+- Add a license
+- Optionally publish to PyPI or npm so people can run it with `uvx` or `npx`, and list it in the official MCP Registry
 :::
 
 # Quick Reference {.unnumbered}
