@@ -538,6 +538,342 @@ These are the prompts and blocks that survive every setting in this guide. They'
 | **Notion** | Pages not shared with a connection; owner-level MCP restrictions |
 | **ChatGPT agent** | Confirmations before high-impact actions (purchases, sending); "watch mode" on sensitive sites |
 
+# Claude Code Permission Modes and Settings Reference
+
+This chapter is the exhaustive reference behind Chapter 3. The tables were generated from Anthropic's permission-modes page ([code.claude.com/docs/en/permission-modes](https://code.claude.com/docs/en/permission-modes)) and settings reference ([code.claude.com/docs/en/settings-reference](https://code.claude.com/docs/en/settings-reference)) in October 2026.
+
+:::summary In this chapter
+- The six permission modes, compared
+- Which mode to choose for each situation
+- Every documented `settings.json` key, A–Z
+:::
+
+## The six permission modes
+
+| Mode | What runs without asking | Best for |
+|---|---|---|
+| `default` | Reads only | Reviewing every action yourself, sensitive work |
+| `acceptEdits` | Reads, file edits, and common filesystem commands (`mkdir`, `touch`, `mv`, `cp`, etc.) | Iterating on code you're reviewing |
+| `plan` | Reads, plus classifier-approved commands when auto mode is available | Exploring a codebase before changing it |
+| `auto` | Everything, with background safety checks | Long tasks, reducing prompt fatigue |
+| `dontAsk` | File reads inside your working directories and pre-approved tools; anything that would prompt is denied | Locked-down CI and scripts |
+| `bypassPermissions` | Everything | Isolated containers and VMs only |
+
+## Choosing a mode
+
+:::compact
+| You want to… | Start with | Isolation needed |
+|---|---|---|
+| Review every action yourself | `claude --permission-mode default` | None |
+| Explore before changing anything | `claude --permission-mode plan` | None |
+| Work hands-off with background safety checks | `claude --permission-mode auto` | None required. A sandbox or container adds defence in depth |
+| Run in CI with an exact allowlist | `claude -p "run the test suite" --permission-mode dontAsk --allowedTools "Bash(npm test)" "Read"` | Your CI runner |
+| Run fully unattended | `claude -p "<prompt>" --dangerously-skip-permissions` | **Required:** a container, VM, or sandbox runtime |
+:::
+
+Set a default for every session with `permissions.defaultMode` in `~/.claude/settings.json`, or in a project's `.claude/settings.json`. According to the docs, project settings can't make `auto` or `bypassPermissions` the starting mode, which stops a cloned repository from quietly granting itself autonomy.
+
+> [!CAUTION]
+> `bypassPermissions` means **every** action runs with no checks. Only use it inside something you're happy to throw away: a container, a VM, or a cloud sandbox with no access to your real accounts or files (Chapter 2).
+
+## Every settings key, A–Z
+
+Search this table when a guide mentions a setting. Many keys only matter to administrators. Run `/config` or ask Claude (`/update-config`) to change settings safely.
+
+:::compact
+| Key | What it does |
+|---|---|
+| `advisorModel` | Pick which model answers when Claude calls the server-side advisor tool. |
+| `alwaysThinkingEnabled` | Turn extended thinking off for every session by setting this to `false`. |
+| `availableModels` | Restrict which models people can select for the main session, subagents, skills, and the advisor. |
+| `availableModelsMatch` | Choose how `availableModels` entries match model IDs. |
+| `deniedModels` | Block specific models, with or without an `availableModels` allowlist and even when that list permits them. |
+| `effortLevel` | Set a default effort level for models you haven't saved a level for. |
+| `enforceAvailableModels` | The `/model` picker has a **Default** option, and `default` model setting describes the model it resolves to. |
+| `fallbackModel` | Name backup models for Claude Code to try, in order, when your primary model is overloaded or unavailable. |
+| `fastMode` | Turn fast mode on for sessions where it's available, for interactive work like rapid iteration or live debugging where you want speed at… |
+| `fastModePerSessionOptIn` | Normally, running `/fast` saves `fastMode` to a person's user settings, so fast mode is on at the start of every later session. |
+| `language` | Have Claude respond in a language other than English by default. |
+| `maxEffortLevel` | Cap the effort level a session can use, leaving lower levels available. |
+| `model` | Set the model every new session uses, so you don't have to pick one with `/model` each time. |
+| `modelOverrides` | Map Anthropic model IDs to provider-specific model IDs, such as Amazon Bedrock inference profile ARNs. |
+| `modelPicker` | List the models the `/model` picker offers, in the order you write them and under labels you choose, so the picker lists the models your… |
+| `modelPricing` | Report spend at the rates your organization pays instead of list price. |
+| `modelSettings` | Save an effort level for each model you use. |
+| `outputStyle` | Select an output style by name. |
+| `promptCacheTtl` | Choose how long the prompt cache holds the main conversation. |
+| `showThinkingSummaries` | See summaries of Claude's extended thinking in interactive sessions. |
+| `subagentPromptCacheTtl` | Choose how long the prompt cache holds the requests Claude Code makes outside the main conversation. |
+| `switchModelsOnFlag` | Choose what happens when a safety classifier flags a request: switch to the fallback model and continue, or pause so you can choose… |
+| `ultracode` | Start sessions with ultracode on. |
+| `allowManagedPermissionRulesOnly` | Make managed settings the only settings source of permission rules. |
+| `autoMode` | Add your own rules to what the auto mode classifier blocks and allows. |
+| `autoMode.classifyAllShell` | Send every Bash and PowerShell command through the auto mode classifier while auto mode is active. |
+| `disableAutoMode` | Remove auto mode from the `Shift+Tab` cycle. |
+| `permissions` | Control which tools Claude can use without asking, which ones always prompt, and which ones are blocked, and set the permission mode a… |
+| `useAutoModeDuringPlan` | Choose whether Claude Code uses the auto mode classifier to review shell commands in plan mode. |
+| `permissions.allow` | List the tool uses Claude Code approves without asking you. |
+| `permissions.ask` | List the tool uses that prompt you for confirmation even in a permission mode that would otherwise approve them, such as `acceptEdits`… |
+| `permissions.deny` | List the tool uses Claude Code blocks. |
+| `permissions.additionalDirectories` | Give Claude file access to directories outside the one you started in, as additional working directories. |
+| `permissions.blockReadsOutsideWorkingDirectories` | Make Claude's file tools refuse reads outside your working directories in every permission mode, including `bypassPermissions`. |
+| `permissions.defaultMode` | Set the permission mode new sessions start in. |
+| `permissions.disableBypassPermissionsMode` | Prevent anyone from entering `bypassPermissions` mode. |
+| `skipAutoPermissionPrompt` | Skip the one-time notice describing auto mode that Claude Code shows when you first enter auto mode yourself, for example through your… |
+| `skipDangerousModePermissionPrompt` | Skip the confirmation dialog Claude Code shows before a session enters `bypassPermissions` mode, whether from… |
+| `sandbox` | Isolate the Bash commands Claude runs from your filesystem and network with sandboxing. |
+| `sandbox.enabled` | Turn on sandboxing for Bash commands. |
+| `sandbox.failIfUnavailable` | Make Claude Code exit with an error at startup when `sandbox.enabled` is `true` but the sandbox can't start, because a dependency is… |
+| `sandbox.autoAllowBashIfSandboxed` | Let Claude Code run sandboxed Bash commands without a permission prompt. |
+| `sandbox.excludedCommands` | Name commands that Claude Code runs outside the sandbox, such as tools that don't work under it. |
+| `sandbox.allowUnsandboxedCommands` | Let Claude retry a command outside the sandbox with the `dangerouslyDisableSandbox` parameter after the sandbox blocks it. |
+| `sandbox.filesystem` | Control which paths sandboxed commands can read and write. |
+| `sandbox.filesystem.allowWrite` | Add paths where sandboxed commands can write, beyond the working directory, the per-user temp directory, and the directories you've… |
+| `sandbox.filesystem.denyWrite` | Block sandboxed commands from writing to specific paths, including paths inside a directory that is otherwise writable. |
+| `sandbox.filesystem.denyRead` | Block sandboxed commands from reading specific paths, such as credential files that the default read policy would otherwise expose. |
+| `sandbox.filesystem.allowRead` | Re-open reading for specific paths inside a region that `denyRead` blocks, to build workspace-only read access. |
+| `sandbox.filesystem.allowManagedReadPathsOnly` | Honor only the `allowRead` entries that come from managed settings, so developers can't re-open read access to paths your organization… |
+| `sandbox.filesystem.disabled` | Skip filesystem isolation while keeping network isolation. |
+| `sandbox.ignoreViolations` | Silence sandbox violation reports for paths you expect a command to probe and be refused, such as a tool that checks `/etc/hosts` on… |
+| `sandbox.enableWeakerNestedSandbox` | Run the Linux sandbox inside an unprivileged Docker container, where bubblewrap can't mount a fresh `/proc`. |
+| `sandbox.enableWeakerNetworkIsolation` | Let sandboxed commands on macOS reach the system TLS trust service, `com.apple.trustd.agent`. |
+| `sandbox.allowAppleEvents` | Let sandboxed commands on macOS send Apple Events, which `open`, `osascript`, and tools that open URLs in a browser need; without it… |
+| `sandbox.ripgrep` | Point the sandbox at a ripgrep binary of your own instead of the one Claude Code uses, for example when your platform needs a… |
+| `sandbox.bwrapPath` | Point the sandbox at a bubblewrap binary installed outside `PATH`, such as a vendored copy on an air-gapped host. |
+| `sandbox.socatPath` | Point the sandbox network proxy at a `socat` binary installed outside `PATH`. |
+| `sandbox.credentials` | Declare the credential files and environment variables to protect from sandboxed commands. |
+| `sandbox.credentials.files` | Protect credential files or directories from sandboxed commands. |
+| `sandbox.credentials.envVars` | Protect environment variables from sandboxed commands. |
+| `sandbox.credentials.allowPlaintextInject` | Allow `mask` substitution on plain HTTP requests as well as TLS-terminated HTTPS. On plain HTTP the upstream identity is unverified and… |
+| `sandbox.credentials.awsPairs` | Group masked environment variables that form one AWS credential for SigV4 re-signing when your credential lives in variables with… |
+| `sandbox.credentials.sigv4` | Choose what the sandbox proxy does with AWS request forms it can't re-sign: `streaming` for aws-chunked streaming uploads, `presigned`… |
+| `sandbox.network` | Control which hosts, ports, and sockets sandboxed commands can reach. |
+| `sandbox.network.allowUnixSockets` | List the Unix socket paths sandboxed commands can connect to on macOS. Claude Code ignores this list on Linux and WSL2, where the… |
+| `sandbox.network.allowAllUnixSockets` | Let sandboxed commands connect to every Unix socket. |
+| `sandbox.network.allowLocalBinding` | Let sandboxed commands on macOS listen on network ports, for example to start a dev server, and connect to any port on localhost. |
+| `sandbox.network.allowMachLookup` | List additional XPC and Mach service names the macOS sandbox may look up. |
+| `sandbox.network.allowedDomains` | Pre-allow domains for outbound traffic from sandboxed commands, so the sandbox doesn't prompt for them. |
+| `sandbox.network.deniedDomains` | Block domains for outbound traffic from sandboxed commands, using the same wildcard, port, and IPv6 syntax as `allowedDomains`. |
+| `sandbox.network.strictAllowlist` | Deny sandboxed commands access to hosts outside the allowlist instead of prompting for approval. |
+| `sandbox.network.allowManagedDomainsOnly` | Lock the network allowlist to what managed settings define. |
+| `sandbox.network.httpProxyPort` | Point the sandbox at your own HTTP proxy instead of the one Claude Code runs. |
+| `sandbox.network.socksProxyPort` | Point the sandbox at your own SOCKS5 proxy instead of the one Claude Code runs. |
+| `sandbox.network.tlsTerminate` | Make the sandbox proxy terminate TLS so it can read the contents of HTTPS requests. |
+| `autoCompactEnabled` | Have Claude Code compact the conversation automatically when context approaches the limit. |
+| `autoCompactWindow` | Set how full the context window gets before Claude Code compacts automatically. |
+| `autoMemoryDirectory` | Store auto memory in a directory of your choice instead of the per-project default. |
+| `autoMemoryEnabled` | Turn auto memory on or off. |
+| `bashOutputMaxChars` | Set how many characters of a successful Bash or PowerShell command's output Claude receives inline. |
+| `claudeMd` | Inject CLAUDE.md-style instructions as organization-managed memory without deploying a separate file. |
+| `claudeMdExcludes` | Skip specific `CLAUDE.md` files when Claude Code loads memory. |
+| `env` | Set environment variables for every session and for the subprocesses Claude Code starts from it. |
+| `fileCheckpointingEnabled` | Have Claude Code snapshot files before each edit so `/rewind` can restore them. |
+| `idleCompaction` | Idle compaction compacts a long conversation that you've stepped away from, shortly before its prompt cache expires. |
+| `plansDirectory` | Choose where Claude Code stores the plan files it writes in plan mode. |
+| `skillListingBudgetFraction` | Each turn, Claude sees a listing of your skills with their descriptions, and Claude Code caps that listing at a share of the context window. |
+| `skillListingMaxDescChars` | Each turn, Claude sees a listing of your skills that shows each skill's `description` and `when_to_use` text. |
+| `taskOutputMaxChars` | Through v2.1.276, you set this key to the number of characters of a background task's output that Claude received inline when it read… |
+| `askUserQuestionTimeout` | Let an unanswered `AskUserQuestion` dialog auto-continue after a period of idle time, submitting whatever options you had already selected. |
+| `autoContinueAtUsageLimit` | After a claude.ai usage limit stops your session, wait in the open session and continue the task automatically after the reset. |
+| `autoScrollEnabled` | Follow new output to the bottom of the conversation in fullscreen rendering. |
+| `axScreenReader` | Render screen-reader friendly output: flat text without decorative borders or animations. |
+| `bashEditDiffEnabled` | Choose whether Claude Code records which files changed in a Git repository while a Bash command runs. |
+| `companyAnnouncements` | Show your organization's announcements to users at startup. |
+| `defaultShell` | Choose whether Bash or PowerShell runs the shell commands you type with the `!` prefix in the input box, the ones Claude Code runs… |
+| `dialogExpiry` | Set the deadline for dialogs Claude Code forwards to a remote client, such as a Remote Control or SDK host, and for the approval dialog… |
+| `editorMode` | Choose the key binding mode for the input prompt. |
+| `emojiCompletionEnabled` | Show emoji suggestions when you type `:` plus a shortcode in the prompt input, and replace a completed shortcode such as `:heart:` with… |
+| `fileSuggestion` | Run your own command to supply `@` file path autocomplete instead of the built-in file suggestion. |
+| `footerLinksRegexes` | Render extra clickable badges in the footer below the input box when a regex matches turn output: tool results, including file contents… |
+| `keybindingFlavor` | In v2.1.238 through v2.1.260, setting it to `"readline"` made `Ctrl+W` delete back to the previous whitespace instead of only the… |
+| `maxProseWidth` | Cap the width of the prose in Claude's responses so lines stay readable in a wide terminal. |
+| `prefersReducedMotion` | Reduce or turn off interface animations such as the spinner, shimmer, and flash effects. |
+| `promptSuggestionEnabled` | Show or hide prompt suggestions, the grayed-out predictions that appear in your prompt input. |
+| `respectGitignore` | Control whether the `@` file picker leaves out files that match `.gitignore` patterns. |
+| `respondToBashCommands` | Choose whether Claude responds after you run a shell command with the `!` prefix in the input box. |
+| `showClearContextOnPlanAccept` | When Claude finishes a plan in plan mode, it shows an approval menu. |
+| `showTurnDuration` | Show or hide the turn duration message after each response, such as "Cooked for 1m 6s · done 6:05 PM". The clock after "done" shows when… |
+| `spellcheck` | Underline misspelled words in the prompt input as you type, using a spell checker you install. |
+| `spinnerTipsEnabled` | While Claude works, the spinner line rotates through short tips about Claude Code features, such as "Use Plan Mode to prepare for a… |
+| `spinnerTipsOverride` | Add your own tips to the spinner tips that Claude Code shows while Claude works, or replace the built-in tips with yours. |
+| `spinnerVerbs` | While a turn is in progress, the spinner shows a rotating verb such as "Accomplishing", "Architecting", or "Baking". Use this key to add… |
+| `statusLine` | Run your own command to render a status line below the prompt with context such as the model, cost, or git branch. |
+| `subagentStatusLine` | When Claude runs subagents, Claude Code lists them in a task display below the prompt, one row per subagent showing `name · description… |
+| `syntaxHighlightingDisabled` | Claude Code colors code by language in the diffs, code blocks, and file previews it shows in the terminal, with its built-in… |
+| `terminalProgressBarEnabled` | Some terminals can show a progress indicator on the tab or in the taskbar for the program running in them. |
+| `terminalTitleFromRename` | Claude Code sets your terminal tab's title. |
+| `theme` | Pick the color theme for the interface. |
+| `timeFormat` | Choose how Claude Code writes the times it shows in the interface, such as the `done 6:05 PM` at the end of each turn duration message… |
+| `timeZone` | Show the times in the interface in a time zone other than your system's. |
+| `tui` | Choose the terminal UI renderer. |
+| `verbose` | By default, the transcript collapses each tool call to a short summary, such as the command Claude ran and a line count of its output,… |
+| `viewMode` | Set the transcript view Claude Code starts in: `"default"`, `"verbose"`, or `"focus"`. |
+| `vimInsertModeRemaps` | Map two-key INSERT-mode sequences to Escape in vim editor mode. |
+| `voice` | Turn on voice dictation and choose how the dictation key behaves. |
+| `voiceEnabled` | Turn voice dictation on with the single Boolean form that predates the `voice` object. |
+| `wheelScrollAccelerationEnabled` | Accelerate mouse-wheel scroll speed during fast scrolls in fullscreen rendering. |
+| `attribution` | Customize the attribution Claude Code adds to git commits and pull requests. |
+| `includeCoAuthoredBy` | Use `attribution` instead, which replaces this key and lets you change or hide the commit trailer, the pull request text, and the… |
+| `includeGitInstructions` | Claude Code gives Claude two git-related pieces of context: its built-in instructions for how to write commits and pull requests, in the… |
+| `prUrlTemplate` | Point the PR links Claude Code renders, in the footer badge and in tool-result summaries, at an internal code-review tool instead of… |
+| `attribution.commit` | Set the attribution text Claude Code adds to git commits, including any trailers. |
+| `attribution.pr` | Set the attribution text Claude Code adds to pull request descriptions. |
+| `attribution.sessionUrl` | Choose whether Claude Code appends the claude.ai session link when it commits or opens a pull request from a cloud or Remote Control… |
+| `allowedHttpHookUrls` | Limit which URLs HTTP hooks can target. |
+| `allowManagedHooksOnly` | Restrict hook execution to hooks your organization deploys. |
+| `disableAllHooks` | Turn off hooks, any custom status line, and any custom file suggestion command. |
+| `disableWorkflows` | Turn off dynamic workflows and the bundled workflow commands for everyone your settings reach, such as an organization through managed… |
+| `enableWorkflows` | Turn dynamic workflows on or off for yourself when your plan's default isn't what you want. |
+| `hooks` | Run your own commands, prompts, agents, HTTP requests, or MCP tools as hooks at points in Claude Code's lifecycle, such as before a tool… |
+| `httpHookAllowedEnvVars` | An HTTP hook can put the value of an environment variable into a request header, for example an `Authorization: Bearer $HOOK_TOKEN`… |
+| `workflowKeywordTriggerEnabled` | Choose whether typing the keyword `ultracode` in a prompt triggers a dynamic workflow. |
+| `workflowSizeGuideline` | Set the agent count Claude aims for in the dynamic workflows it writes. |
+| `disableBundledSkills` | Turn off the skills and workflows included with Claude Code. |
+| `disableSkillShellExecution` | Turn off inline shell execution for `` !`...` `` and ` ```! ` blocks in skills and custom commands from user, project, plugin, or… |
+| `skillOverrides` | Hide or collapse a skill without editing its `SKILL.md`. |
+| `syncClaudeAiSkills` | Turn off the download of the skills enabled for your claude.ai account. |
+| `syncClaudeAiPlugins` | Turn off the download of the plugins enabled for your claude.ai account. |
+| `allowedChannelPlugins` | Choose which channel plugins can push messages into sessions in your organization. |
+| `blockedMarketplaces` | Block plugin marketplace sources for your organization. |
+| `channelsEnabled` | Allow channels for your organization. |
+| `disableCommandPluginSources` | Block the `command` plugin source, which installs a plugin by running a marketplace-declared command on the user's machine. |
+| `pluginSuggestionMarketplaces` | Name the marketplaces whose plugins can appear as contextual install suggestions, in spinner tips and pinned at the top of the `/plugin`… |
+| `pluginTrustMessage` | Add your organization's own text to the plugin trust warning Claude Code shows before installation, for example to confirm that plugins… |
+| `strictKnownMarketplaces` | Restrict which plugin marketplace sources people in your organization can add and install plugins from. |
+| `strictPluginOnlyCustomization` | Block skills, agents, hooks, and MCP servers from user and project sources, so they can come only from plugins or managed settings. |
+| `strictPluginOnlyCustomization.skills` | Lock the `skills` surface. |
+| `strictPluginOnlyCustomization.agents` | Lock the `agents` surface. |
+| `strictPluginOnlyCustomization.hooks` | Lock the `hooks` surface. |
+| `strictPluginOnlyCustomization.mcp` | Lock the `mcp` surface. |
+| `enabledPlugins` | Turn individual plugins on or off, keyed by `plugin-name@marketplace-name`. |
+| `extraKnownMarketplaces` | Register additional plugin marketplaces by name, so that people who open the repository, or everyone your managed settings reach, get… |
+| `pluginConfigs` | Store the non-sensitive answers you give a plugin's `userConfig` configuration dialog, keyed by plugin ID. Claude Code writes this key… |
+| `prependPlugins` | List the managed plugins whose mods run before every mod a user installs, in the listed order. |
+| `appendPlugins` | List the managed plugins whose mods run after every mod a user installs, in the listed order. |
+| `allowAllClaudeAiMcps` | Load the claude.ai connectors Claude Code fetches itself alongside a deployed `managed-mcp.json`. |
+| `allowClaudeInChromeWithManagedMcp` | Let the built-in Claude in Chrome server run alongside a deployed `managed-mcp.json`. |
+| `allowedMcpServers` | Allowlist the MCP servers people can add. |
+| `allowManagedMcpServersOnly` | Make the managed allowlist the only one that applies. |
+| `deniedMcpServers` | Block specific MCP servers. |
+| `disableClaudeAiConnectors` | Turn off the claude.ai MCP connectors Claude Code fetches itself, so it neither fetches nor connects them. |
+| `disabledMcpjsonServers` | Reject specific servers defined in a project's `.mcp.json` file so Claude Code never connects them or asks you to approve them. |
+| `enableAllProjectMcpServers` | Approve every MCP server defined in project `.mcp.json` files without a prompt. |
+| `enabledMcpjsonServers` | Approve specific servers defined in project `.mcp.json` files so Claude Code connects them without asking. |
+| `managedMcpServers` | Provide remote MCP servers to every user from managed settings. |
+| `agent` | Run the main thread as a named subagent, so Claude Code applies that subagent's system prompt, tool restrictions, and model to your session. |
+| `crossSessionInbound` | Choose what this session does with messages arriving from your other Claude Code sessions. |
+| `disableAgentView` | Turn off background agents and agent view: `claude agents`, `--bg`, `/background`, and the on-demand supervisor. |
+| `isolatePeerMachines` | Require your explicit approval before Claude's `SendMessage` reaches one of your sessions beyond this machine; see Require approval for… |
+| `processWrapper` | On macOS and Linux, place a corporate launcher command in front of the background processes Claude Code starts. |
+| `teammateMode` | Choose where Claude Code shows agent team teammates: inside your main terminal pane, or in split panes when your terminal supports them. |
+| `worktree` | Configure how Claude Code creates and manages git worktrees for `--worktree`, the `EnterWorktree` tool, and isolated subagents and… |
+| `worktree.baseRef` | Choose which ref new worktrees branch from. `"fresh"` branches from `origin/` for a clean tree matching the remote; `"head"` branches… |
+| `worktree.symlinkDirectories` | Symlink directories from the main repository into each worktree so you don't duplicate large directories on disk. |
+| `worktree.sparsePaths` | Check out only the listed directories in each worktree through git sparse-checkout. |
+| `worktree.bgIsolation` | Choose how background sessions isolate their file edits. |
+| `worktree.location` | Choose the folder on a remote machine where Desktop SSH sessions create their worktrees, instead of `/.claude/worktrees/`. |
+| `agentPushNotifEnabled` | Allow Claude to send a push notification to your phone when it decides one is worth sending, for example when a long task finishes. |
+| `awaySummaryEnabled` | Show a one-line session recap when you return to the terminal after a few minutes away. |
+| `disableArtifact` | Use `enableArtifact` instead to turn off the Artifact tool, which publishes session output as a private web page on claude.ai. |
+| `disableDeepLinkRegistration` | Stop Claude Code from registering the `claude-cli://` protocol handler with the operating system, which it otherwise does after you send… |
+| `disableDesktopLocalSessions` | Turn off Code sessions that run on the device in the desktop app, for deployments where developers should work on remote machines over… |
+| `disableRemoteControl` | Turn off Remote Control: Claude Code then refuses `claude remote-control`, the `--remote-control` flag, auto-start, and the in-session… |
+| `enableArtifact` | Turn off the Artifact tool, which publishes session output as a private web page on claude.ai. |
+| `inputNeededNotifEnabled` | Get a push notification on your phone when a permission prompt or question is waiting for your input. |
+| `preferredNotifChannel` | Choose how Claude Code notifies you when a task completes or a permission prompt is waiting. |
+| `remote.defaultEnvironmentId` | Pick the default cloud environment for cloud sessions you create from the CLI, such as with `claude --cloud`. |
+| `remoteControlAtStartup` | Connect Remote Control automatically when each interactive session starts, instead of waiting for `/remote-control`. |
+| `sshConfigs` | Add SSH connections to the Desktop environment dropdown. |
+| `sshHostAllowlist` | Limit the hosts a Desktop SSH session can connect to. |
+| `allowedProviders` | List the services a machine may reach Claude through, such as the Anthropic API, Amazon Bedrock, or an LLM gateway. |
+| `apiKeyHelper` | Run your own command to produce the credential Claude Code sends with model requests. |
+| `awsAuthRefresh` | Run your own command, such as `aws sso login`, to refresh the credentials in your `.aws` directory when the ones Claude Code has for… |
+| `awsCredentialExport` | Run your own command that prints AWS credentials as JSON, so Claude Code can call Amazon Bedrock with credentials that don't live in… |
+| `forceLoginMethod` | Restrict which kind of account people can log in with. |
+| `forceLoginGatewayUrl` | Set the gateway URL the `/login` Cloud gateway screen connects to, so people reach your cloud gateway without typing its address. |
+| `forceLoginOrgUUID` | From a managed source, require claude.ai account logins to belong to one Anthropic organization, given as a single UUID, or to any of… |
+| `gatewayInternalNetworks` | Declare the public IPv4 blocks that your organization numbers its internal network from, so `/login` accepts a cloud gateway there. |
+| `gcpAuthRefresh` | Run your own command to refresh Google Cloud Application Default Credentials when Claude Code finds they've expired or can't be loaded,… |
+| `otelHeadersHelper` | Run your own command to generate the headers Claude Code sends with OpenTelemetry exports, for backends whose tokens rotate. |
+| `autoUpdatesChannel` | Choose which release channel background auto-updates and `claude update` follow. |
+| `minimumVersion` | Keep background auto-updates and `claude update` from installing any version below this one, so moving to the `"stable"` channel doesn't… |
+| `requiredMaximumVersion` | Set the newest Claude Code version your organization allows to start. |
+| `requiredMinimumVersion` | Set the oldest Claude Code version your organization allows to start. |
+| `browserExternalPageTools` | Stop Claude from using its tools to read or act on external pages in the desktop app's Browser pane. |
+| `disableBrowserExternalNavigation` | Turn off external browsing in the desktop app's Browser pane for people and Claude alike. |
+| `disableMobileSimulatorTools` | Block Claude's tools for the desktop app's iOS Simulator pane. |
+| `cleanupPeriodDays` | Set how many days Claude Code keeps session transcripts and other application data before deleting them. |
+| `desktopSessionCleanupPeriodDays` | Set an age limit in days for the transcripts of sessions you started or most recently continued in Claude Desktop or Cowork. |
+| `feedbackDrafts` | Control Claude-drafted feedback: whether Claude can queue feedback drafts for you to review, and whether Claude Code shows a card when… |
+| `feedbackSurveyRate` | Set the probability that the session quality survey appears when a session is eligible for it. |
+| `skipWebFetchPreflight` | Skip the WebFetch domain safety check, which sends each requested hostname to `api.anthropic.com` before fetching. |
+| `disableSideloadFlags` | Reject the `--plugin-dir`, `--plugin-url`, `--agents`, and `--mcp-config` CLI flags at startup, which users could otherwise pass to… |
+| `forceRemoteSettingsRefresh` | Block CLI startup until Claude Code has freshly fetched server-managed settings. |
+| `managedSourcesBehavior` | Choose whether Claude Code applies only the highest-priority managed source your organization delivers, or combines every admin source… |
+| `parentSettingsBehavior` | Choose whether Claude Code applies managed settings supplied by an embedding host process, such as the Agent SDK or an IDE extension,… |
+| `policyHelper` | Run an executable you deploy that computes managed settings at startup, so you can derive policy from device posture, identity, or a… |
+| `policyHelper.path` | Name the helper executable Claude Code runs. |
+| `policyHelper.timeoutMs` | Set how long Claude Code waits for the helper before treating the run as failed. |
+| `policyHelper.refreshIntervalMs` | Have Claude Code re-run the helper in the background on an interval so policy changes reach a running session. |
+| `wslInheritsWindowsSettings` | Have Claude Code on WSL read managed settings from the Windows policy chain, with HKLM and the Windows managed settings file taking… |
+| `autoConnectIde` | Connect to a running IDE automatically when you start Claude Code from an external terminal. |
+| `autoInstallIdeExtension` | Install the Claude Code IDE extension automatically when you run Claude Code from a VS Code terminal. |
+| `claudeInChromeDefaultEnabled` | Start every interactive CLI session with Chrome integration on, without passing `--chrome` each time. |
+| `copyFullResponse` | Make `/copy` copy the full response every time, without showing the picker. |
+| `copyOnSelect` | Copy text to your clipboard automatically when you finish selecting it with the mouse in fullscreen rendering or agent view. |
+| `defaultToAgentsView` | Open agent view instead of a new conversation when you run `claude` with no arguments. |
+| `diffTool` | Choose where Claude Code shows the diff of an `Edit` or `Write` change it proposes when a VS Code or JetBrains IDE is connected:… |
+| `externalEditorContext` | When you press `Ctrl+G`, Claude Code opens the prompt you're typing in your external editor. |
+| `leftArrowOpensAgents` | Press `←` on an empty prompt to background the session and open agent view. |
+| `permissionExplainerEnabled` | Through v2.1.256, you could press `Ctrl+E` on a Bash or PowerShell permission prompt to see a model-generated explanation of the… |
+| `prStatusFooterEnabled` | Show a badge in the prompt footer for the current branch's open pull request or merge request, with a colored underline that shows its… |
+| `teammateDefaultModel` | Through v2.1.233, you set this key to the model for agent team teammates your prompt didn't name a model for: an alias such as… |
+:::
+
+# Autonomy Recipes
+
+Copy-ready setups for the most common hands-off scenarios. Each recipe lists the risk level and the guardrails you must keep.
+
+:::compact
+| Recipe | Setup | Risk | Must-keep guardrails |
+|---|---|---|---|
+| **Overnight refactor in a container** | Dev container or VM, `--dangerously-skip-permissions`, a git branch | Medium | No production credentials in the box. Review the diff in the morning |
+| **Daily docs or report job** | `claude -p` from cron, `dontAsk`, an allowlist of exact commands | Low | Read-only tokens. Output to a file, not straight to publishing |
+| **PR auto-fix bot** | CI runner, allowlist of test and lint commands, a scoped GitHub token | Medium | Branch protection on `main`. A human merges |
+| **n8n AI agent with tools** | Agent node with minimal tools, approval step for sending or deleting | Medium | Error workflow, rate limits, logging |
+| **Notion assistant** | Integration shared with one teamspace only | Low | No delete permission. Weekly audit |
+| **Browser agent** | Separate browser profile, no saved passwords | High | Watch it live. Never let it handle payments unattended |
+| **Trading bot** | Paper account only (Vol. 10) | High | Kill switch, loss limits, separate keys |
+:::
+
+## Golden rules of autonomy
+
+:::checklist
+- Autonomy goes in a box: a container, VM, or separate account
+- Credentials are scoped to the task and set to expire
+- Anything that can't be undone gets a human approval step
+- Everything is logged, and logs are reviewed
+- There's a tested kill switch for every agent
+- Start with a short leash and lengthen it only after a clean track record
+:::
+
+# Incident Response: When an Agent Goes Wrong
+
+Sooner or later an agent will do something you didn't expect. A calm, practised routine turns a disaster into an inconvenience.
+
+:::steps Stop, contain, recover
+1. **Stop it.** Press <kbd>Esc</kbd> or <kbd>Ctrl</kbd> + <kbd>C</kbd>, stop the container or VM, deactivate the n8n workflow, or use `/stop` for a background session.
+2. **Cut its access.** Revoke or rotate any tokens it held: GitHub, cloud, Notion, MCP connectors, API keys.
+3. **Assess.** Check `git status` and `git log`, cloud consoles, sent mail, and billing pages. What changed?
+4. **Restore.** `git revert` or restore from a branch or backup. Use `/rewind` for local file edits. Restore databases from snapshots.
+5. **Notify.** If other people's data or money was affected, tell them, and the relevant service.
+6. **Learn.** Write down what permission made it possible, then tighten that rule or add a hook or deny rule.
+:::
+
+:::cheatsheet
+**Emergency card:** Esc / Ctrl+C → kill container → revoke tokens → check git, billing, and sent mail → revert → tighten rules.
+:::
+
 # Your Autonomy Setup Checklist {.unnumbered}
 
 :::checklist
