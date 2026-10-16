@@ -530,6 +530,716 @@ From github.com/pricing and GitHub Docs, October 2026. Copilot and Codespaces ar
 | Accidentally committed a secret | Revoke the secret at its source first, then remove it from the repo. |
 | Pages site shows 404 | Check that `index.html` is in the folder you chose, wait a few minutes, and check the Actions tab for errors. |
 
+# Step-by-Step Projects
+
+Reading about Git only goes so far. These projects walk you through the situations you'll actually run into, one keystroke at a time.
+
+:::summary In this chapter
+- Project 1: Contribute to someone else's project (fork → PR)
+- Project 2: Resolve a merge conflict
+- Project 3: Undo common mistakes
+- Project 4: Tag and publish a release
+- Project 5: Keep a fork up to date
+:::
+
+## Project 1: Contribute to another project
+
+:::steps
+1. **Fork it.** On the project's GitHub page, click **Fork**. You now have your own copy under your account.
+2. **Clone your fork.**
+   ```bash
+   git clone https://github.com/YOU/project.git
+   cd project
+   ```
+3. **Add the original as `upstream`.**
+   ```bash
+   git remote add upstream https://github.com/OWNER/project.git
+   ```
+4. **Make a branch.** `git switch -c fix-typo-readme`
+5. **Edit, then commit.** `git add README.md && git commit -m "Fix typo in install steps"`
+6. **Push to your fork.** `git push -u origin fix-typo-readme`
+7. **Open the pull request.** GitHub shows a **Compare & pull request** button. Explain *what* you changed and *why*.
+8. **Respond to review.** Push more commits to the same branch and the PR updates automatically.
+:::
+
+> [!TIP]
+> Read the project's `CONTRIBUTING.md` first. Many projects want an issue opened before a PR.
+
+## Project 2: Resolve a merge conflict
+
+A **conflict** happens when two branches change the same lines. Git can't guess which version you want, so it asks you.
+
+:::steps
+1. **Update and merge.**
+   ```bash
+   git switch my-branch
+   git fetch origin
+   git merge origin/main
+   ```
+   Git reports `CONFLICT (content): Merge conflict in index.html`.
+2. **Open the file.** You'll see markers:
+   ```text
+   <<<<<<< HEAD
+   <h1>Welcome!</h1>
+   =======
+   <h1>Hello there</h1>
+   >>>>>>> origin/main
+   ```
+3. **Choose.** Keep one side, both, or write a new version. Delete all three marker lines.
+4. **Mark it resolved.** `git add index.html`
+5. **Finish.** `git commit` (Git suggests a message).
+6. **Push.** `git push`
+:::
+
+> [!NOTE]
+> VS Code and Cursor show **Accept Current / Accept Incoming / Accept Both** buttons above each conflict. GitHub can also resolve simple conflicts in the browser, from the PR page.
+
+## Project 3: Undo common mistakes
+
+:::compact
+| I want to… | Command | Safe? |
+|---|---|---|
+| Discard unsaved edits to one file | `git restore file.txt` | Loses those edits |
+| Unstage a file (keep the edits) | `git restore --staged file.txt` | Yes |
+| Fix the last commit's message (not pushed yet) | `git commit --amend -m "New message"` | Yes, if not pushed |
+| Add a forgotten file to the last commit (not pushed) | `git add f && git commit --amend --no-edit` | Yes, if not pushed |
+| Undo a pushed commit safely | `git revert <commit>` | Yes. Creates a new "undo" commit |
+| Move the branch back but keep the changes | `git reset --soft HEAD~1` | Yes, locally |
+| Throw away local commits and changes | `git reset --hard <commit>` | **Destructive** |
+| Recover "lost" commits | `git reflog`, then `git switch -c rescue <hash>` | Yes |
+| Put work aside temporarily | `git stash`, later `git stash pop` | Yes |
+| Committed to `main` by mistake (not pushed) | `git switch -c new-branch`, then `git switch main && git reset --hard origin/main` | Careful |
+:::
+
+> [!CAUTION]
+> Never `reset --hard`, rebase, or force-push commits that others may have pulled. Use `git revert` for anything already shared. If you must force-push your own branch, use `git push --force-with-lease`, which refuses if someone else pushed in the meantime.
+
+## Project 4: Tag and publish a release
+
+:::steps
+1. **Tag the commit.** `git tag -a v1.0.0 -m "First release"`
+2. **Push the tag.** `git push origin v1.0.0`
+3. **Create the release.** On GitHub go to [[Releases > Draft a new release]], choose the tag, and click **Generate release notes**. Or, from the terminal:
+   ```bash
+   gh release create v1.0.0 --generate-notes
+   ```
+4. **Attach files** (optional), such as a PDF or a zip, by dragging them into the release form or adding paths after the tag in `gh release create`.
+:::
+
+Version numbers usually follow **semantic versioning**: `MAJOR.MINOR.PATCH`. Bump MAJOR for breaking changes, MINOR for new features, and PATCH for fixes.
+
+## Project 5: Keep a fork up to date
+
+```bash
+git switch main
+git fetch upstream
+git merge upstream/main
+git push origin main
+```
+
+Or click **Sync fork** on your fork's GitHub page.
+
+# Git Command Reference
+
+Every Git command a beginner-to-intermediate user needs, grouped by task. Type `git help <command>` for the official manual page.
+
+:::summary In this chapter
+- Setup, everyday, branching, remote, history, and repair commands
+- Useful configuration
+:::
+
+## Setup
+
+:::compact
+| Command | What it does |
+|---|---|
+| `git config --global user.name "Your Name"` | Name stamped on your commits |
+| `git config --global user.email "you@example.com"` | Email on your commits (GitHub's no-reply address works) |
+| `git config --global init.defaultBranch main` | New repos start on `main` |
+| `git config --global pull.rebase false` | `git pull` merges (the beginner-friendly default) |
+| `git config --global core.editor "code --wait"` | Use VS Code for commit messages |
+| `git config --list` | Show all settings |
+| `git init` | Turn the current folder into a repository |
+| `git clone <url>` | Copy a repository to your computer |
+:::
+
+## Everyday
+
+:::compact
+| Command | What it does |
+|---|---|
+| `git status` | What changed, what's staged, which branch you're on |
+| `git add <file>` / `git add .` | Stage one file / everything in this folder |
+| `git add -p` | Stage piece by piece, reviewing each change |
+| `git commit -m "msg"` | Save a snapshot with a message |
+| `git commit -am "msg"` | Stage tracked files and commit in one step |
+| `git diff` | Changes not yet staged |
+| `git diff --staged` | Changes staged for the next commit |
+| `git log --oneline --graph --all` | Compact history of all branches |
+| `git show <commit>` | What one commit changed |
+| `git rm <file>` / `git mv a b` | Delete or rename, and stage it |
+:::
+
+## Branches
+
+:::compact
+| Command | What it does |
+|---|---|
+| `git branch` | List local branches |
+| `git branch -a` | Include remote branches |
+| `git switch <name>` | Move to a branch |
+| `git switch -c <name>` | Create a branch and move to it |
+| `git merge <branch>` | Merge that branch into the current one |
+| `git rebase main` | Replay your branch's commits on top of `main` (local branches only) |
+| `git branch -d <name>` | Delete a merged branch |
+| `git branch -D <name>` | Force-delete an unmerged branch |
+| `git cherry-pick <commit>` | Copy one commit onto the current branch |
+:::
+
+## Remotes
+
+:::compact
+| Command | What it does |
+|---|---|
+| `git remote -v` | List remotes and their URLs |
+| `git remote add <name> <url>` | Add a remote |
+| `git fetch` | Download new commits without changing your files |
+| `git pull` | Fetch and merge into the current branch |
+| `git push` | Upload your commits |
+| `git push -u origin <branch>` | First push of a new branch, and set it to track |
+| `git push --force-with-lease` | Overwrite your remote branch only if nobody else pushed |
+| `git push origin --delete <branch>` | Delete a branch on GitHub |
+:::
+
+## History and investigation
+
+:::compact
+| Command | What it does |
+|---|---|
+| `git log -p <file>` | Every change ever made to a file |
+| `git log --author="Name"` | Commits by one person |
+| `git log -S "text"` | Commits that added or removed that text |
+| `git blame <file>` | Who last changed each line, and when |
+| `git bisect start` / `good` / `bad` | Binary-search history for the commit that broke something |
+| `git reflog` | Everywhere `HEAD` has been, which is your safety net |
+| `git tag` | List tags |
+:::
+
+## Stash and clean
+
+:::compact
+| Command | What it does |
+|---|---|
+| `git stash` | Shelve uncommitted changes |
+| `git stash list` | See your stashes |
+| `git stash pop` | Re-apply and remove the latest stash |
+| `git clean -n` | Preview untracked files that would be deleted |
+| `git clean -fd` | **Delete** untracked files and folders |
+:::
+
+# GitHub CLI (gh) Reference
+
+`gh` brings GitHub to your terminal: pull requests, issues, releases, Actions, and more. Install it from [cli.github.com](https://cli.github.com), then run `gh auth login`.
+
+:::summary In this chapter
+- The ten `gh` commands you'll use most
+- The full command list
+:::
+
+## Most-used commands
+
+| Command | What it does |
+|---|---|
+| `gh auth login` | Sign in (browser or token) |
+| `gh repo create my-app --private --source=. --push` | Create a GitHub repo from the current folder and push |
+| `gh repo clone owner/repo` | Clone without copying the URL |
+| `gh pr create --fill` | Open a PR using your commit messages |
+| `gh pr list` / `gh pr view 12 --web` | List PRs / open one in the browser |
+| `gh pr checkout 12` | Check out someone's PR locally to test it |
+| `gh pr merge 12 --squash` | Merge a PR |
+| `gh issue create` / `gh issue list` | File or list issues |
+| `gh run watch` | Watch an Actions run live |
+| `gh release create v1.0.0 --generate-notes` | Publish a release |
+
+## Full command list
+
+This list was generated from the installed GitHub CLI (version 2.46) in October 2026. Newer versions may add commands, so run `gh help` for yours.
+
+:::compact
+| Command | What it does |
+|---|---|
+| `gh auth login` | Log in to a GitHub account |
+| `gh auth logout` | Log out of a GitHub account |
+| `gh auth refresh` | Refresh stored authentication credentials |
+| `gh auth setup-git` | Setup git with GitHub CLI |
+| `gh auth status` | View all accounts and authentication status |
+| `gh auth switch` | Switch active GitHub account |
+| `gh auth token` | Print the authentication token gh uses for a hostname and account |
+| `gh browse` | Open the GitHub repository in the web browser. |
+| `gh codespace code` | Open a codespace in Visual Studio Code |
+| `gh codespace cp` | Copy files between local and remote file systems |
+| `gh codespace create` | Create a codespace |
+| `gh codespace delete` | Delete codespaces |
+| `gh codespace edit` | Edit a codespace |
+| `gh codespace jupyter` | Open a codespace in JupyterLab |
+| `gh codespace list` | List codespaces |
+| `gh codespace logs` | Access codespace logs |
+| `gh codespace ports` | List ports in a codespace |
+| `gh codespace rebuild` | Rebuild a codespace |
+| `gh codespace ssh` | SSH into a codespace |
+| `gh codespace stop` | Stop a running codespace |
+| `gh codespace view` | View details about a codespace |
+| `gh gist clone` | Clone a gist locally |
+| `gh gist create` | Create a new gist |
+| `gh gist delete` | Delete a gist |
+| `gh gist edit` | Edit one of your gists |
+| `gh gist list` | List your gists |
+| `gh gist rename` | Rename a file in a gist |
+| `gh gist view` | View a gist |
+| `gh issue create` | Create a new issue |
+| `gh issue list` | List issues in a repository |
+| `gh issue status` | Show status of relevant issues |
+| `gh issue close` | Close issue |
+| `gh issue comment` | Add a comment to an issue |
+| `gh issue delete` | Delete issue |
+| `gh issue develop` | Manage linked branches for an issue |
+| `gh issue edit` | Edit issues |
+| `gh issue lock` | Lock issue conversation |
+| `gh issue pin` | Pin a issue |
+| `gh issue reopen` | Reopen issue |
+| `gh issue transfer` | Transfer issue to another repository |
+| `gh issue unlock` | Unlock issue conversation |
+| `gh issue unpin` | Unpin a issue |
+| `gh issue view` | View an issue |
+| `gh org list` | List organizations for the authenticated user. |
+| `gh pr create` | Create a pull request |
+| `gh pr list` | List pull requests in a repository |
+| `gh pr status` | Show status of relevant pull requests |
+| `gh pr checkout` | Check out a pull request in git |
+| `gh pr checks` | Show CI status for a single pull request |
+| `gh pr close` | Close a pull request |
+| `gh pr comment` | Add a comment to a pull request |
+| `gh pr diff` | View changes in a pull request |
+| `gh pr edit` | Edit a pull request |
+| `gh pr lock` | Lock pull request conversation |
+| `gh pr merge` | Merge a pull request |
+| `gh pr ready` | Mark a pull request as ready for review |
+| `gh pr reopen` | Reopen a pull request |
+| `gh pr review` | Add a review to a pull request |
+| `gh pr unlock` | Unlock pull request conversation |
+| `gh pr view` | View a pull request |
+| `gh project close` | Close a project |
+| `gh project copy` | Copy a project |
+| `gh project create` | Create a project |
+| `gh project delete` | Delete a project |
+| `gh project edit` | Edit a project |
+| `gh project field-create` | Create a field in a project |
+| `gh project field-delete` | Delete a field in a project |
+| `gh project field-list` | List the fields in a project |
+| `gh project item-add` | Add a pull request or an issue to a project |
+| `gh project item-archive` | Archive an item in a project |
+| `gh project item-create` | Create a draft issue item in a project |
+| `gh project item-delete` | Delete an item from a project by ID |
+| `gh project item-edit` | Edit an item in a project |
+| `gh project item-list` | List the items in a project |
+| `gh project link` | Link a project to a repository or a team |
+| `gh project list` | List the projects for an owner |
+| `gh project mark-template` | Mark a project as a template |
+| `gh project unlink` | Unlink a project from a repository or a team |
+| `gh project view` | View a project |
+| `gh release create` | Create a new release |
+| `gh release list` | List releases in a repository |
+| `gh release delete` | Delete a release |
+| `gh release delete-asset` | Delete an asset from a release |
+| `gh release download` | Download release assets |
+| `gh release edit` | Edit a release |
+| `gh release upload` | Upload assets to a release |
+| `gh release view` | View information about a release |
+| `gh repo create` | Create a new repository |
+| `gh repo list` | List repositories owned by user or organization |
+| `gh repo archive` | Archive a repository |
+| `gh repo clone` | Clone a repository locally |
+| `gh repo delete` | Delete a repository |
+| `gh repo deploy-key` | Manage deploy keys in a repository |
+| `gh repo edit` | Edit repository settings |
+| `gh repo fork` | Create a fork of a repository |
+| `gh repo rename` | Rename a repository |
+| `gh repo set-default` | Configure default repository for this directory |
+| `gh repo sync` | Sync a repository |
+| `gh repo unarchive` | Unarchive a repository |
+| `gh repo view` | View a repository |
+| `gh cache delete` | Delete Github Actions caches |
+| `gh cache list` | List Github Actions caches |
+| `gh run cancel` | Cancel a workflow run |
+| `gh run delete` | Delete a workflow run |
+| `gh run download` | Download artifacts generated by a workflow run |
+| `gh run list` | List recent workflow runs |
+| `gh run rerun` | Rerun a run |
+| `gh run view` | View a summary of a workflow run |
+| `gh run watch` | Watch a run until it completes, showing its progress |
+| `gh workflow disable` | Disable a workflow |
+| `gh workflow enable` | Enable a workflow |
+| `gh workflow list` | List workflows |
+| `gh workflow run` | Run a workflow by creating a workflow_dispatch event |
+| `gh workflow view` | View the summary of a workflow |
+| `gh alias delete` | Delete set aliases |
+| `gh alias import` | Import aliases from a YAML file |
+| `gh alias list` | List your aliases |
+| `gh alias set` | Create a shortcut for a gh command |
+| `gh api` | Makes an authenticated HTTP request to the GitHub API and prints the response. |
+| `gh config clear-cache` | Clear the cli cache |
+| `gh config get` | Print the value of a given configuration key |
+| `gh config list` | Print a list of configuration keys and values |
+| `gh config set` | Update configuration with a value for the given key |
+| `gh extension browse` | Enter a UI for browsing, adding, and removing extensions |
+| `gh extension create` | Create a new extension |
+| `gh extension exec` | Execute an installed extension |
+| `gh extension install` | Install a gh extension from a repository |
+| `gh extension list` | List installed extension commands |
+| `gh extension remove` | Remove an installed extension |
+| `gh extension search` | Search extensions to the GitHub CLI |
+| `gh extension upgrade` | Upgrade installed extensions |
+| `gh gpg-key add` | Add a GPG key to your GitHub account |
+| `gh gpg-key delete` | Delete a GPG key from your GitHub account |
+| `gh gpg-key list` | Lists GPG keys in your GitHub account |
+| `gh label clone` | Clones labels from one repository to another |
+| `gh label create` | Create a new label |
+| `gh label delete` | Delete a label from a repository |
+| `gh label edit` | Edit a label |
+| `gh label list` | List labels in a repository |
+| `gh ruleset check` | View rules that would apply to a given branch |
+| `gh ruleset list` | List rulesets for a repository or organization |
+| `gh ruleset view` | View information about a ruleset |
+| `gh search code` | Search within code |
+| `gh search commits` | Search for commits |
+| `gh search issues` | Search for issues |
+| `gh search prs` | Search for pull requests |
+| `gh search repos` | Search for repositories |
+| `gh secret delete` | Delete secrets |
+| `gh secret list` | List secrets |
+| `gh secret set` | Create or update secrets |
+| `gh ssh-key add` | Add an SSH key to your GitHub account |
+| `gh ssh-key delete` | Delete an SSH key from your GitHub account |
+| `gh ssh-key list` | Lists SSH keys in your GitHub account |
+| `gh status` | The status command prints information about your work on GitHub across all the repositories you're subscribed to, including: |
+| `gh variable delete` | Delete variables |
+| `gh variable list` | List variables |
+| `gh variable set` | Create or update variables |
+:::
+
+# Markdown on GitHub
+
+README files, issues, PRs, and comments all use **GitHub Flavored Markdown**. This page is a complete cheat sheet.
+
+:::summary In this chapter
+- Formatting syntax
+- GitHub-only extras: task lists, mentions, alerts, Mermaid diagrams
+- A README template
+:::
+
+## Formatting
+
+:::compact
+| You type | You get |
+|---|---|
+| `# Title` … `###### Small` | Headings, levels 1–6 |
+| `**bold**`, `*italic*`, `~~strike~~` | **bold**, *italic*, ~~strike~~ |
+| `` `code` `` | Inline code |
+| ` ```js ` … ` ``` ` | A code block with syntax highlighting |
+| `- item` or `1. item` | Bulleted or numbered list |
+| `[text](https://url)` | Link |
+| `![alt text](image.png)` | Image |
+| `> quote` | Blockquote |
+| `---` | Horizontal rule |
+| `| a | b |` + `|---|---|` | Table |
+:::
+
+## GitHub extras
+
+:::compact
+| Feature | Syntax | Notes |
+|---|---|---|
+| Task list | `- [ ] todo` / `- [x] done` | Clickable checkboxes in issues and PRs |
+| Mention | `@username` | Notifies that person |
+| Issue / PR link | `#123` | Auto-links in the same repo |
+| Closing keyword | `Fixes #123` in a PR description | Closes the issue when the PR merges |
+| Alerts | `> [!NOTE]`, `> [!TIP]`, `> [!IMPORTANT]`, `> [!WARNING]`, `> [!CAUTION]` | Coloured callout boxes |
+| Diagrams | A ` ```mermaid ` code block | Renders flowcharts and sequence diagrams |
+| Collapsible | `<details><summary>Title</summary> … </details>` | Hides long logs |
+| Footnote | `Text[^1]` and `[^1]: Note` | Footnotes |
+:::
+
+## README template
+
+```markdown title=README.md
+# Project Name
+
+One sentence: what it does and who it's for.
+
+## Getting started
+1. Install: `npm install`
+2. Run: `npm start`
+3. Open http://localhost:3000
+
+## Features
+- Feature one
+- Feature two
+
+## Contributing
+Open an issue first, then a pull request.
+
+## License
+MIT
+```
+
+# GitHub Actions Cookbook
+
+Actions run code automatically when something happens in your repository. This chapter gives you copy-paste workflows and explains every line.
+
+:::summary In this chapter
+- Anatomy of a workflow file
+- Triggers reference
+- Eight ready-to-use workflows
+- Secrets and variables
+- Debugging failed runs
+:::
+
+## Anatomy of a workflow
+
+Workflows live in `.github/workflows/` as `.yml` files.
+
+```yaml title=.github/workflows/ci.yml
+name: CI                      # shown in the Actions tab
+on:                           # WHEN it runs
+  push:
+    branches: [main]
+  pull_request:
+jobs:                         # WHAT runs
+  test:
+    runs-on: ubuntu-latest    # the virtual machine
+    steps:
+      - uses: actions/checkout@v4        # get your code
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci                      # a shell command
+      - run: npm test
+```
+
+| Key | Meaning |
+|---|---|
+| `on` | Events that trigger the workflow |
+| `jobs` | One or more jobs. They run in parallel unless linked with `needs` |
+| `runs-on` | Runner type: `ubuntu-latest`, `windows-latest`, or `macos-latest` |
+| `steps` | Ordered list of actions (`uses`) or commands (`run`) |
+| `with` | Inputs to an action |
+| `env` | Environment variables |
+| `if` | A condition for running a job or step |
+| `needs` | Make a job wait for another |
+| `permissions` | What the automatic `GITHUB_TOKEN` is allowed to do |
+
+## Triggers
+
+:::compact
+| Trigger | Fires when… |
+|---|---|
+| `push` | Commits are pushed (filter with `branches`, `paths`, `tags`) |
+| `pull_request` | A PR is opened, updated, or reopened |
+| `workflow_dispatch` | You click **Run workflow** (manual button) |
+| `schedule` | A cron time, in UTC, e.g. `- cron: "0 6 * * 1"` = Mondays 06:00 UTC |
+| `release` | A release is published |
+| `issues` / `issue_comment` | Issues or comments are created or edited |
+| `workflow_run` | Another workflow finishes |
+:::
+
+## Ready-to-use workflows
+
+**1. Build a static site and deploy to Pages**
+
+```yaml
+on: { push: { branches: [main] }, workflow_dispatch: {} }
+permissions: { contents: read, pages: write, id-token: write }
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: github-pages
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: "." }
+      - uses: actions/deploy-pages@v4
+```
+
+**2. Python tests**
+
+```yaml
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - run: pytest
+```
+
+**3. Test on several versions (matrix)**
+
+```yaml
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: { node: [18, 20, 22] }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "${{ matrix.node }}" }
+      - run: npm ci && npm test
+```
+
+**4. A scheduled job**
+
+```yaml
+on:
+  schedule: [{ cron: "30 12 * * *" }]   # 12:30 UTC daily
+  workflow_dispatch: {}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scripts/daily_report.py
+```
+
+**5. Upload a build file as an artifact**
+
+```yaml
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with: { name: site, path: dist/ }
+```
+
+**6. Cache dependencies** (setup actions have this built in)
+
+```yaml
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+```
+
+**7. Only run when certain files change**
+
+```yaml
+on:
+  push:
+    paths: ["content/**", "build.mjs"]
+```
+
+**8. Use a secret**
+
+```yaml
+      - run: ./deploy.sh
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+```
+
+## Secrets and variables
+
+Add them in [[Settings > Secrets and variables > Actions]]. **Secrets** are encrypted and masked in logs. **Variables** are plain configuration values (`${{ vars.NAME }}`). Secrets aren't passed to workflows triggered by pull requests from forks.
+
+> [!CAUTION]
+> Pin third-party actions to a version tag you trust, or to a full commit hash for maximum safety. A compromised action can read your secrets. Give `permissions:` the minimum the workflow needs.
+
+## Debugging a failed run
+
+:::steps
+1. **Open the run.** Go to the **Actions** tab and click the red ✗.
+2. **Expand the failing step.** The error is usually at the bottom.
+3. **Re-run with debug logging.** Click **Re-run jobs**, then tick **Enable debug logging**.
+4. **Reproduce locally.** Run the same commands on your computer.
+5. **Ask AI.** Paste the log into an assistant and ask it to "explain this CI failure and propose the smallest fix."
+:::
+
+# Security and Repository Settings Walkthrough
+
+A guided tour of the settings that protect your work. Spend twenty minutes here once per important repository.
+
+:::summary In this chapter
+- Account security: 2FA and passkeys
+- Protecting `main` with rulesets
+- Dependabot and secret scanning
+- Personal access tokens done right
+- A security checklist
+:::
+
+## Account security
+
+:::steps
+1. **Turn on two-factor authentication.** Go to [[Settings > Password and authentication]]. Use an authenticator app or a passkey rather than SMS where you can.
+2. **Save your recovery codes** somewhere offline, such as a printed copy or a password manager.
+3. **Review sessions and authorized apps.** Go to [[Settings > Applications]] and revoke anything you don't recognise.
+:::
+
+## Protect `main`
+
+Go to [[Settings > Rules > Rulesets]] (or **Branches** for classic branch protection) and add a rule for `main`:
+
+:::checklist
+- Require a pull request before merging
+- Require status checks to pass (pick your CI job)
+- Block force pushes
+- Restrict deletions
+- Optionally, require approvals (useful on team repos)
+:::
+
+## Dependabot and code security
+
+Under [[Settings > Code security]] you can turn on **Dependabot alerts** (warnings about vulnerable dependencies), **Dependabot security updates** (automatic fix PRs), and **secret scanning / push protection** (blocks pushes that contain known token formats). Availability depends on whether the repository is public or private and on your plan. GitHub's settings page shows which options you can use.
+
+## Personal access tokens
+
+When a tool asks for a token, create a **fine-grained personal access token** at [[Settings > Developer settings > Personal access tokens]]:
+
+:::checklist
+- Limit it to only the repositories it needs
+- Grant only the permissions it needs, read-only if possible
+- Set an expiration date
+- Store it in a password manager or secret store, never in code
+- Revoke it when you stop using the tool
+:::
+
+## If you leak a secret
+
+:::steps
+1. **Revoke or rotate it immediately** at the service that issued it. Deleting the commit isn't enough, because the secret is already exposed.
+2. **Remove it from the code** and commit.
+3. **Check logs** at that service for misuse.
+4. **Optionally, rewrite history** with a tool like `git filter-repo` if the repository must not contain it. Coordinate with collaborators first.
+:::
+
+# Frequently Asked Questions
+
+**Is Git the same as GitHub?** No. Git is the version-control tool on your computer. GitHub is a website that hosts Git repositories and adds collaboration features.
+
+**Public or private?** Public repositories are visible to everyone. Private ones are visible only to people you invite. Choose private for anything personal. You can change it later in Settings.
+
+**Will deleting a file remove it from history?** No. It's still in earlier commits. Treat anything you ever committed as permanent, which is why secrets must be rotated.
+
+**Merge, squash, or rebase when merging a PR?** **Merge** keeps every commit. **Squash** combines the PR into one tidy commit, which is great for beginners. **Rebase** replays the commits in a straight line.
+
+**What's `origin`?** The default nickname for the GitHub copy of your repository.
+
+**What's `HEAD`?** A pointer to the commit you currently have checked out.
+
+**Can I use GitHub without the terminal?** Yes. The website, GitHub Desktop, and the editors in VS Code and Cursor cover most tasks. The terminal is faster once you know it.
+
+**How big can files be?** GitHub blocks files over 100 MB and warns above 50 MB. Use Git LFS or a release asset for large files.
+
+**Why does `git push` ask for a password that doesn't work?** GitHub doesn't accept account passwords for Git over HTTPS. Sign in with `gh auth login`, Git Credential Manager, or SSH keys.
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet
