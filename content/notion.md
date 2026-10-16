@@ -750,6 +750,199 @@ Prompts for Notion AI (Chapter 6), on plans that include it. Press <kbd>Space</k
 | Spreadsheets | Import CSV as a database, then change property types (date, select, number) |
 | Markdown folders | Zip the folder and import. Linked files may need re-linking |
 
+# Project: A Simple CRM for Clients and Leads
+
+A CRM (customer relationship manager) tracks who you know, where each deal stands and what to do next. This project builds one in about an hour with three linked databases. It works for freelancers, small businesses and job seekers, where the "deals" are applications.
+
+:::summary
+- **Databases:** Companies, Contacts and Deals, plus an optional Interactions log.
+- **Key skills:** relations, rollups, formulas, board views, filtered linked views and templates.
+- **Result:** a Pipeline board, a "follow up today" list, and a page for each company showing everything about it.
+:::
+
+## Step 1: Create the databases
+
+Make a page called **CRM**. Inside it, type `/database` and choose a full-page or inline database. Make three of them:
+
+| Database | Properties to add |
+|---|---|
+| **Companies** | Name (title), Website (URL), Industry (select), Size (select), Notes (text) |
+| **Contacts** | Name (title), Email (email), Phone (phone), Role (text), Company (relation → Companies), Last contacted (date), Next follow-up (date) |
+| **Deals** | Deal (title), Company (relation → Companies), Contact (relation → Contacts), Stage (status), Value (number, currency), Expected close (date), Owner (person) |
+
+When you create each **relation**, switch on the option to show it on the other database too. Companies then automatically lists its Contacts and Deals.
+
+## Step 2: Set up the pipeline stages
+
+Edit the **Stage** status property in Deals. Status properties have three groups: To-do, In progress and Complete. Arrange your options like this:
+
+| Group | Options |
+|---|---|
+| To-do | Lead |
+| In progress | Contacted, Meeting, Proposal sent, Negotiating |
+| Complete | Won, Lost |
+
+## Step 3: Add rollups and formulas
+
+| Where | Add | Settings |
+|---|---|---|
+| Companies | **Total deal value** (rollup) | Relation: Deals. Property: Value. Calculate: Sum |
+| Companies | **Deal count** (rollup) | Relation: Deals. Calculate: Count all |
+| Contacts | **Follow-up due** (formula) | `if(empty(prop("Next follow-up")), false, prop("Next follow-up") <= now())` |
+| Deals | **Days to close** (formula) | `if(empty(prop("Expected close")), "", format(dateBetween(prop("Expected close"), now(), "days")) + " days")` |
+
+> [!TIP]
+> Formulas are case-sensitive about property names. If a formula shows an error, retype the property name using the property picker inside the formula editor.
+
+## Step 4: Build the views
+
+| View | Database | Type | Setup |
+|---|---|---|---|
+| **Pipeline** | Deals | Board | Group by Stage. Hide the Won and Lost columns, or move them to the end |
+| **Closing this month** | Deals | Table | Filter: Expected close is within this month. Sort by Value, descending |
+| **Follow up today** | Contacts | List | Filter: Follow-up due is checked. Sort by Next follow-up |
+| **By company** | Contacts | Table | Group by Company |
+| **Won** | Deals | Table | Filter: Stage is Won. Show a Value sum in the footer calculation |
+
+## Step 5: Templates for speed
+
+:::steps
+1. In **Deals**, click the arrow next to **New** and create a template named "New deal". Pre-set Stage to **Lead**, and add a page body with these headings: *Context*, *Needs*, *Next step*, *Notes*.
+2. In **Contacts**, create a "Met at event" template with a checklist: send thank-you, connect online, set a follow-up date.
+3. Set each template as the default for its database, so every new item starts filled in.
+:::
+
+## Step 6: The daily routine (5 minutes)
+
+1. Open **Follow up today** and contact each person. Update **Last contacted**, then set a new **Next follow-up**.
+2. Open **Pipeline** and drag any cards that moved forward.
+3. On Fridays, open **Closing this month** and update the expected dates honestly.
+
+## Variations
+
+| Use case | Change |
+|---|---|
+| Job search | Companies = employers, Deals = applications. Stages: Applied, Screen, Interview, Offer, Rejected |
+| Fundraising | Deals = asks. Value = pledge amount. Stages: Prospect, Asked, Pledged, Received |
+| Freelance | Add an **Invoices** database related to Deals with Amount, Sent and Paid date |
+
+# Project: A Team Wiki People Actually Use
+
+A wiki fails when nobody can find anything or nobody trusts it to be current. This structure fixes both problems.
+
+## Structure
+
+| Top-level page | What goes in it |
+|---|---|
+| **Start here** | What the team does, who's who, how to ask for help, and links to the 10 most used pages |
+| **How we work** | Meetings, communication norms, tools and access |
+| **Processes** | One page per repeatable process (onboarding, releases, expenses) |
+| **Projects** | Linked view of the Projects database (see *Build a Project Tracker*) |
+| **Decisions** | Database: Decision, Date, Owner, Status, Context, Link |
+| **Reference** | Glossary, templates and brand assets |
+
+## Build it
+
+:::steps
+1. Create a teamspace for the team (or one top-level page if you're on a personal plan) and add the six pages above.
+2. On **Start here**, add `/toc` for a table of contents, and a callout (`/callout`) saying who maintains the wiki.
+3. Make **Processes** a database instead of loose pages. Give it the properties Owner (person), Last reviewed (date), Status (select: Current, Needs review, Outdated) and Area (select).
+4. Add a formula property **Stale** to Processes: `dateBetween(now(), prop("Last reviewed"), "days") > 90`
+5. Create a view **Needs review**, filtered to Stale is checked or Status is Needs review, and sorted by Last reviewed.
+6. Give each process page the same template: *Purpose*, *When to use*, *Steps*, *Owner*, *Related*.
+7. Use **synced blocks** for text that appears on many pages, such as a support contact. Edit it once and it updates everywhere.
+:::
+
+## Keep it alive
+
+:::checklist
+- [ ] Every page has one named owner
+- [ ] The owner reviews their pages when the **Needs review** view shows them, and updates **Last reviewed**
+- [ ] New questions in chat are answered with a link to a wiki page. If none exists, someone writes one
+- [ ] Outdated pages are moved to an **Archive** page rather than deleted, so their links still work
+- [ ] Use Notion AI or search to find duplicates once a quarter, and merge them
+:::
+
+# Project: The Weekly Review System
+
+A weekly review is 30 minutes on Friday or Sunday to close loops and plan the next week. This Notion setup makes it repeatable.
+
+## Databases
+
+| Database | Properties |
+|---|---|
+| **Tasks** (reuse yours) | Name, Status, Due (date), Priority (select), Area (select) |
+| **Weekly reviews** | Week (title), Date (date), Wins (text), Energy (select: Low/OK/High), Focus next week (text) |
+
+## The review template
+
+In **Weekly reviews**, make a template with the sections below, and set it to **repeat weekly** on your review day so it appears automatically.
+
+```text title=Weekly review template body
+## 1. Clear (10 min)
+- [ ] Empty email/chat inbox into Tasks
+- [ ] Process notes and loose papers
+- [ ] Clear downloads/desktop
+
+## 2. Review (10 min)
+<linked view: Tasks — Done this week>
+<linked view: Tasks — Overdue>
+- What went well?
+- What didn't, and why?
+
+## 3. Plan (10 min)
+<linked view: Tasks — Due next 7 days>
+- Top 3 outcomes for next week:
+  1.
+  2.
+  3.
+```
+
+To add the linked views, type `/linked` inside the template and pick **Tasks**. Then set a filter on each one:
+
+| Linked view | Filter |
+|---|---|
+| Done this week | Status is Done, and the last-edited date is within the past week (add a **Last edited time** property to Tasks first) |
+| Overdue | Due is before today, and Status is not Done |
+| Due next 7 days | Due is within the next week |
+
+## Make it stick
+
+- Block the time in your calendar as a recurring event.
+- Keep the same order every week. The routine matters more than the tool.
+- Every 4 weeks, read your last four reviews, and ask Notion AI: "What patterns do you see in my wins and problems across these reviews?"
+
+# Automations, Buttons, and Reminders: Recipes
+
+Notion can do small automations without outside tools. What's available depends on your plan. Some database automations need a paid plan, so check notion.com/pricing.
+
+| Goal | Tool | Recipe |
+|---|---|---|
+| One-click new task with defaults | Button (`/button`) | Action: Add page to Tasks, with Status = To do, Due = today, and Assignee = the person who clicked |
+| Mark several items done | Button on a database page | Action: Edit pages in Tasks, filtered to the current project, setting Status = Done |
+| Remind me before a deadline | Date reminder | Click a date property value and set a reminder. Notion notifies you |
+| Recurring checklist | Repeating template | Database template → set to repeat daily, weekly or monthly |
+| Notify the team when a status changes | Database automation | Trigger: Status set to *Needs review*. Action: send a notification, or a Slack message if connected |
+| Fill a date when done | Database automation | Trigger: Status set to *Done*. Action: set Completed = today |
+| Anything across apps | Integrations | Use the Notion API, or n8n (see the n8n manual) |
+
+> [!NOTE]
+> Buttons and automations act with your permissions, so test them on a copy of the database first. An "edit pages" action can change many pages at once.
+
+# Notion for Students
+
+| Need | Setup |
+|---|---|
+| Course hub | A **Courses** database (Name, Term, Instructor, Schedule) with a page per course containing notes and a linked view of Assignments |
+| Assignments | Name, Course (relation), Due, Status, Grade (number), Weight (number). Board grouped by Status, and calendar by Due |
+| Grade calculator | In Courses, a rollup of Grade × Weight. Or add a formula in Assignments, `prop("Grade") * prop("Weight")`, then roll up the sum |
+| Lecture notes | Use a template with headings *Key ideas*, *Questions* and *Summary*. Afterwards ask Notion AI: "Make 10 quiz questions from these notes" |
+| Reading tracker | Title, Author, Course, Pages, Status, Key quote |
+| Exam countdown | A formula: `format(dateBetween(prop("Exam date"), now(), "days")) + " days left"` |
+
+> [!TIP]
+> Notion offers education pricing for eligible students and teachers. Check notion.com/pricing for the current terms. Don't rely on any price you read in a manual, this one included.
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet
