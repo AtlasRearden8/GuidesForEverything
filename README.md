@@ -80,6 +80,7 @@ That's it. No template or stylesheet changes are needed. Files whose names start
 | `cover: dark` | Dark cover (the default is a white, toner-friendly cover) |
 | `chapter_break: false` | Chapters flow continuously (good for directories) |
 | `toc_depth: 1` | Contents shows chapters only |
+| `toc_compact: true` | Tightens Contents spacing (use if the last Contents page is nearly empty) |
 | `numbered: false` | No chapter/section numbers |
 | `blurb`, `disclaimer` | Inside-cover text (Markdown allowed in `blurb`) |
 

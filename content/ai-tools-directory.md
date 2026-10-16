@@ -3,6 +3,7 @@ title: AI Tools, Connectors & MCP Directory
 title_html: AI Tools, Connectors <span class="soft">&amp;</span> MCP Directory
 subtitle: Hundreds of AI tools, connectors, and MCP servers, sorted by category, each with a plain-English description and a price label
 volume: 9
+toc_compact: true
 edition: October 2026
 kicker: A Field Guide
 audience: For curious beginners and power users

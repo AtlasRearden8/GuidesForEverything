@@ -2,6 +2,7 @@
 title: Maximum Autonomy
 subtitle: Every setting, flag, config file, and token choice for hands-off AI agents, tool by tool
 volume: 8
+toc_compact: true
 edition: October 2026
 kicker: A Power-User's Guide
 audience: For people ready to let agents run

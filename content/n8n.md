@@ -2,6 +2,7 @@
 title: n8n
 subtitle: Automate your work and build AI agents, visually, one node at a time
 volume: 6
+toc_compact: true
 edition: October 2026
 accent: "#E8456B"
 accent2: "#7B61FF"

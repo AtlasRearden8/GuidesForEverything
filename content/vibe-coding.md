@@ -2,6 +2,7 @@
 title: Vibe Coding
 subtitle: Build real apps and websites by describing them in plain English
 volume: 3
+toc_compact: true
 edition: October 2026
 accent: "#7C4DDB"
 accent2: "#F06BA8"
