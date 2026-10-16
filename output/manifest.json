@@ -8,7 +8,7 @@
     "edition": "October 2026",
     "accent": "#0B8A8A",
     "pages": 26,
-    "bytes": 556384
+    "bytes": 543447
   },
   "ai-tools-directory": {
     "slug": "ai-tools-directory",
@@ -19,7 +19,7 @@
     "edition": "October 2026",
     "accent": "#5B4BDB",
     "pages": 28,
-    "bytes": 1320970
+    "bytes": 1308723
   },
   "claude-code": {
     "slug": "claude-code",
@@ -30,7 +30,7 @@
     "edition": "October 2026",
     "accent": "#C8603C",
     "pages": 40,
-    "bytes": 1174159
+    "bytes": 1163911
   },
   "github": {
     "slug": "github",
@@ -41,7 +41,7 @@
     "edition": "October 2026",
     "accent": "#1F883D",
     "pages": 31,
-    "bytes": 1018360
+    "bytes": 1004014
   },
   "maximum-autonomy": {
     "slug": "maximum-autonomy",
@@ -52,7 +52,7 @@
     "edition": "October 2026",
     "accent": "#D9480F",
     "pages": 32,
-    "bytes": 1102849
+    "bytes": 1088659
   },
   "mcp": {
     "slug": "mcp",
@@ -63,7 +63,7 @@
     "edition": "October 2026",
     "accent": "#2F6FDE",
     "pages": 27,
-    "bytes": 793363
+    "bytes": 791992
   },
   "n8n": {
     "slug": "n8n",
@@ -74,7 +74,7 @@
     "edition": "October 2026",
     "accent": "#E8456B",
     "pages": 28,
-    "bytes": 764591
+    "bytes": 763561
   },
   "notion": {
     "slug": "notion",
@@ -85,7 +85,7 @@
     "edition": "October 2026",
     "accent": "#C2711B",
     "pages": 24,
-    "bytes": 694246
+    "bytes": 681436
   },
   "vibe-coding": {
     "slug": "vibe-coding",
@@ -96,6 +96,6 @@
     "edition": "October 2026",
     "accent": "#7C4DDB",
     "pages": 30,
-    "bytes": 623040
+    "bytes": 610272
   }
 }

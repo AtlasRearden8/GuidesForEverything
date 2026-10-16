@@ -307,7 +307,9 @@ function hashString(s) {
 }
 
 /** Deterministic geometric cover art, varied per manual. */
-function coverArt(slug, motif) {
+function coverArt(slug, motif, light = true) {
+  // Light (default) covers print on white paper: thinner fills so toner use stays low.
+  const ink = light ? 0.6 : 1;
   const rnd = (() => {
     let x = hashString(slug) || 1;
     return () => ((x = Math.imul(x ^ (x >>> 15), 2246822507) ^ Math.imul(x ^ (x >>> 13), 3266489909)) >>> 0) / 4294967296;
@@ -324,16 +326,16 @@ function coverArt(slug, motif) {
     }
     for (let k = 0; k < 9; k++) {
       const r = 74 + Math.floor(rnd() * 14) * 34, a = rnd() * Math.PI * 2;
-      parts.push(`<circle cx="${(cx + r * Math.cos(a)).toFixed(1)}" cy="${(cy + r * Math.sin(a)).toFixed(1)}" r="${(5 + rnd() * 9).toFixed(1)}" fill="${k % 3 ? 'var(--accent)' : 'var(--accent-2)'}"/>`);
+      parts.push(`<circle cx="${(cx + r * Math.cos(a)).toFixed(1)}" cy="${(cy + r * Math.sin(a)).toFixed(1)}" r="${(5 + rnd() * 9).toFixed(1)}" fill="${k % 3 ? 'var(--accent)' : 'var(--accent-2)'}" opacity="${ink}"/>`);
     }
-    parts.push(`<circle cx="${cx}" cy="${cy}" r="30" fill="var(--accent)"/>`);
+    parts.push(`<circle cx="${cx}" cy="${cy}" r="30" fill="var(--accent)" opacity="${ink}"/>`);
   } else if (style === 'grid') {
     const s = 34;
     for (let y = s * 3; y < H; y += s)
       for (let x = s; x < W; x += s) {
         const d = Math.hypot(x - W * 0.75, y - H * 0.45) / 520;
         const v = rnd();
-        if (v > 0.9 - (1 - d) * 0.35) parts.push(`<rect x="${x - 11}" y="${y - 11}" width="22" height="22" rx="4" fill="${v > 0.97 ? 'var(--accent-2)' : 'var(--accent)'}" opacity="${Math.max(0.15, 1 - d).toFixed(2)}"/>`);
+        if (v > 0.9 - (1 - d) * 0.35) parts.push(`<rect x="${x - 11}" y="${y - 11}" width="22" height="22" rx="4" fill="${v > 0.97 ? 'var(--accent-2)' : 'var(--accent)'}" opacity="${(Math.max(0.15, 1 - d) * ink).toFixed(2)}"/>`);
         else parts.push(`<circle cx="${x}" cy="${y}" r="1.6" fill="var(--accent)" opacity="${Math.max(0.12, 0.7 - d).toFixed(2)}"/>`);
       }
   } else if (style === 'waves') {
@@ -350,8 +352,8 @@ function coverArt(slug, motif) {
       const x = 330 + k * 46 + rnd() * 20, y = 120 + (k % 3) * 34 + rnd() * 40;
       const rot = (rnd() - 0.5) * 18;
       const fill = k === 6 ? 'var(--accent-2)' : 'var(--accent)';
-      parts.push(`<g transform="rotate(${rot.toFixed(1)} ${(x + w / 2).toFixed(0)} ${(y + h / 2).toFixed(0)})" opacity="${(0.35 + k / 14).toFixed(2)}">`);
-      parts.push(`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="10" fill="#15161c" stroke="${fill}" stroke-width="2"/>`);
+      parts.push(`<g transform="rotate(${rot.toFixed(1)} ${(x + w / 2).toFixed(0)} ${(y + h / 2).toFixed(0)})" opacity="${((0.35 + k / 14) * (light ? 0.85 : 1)).toFixed(2)}">`);
+      parts.push(`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="10" fill="${light ? '#fff' : '#15161c'}" stroke="${fill}" stroke-width="2"/>`);
       parts.push(`<rect x="${(x + 18).toFixed(1)}" y="${(y + 22).toFixed(1)}" width="${(w * 0.55).toFixed(1)}" height="12" rx="4" fill="${fill}"/>`);
       for (let l = 0; l < 7; l++) parts.push(`<rect x="${(x + 18).toFixed(1)}" y="${(y + 52 + l * 22).toFixed(1)}" width="${((w - 36) * (0.5 + rnd() * 0.5)).toFixed(1)}" height="5" rx="2.5" fill="${fill}" opacity="0.6"/>`);
       parts.push('</g>');
@@ -368,7 +370,7 @@ function coverArt(slug, motif) {
       }
     nodes.forEach((n, k) => {
       parts.push(`<circle cx="${n.x.toFixed(1)}" cy="${n.y.toFixed(1)}" r="${(n.r + 5).toFixed(1)}" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.35"/>`);
-      parts.push(`<circle cx="${n.x.toFixed(1)}" cy="${n.y.toFixed(1)}" r="${n.r.toFixed(1)}" fill="${k % 6 === 0 ? 'var(--accent-2)' : 'var(--accent)'}"/>`);
+      parts.push(`<circle cx="${n.x.toFixed(1)}" cy="${n.y.toFixed(1)}" r="${n.r.toFixed(1)}" fill="${k % 6 === 0 ? 'var(--accent-2)' : 'var(--accent)'}" opacity="${ink}"/>`);
     });
   } else {
     // blocks
@@ -379,7 +381,7 @@ function coverArt(slug, motif) {
       while (y < H - 20) {
         const h = 30 + rnd() * 160;
         const c = rnd();
-        parts.push(`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(w - 10).toFixed(1)}" height="${(h - 10).toFixed(1)}" rx="6" fill="${c > 0.8 ? 'var(--accent-2)' : 'var(--accent)'}" opacity="${(0.2 + c * 0.8).toFixed(2)}"/>`);
+        parts.push(`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(w - 10).toFixed(1)}" height="${(h - 10).toFixed(1)}" rx="6" fill="${c > 0.8 ? 'var(--accent-2)' : 'var(--accent)'}" opacity="${((0.2 + c * 0.8) * (light ? 0.5 : 1)).toFixed(2)}"/>`);
         y += h;
       }
       x += w;
@@ -433,8 +435,8 @@ function manualHtml(slug, file) {
     blurb: meta.blurb ? marked(meta.blurb) : '',
     accent,
     accent2,
-    cover_theme: meta.cover === 'light' ? 'light' : 'dark',
-    cover_art: coverArt(slug, meta.motif),
+    cover_theme: meta.cover === 'dark' ? 'dark' : 'light',
+    cover_art: coverArt(slug, meta.motif, meta.cover !== 'dark'),
     chapter_break: meta.chapter_break === false ? 'no-chapter-break' : 'chapter-break',
     toc: buildToc(toc, meta.toc_depth ?? 2),
     toc_class: (meta.toc_depth ?? 2) >= 2 ? 'toc-deep' : 'toc-shallow',

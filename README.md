@@ -76,7 +76,7 @@ That's it. No template or stylesheet changes are needed. Files whose names start
 | `kicker`, `audience` | Small cover label and cover footer text |
 | `accent`, `accent2` | Main and secondary colors |
 | `motif` | Cover art: `orbits`, `grid`, `waves`, `blocks`, `network`, `pages` |
-| `cover: light` | Light cover instead of dark |
+| `cover: dark` | Dark cover (the default is a white, toner-friendly cover) |
 | `chapter_break: false` | Chapters flow continuously (good for directories) |
 | `toc_depth: 1` | Contents shows chapters only |
 | `numbered: false` | No chapter/section numbers |

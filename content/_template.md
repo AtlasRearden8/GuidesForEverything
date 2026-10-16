@@ -12,7 +12,7 @@ edition: October 2026                  # month the facts were checked
 accent: "#D97757"                      # main colour (headings, steps, rules)
 accent2: "#F2C14E"                     # secondary colour (cover art highlights)
 motif: orbits                          # cover art: orbits | grid | waves | blocks | network | pages
-# cover: light                         # light cover instead of dark
+# cover: dark                          # dark cover (default is white, toner-friendly)
 # chapter_break: false                 # let chapters flow instead of new pages
 # toc_depth: 1                         # 1 = chapters only, 2 = chapters + sections
 # numbered: false                      # turn off chapter/section numbers
