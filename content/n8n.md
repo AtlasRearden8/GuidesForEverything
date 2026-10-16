@@ -243,7 +243,7 @@ While building, click **Pin** on a node's output to freeze it. Later nodes then 
 | **n8n Form Trigger** | Someone submits a form n8n hosts for you | Event sign-up |
 | **App triggers** | Something happens in an app (new email, new row, new file) | New Gmail message with a label |
 | **Chat Trigger** | Someone sends a message in a chat window | A chatbot for your website |
-| **Execute Workflow Trigger** | Another workflow calls this one | Reusable "send notification" sub-workflow |
+| **Execute Sub-workflow Trigger** | Another workflow calls this one | Reusable "send notification" sub-workflow |
 | **Error Trigger** | Another workflow fails | Alert yourself on failure |
 | **Manual** | You click **Execute workflow** | Testing |
 
@@ -359,7 +359,7 @@ Click the **Executions** tab to see every run, its status (succeeded, failed, ru
 - Test with pinned data before publishing
 - Set an error workflow
 - Watch your execution count on Cloud; use filters early to skip unnecessary runs
-- Use **sub-workflows** (Execute Workflow) for steps you repeat in many workflows
+- Use **sub-workflows** (Execute Sub-workflow) for steps you repeat in many workflows
 :::
 
 # Templates and Community
@@ -428,7 +428,7 @@ Each project is a full build, from an empty canvas to a published workflow. Work
 ## Project 3: AI email summariser
 
 :::steps
-1. **Trigger:** a Gmail Trigger (or IMAP Email Trigger) that polls for new mail.
+1. **Trigger:** a Gmail Trigger (or Email Trigger (IMAP)) that polls for new mail.
 2. **Filter node:** keep only messages where the sender matches the people you care about.
 3. **AI step:** add a Basic LLM Chain (or an OpenAI / Anthropic node) with the prompt:
    ```prompt
@@ -486,11 +486,11 @@ A desk reference for the nodes and expressions you'll use most. Node names chang
 | **n8n Form Trigger** | Hosted form that starts a workflow |
 | **Chat Trigger** | Chat window that starts a workflow (often with an AI Agent) |
 | **Error Trigger** | Runs when another workflow fails |
-| **Execute Workflow / Execute Workflow Trigger** | Call one workflow from another |
+| **Execute Sub-workflow / Execute Sub-workflow Trigger** | Call one workflow from another |
 | **HTTP Request** | Call any web API |
 | **Code** | Run JavaScript (or Python) on items |
 | **Edit Fields (Set)** | Add, rename, or set fields |
-| **IF** | Split into true and false branches |
+| **If** | Split into true and false branches |
 | **Switch** | Route to many branches by rules |
 | **Filter** | Drop items that don't match |
 | **Merge** | Combine two inputs (append, by key, by position…) |

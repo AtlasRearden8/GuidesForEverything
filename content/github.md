@@ -412,7 +412,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Say hello
         run: echo "Running checks on ${{ github.ref_name }}"
 ```
@@ -763,7 +763,7 @@ Every Git command a beginner-to-intermediate user needs, grouped by task. Type `
 
 ## Full command list
 
-This list was generated from the installed GitHub CLI (version 2.46) in October 2026. Newer versions may add commands, so run `gh help` for yours.
+This list was generated from GitHub CLI version 2.102.0 (released September 30, 2026). Newer versions may add commands, so run `gh help` for yours.
 
 :::compact
 | Command | What it does |
@@ -772,10 +772,10 @@ This list was generated from the installed GitHub CLI (version 2.46) in October 
 | `gh auth logout` | Log out of a GitHub account |
 | `gh auth refresh` | Refresh stored authentication credentials |
 | `gh auth setup-git` | Setup git with GitHub CLI |
-| `gh auth status` | View all accounts and authentication status |
+| `gh auth status` | Display active account and authentication state on each known GitHub host |
 | `gh auth switch` | Switch active GitHub account |
 | `gh auth token` | Print the authentication token gh uses for a hostname and account |
-| `gh browse` | Open the GitHub repository in the web browser. |
+| `gh browse` | Transition from the terminal to the web browser to view and interact with: |
 | `gh codespace code` | Open a codespace in Visual Studio Code |
 | `gh codespace cp` | Copy files between local and remote file systems |
 | `gh codespace create` | Create a codespace |
@@ -789,6 +789,11 @@ This list was generated from the installed GitHub CLI (version 2.46) in October 
 | `gh codespace ssh` | SSH into a codespace |
 | `gh codespace stop` | Stop a running codespace |
 | `gh codespace view` | View details about a codespace |
+| `gh discussion create` | Create a new discussion (preview) |
+| `gh discussion list` | List discussions in a repository (preview) |
+| `gh discussion comment` | Add, edit, or delete a comment or a reply on a discussion (preview) |
+| `gh discussion edit` | Edit a discussion (preview) |
+| `gh discussion view` | View a discussion (preview) |
 | `gh gist clone` | Clone a gist locally |
 | `gh gist create` | Create a new gist |
 | `gh gist delete` | Delete a gist |
@@ -805,11 +810,11 @@ This list was generated from the installed GitHub CLI (version 2.46) in October 
 | `gh issue develop` | Manage linked branches for an issue |
 | `gh issue edit` | Edit issues |
 | `gh issue lock` | Lock issue conversation |
-| `gh issue pin` | Pin a issue |
+| `gh issue pin` | Pin an issue |
 | `gh issue reopen` | Reopen issue |
 | `gh issue transfer` | Transfer issue to another repository |
 | `gh issue unlock` | Unlock issue conversation |
-| `gh issue unpin` | Unpin a issue |
+| `gh issue unpin` | Unpin an issue |
 | `gh issue view` | View an issue |
 | `gh org list` | List organizations for the authenticated user. |
 | `gh pr create` | Create a pull request |
@@ -825,8 +830,10 @@ This list was generated from the installed GitHub CLI (version 2.46) in October 
 | `gh pr merge` | Merge a pull request |
 | `gh pr ready` | Mark a pull request as ready for review |
 | `gh pr reopen` | Reopen a pull request |
+| `gh pr revert` | Revert a pull request |
 | `gh pr review` | Add a review to a pull request |
 | `gh pr unlock` | Unlock pull request conversation |
+| `gh pr update-branch` | Update a pull request branch |
 | `gh pr view` | View a pull request |
 | `gh project close` | Close a project |
 | `gh project copy` | Copy a project |
@@ -854,22 +861,35 @@ This list was generated from the installed GitHub CLI (version 2.46) in October 
 | `gh release download` | Download release assets |
 | `gh release edit` | Edit a release |
 | `gh release upload` | Upload assets to a release |
+| `gh release verify` | Verify the attestation for a release |
+| `gh release verify-asset` | Verify that a given asset originated from a release |
 | `gh release view` | View information about a release |
 | `gh repo create` | Create a new repository |
 | `gh repo list` | List repositories owned by user or organization |
 | `gh repo archive` | Archive a repository |
+| `gh repo autolink` | Manage autolink references |
 | `gh repo clone` | Clone a repository locally |
 | `gh repo delete` | Delete a repository |
 | `gh repo deploy-key` | Manage deploy keys in a repository |
 | `gh repo edit` | Edit repository settings |
 | `gh repo fork` | Create a fork of a repository |
+| `gh repo gitignore` | List and view available repository gitignore templates |
+| `gh repo license` | Explore repository licenses |
+| `gh repo read-dir` | List a directory in a repository (preview) |
+| `gh repo read-file` | Read a file from a repository (preview) |
 | `gh repo rename` | Rename a repository |
 | `gh repo set-default` | Configure default repository for this directory |
 | `gh repo sync` | Sync a repository |
 | `gh repo unarchive` | Unarchive a repository |
 | `gh repo view` | View a repository |
-| `gh cache delete` | Delete Github Actions caches |
-| `gh cache list` | List Github Actions caches |
+| `gh skill install` | Install agent skills from a GitHub repository (preview) |
+| `gh skill list` | List installed skills (preview) |
+| `gh skill preview` | Preview a skill from a GitHub repository (preview) |
+| `gh skill publish` | Validate and publish skills to a GitHub repository (preview) |
+| `gh skill search` | Search for skills across GitHub (preview) |
+| `gh skill update` | Update installed skills to their latest versions (preview) |
+| `gh cache delete` | Delete GitHub Actions caches |
+| `gh cache list` | List GitHub Actions caches |
 | `gh run cancel` | Cancel a workflow run |
 | `gh run delete` | Delete a workflow run |
 | `gh run download` | Download artifacts generated by a workflow run |
@@ -882,15 +902,24 @@ This list was generated from the installed GitHub CLI (version 2.46) in October 
 | `gh workflow list` | List workflows |
 | `gh workflow run` | Run a workflow by creating a workflow_dispatch event |
 | `gh workflow view` | View the summary of a workflow |
+| `gh co` | Check out a pull request in git |
+| `gh agent-task create` | Create an agent task (preview) |
+| `gh agent-task list` | List agent tasks (preview) |
+| `gh agent-task view` | View an agent task session (preview) |
 | `gh alias delete` | Delete set aliases |
 | `gh alias import` | Import aliases from a YAML file |
 | `gh alias list` | List your aliases |
 | `gh alias set` | Create a shortcut for a gh command |
 | `gh api` | Makes an authenticated HTTP request to the GitHub API and prints the response. |
+| `gh attestation download` | Download an artifact's attestations for offline use |
+| `gh attestation trusted-root` | Output trusted_root.jsonl contents, likely for offline verification |
+| `gh attestation verify` | Verify an artifact's integrity using attestations |
+| `gh completion` | Generate shell completion scripts for GitHub CLI commands. |
 | `gh config clear-cache` | Clear the cli cache |
 | `gh config get` | Print the value of a given configuration key |
 | `gh config list` | Print a list of configuration keys and values |
 | `gh config set` | Update configuration with a value for the given key |
+| `gh copilot` | Runs the GitHub Copilot CLI. |
 | `gh extension browse` | Enter a UI for browsing, adding, and removing extensions |
 | `gh extension create` | Create a new extension |
 | `gh extension exec` | Execute an installed extension |
@@ -907,6 +936,8 @@ This list was generated from the installed GitHub CLI (version 2.46) in October 
 | `gh label delete` | Delete a label from a repository |
 | `gh label edit` | Edit a label |
 | `gh label list` | List labels in a repository |
+| `gh licenses` | View license information for third-party libraries used in this build of the GitHub CLI. |
+| `gh preview prompter` | Execute a test program to preview the prompter |
 | `gh ruleset check` | View rules that would apply to a given branch |
 | `gh ruleset list` | List rulesets for a repository or organization |
 | `gh ruleset view` | View information about a ruleset |
@@ -923,8 +954,17 @@ This list was generated from the installed GitHub CLI (version 2.46) in October 
 | `gh ssh-key list` | Lists SSH keys in your GitHub account |
 | `gh status` | The status command prints information about your work on GitHub across all the repositories you're subscribed to, including: |
 | `gh variable delete` | Delete variables |
+| `gh variable get` | Get variables |
 | `gh variable list` | List variables |
 | `gh variable set` | Create or update variables |
+| `gh accessibility` | Learn about GitHub CLI's accessibility experiences |
+| `gh actions` | Welcome to GitHub Actions on the command line. |
+| `gh environment` | `GH_TOKEN`, `GITHUB_TOKEN` (in order of precedence): an authentication token that will be used when |
+| `gh exit-codes` | gh follows normal conventions regarding exit codes. |
+| `gh formatting` | By default, the result of `gh` commands are output in line-based plain text format. |
+| `gh mintty` | MinTTY is the terminal emulator that comes by default with Git |
+| `gh reference` | # gh reference |
+| `gh telemetry` | gh collects telemetry to help us understand how the CLI is being used and to improve it. |
 :::
 
 # Markdown on GitHub
@@ -1018,10 +1058,10 @@ jobs:                         # WHAT runs
   test:
     runs-on: ubuntu-latest    # the virtual machine
     steps:
-      - uses: actions/checkout@v4        # get your code
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7        # get your code
+      - uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
       - run: npm ci                      # a shell command
       - run: npm test
 ```
@@ -1064,11 +1104,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: github-pages
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/checkout@v7
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
         with: { path: "." }
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v5
 ```
 
 **2. Python tests**
@@ -1079,8 +1119,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with: { python-version: "3.12" }
       - run: pip install -r requirements.txt
       - run: pytest
@@ -1093,10 +1133,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
-      matrix: { node: [18, 20, 22] }
+      matrix: { node: [22, 24] }
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with: { node-version: "${{ matrix.node }}" }
       - run: npm ci && npm test
 ```
@@ -1111,7 +1151,7 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: python scripts/daily_report.py
 ```
 
@@ -1119,15 +1159,15 @@ jobs:
 
 ```yaml
       - run: npm run build
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with: { name: site, path: dist/ }
 ```
 
 **6. Cache dependencies** (setup actions have this built in)
 
 ```yaml
-      - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
+      - uses: actions/setup-node@v7
+        with: { node-version: 24, cache: npm }
 ```
 
 **7. Only run when certain files change**
@@ -1197,7 +1237,7 @@ Go to [[Settings > Rules > Rulesets]] (or **Branches** for classic branch protec
 
 ## Dependabot and code security
 
-Under [[Settings > Code security]] you can turn on **Dependabot alerts** (warnings about vulnerable dependencies), **Dependabot security updates** (automatic fix PRs), and **secret scanning / push protection** (blocks pushes that contain known token formats). Availability depends on whether the repository is public or private and on your plan. GitHub's settings page shows which options you can use.
+Under [[Settings > Advanced Security]] (called **Code security** on some accounts) you can turn on **Dependabot alerts** (warnings about vulnerable dependencies), **Dependabot security updates** (automatic fix PRs), and **secret scanning / push protection** (blocks pushes that contain known token formats). Availability depends on whether the repository is public or private and on your plan. GitHub's settings page shows which options you can use.
 
 ## Personal access tokens
 

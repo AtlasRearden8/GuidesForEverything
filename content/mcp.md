@@ -504,7 +504,7 @@ Claude Desktop, Cursor, and many other apps use the same basic shape:
 | Claude Code | `claude mcp add`, `.mcp.json` (project), `~/.claude.json` (user/local) |
 | Claude Desktop | [[Settings > Developer > Edit Config]] opens `claude_desktop_config.json`; remote connectors live under [[Settings > Connectors]] |
 | claude.ai (web) | [[Settings > Connectors]], remote servers only |
-| Cursor | `.cursor/mcp.json` (project) or `~/.cursor/mcp.json` (global), or via Cursor Settings → MCP |
+| Cursor | `.cursor/mcp.json` (project) or `~/.cursor/mcp.json` (global), or install from the **Customize** page |
 | VS Code | `.vscode/mcp.json`, or the MCP: Add Server command |
 :::
 

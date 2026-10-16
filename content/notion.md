@@ -350,7 +350,7 @@ From notion.com/pricing, October 2026. Students and teachers can often get Plus 
 
 # Keyboard Shortcuts and Slash Commands
 
-Notion is much faster from the keyboard. On Windows and Linux, read <kbd>Cmd</kbd> as <kbd>Ctrl</kbd> and <kbd>Option</kbd> as <kbd>Shift</kbd> (or <kbd>Alt</kbd>, depending on the shortcut). If a shortcut doesn't work, press <kbd>Cmd</kbd> + <kbd>/</kbd> or open [[Help > Keyboard shortcuts]] to see your app's list.
+Notion is much faster from the keyboard. On Windows and Linux, read <kbd>Cmd</kbd> as <kbd>Ctrl</kbd>. For block-type shortcuts, read <kbd>Option</kbd> as <kbd>Shift</kbd>.
 
 :::summary In this chapter
 - App-wide shortcuts
@@ -361,16 +361,22 @@ Notion is much faster from the keyboard. On Windows and Linux, read <kbd>Cmd</kb
 
 ## App-wide
 
+Source: Notion Help Center, [notion.com/help/keyboard-shortcuts](https://www.notion.com/help/keyboard-shortcuts), checked October 2026.
+
 :::compact
 | Keys | Action |
 |---|---|
-| <kbd>Cmd</kbd> + <kbd>P</kbd> (or <kbd>Cmd</kbd> + <kbd>K</kbd>) | Search and jump to a page |
-| <kbd>Cmd</kbd> + <kbd>N</kbd> | New page |
-| <kbd>Cmd</kbd> + <kbd>\\</kbd> | Show or hide the sidebar |
+| <kbd>Cmd</kbd> + <kbd>P</kbd> or <kbd>Cmd</kbd> + <kbd>K</kbd> | Open search or jump to a recent page |
+| <kbd>Cmd</kbd> + <kbd>F</kbd> | Search inside the current page |
+| <kbd>Cmd</kbd> + <kbd>N</kbd> | New page (desktop app) |
+| <kbd>Cmd</kbd> + <kbd>T</kbd> | New Notion tab (desktop app) |
+| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>N</kbd> | New Notion window (desktop app) |
+| <kbd>Cmd</kbd> + click | Open a link in a new Notion tab |
 | <kbd>Cmd</kbd> + <kbd>[</kbd> / <kbd>]</kbd> | Back / forward |
-| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> | Toggle dark mode |
-| <kbd>Cmd</kbd> + <kbd>L</kbd> | Copy the link to the current page |
-| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>U</kbd> | Go up to the parent page |
+| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>U</kbd> | Go up one level in the page hierarchy |
+| <kbd>Cmd</kbd> + <kbd>L</kbd> | Copy the page's link |
+| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> | Toggle dark / light mode |
+| <kbd>Cmd</kbd> + <kbd>+</kbd> / <kbd>-</kbd> | Zoom in / out |
 :::
 
 ## Editing
@@ -378,18 +384,23 @@ Notion is much faster from the keyboard. On Windows and Linux, read <kbd>Cmd</kb
 :::compact
 | Keys | Action |
 |---|---|
+| <kbd>Shift</kbd> + <kbd>Enter</kbd> | Line break inside a block |
 | <kbd>Esc</kbd> | Select the current block (or clear the selection) |
-| <kbd>Cmd</kbd> + <kbd>D</kbd> | Duplicate the selected block |
-| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>↑</kbd> / <kbd>↓</kbd> | Move the selected block up or down |
-| <kbd>Tab</kbd> / <kbd>Shift</kbd> + <kbd>Tab</kbd> | Indent / outdent (nest inside the block above) |
-| <kbd>Cmd</kbd> + <kbd>/</kbd> | Turn into, change colour, and other block actions |
-| <kbd>Cmd</kbd> + <kbd>Enter</kbd> | Tick a to-do, or open or close a toggle |
+| <kbd>Cmd</kbd> + <kbd>A</kbd> | Select the block your cursor is in |
+| <kbd>Cmd</kbd> + <kbd>D</kbd> | Duplicate selected blocks |
+| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + arrow keys | Move selected blocks |
+| <kbd>Tab</kbd> / <kbd>Shift</kbd> + <kbd>Tab</kbd> | Indent (nest) / un-nest |
+| <kbd>Cmd</kbd> + <kbd>/</kbd> | Change type, colour, or move selected blocks (also edits many database rows at once) |
+| <kbd>Cmd</kbd> + <kbd>Enter</kbd> | Open a page, tick a to-do, open or close a toggle |
+| <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>T</kbd> | Expand or close all toggles |
+| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd> | Apply the last text or highlight colour |
 | <kbd>Cmd</kbd> + <kbd>B</kbd> / <kbd>I</kbd> / <kbd>U</kbd> | Bold / italic / underline |
 | <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Strikethrough |
 | <kbd>Cmd</kbd> + <kbd>E</kbd> | Inline code |
-| <kbd>Cmd</kbd> + <kbd>K</kbd> (with text selected) | Add a link |
-| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> | Comment on the selection |
-| <kbd>Cmd</kbd> + <kbd>Z</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd> | Undo / redo |
+| <kbd>Cmd</kbd> + <kbd>K</kbd> (text selected) | Add a link |
+| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> | Comment |
+| <kbd>Cmd</kbd> + <kbd>Option</kbd> + <kbd>0</kbd>–<kbd>9</kbd> (Windows: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>0</kbd>–<kbd>9</kbd>) | 0 text, 1–3 headings, 4 to-do, 5 bullets, 6 numbers, 7 toggle, 8 code, 9 page |
+| <kbd>Option</kbd>/<kbd>Alt</kbd> + drag | Duplicate content by dragging |
 :::
 
 ## Type-to-format (Markdown shortcuts)
@@ -416,44 +427,26 @@ Type these at the start of a line:
 
 ## The `/` menu
 
-Type `/` anywhere and start typing to filter. Useful commands:
+Type `/` anywhere and start typing to filter. Commands documented in the Help Center:
 
-:::cols
-- `/text`
-- `/page`
-- `/todo`
-- `/h1` `/h2` `/h3`
-- `/table`
-- `/bullet` `/num`
-- `/toggle`
-- `/quote`
-- `/divider`
-- `/callout`
-- `/code`
-- `/image`
-- `/embed`
-- `/bookmark`
-- `/database` (inline / full page)
-- `/board` `/calendar` `/timeline` `/gallery` `/list`
-- `/linked` (linked view of a database)
-- `/columns`
-- `/toc` (table of contents)
-- `/breadcrumb`
-- `/equation`
-- `/synced` (synced block)
-- `/button`
-- `/template`
-- `/mention`
-- `/date` `/reminder`
-- `/color` (e.g. `/red`, `/blue background`)
-- `/ai` (Notion AI, on plans with AI)
-- `/turn` (turn into another block)
-- `/duplicate` `/delete` `/move`
+:::compact
+| Command | Inserts |
+|---|---|
+| `/text`, `/page`, `/bullet`, `/num`, `/todo`, `/toggle` | Basic blocks |
+| `/h1`, `/h2`, `/h3` (or `/#`, `/##`, `/###`) | Headings |
+| `/div`, `/quote`, `/link` | Divider, quote, link to a page |
+| `/mention`, `/date`, `/reminder`, `/equation`, `/emoji` | Inline items |
+| `/image`, `/pdf`, `/book`, `/video`, `/audio`, `/file`, `/embed`, `/code` | Media |
+| `/duplicate`, `/moveto`, `/delete` | Act on the current block |
+| `/toc`, `/bread`, `/button`, `/template`, `/math` | Table of contents, breadcrumb, button, TeX |
+| `/turn`, `/color` (e.g. `/blue`, `/blue background`, `/default`) | Change block type or colour |
 :::
+
+Database blocks (table, board, calendar, etc.) also appear when you type their names in the `/` menu.
 
 # Formulas Reference
 
-**Formula** properties calculate a value from other properties in the same database row. Notion's formula language (Formulas 2.0) is close to a spreadsheet's.
+**Formula** properties calculate a value from other properties in the same database row. Notion's formula language (Formulas 2.0) is close to a spreadsheet's. Function names below were checked against Notion's formula syntax help page ([notion.com/help/formula-syntax](https://www.notion.com/help/formula-syntax)) in October 2026.
 
 :::summary In this chapter
 - How to write a formula
@@ -473,8 +466,8 @@ Add a property, choose **Formula**, and click to edit. Refer to other properties
 | Logic | `if`, `ifs`, `and`, `or`, `not`, `empty` | `if(prop("Done"), "✅", "⏳")` |
 | Comparison | `==`, `!=`, `>`, `<`, `>=`, `<=` | `prop("Score") >= 80` |
 | Math | `+ - * / %`, `round`, `floor`, `ceil`, `abs`, `min`, `max`, `sum`, `sqrt` | `round(prop("Price") * 1.07 * 100) / 100` |
-| Text | `length`, `lower`, `upper`, `contains`, `test`, `replace`, `replaceAll`, `split`, `join`, `format`, `style`, `link` | `upper(prop("Code"))` |
-| Dates | `now`, `today`, `dateAdd`, `dateSubtract`, `dateBetween`, `dateStart`, `dateEnd`, `formatDate`, `parseDate`, `timestamp` | `dateBetween(prop("Due"), today(), "days")` |
+| Text | `length`, `lower`, `upper`, `contains`, `test`, `replace`, `replaceAll`, `split`, `join`, `repeat`, `format`, `formatNumber`, `style`, `unstyle`, `link` | `upper(prop("Code"))` |
+| Dates | `now`, `today`, `dateAdd`, `dateSubtract`, `dateBetween`, `dateStart`, `dateEnd`, `formatDate`, `parseDate`, `timestamp`, `week`, `month`, `year` | `dateBetween(prop("Due"), today(), "days")` |
 | Lists | `at`, `first`, `last`, `slice`, `sort`, `reverse`, `unique`, `map`, `filter`, `find`, `some`, `every`, `includes` | `prop("Tasks").filter(current.prop("Done")).length()` |
 | Variables | `let`, `lets` | `let(d, dateBetween(prop("Due"), today(), "days"), d + " days")` |
 | Convert | `toNumber`, `format` | `toNumber(prop("Text number"))` |
@@ -491,7 +484,7 @@ if(and(not(prop("Done")), prop("Due") < today()), "🔴 Overdue", "")
 ```
 
 ```text title=Progress bar from a Rollup percentage (0–1)
-let(p, round(prop("Progress") * 10), "▓".repeat(p) + "░".repeat(10 - p))
+let(p, round(prop("Progress") * 10), repeat("▓", p) + repeat("░", 10 - p))
 ```
 
 ```text title=Status emoji
@@ -507,7 +500,7 @@ round(prop("Price") * 1.07 * 100) / 100
 ```
 
 ```text title=Week number label
-"Week " + formatDate(prop("Date"), "W")
+"Week " + format(week(prop("Date")))
 ```
 
 ```text title=Age in years
@@ -565,7 +558,7 @@ Building templates yourself teaches you more than duplicating them. Each recipe 
 The Notion API lets scripts and tools like n8n read and write your pages. Official docs: [developers.notion.com](https://developers.notion.com).
 
 :::steps First API call
-1. **Create an integration** at [notion.so/profile/integrations](https://www.notion.so/profile/integrations). Choose **Internal** and copy the secret.
+1. **Get a token.** Create an internal integration at [notion.so/profile/integrations](https://www.notion.so/profile/integrations) and copy its secret. Notion's Help Center also describes personal access tokens: turn on **Developer Mode** in Settings, then open the developer section of the sidebar. Use whichever your workspace offers.
 2. **Share a page with it.** Open the page, then use **•••** → **Connections** → add your integration. The API can only see pages you share this way.
 3. **Find the database ID.** It's the long ID in the database's URL.
 4. **Query it.**
@@ -701,7 +694,7 @@ A tidy structure makes everything easier to find. This chapter gives you one pro
 :::compact
 | Problem | Fix |
 |---|---|
-| Can't find a page | <kbd>Cmd</kbd> + <kbd>P</kbd> search. Check **Trash** in the sidebar (deleted pages stay there for a limited time) |
+| Can't find a page | <kbd>Cmd</kbd> + <kbd>P</kbd> search. Check **Trash** at the bottom of the sidebar (pages stay there for 30 days by default) |
 | A page disappeared after a teammate edited it | Open **•••** → **Version history** (history length depends on plan) |
 | Someone can't see a page | Click **Share** and check their access level, and whether the parent page restricts it |
 | Database is slow | Add filters to views, cut down on complex rollups and formulas, and split very large databases |
@@ -713,7 +706,7 @@ A tidy structure makes everything easier to find. This chapter gives you one pro
 
 **Is my data private?** Pages are private until you share them. Workspace admins on team plans may have additional access. Read Notion's current privacy and security pages for details.
 
-**Can I export everything?** Yes. [[Settings > Export all workspace content]] exports Markdown & CSV, HTML, or PDF (PDF depends on plan).
+**Can I export everything?** Yes. [[Settings > General > Export all workspace content]] (under *Workspace*) exports Markdown & CSV, HTML, or PDF (PDF depends on plan).
 
 **Does Notion work offline?** The desktop and mobile apps can work with pages offline, but how much is available offline has changed over time and varies by plan. Check Notion's help centre for the current behaviour.
 
@@ -742,7 +735,7 @@ Prompts for Notion AI (Chapter 6), on plans that include it. Press <kbd>Space</k
 # Moving to Notion From Other Apps
 
 :::steps Import your old notes
-1. **Open [[Settings > Import]].** Notion lists the supported sources, such as Evernote, Google Docs, Confluence, Trello, Asana, Word, Markdown, CSV, and HTML. The list varies over time.
+1. **Open [[Settings > Import]]** (desktop or web; you can also type `/` on a page and search for the importer). Notion lists the supported sources, such as Evernote, Google Docs, Confluence, Trello, Asana, Word, Markdown, CSV, and HTML. The list varies over time.
 2. **Start with one small notebook or folder** as a test.
 3. **Check formatting, images, and links** on a few pages.
 4. **Import the rest,** then move pages into your PARA structure (Chapter 16).
