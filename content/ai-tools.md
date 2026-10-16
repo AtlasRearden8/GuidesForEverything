@@ -365,6 +365,197 @@ You don't need every tool. Most people do brilliantly with a small, intentional 
 3. **Friday:** "What did I accomplish this week? What should I carry forward?"
 4. **Monthly:** try one new tool from the *AI Tools, Connectors & MCP Directory* in this series.
 
+# Life Playbooks: AI for Every Part of Your Day
+
+Step-by-step routines for real situations. Each playbook gives you the goal, the steps, and prompts to copy. They work with any major assistant (Chapter 2).
+
+:::summary In this chapter
+- Work, home, learning, creativity, and small-business playbooks
+- Health, money, and legal: how to use AI carefully
+- Accessibility uses
+:::
+
+## Work
+
+:::steps Clear your inbox in 20 minutes
+1. **Paste or connect** your unread emails (if your assistant has an email connector, use it).
+2. **Triage.**
+   ```prompt
+   Sort these emails into: reply today, reply this week, FYI, unsubscribe. For "reply today", draft a short reply in my voice: friendly, direct, no fluff.
+   ```
+3. **Edit and send the drafts yourself.** AI drafts, you decide.
+:::
+
+```prompt
+Turn these meeting notes into: decisions, action items (owner, due date), open questions. Notes: [paste]
+```
+```prompt
+Rewrite this message to be clearer and kinder, without changing the meaning. Give me two versions: formal and casual.
+```
+```prompt
+I have to present [topic] to [audience] in 10 minutes. Make a 6-slide outline with a one-sentence takeaway per slide and likely tough questions.
+```
+```prompt
+Make a spreadsheet formula that [does X]. My columns are: [list]. Explain it in plain English.
+```
+
+## Home
+
+```prompt
+Plan 5 weeknight dinners for 2 adults, under 30 minutes each, using mostly these ingredients: [list]. Then make one combined grocery list grouped by store aisle.
+```
+```prompt
+Here's a photo of [appliance / plant / stain]. What might be wrong, what can I safely try myself, and when should I call a professional?
+```
+```prompt
+Create a weekly cleaning schedule for a [size] home that takes no more than 20 minutes a day.
+```
+```prompt
+Plan a 3-day trip to [city] in [month] for someone who likes [interests], on a moderate budget. Include one rainy-day option per day. Mark anything I should verify, like opening hours or prices.
+```
+
+## Learning
+
+:::steps Learn any topic in a week
+1. **Map it.** "Give me a 7-day plan to learn the basics of [topic], 30 minutes a day, with free resources."
+2. **Learn actively.** Each day: "Explain today's idea simply, then quiz me with 5 questions. Don't give answers until I respond."
+3. **Find your gaps.** "Based on my answers, what am I misunderstanding?"
+4. **Teach it back.** "I'll explain [concept]; correct me like a patient tutor."
+5. **Check against real sources.** Use a research tool with citations (Chapter 4) for anything important.
+:::
+
+## Creativity
+
+```prompt
+Give me 20 wildly different ideas for [project]. Then pick the 3 most original and explain why.
+```
+```prompt
+I wrote this [story / poem / speech]. Give honest feedback: what works, what's confusing, and 3 specific improvements. Don't rewrite it for me.
+```
+```prompt
+Write an image prompt for [scene] in the style of [medium, e.g. watercolour], with lighting, composition, and colour details.
+```
+
+## Small business
+
+```prompt
+Write 5 product descriptions for [products] for my online shop. Tone: [tone]. Each under 60 words, with one benefit-first sentence.
+```
+```prompt
+Draft a polite but firm reminder for an invoice that's 15 days overdue.
+```
+```prompt
+Here are my customer reviews [paste]. Summarise the top 3 praises and top 3 complaints, and suggest one fix for each complaint.
+```
+```prompt
+Create a simple social media calendar for one month: 3 posts a week, mixing tips, behind-the-scenes, and offers.
+```
+
+## Health, money, and legal: careful use
+
+> [!CAUTION]
+> AI can be wrong with total confidence. For health, money, and legal matters, use it to **understand and prepare**, never as the final word. Confirm everything with a qualified professional or an official source, and never delay urgent care because of an AI answer.
+
+| Good uses | Avoid |
+|---|---|
+| "Explain this lab term in plain English" | "Should I stop taking my medication?" |
+| "What questions should I ask my doctor about X?" | Diagnosing yourself from symptoms |
+| "Explain what a Roth IRA is" | "Which stock should I buy?" |
+| "Summarise this lease and flag unusual clauses to ask a lawyer about" | Relying on AI-drafted legal documents without review |
+| "Help me make a budget from these categories" | Sharing account numbers or passwords |
+
+## Accessibility
+
+AI can be a powerful accessibility tool. Use voice mode for hands-free use, ask for image descriptions, have long documents summarised or read aloud, and ask for text rewritten at a simpler reading level or turned into step-by-step lists. Many phones also have AI-powered live captions and screen descriptions built in. Look in your phone's accessibility settings.
+
+# Fact-Checking AI: A Five-Minute Method
+
+Every assistant sometimes **hallucinates**, meaning it states false things fluently. This routine catches most problems.
+
+:::steps The SIFT-style check for AI answers
+1. **Stop.** Ask yourself: does this matter enough to check? Health, money, legal, and anything you'll repeat publicly always matter.
+2. **Ask for sources.** "Give me the sources for each claim, with links."
+3. **Open the sources yourself.** Do they exist? Do they actually say that? Fake or misattributed citations are common.
+4. **Cross-check.** Ask a different assistant, or search the claim yourself. Agreement isn't proof, but disagreement is a red flag.
+5. **Check dates.** "As of when?" Prices, laws, and product features change.
+6. **Go to the primary source.** Use official sites (government, the company's own docs, the original study) for anything important.
+:::
+
+:::checklist
+- Specific numbers, dates, quotes, and names verified
+- Links opened and read
+- Information is current
+- I'd be comfortable if someone fact-checked me
+:::
+
+# Spotting AI Scams and Deepfakes
+
+The same tools that help you can be used against you. Know the warning signs.
+
+| Scam | What it looks like | Defence |
+|---|---|---|
+| **Voice-clone emergency** | A call that sounds like a family member in trouble, asking for money urgently | Hang up and call them back on a number you know. Agree a family code word |
+| **Deepfake video of a celebrity** | A famous person "endorsing" crypto, a trading bot, or a giveaway | Assume it's fake. Real endorsements don't promise guaranteed returns |
+| **AI investment bots** | "Our AI makes 3% a day guaranteed" | No legitimate investment guarantees returns (see Vol. 10) |
+| **Perfect phishing emails** | Flawless, personalised emails asking you to log in or pay | Go to the site yourself, not through the link |
+| **Fake support chat** | A "support agent" asking for codes or remote access | Never share one-time codes. Contact support through the official app |
+| **Romance scams** | AI-written messages and photos building a relationship, then asking for money | Video-call verification. Never send money to someone you haven't met |
+
+> [!TIP]
+> Report scams in the US at [reportfraud.ftc.gov](https://reportfraud.ftc.gov). Report investment fraud to the SEC at [sec.gov/tcr](https://www.sec.gov/tcr).
+
+# The Big Prompt Library
+
+A grab-bag of reliable prompts, grouped by what you're trying to do.
+
+:::compact
+| Goal | Prompt |
+|---|---|
+| Summarise | "Summarise this in 5 bullets, then one sentence for a busy executive." |
+| Simplify | "Explain this like I'm 12, then like I'm a college student." |
+| Compare | "Compare A and B in a table: cost, ease, risks, best for." |
+| Decide | "Here are my options and what I care about. Weigh them and recommend one, with your reasoning." |
+| Critique | "Act as a skeptical reviewer. What are the 5 weakest points of this?" |
+| Rewrite | "Rewrite this in a warmer tone, same length." |
+| Shorten | "Cut this to half the length without losing key facts." |
+| Brainstorm | "Give me 25 ideas. No filtering. Then group them into themes." |
+| Plan | "Make a step-by-step plan with time estimates and the first action I can do in 5 minutes." |
+| Role-play | "Play a tough customer complaining about X so I can practise." |
+| Interview prep | "Ask me 10 likely interview questions for [role], one at a time, and grade my answers." |
+| Translate | "Translate to [language], natural rather than literal, and note any idioms." |
+| Extract | "Pull every date, name, and dollar amount from this into a table." |
+| Format | "Turn this into a clean checklist / table / email / FAQ." |
+| Teach me | "Teach me [skill] with a short lesson and an exercise. Check my answer." |
+| Reflect | "Ask me 5 questions to help me think through [decision]." |
+| Fix writing | "Fix grammar and spelling only. Don't change my voice." |
+| Recipes | "What can I cook with [ingredients] in 20 minutes?" |
+| Gifts | "Suggest 10 gift ideas for someone who loves [x], under [budget]." |
+| Fact check | "Which claims in this text might be false or outdated? Explain how to verify each." |
+:::
+
+# Troubleshooting and FAQ
+
+:::compact
+| Problem | Try |
+|---|---|
+| Answers are generic | Add context: who you are, your goal, your constraints, an example |
+| It refuses a harmless request | Rephrase with your legitimate purpose. Try a different assistant |
+| It forgets earlier details | Long chats drift. Start a new chat with a summary, or use projects or memory features |
+| It made something up | Ask for sources. Use a research tool. Verify (Chapter 12) |
+| Output too long | "Answer in under 100 words" or "bullets only" |
+| Image looks wrong (hands, text) | Regenerate. Simplify the prompt. Edit the specific region |
+| Voice mode cuts you off | Use push-to-talk, or a quieter room |
+| Hit a usage limit | Wait for the reset, switch to a lighter model, or check your plan |
+:::
+
+**Which assistant is best?** It changes month to month. Most people do well picking one main assistant and one research tool. Try the same prompt in two and keep the one you prefer.
+
+**Is it safe to paste work documents?** Only if your employer allows it and the tool's data settings suit the content. Many workplaces provide approved tools. See Chapter 9.
+
+**Will AI remember me?** Some assistants have optional memory features. Check the settings, see what's stored, and delete what you don't want kept.
+
+**Do I have to pay?** Free tiers are capable. Paid plans add higher limits, better models, and extra features. Check current pricing on each provider's site.
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet
