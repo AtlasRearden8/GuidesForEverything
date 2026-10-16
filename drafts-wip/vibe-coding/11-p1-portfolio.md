@@ -123,7 +123,6 @@ The "Deployment and Domains" chapter explains DNS records in more detail.
 | Problem | Fix |
 |---|---|
 | Site looks generic | Give real content, a reference screenshot, and three adjectives |
-| Images are blurry or slow | "Optimize all images and serve sizes appropriate for each screen" |
 | Layout breaks on phone | Paste a phone screenshot and say what's wrong |
 | Deploy failed | Copy the build error from Vercel into v0: "The deploy failed with this error. Fix it." |
 | Domain not working after hours | Check records at your registrar match Vercel's exactly; remove old conflicting records |
@@ -131,9 +130,7 @@ The "Deployment and Domains" chapter explains DNS records in more detail.
 :::checklist
 - Real content and images, no placeholder text left
 - Looks good at phone width and desktop width
-- Every image has alt text
-- Page title, description, and sharing image set
-- Contact button works
-- Published, and connected to GitHub
+- Alt text, page title, description, and sharing image set
+- Contact button works; published and connected to GitHub
 :::
 

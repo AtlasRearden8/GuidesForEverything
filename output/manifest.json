@@ -2,13 +2,13 @@
   "ai-tools": {
     "slug": "ai-tools",
     "title": "Everyday AI Tools",
-    "subtitle": "Chat assistants, research, images, video, voice, and everyday AI, explained for beginners",
+    "subtitle": "Chat assistants, prompting, research, writing, images, video, voice, phones, agents, privacy, and everyday recipes, explained for complete beginners",
     "volume": 4,
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#0B8A8A",
-    "pages": 26,
-    "bytes": 543447
+    "pages": 103,
+    "bytes": 2137352
   },
   "ai-tools-directory": {
     "slug": "ai-tools-directory",
@@ -90,12 +90,12 @@
   "vibe-coding": {
     "slug": "vibe-coding",
     "title": "Vibe Coding",
-    "subtitle": "Build real apps and websites by describing them in plain English",
+    "subtitle": "Build real apps, websites, extensions and tools by describing them in plain English",
     "volume": 3,
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#7C4DDB",
-    "pages": 30,
-    "bytes": 610272
+    "pages": 110,
+    "bytes": 2412245
   }
 }

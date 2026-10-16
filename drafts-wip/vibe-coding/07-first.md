@@ -102,13 +102,10 @@ Every builder keeps a **version history**. In Lovable you can preview any earlie
 | It built something different from what I meant | Restore, then add specifics: who, what, and an example |
 | Data disappears on refresh | Ask it to save data in a database, not in the page |
 | It looks bad on a phone | "Make every page work well at 375px wide. Larger tap targets." |
-| Credits running out fast | Use Plan or Chat mode, visual edits, and smaller requests |
 
 :::checklist
 - I built a first app and clicked every button
-- I connected GitHub
-- I published it and opened it on my phone
+- I connected GitHub, published, and opened it on my phone
 - I know where version history is, and I've tried restoring a version
-- I've saved some lasting instructions in the builder's settings
 :::
 
