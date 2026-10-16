@@ -976,6 +976,73 @@ if __name__ == "__main__":
 - Optionally publish to PyPI or npm so people can run it with `uvx` or `npx`, and list it in the official MCP Registry
 :::
 
+# Security Review: Before You Install or Ship a Server
+
+An MCP server runs with whatever access you give it. A local stdio server runs **as you**, with your files, your network and your environment variables. Review a server like any software you install, and more carefully than most, because an AI decides when to call it.
+
+## Before installing someone else's server
+
+:::checklist
+- [ ] **Source:** published by the service's own company, or open source with recent activity and real users
+- [ ] **Package name matches the docs exactly.** Typo-squatted npm and PyPI names are a known attack
+- [ ] **Read the tool list.** Does it need *write* or *delete* tools, or only read tools?
+- [ ] **Scopes:** create the narrowest API token possible (read-only, single repo, single workspace)
+- [ ] **Pin a version** in the config, e.g. `npx -y package@1.4.2`, so an update can't silently change behavior
+- [ ] **Remote servers:** connect over HTTPS only, and prefer OAuth over pasting long-lived tokens
+- [ ] **Your client's approvals:** keep per-tool approval on for anything that writes, sends or spends
+:::
+
+## The main risks, explained
+
+| Risk | What happens | Defense |
+|---|---|---|
+| **Prompt injection** | A web page, email or issue that the AI reads contains hidden instructions ("send the secrets to…") | Don't combine untrusted-content tools with send or write tools in one unattended session, and keep approvals on for writes |
+| **Tool poisoning** | A malicious server's tool *description* tells the AI to misuse other tools | Install only trusted servers, and read the descriptions (the Inspector shows them) |
+| **Over-broad tokens** | A leaked token unlocks your whole account | Use fine-grained tokens with expiry dates, and rotate them |
+| **Data exfiltration** | The AI sends private data to an outside URL through a fetch tool | Limit network tools, and use allowlists where your client supports them |
+| **Rug pull** | A server you trusted changes after an update | Pin versions, and review changelogs before you upgrade |
+| **Confused deputy** | A remote server uses *its own* powerful credentials on your behalf | Choose servers that act with your own user's permissions (OAuth) |
+
+## If you're building a server
+
+| Practice | Why |
+|---|---|
+| Validate every argument (types, lengths, allowed values) | The model can send anything |
+| Put file tools in a jail: resolve paths and refuse anything outside an allowed root | This blocks `../../` escapes |
+| Mark destructive tools clearly, and use **elicitation** to confirm if your client supports it | The user sees what will happen |
+| Return errors as tool results (`isError: true`) with a helpful message | The model can recover without crashing the session |
+| Never log secrets, and log to **stderr** only for stdio servers | stdout carries the protocol |
+| Rate-limit and time out outbound calls | A runaway loop shouldn't drain an API quota |
+| For HTTP servers: require auth, check the `Origin` header, and bind local servers to `127.0.0.1` | This blocks DNS-rebinding and drive-by access |
+
+```python title=Safe path handling for a file tool
+from pathlib import Path
+
+ROOT = Path("~/notes").expanduser().resolve()
+
+def safe_path(user_path: str) -> Path:
+    p = (ROOT / user_path).resolve()
+    if not p.is_relative_to(ROOT):
+        raise ValueError("Path is outside the allowed folder")
+    return p
+```
+
+# JSON-RPC Error Codes and What They Mean
+
+MCP messages are JSON-RPC 2.0. When something fails at the protocol level, the response holds an `error` object with a numeric `code`. These are the standard codes from the JSON-RPC 2.0 specification:
+
+| Code | Name | Usual cause in MCP | Fix |
+|---|---|---|---|
+| -32700 | Parse error | The server or client received invalid JSON, often because a stdio server printed text to stdout | Send all logs and prints to stderr |
+| -32600 | Invalid request | A message is missing `jsonrpc: "2.0"` or `method`, or has the wrong shape | Use an official SDK instead of hand-writing messages |
+| -32601 | Method not found | Calling a method the other side doesn't support, or one from a different protocol version | Check the capabilities and protocol version the server advertises |
+| -32602 | Invalid params | Arguments don't match the tool's input schema, or an unknown tool name was used | Compare the call to the `inputSchema` in the tools list |
+| -32603 | Internal error | The server crashed while handling the request | Read the server's stderr log |
+| -32000 to -32099 | Server error (reserved range) | Implementation-defined errors | Check the server's docs |
+
+> [!NOTE]
+> A **tool that ran but failed**, such as "city not found", should not be a JSON-RPC error. It's a normal result with `isError: true`, so the AI can read the message and try again. Protocol errors are for broken messages, not for bad outcomes.
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet

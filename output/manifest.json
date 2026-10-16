@@ -18,8 +18,8 @@
     "kicker": "A Field Guide",
     "edition": "October 2026",
     "accent": "#5B4BDB",
-    "pages": 53,
-    "bytes": 2371229
+    "pages": 58,
+    "bytes": 2506142
   },
   "claude-code": {
     "slug": "claude-code",
@@ -62,8 +62,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#2F6FDE",
-    "pages": 52,
-    "bytes": 1363231
+    "pages": 56,
+    "bytes": 1445045
   },
   "n8n": {
     "slug": "n8n",

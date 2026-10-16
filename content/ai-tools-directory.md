@@ -879,6 +879,93 @@ Smaller categories that don't fit neatly elsewhere. Price labels follow the same
 | **Kaiber** | Stylised music videos and animations from images and audio | {{Paid}} |
 :::
 
+# Starter Stacks by Persona
+
+These stacks combine tools from this directory. Each one starts with **free or freemium options**, labeled as in the main listings, so you can try it without paying. Plans and limits change, so check each tool's pricing page before you commit. These are suggestions, not endorsements. Start with one tool per row and add more only when you hit a real limit.
+
+## Student
+
+| Need | Start with | Notes |
+|---|---|---|
+| Ask and explain | **ChatGPT**, **Claude** or **Gemini** {{Freemium}} | Use "quiz me" and "explain step by step", and follow your school's AI rules |
+| Study from your own materials | **NotebookLM** {{Freemium}} | Answers are grounded in the sources you upload |
+| Math and science | **WolframAlpha** {{Freemium}}, **Photomath** {{Freemium}} | Use them to check working, not to skip it |
+| Research papers | **Elicit** or **Consensus** {{Freemium}} | Always open and read the actual paper |
+| Notes and planning | **Notion** {{Freemium}} | See the Notion manual's *Notion for Students* chapter |
+| Writing polish | **Grammarly** {{Freemium}} | Fix grammar, but keep your own voice |
+
+## Small business owner
+
+| Need | Start with | Notes |
+|---|---|---|
+| Everyday assistant | **ChatGPT**, **Claude** or **Gemini** {{Freemium}} | Use business or team plans if you'll share customer data |
+| Marketing graphics | **Canva** {{Freemium}} | Set up your brand colors once |
+| Presentations | **Gamma** {{Freemium}} | Edit every claim before presenting |
+| Meeting notes | **Otter**, **Fireflies** or **Granola** {{Freemium}} | Get consent before recording |
+| Automations | **Zapier**, **Make** or **n8n** {{Freemium}} | See the n8n manual for self-hosting |
+| Website | **Webflow** {{Freemium}} or an app builder such as **Lovable** {{Freemium}} | Connect your own domain |
+
+## Content creator
+
+| Need | Start with | Notes |
+|---|---|---|
+| Scripts and ideas | **ChatGPT**, **Claude** or **Gemini** {{Freemium}} | Give it your past posts to match your voice |
+| Video editing | **CapCut** {{Freemium}}, **Descript** {{Freemium}} | Descript edits video by editing the transcript |
+| Generated video | **Runway** or **Kling** {{Freemium}} | Credits run out fast, so plan shots first |
+| Voice | **ElevenLabs** {{Freemium}} | Clone only your own voice, or with written consent |
+| Music | **Suno** {{Freemium}} | Check the plan's commercial-use terms before monetizing |
+| Images | **Canva** {{Freemium}}, **Midjourney** {{Paid}} | Disclose AI imagery where platforms require it |
+
+## Beginner builder (vibe coder)
+
+| Need | Start with | Notes |
+|---|---|---|
+| Build in the browser | **Lovable** or **Bolt** {{Freemium}} | See the Vibe Coding manual |
+| AI code editor | **Cursor** {{Freemium}} | Move here once you outgrow the browser builders |
+| Backend and database | **Supabase** {{Freemium}} | Turn on row-level security |
+| Hosting | **Vercel** {{Freemium}} | Use preview deployments for every branch |
+| Design | **Figma** {{Freemium}} | Prototype screens before you prompt |
+
+## Accessibility-first
+
+| Need | Start with | Notes |
+|---|---|---|
+| Describe the world | **Be My Eyes** {{Free}}, **Seeing AI** {{Free}} | Phone camera to spoken description |
+| Cleaner audio on calls | **Krisp** {{Freemium}} | Noise and echo removal |
+| Captions and transcripts | **Otter** {{Freemium}} | Many video-call apps also have built-in captions |
+| Read and summarize | Any chat assistant's voice mode {{Freemium}} | Ask for a plain-language summary |
+
+## Data and analytics
+
+| Need | Start with | Notes |
+|---|---|---|
+| Notebook-style analysis | **Hex** {{Freemium}} | The Community plan is free |
+| Quick questions on a spreadsheet | A chat assistant with file upload {{Freemium}} | Remove personal data first, and check totals by hand |
+| Research synthesis | **Perplexity** {{Freemium}} | Click through to every source |
+
+# Choosing Between Similar Tools: Decision Guides
+
+When three tools look the same, these questions usually settle it.
+
+| If you're choosing between… | Ask | Lean toward |
+|---|---|---|
+| Chat assistants | Which ecosystem do you already live in? | The assistant built into it (Google → Gemini, Microsoft → Copilot), or try two for a week |
+| App builders vs AI editors | Do you want to see or touch code? | No: an app builder. Yes: an AI editor or coding agent |
+| Automation platforms | Do you need self-hosting or code steps? | Yes: n8n. Simplest setup: Zapier. Visual branching on a budget: Make |
+| Meeting note-takers | Bot in the call, or bot-free? | Granola-style bot-free capture if guests dislike bots, otherwise whichever integrates with your calendar and CRM |
+| Image generators | Photoreal, illustration, or text in images? | Run the same prompt on each one's free tier, and compare |
+| Research tools | Academic papers or the general web? | Papers: Elicit or Consensus. Web: Perplexity or a search-enabled chat assistant |
+
+## A two-week trial method
+
+:::steps
+1. Write down **3 real tasks** you'll do in the next two weeks.
+2. Run every task in **two candidate tools**. Same input, same time limit.
+3. Score each one 1–5 on quality, speed, ease of use and cost (use the *Scorecard* in *How to Evaluate Any AI Tool*).
+4. Check the privacy settings and data-retention policy before uploading anything sensitive.
+5. Keep the winner, cancel the other before the trial bills you, and set a calendar reminder to re-evaluate in 6 months.
+:::
+
 # Glossary of AI Product Terms {.unnumbered}
 
 :::glossary
