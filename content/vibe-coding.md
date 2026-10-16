@@ -479,6 +479,234 @@ Most vibe coding tools charge with **credits** (or **tokens**), units of AI work
 | Growing a serious project | Builder or editor + Claude Pro or ChatGPT Plus | ≈ $40–60 |
 | Running in production | Plus hosting, database, domain | add ≈ $10–50 |
 
+# Three Complete Builds
+
+Follow these from start to finish. Each one uses a different family of tools from Chapter 2. They work with any builder (Lovable, Bolt, Replit, v0 and similar), any AI editor, or any coding agent. Menu names differ, but the prompts and steps carry over.
+
+:::summary In this chapter
+- Build 1: A personal portfolio site (static, free hosting)
+- Build 2: A to-do app with logins and a database
+- Build 3: A landing page with a waitlist form
+:::
+
+## Build 1: Portfolio site
+
+:::steps
+1. **Write the brief.**
+   ```prompt
+   Build a single-page portfolio for a [your job] named [name]. Sections: hero with name and one-line pitch, About (3 sentences), Projects (3 cards with image, title, description, link), Contact (email link). Clean, lots of white space, one accent colour, mobile-friendly. Plain HTML, CSS and a little JavaScript, no frameworks.
+   ```
+2. **Review it on desktop and phone sizes.** Most builders have a device-size toggle.
+3. **Iterate in slices.** "Make the project cards two columns on desktop, one on mobile." Do one change per prompt.
+4. **Replace the placeholder content** with your real text and images.
+5. **Export or push to GitHub** (Vol. 2).
+6. **Publish free on GitHub Pages:** [[Settings > Pages]], deploy from the `main` branch.
+:::
+
+## Build 2: To-do app with logins
+
+This build adds the two hardest beginner topics, **authentication** and a **database**. It uses Supabase as the example back end because many builders integrate with it. Others work the same way.
+
+:::steps
+1. **Brief.**
+   ```prompt
+   Build a to-do app. Users sign up and log in with email. Each user sees only their own tasks. Tasks have title, due date, done checkbox. Use Supabase for auth and the database. Add row-level security so users can only read and write their own rows. Explain each step you take.
+   ```
+2. **Connect Supabase** through the builder's integration, or paste the project URL and the **anon (public)** key when asked. Never paste the **service role** key into front-end code.
+3. **Check the table** in Supabase's table editor: there should be a `tasks` table with a `user_id` column.
+4. **Check row-level security (RLS).** In Supabase, the table should show RLS **enabled**, with policies limiting access to `auth.uid() = user_id`.
+5. **Test with two accounts.** Sign up as two different users in two browsers. Neither should see the other's tasks.
+6. **Ask for an audit.**
+   ```prompt
+   Audit this app's security: auth flows, RLS policies, exposed keys, input validation. List problems by severity and fix only the critical ones.
+   ```
+7. **Deploy** with the builder's publish button, or connect the GitHub repo to a host like Vercel or Netlify.
+:::
+
+> [!CAUTION]
+> The two-account test is the most important step in this book. Many vibe-coded apps leak every user's data because security rules were missing. Don't skip it.
+
+## Build 3: Landing page with a waitlist
+
+:::steps
+1. **Brief.** "A landing page for [product idea]: headline, three benefit bullets with icons, a screenshot placeholder, an email waitlist form, FAQ (4 questions), footer. On submit, save the email and show a thank-you message."
+2. **Store sign-ups.** Use a simple option: a form service, a Google Sheet through an automation (Vol. 6, n8n), or a database table.
+3. **Add basic spam protection.** Ask for a hidden "honeypot" field and server-side validation.
+4. **Add privacy basics.** Include a short privacy note under the form saying what you'll do with emails.
+5. **Measure.** Add privacy-friendly analytics if you want visitor counts.
+6. **Publish and share.**
+:::
+
+# The Prompt Library
+
+Fifty tested prompt patterns, grouped by moment. Copy them, then fill in the brackets.
+
+:::summary In this chapter
+- Planning, building, styling, debugging, refactoring, security, shipping, and learning prompts
+:::
+
+## Planning
+
+```prompt
+Before writing code, ask me up to 8 questions that would most change how you build [idea]. Then propose a version-1 scope that fits in one weekend.
+```
+```prompt
+Turn this idea into a one-page brief with: who it's for, core features (max 5), not-in-v1, look and feel, and "done means". Idea: [idea]
+```
+```prompt
+Propose 3 different technical approaches for [feature], with pros, cons, and cost for each. Recommend one for a beginner and say why.
+```
+```prompt
+Break this brief into 8–12 small slices, each testable on its own, in build order.
+```
+
+## Building
+
+```prompt
+Implement slice [N] only: [description]. Don't touch unrelated files. When done, tell me exactly how to test it.
+```
+```prompt
+Add [feature] following the existing patterns in this project. Show me which files you'll change before changing them.
+```
+```prompt
+Create realistic sample data (10 items) so I can see the UI working.
+```
+```prompt
+Make this work on mobile screens 360px wide without horizontal scrolling.
+```
+
+## Styling
+
+```prompt
+Restyle this page to feel [calm / playful / premium / minimalist]. Keep the layout; change typography, spacing, and colours. Use one accent colour.
+```
+```prompt
+Here's a screenshot of a design I like [image]. Match its spacing and typography, not its content.
+```
+```prompt
+Check colour contrast for accessibility (WCAG AA) and fix any text that fails.
+```
+
+## Debugging
+
+```prompt
+Here is the exact error and what I did right before it: [error + steps]. Explain the cause in plain English, then propose the smallest fix.
+```
+```prompt
+This used to work before your last change. Compare before and after, and find what broke it.
+```
+```prompt
+Add temporary logging around [feature] so we can see what's happening, then tell me what to click and what to send you.
+```
+```prompt
+We've tried three fixes and none worked. Stop. List every assumption we've made, and which ones might be wrong.
+```
+
+## Refactoring and quality
+
+```prompt
+This file is getting long. Propose how to split it into smaller pieces without changing behaviour. Wait for my OK.
+```
+```prompt
+Find duplicated code and consolidate it. Behaviour must stay identical.
+```
+```prompt
+Write tests for [feature] that would catch the bug we just fixed.
+```
+
+## Security
+
+```prompt
+Scan the project for exposed secrets, API keys in front-end code, and missing access rules. Report, don't fix yet.
+```
+```prompt
+Explain who can read and write each table in the database, in plain English.
+```
+```prompt
+Add input validation and rate limiting to [form/endpoint].
+```
+
+## Shipping
+
+```prompt
+Prepare this for production: environment variables, error pages, loading states, favicon, page titles, and meta descriptions. Give me a checklist of what you changed.
+```
+```prompt
+Write a README explaining what this is, how to run it locally, and how to deploy it.
+```
+
+## Learning
+
+```prompt
+Explain what you just did as if I'm new to coding, using an everyday analogy. Then quiz me with 3 questions.
+```
+```prompt
+Give me a guided tour of this project's files: what each folder is for and which 5 files matter most.
+```
+
+# Error Message Decoder
+
+When you see one of these, here's what it usually means and what to tell the AI.
+
+:::compact
+| Message (or part of it) | Plain English | Tell the AI |
+|---|---|---|
+| `404 Not Found` | The page or API address doesn't exist | "Check the route or URL for [x]" |
+| `401 Unauthorized` | Not logged in, or a missing or wrong key | "Check auth/session and the API key setup" |
+| `403 Forbidden` | Logged in but not allowed (often RLS) | "Check permissions/RLS for this action" |
+| `500 Internal Server Error` | The server code crashed | "Check the server logs for the real error" |
+| `CORS policy` | The browser blocked a call to another domain | "Configure CORS on the API, or call it from the server" |
+| `undefined is not a function` / `Cannot read properties of undefined` | The code used something that doesn't exist yet | "Find where [x] is undefined and guard it" |
+| `Module not found` / `Cannot find module` | A missing package or wrong import path | "Install the package or fix the import" |
+| `Unexpected token` | A syntax error, often a missing bracket | "Find the syntax error near line N" |
+| `Hydration failed` | Server and browser rendered different HTML (React/Next.js) | "Fix the hydration mismatch in [component]" |
+| `ENV variable is undefined` | The secret isn't set on the host | "List the env vars I need to set on [host]" |
+| `Build failed` on deploy | Works locally but not on the host | "Here's the deploy log; fix the build" |
+| `429 Too Many Requests` | Rate limited | "Add retry with backoff and caching" |
+| `Network Error` / `Failed to fetch` | Server down, wrong URL, or offline | "Check the URL and whether the server is running" |
+:::
+
+# The Modern Web Stack, Explained
+
+Builders and AIs throw these names around constantly. Here's what each one is, in a sentence.
+
+:::compact
+| Name | What it is |
+|---|---|
+| **HTML** | The structure of a web page |
+| **CSS** | The styling: colours, layout, fonts |
+| **JavaScript / TypeScript** | The behaviour. TypeScript adds type checking |
+| **React** | A popular library for building interfaces from components |
+| **Next.js** | A React framework with routing, server code, and deployment conventions |
+| **Vite** | A fast development server and build tool |
+| **Tailwind CSS** | Styling with small utility classes, like `p-4 text-lg` |
+| **shadcn/ui** | Copy-in React components that work with Tailwind |
+| **Node.js** | Runs JavaScript outside the browser (servers, tools) |
+| **npm / pnpm** | Install JavaScript packages |
+| **Supabase** | A hosted Postgres database plus auth, storage, and APIs |
+| **Firebase** | Google's app back end: database, auth, hosting |
+| **Postgres** | A powerful open-source SQL database |
+| **Prisma / Drizzle** | Tools for talking to databases from code |
+| **Stripe** | Payments |
+| **Vercel / Netlify** | Hosting for front ends and serverless functions |
+| **Cloudflare** | Domain names (DNS), security, and edge hosting |
+| **GitHub** | Where your code and its history live (Vol. 2) |
+| **API** | A way for programs to talk to each other |
+| **Serverless function** | A small piece of back-end code that runs on demand |
+:::
+
+# Frequently Asked Questions
+
+**Can I really build an app without coding?** You can build real, useful apps. For anything handling money, health data, or other people's private data, have an experienced developer review it.
+
+**Who owns the code?** Usually you do, but read each tool's terms. Export to GitHub regularly so you're never locked in.
+
+**Why does the AI keep breaking things that worked?** Long conversations lose detail. Use version control, work in small slices, and start fresh chats with a summary.
+
+**What's the cheapest way to start?** A free tier of a browser builder for prototypes, then free GitHub Pages or a free hosting tier for static sites. Pricing changes often, so check each tool's current page.
+
+**When should I move from a builder to an editor or agent?** When you need custom logic, you're hitting builder limits, or credits get expensive. See Chapter 7.
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet
