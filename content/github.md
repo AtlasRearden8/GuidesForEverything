@@ -1280,6 +1280,284 @@ When a tool asks for a token, create a **fine-grained personal access token** at
 
 **Why does `git push` ask for a password that doesn't work?** GitHub doesn't accept account passwords for Git over HTTPS. Sign in with `gh auth login`, Git Credential Manager, or SSH keys.
 
+# Working as a Team on GitHub
+
+Working alone, you push to `main` and move on. Once there's a team, you need some rules: who can merge, who reviews what, and how work gets planned. This chapter sets those rules up step by step.
+
+## Organizations vs personal accounts
+
+| | Personal account | Organization |
+|---|---|---|
+| Owner | One person | A shared account, with owners and members |
+| Best for | Your own projects | Clubs, companies and teams |
+| Permissions | Collaborators per repo | Teams with roles (read, triage, write, maintain, admin) across repos |
+| Billing | Your plan | The organization's plan |
+
+To make an organization: click your profile picture → **Your organizations** → **New organization**, or go to github.com/organizations/new. Choose the free plan to start.
+
+## Step by step: set up a team repo
+
+:::steps
+1. **Create teams.** In the organization, open **Teams** → **New team** (e.g. *developers*, *reviewers*).
+2. **Give access.** In the repo, go to [[Settings > Collaborators and teams]] → **Add teams**, and give *developers* the **Write** role.
+3. **Add CODEOWNERS.** Create `.github/CODEOWNERS` (example below). GitHub automatically requests reviews from the owners of the files a pull request changes.
+4. **Protect main.** Under [[Settings > Rules > Rulesets]], create a branch ruleset targeting the default branch. Turn on *Require a pull request before merging* (1 approval), *Require review from Code Owners*, *Require status checks to pass*, and *Block force pushes*.
+5. **Add templates.** Create `.github/pull_request_template.md` and issue forms in `.github/ISSUE_TEMPLATE/` (examples below).
+6. **Plan the work.** Create a Project (board) for the organization and link the repo (see *Issues, Projects, and Discussion*).
+:::
+
+```text title=.github/CODEOWNERS
+# Later rules win. The last matching pattern takes precedence.
+*                 @my-org/developers
+/docs/            @my-org/writers
+/.github/         @my-org/admins
+*.css             @alice
+```
+
+```markdown title=.github/pull_request_template.md
+## What changed
+<!-- One or two sentences -->
+
+## Why
+Closes #
+
+## How to test
+1.
+
+## Checklist
+- [ ] Tests pass locally
+- [ ] Docs updated if needed
+- [ ] No secrets or personal data added
+```
+
+```yaml title=.github/ISSUE_TEMPLATE/bug.yml
+name: Bug report
+description: Something isn't working
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      value: |
+        1.
+        2.
+  - type: input
+    id: version
+    attributes:
+      label: Version or browser
+```
+
+## Reviewing a pull request well
+
+:::steps
+1. Open the PR and read the description first. Is it clear *why* this change exists?
+2. Open **Files changed**. Click **+** next to a line to leave a comment. Use **Add a suggestion** (the ± icon) to propose an exact replacement the author can accept with one click.
+3. Check out the branch locally if the change is non-trivial: `gh pr checkout <number>`.
+4. Finish with **Review changes** → *Comment*, *Approve* or *Request changes*.
+5. Be kind and specific. "This could crash if `items` is empty. Maybe guard with `if (!items.length) return`?" beats "wrong".
+:::
+
+## Merge methods
+
+| Method | History result | Good when |
+|---|---|---|
+| **Create a merge commit** | Keeps every commit, plus a merge commit | You want the full branch history |
+| **Squash and merge** | One commit per PR on main | Branches have messy work-in-progress commits (the most common team choice) |
+| **Rebase and merge** | Commits replayed onto main, with no merge commit | Each commit is clean and meaningful |
+
+Choose which methods are allowed under [[Settings > General > Pull Requests]]. Turn on **Automatically delete head branches** there too.
+
+## Team habits that prevent pain
+
+:::checklist
+- [ ] Small PRs, ideally under about 400 changed lines, so reviews are fast
+- [ ] One issue per change, linked with "Closes #123" in the PR body
+- [ ] Draft PRs for early feedback (**Create draft pull request**)
+- [ ] Update your branch from main before asking for a final review
+- [ ] Never commit secrets. Turn on push protection under the repo's security settings
+- [ ] Label issues (*bug*, *good first issue*, *needs triage*) so anyone can find work
+:::
+
+# GitHub Desktop, Step by Step
+
+GitHub Desktop is a free app for Windows and macOS that does the everyday Git workflow with buttons instead of commands. Download it from desktop.github.com.
+
+## First-time setup
+
+:::steps
+1. Install it and open it. Sign in with your GitHub account (on Windows **File > Options > Accounts**, on Mac **GitHub Desktop > Settings > Accounts**).
+2. Set your name and email for commits under **Git** in the same Options/Settings window.
+3. To get an existing repo: **File > Clone repository**, pick it from the list, choose a local folder, then **Clone**.
+4. To start a new one: **File > New repository**, name it, tick **Initialize this repository with a README**, then **Publish repository** to put it on GitHub.
+:::
+
+## The everyday loop
+
+| You want to | In GitHub Desktop |
+|---|---|
+| See what changed | The **Changes** tab lists files, and the right pane shows line-by-line differences |
+| Save a snapshot | Tick the files, write a summary at the bottom left, click **Commit to <branch>** |
+| Upload commits | **Push origin** (top bar) |
+| Get others' changes | **Fetch origin**, then **Pull origin** |
+| Make a branch | **Current branch** dropdown → **New branch** |
+| Switch branch | **Current branch** dropdown → pick one. Desktop asks what to do with uncommitted changes |
+| Open a pull request | After pushing a branch, click **Preview Pull Request** or **Create Pull Request** |
+| Bring main into your branch | **Branch > Update from main** (named after your default branch) |
+| Undo the last commit | **History** tab → right-click the latest commit → **Undo commit** (only before pushing) |
+| Discard changes to a file | Right-click the file in Changes → **Discard changes** |
+| Open in your editor | **Repository > Open in <editor>** (choose the editor in Options/Settings → Integrations) |
+
+## Resolving a conflict in Desktop
+
+:::steps
+1. When a merge or pull hits a conflict, Desktop lists the conflicted files.
+2. Click **Open in <editor>** next to a file. Look for the markers `<<<<<<<`, `=======` and `>>>>>>>`.
+3. Edit the file so it holds the final text you want, and delete all three markers.
+4. Save. Desktop marks the file as resolved. When every file is resolved, click **Continue merge** or **Commit merge**.
+:::
+
+# .gitignore Templates
+
+A `.gitignore` file tells Git which files never to track, such as dependencies, build output, secrets and system junk. GitHub keeps official templates at **github.com/github/gitignore**. When you create a repo on github.com, choose one from the **Add .gitignore** dropdown.
+
+## Every official template (root folder, October 2026)
+
+`Actionscript`, `Ada`, `AdventureGameStudio`, `Agda`, `Android`, `Angular`, `AppEngine`, `AppceleratorTitanium`, `ArchLinuxPackages`, `Autotools`, `Ballerina`, `C++`, `C`, `CFWheels`, `CMake`, `CUDA`, `CakePHP`, `ChefCookbook`, `Clojure`, `CodeIgniter`, `CommonLisp`, `Composer`, `Concrete5`, `Coq`, `CraftCMS`, `D`, `DM`, `Dart`, `Delphi`, `Deno`, `Dotnet`, `Drupal`, `EPiServer`, `Eagle`, `Elisp`, `Elixir`, `Elm`, `Erlang`, `ExpressionEngine`, `ExtJs`, `Fancy`, `Finale`, `Firebase`, `FlaxEngine`, `Flutter`, `ForceDotCom`, `Fortran`, `FuelPHP`, `GWT`, `Gcov`, `GitBook`, `GitHubPages`, `Gleam`, `Go`, `Godot`, `Gradle`, `Grails`, `HIP`, `Haskell`, `Haxe`, `IAR`, `IGORPro`, `Idris`, `JBoss`, `JENKINS_HOME`, `Java`, `Jekyll`, `Joomla`, `Julia`, `Katalon`, `KiCad`, `Kohana`, `Kotlin`, `LabVIEW`, `LangChain`, `Laravel`, `Lasal`, `Lean`, `Leiningen`, `LemonStand`, `Lilypond`, `Lithium`, `Lua`, `Luau`, `Magento`, `Maven`, `Mercury`, `MetaProgrammingSystem`, `ModelSim`, `Modelica`, `MoonBit`, `Nanoc`, `Nestjs`, `Nextjs`, `Nim`, `Nix`, `Node`, `OCaml`, `Objective-C`, `Opa`, `OpenCart`, `OracleForms`, `Packer`, `Perl`, `Phalcon`, `PlayFramework`, `Plone`, `Prestashop`, `Processing`, `PureScript`, `Python`, `Qooxdoo`, `Qt`, `R`, `ROS`, `Racket`, `Rails`, `Raku`, `ReScript`, `RhodesRhomobile`, `Ruby`, `Rust`, `SCons`, `SSDT-sqlproj`, `Salesforce`, `Sass`, `Scala`, `Scheme`, `Scrivener`, `Sdcc`, `SeamGen`, `SketchUp`, `Smalltalk`, `SolidWorks`, `Solidity-Remix`, `Stella`, `SugarCRM`, `Swift`, `Symfony`, `SymphonyCMS`, `TeX`, `Terraform`, `TestComplete`, `Textpattern`, `TurboGears2`, `TwinCAT3`, `Typo3`, `Unity`, `UnrealEngine`, `VBA`, `VVVV`, `VisualStudio`, `Waf`, `WordPress`, `Xojo`, `Yeoman`, `Yii`, `ZendFramework`, `Zephir`, `Zig`, `bun`, `ecu.test`.
+
+More templates for editors and operating systems (e.g. `macOS`, `Windows`, `VisualStudioCode`, `JetBrains`) live in the repo's `Global/` folder. Templates for less common tools are in `community/`.
+
+## Add one to an existing repo
+
+```bash
+# Example: Node project
+curl -L https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore -o .gitignore
+git add .gitignore && git commit -m "Add Node .gitignore"
+```
+
+## Already committed a file you meant to ignore?
+
+```bash
+echo ".env" >> .gitignore
+git rm --cached .env          # stop tracking it, but keep the local copy
+git commit -m "Stop tracking .env"
+```
+
+> [!CAUTION]
+> If that file held a secret (API key, password), it is **still in the Git history**, and anyone who cloned the repo has it. **Rotate the secret now.** Removing it from history afterwards is optional cleanup, not a fix.
+
+## Lines worth adding to almost any project
+
+```gitignore title=.gitignore additions
+# Secrets
+.env
+.env.*
+!.env.example
+# OS junk
+.DS_Store
+Thumbs.db
+# Editors
+.vscode/*
+!.vscode/extensions.json
+.idea/
+# Logs
+*.log
+```
+
+# Releases, Tags, and Versioning
+
+A **tag** marks a specific commit, such as `v1.2.0`. A **release** is a GitHub page attached to a tag, with notes and downloadable files.
+
+## Semantic versioning in one table
+
+| Part | Bump when | Example |
+|---|---|---|
+| MAJOR | You break compatibility | 1.4.2 → **2**.0.0 |
+| MINOR | You add features without breaking anything | 1.4.2 → 1.**5**.0 |
+| PATCH | You fix bugs only | 1.4.2 → 1.4.**3** |
+
+## Make a release (browser)
+
+:::steps
+1. On the repo page, click **Releases** (right sidebar) → **Draft a new release**.
+2. **Choose a tag**: type a new one, like `v1.0.0`, and choose **Create new tag on publish**.
+3. Click **Generate release notes** to list the PRs merged since the last release, then edit the notes.
+4. Attach any files, such as built PDFs or zip files.
+5. Tick **Set as a pre-release** for betas, then **Publish release**.
+:::
+
+## Make a release (terminal)
+
+```bash
+git tag -a v1.0.0 -m "First stable release"
+git push origin v1.0.0
+gh release create v1.0.0 --generate-notes ./dist/app.zip
+gh release list
+```
+
+## Automate releases with Actions
+
+```yaml title=.github/workflows/release.yml
+name: Release
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: gh release create "$GITHUB_REF_NAME" --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+```
+
+# Contributing to Open Source
+
+## Your first contribution, step by step
+
+:::steps
+1. **Find a project.** Search issues labeled `good first issue` (github.com/issues?q=label:"good first issue"+is:open), or browse a project you already use.
+2. **Read the rules.** Look for `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md`. Follow them exactly.
+3. **Claim politely.** Comment on the issue: "I'd like to work on this. Is it still available?" Wait for a maintainer's OK.
+4. **Fork.** Click **Fork** on the repo page, which makes your own copy. Or use `gh repo fork owner/repo --clone`.
+5. **Branch.** `git switch -c fix-typo-in-readme`
+6. **Change, commit, push** to *your fork*.
+7. **Open the PR** against the original repo. GitHub offers **Compare & pull request** after you push. Fill in the template and link the issue.
+8. **Respond to review.** Push more commits to the same branch, and the PR updates automatically.
+:::
+
+## Keep your fork up to date
+
+```bash
+gh repo sync                 # sync your fork's default branch with the original repo
+# or, by hand:
+git remote add upstream https://github.com/OWNER/REPO.git
+git fetch upstream
+git switch main && git merge upstream/main && git push
+```
+
+You can also click **Sync fork** on your fork's page on github.com.
+
+## Etiquette
+
+| Do | Don't |
+|---|---|
+| Keep PRs focused on one thing | Mix a bug fix with reformatting the whole file |
+| Explain what and why | Open a PR with an empty description |
+| Be patient, since maintainers are often volunteers | Ping every day |
+| Disclose AI-generated code if the project asks | Submit AI output you haven't read and tested |
+| Report security bugs privately, using the repo's **Security** tab → **Report a vulnerability** if it's enabled | Open a public issue with exploit details |
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet
