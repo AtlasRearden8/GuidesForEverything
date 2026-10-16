@@ -348,6 +348,375 @@ From notion.com/pricing, October 2026. Students and teachers can often get Plus 
 | <kbd>Esc</kbd> | Select the current block |
 | <kbd>Cmd</kbd>/<kbd>Ctrl</kbd> + <kbd>/</kbd> | Turn the selected block into another type |
 
+# Keyboard Shortcuts and Slash Commands
+
+Notion is much faster from the keyboard. On Windows and Linux, read <kbd>Cmd</kbd> as <kbd>Ctrl</kbd> and <kbd>Option</kbd> as <kbd>Shift</kbd> (or <kbd>Alt</kbd>, depending on the shortcut). If a shortcut doesn't work, press <kbd>Cmd</kbd> + <kbd>/</kbd> or open [[Help > Keyboard shortcuts]] to see your app's list.
+
+:::summary In this chapter
+- App-wide shortcuts
+- Editing shortcuts
+- Markdown-style typing shortcuts
+- The `/` command menu
+:::
+
+## App-wide
+
+:::compact
+| Keys | Action |
+|---|---|
+| <kbd>Cmd</kbd> + <kbd>P</kbd> (or <kbd>Cmd</kbd> + <kbd>K</kbd>) | Search and jump to a page |
+| <kbd>Cmd</kbd> + <kbd>N</kbd> | New page |
+| <kbd>Cmd</kbd> + <kbd>\\</kbd> | Show or hide the sidebar |
+| <kbd>Cmd</kbd> + <kbd>[</kbd> / <kbd>]</kbd> | Back / forward |
+| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd> | Toggle dark mode |
+| <kbd>Cmd</kbd> + <kbd>L</kbd> | Copy the link to the current page |
+| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>U</kbd> | Go up to the parent page |
+:::
+
+## Editing
+
+:::compact
+| Keys | Action |
+|---|---|
+| <kbd>Esc</kbd> | Select the current block (or clear the selection) |
+| <kbd>Cmd</kbd> + <kbd>D</kbd> | Duplicate the selected block |
+| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>↑</kbd> / <kbd>↓</kbd> | Move the selected block up or down |
+| <kbd>Tab</kbd> / <kbd>Shift</kbd> + <kbd>Tab</kbd> | Indent / outdent (nest inside the block above) |
+| <kbd>Cmd</kbd> + <kbd>/</kbd> | Turn into, change colour, and other block actions |
+| <kbd>Cmd</kbd> + <kbd>Enter</kbd> | Tick a to-do, or open or close a toggle |
+| <kbd>Cmd</kbd> + <kbd>B</kbd> / <kbd>I</kbd> / <kbd>U</kbd> | Bold / italic / underline |
+| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Strikethrough |
+| <kbd>Cmd</kbd> + <kbd>E</kbd> | Inline code |
+| <kbd>Cmd</kbd> + <kbd>K</kbd> (with text selected) | Add a link |
+| <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>M</kbd> | Comment on the selection |
+| <kbd>Cmd</kbd> + <kbd>Z</kbd> / <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd> | Undo / redo |
+:::
+
+## Type-to-format (Markdown shortcuts)
+
+Type these at the start of a line:
+
+:::compact
+| Type | You get |
+|---|---|
+| `#` + space | Heading 1 (`##` H2, `###` H3) |
+| `-` or `*` + space | Bulleted list |
+| `1.` + space | Numbered list |
+| `[]` | To-do checkbox |
+| `>` + space | Toggle list |
+| `"` + space | Quote |
+| `---` | Divider |
+| ` ``` ` | Code block |
+| `**text**`, `*text*`, `` `text` ``, `~text~` | Bold, italic, code, strikethrough (inline) |
+| `@` | Mention a person, page, or date |
+| `[[` | Link to (or create) a page |
+| `+` | Create a new sub-page inline |
+| `:` + a word | Emoji, e.g. `:rocket` |
+:::
+
+## The `/` menu
+
+Type `/` anywhere and start typing to filter. Useful commands:
+
+:::cols
+- `/text`
+- `/page`
+- `/todo`
+- `/h1` `/h2` `/h3`
+- `/table`
+- `/bullet` `/num`
+- `/toggle`
+- `/quote`
+- `/divider`
+- `/callout`
+- `/code`
+- `/image`
+- `/embed`
+- `/bookmark`
+- `/database` (inline / full page)
+- `/board` `/calendar` `/timeline` `/gallery` `/list`
+- `/linked` (linked view of a database)
+- `/columns`
+- `/toc` (table of contents)
+- `/breadcrumb`
+- `/equation`
+- `/synced` (synced block)
+- `/button`
+- `/template`
+- `/mention`
+- `/date` `/reminder`
+- `/color` (e.g. `/red`, `/blue background`)
+- `/ai` (Notion AI, on plans with AI)
+- `/turn` (turn into another block)
+- `/duplicate` `/delete` `/move`
+:::
+
+# Formulas Reference
+
+**Formula** properties calculate a value from other properties in the same database row. Notion's formula language (Formulas 2.0) is close to a spreadsheet's.
+
+:::summary In this chapter
+- How to write a formula
+- The functions you'll actually use, by category
+- Twelve ready-made formulas
+:::
+
+## Basics
+
+Add a property, choose **Formula**, and click to edit. Refer to other properties by clicking them, or typing `prop("Name")`. Formulas can span several lines, and you can store intermediate values with `let`.
+
+## Functions by category
+
+:::compact
+| Category | Functions | Example |
+|---|---|---|
+| Logic | `if`, `ifs`, `and`, `or`, `not`, `empty` | `if(prop("Done"), "✅", "⏳")` |
+| Comparison | `==`, `!=`, `>`, `<`, `>=`, `<=` | `prop("Score") >= 80` |
+| Math | `+ - * / %`, `round`, `floor`, `ceil`, `abs`, `min`, `max`, `sum`, `sqrt` | `round(prop("Price") * 1.07 * 100) / 100` |
+| Text | `length`, `lower`, `upper`, `contains`, `test`, `replace`, `replaceAll`, `split`, `join`, `format`, `style`, `link` | `upper(prop("Code"))` |
+| Dates | `now`, `today`, `dateAdd`, `dateSubtract`, `dateBetween`, `dateStart`, `dateEnd`, `formatDate`, `parseDate`, `timestamp` | `dateBetween(prop("Due"), today(), "days")` |
+| Lists | `at`, `first`, `last`, `slice`, `sort`, `reverse`, `unique`, `map`, `filter`, `find`, `some`, `every`, `includes` | `prop("Tasks").filter(current.prop("Done")).length()` |
+| Variables | `let`, `lets` | `let(d, dateBetween(prop("Due"), today(), "days"), d + " days")` |
+| Convert | `toNumber`, `format` | `toNumber(prop("Text number"))` |
+:::
+
+## Twelve ready-made formulas
+
+```text title=Days until due
+dateBetween(prop("Due"), today(), "days")
+```
+
+```text title=Overdue flag
+if(and(not(prop("Done")), prop("Due") < today()), "🔴 Overdue", "")
+```
+
+```text title=Progress bar from a Rollup percentage (0–1)
+let(p, round(prop("Progress") * 10), "▓".repeat(p) + "░".repeat(10 - p))
+```
+
+```text title=Status emoji
+ifs(prop("Status") == "Done", "✅", prop("Status") == "In progress", "🟡", "⚪")
+```
+
+```text title=Full name
+prop("First") + " " + prop("Last")
+```
+
+```text title=Price with tax
+round(prop("Price") * 1.07 * 100) / 100
+```
+
+```text title=Week number label
+"Week " + formatDate(prop("Date"), "W")
+```
+
+```text title=Age in years
+dateBetween(today(), prop("Birthday"), "years")
+```
+
+```text title=Count of completed related tasks
+prop("Tasks").filter(current.prop("Done")).length()
+```
+
+```text title=Next review date (30 days after last)
+dateAdd(prop("Last reviewed"), 30, "days")
+```
+
+```text title=Coloured priority
+style(prop("Priority"), if(prop("Priority") == "High", "red", "gray"))
+```
+
+```text title=Word count of a text property
+prop("Notes").split(" ").filter(current != "").length()
+```
+
+> [!TIP]
+> If a formula shows an error, hover over the red underline. Usually it's a type mismatch, such as comparing text with a number. Use `toNumber()` or `format()` to convert. You can also ask Notion AI to "write a formula that…" if your plan includes AI.
+
+# Ten Templates to Build Yourself
+
+Building templates yourself teaches you more than duplicating them. Each recipe lists the properties and views to create.
+
+:::compact
+| Template | Database properties | Views |
+|---|---|---|
+| **Habit tracker** | Date (date), one checkbox per habit, Score (formula: count ticked) | Calendar; table this week |
+| **Reading list** | Title, Author (text), Status (status), Rating (select ★–★★★★★), Finished (date), Notes | Board by Status; gallery with covers |
+| **Personal CRM** | Name, Company, Email, Last contacted (date), Next follow-up (formula: +30 days), Tags | Table sorted by Next follow-up |
+| **Content calendar** | Title, Channel (multi-select), Publish date, Status, Owner (person), Link (URL) | Calendar by Publish date; board by Status |
+| **Meeting notes** | Title, Date, Attendees (person), Project (relation), Action items (to-dos in the page) | List sorted by date; filter "this week" |
+| **Recipe book** | Name, Cuisine (select), Time (number, minutes), Ingredients (text), Rating | Gallery; filter Time ≤ 30 |
+| **Job applications** | Company, Role, Stage (status), Applied (date), Contact, Salary range, Days since applied (formula) | Board by Stage |
+| **Budget tracker** | Item, Amount (number, $), Category (select), Date, Type (Income/Expense) | Table grouped by Category with Sum; chart view if available |
+| **Team wiki** | Page (title), Owner (person), Verified (checkbox), Last edited time | List; filter Verified = false |
+| **Travel planner** | Place, Date, Booking ref, Cost, Type (Flight/Hotel/Activity), Map link | Timeline; table grouped by Type |
+:::
+
+:::steps Build any of them
+1. **Create a full-page database.** Type `/database` and choose *Full page*.
+2. **Add the properties** from the table above.
+3. **Add the views.** Click **+** next to the view tabs.
+4. **Make a page template.** Use the arrow next to **New** → **+ New template**, and add the headings and checklists every entry should have.
+5. **Add five real entries** and adjust anything that feels awkward.
+:::
+
+# The Notion API for Beginners
+
+The Notion API lets scripts and tools like n8n read and write your pages. Official docs: [developers.notion.com](https://developers.notion.com).
+
+:::steps First API call
+1. **Create an integration** at [notion.so/profile/integrations](https://www.notion.so/profile/integrations). Choose **Internal** and copy the secret.
+2. **Share a page with it.** Open the page, then use **•••** → **Connections** → add your integration. The API can only see pages you share this way.
+3. **Find the database ID.** It's the long ID in the database's URL.
+4. **Query it.**
+   ```bash
+   curl -X POST https://api.notion.com/v1/databases/DATABASE_ID/query \
+     -H "Authorization: Bearer $NOTION_TOKEN" \
+     -H "Notion-Version: 2022-06-28" \
+     -H "Content-Type: application/json"
+   ```
+:::
+
+> [!NOTE]
+> Notion versions its API with the `Notion-Version` header, and newer versions introduce changes such as data sources. Check the docs for the current version before you build anything long-lived.
+
+> [!CAUTION]
+> The integration secret gives access to everything shared with it. Keep it in an environment variable or a secret store, and share only the pages the integration needs.
+
+# Database Deep Dive: Every Property, View, and Filter
+
+Databases are where Notion gets powerful. This chapter is a reference you can return to every time you build one.
+
+:::summary In this chapter
+- Every property type and when to use it
+- Relations and rollups, step by step
+- Views, filters, sorts, and grouping
+- Automations and buttons
+:::
+
+## Property types
+
+:::compact
+| Property | Holds | Use it for |
+|---|---|---|
+| **Title** | The page name (every database has one) | Task name, book title |
+| **Text** | Free text | Notes, short descriptions |
+| **Number** | Numbers with a format (%, $, bar, ring) | Prices, scores, progress |
+| **Select** | One option from a list | Priority, category |
+| **Multi-select** | Several options | Tags |
+| **Status** | To-do / In progress / Complete groups | Workflow stages |
+| **Date** | A date or date range, optional time and reminder | Due dates, events |
+| **Person** | Workspace members | Owner, assignee |
+| **Files & media** | Uploads or links | Attachments, covers |
+| **Checkbox** | Yes/no | Done, verified |
+| **URL / Email / Phone** | Clickable contact data | Links, contacts |
+| **Formula** | A calculated value (Chapter 12) | Days left, labels |
+| **Relation** | Links to rows in another database | Tasks ↔ Projects |
+| **Rollup** | A summary of related rows | % of tasks done |
+| **Created time / by, Last edited time / by** | Automatic metadata | Auditing |
+| **Unique ID** | An auto-incrementing number with an optional prefix | Ticket numbers like `BUG-42` |
+| **Button** | Runs actions when clicked | "Mark done and archive" |
+:::
+
+## Relations and rollups
+
+:::steps Projects ↔ Tasks
+1. **Make two databases:** *Projects* and *Tasks*.
+2. **In Tasks, add a Relation property** pointing to Projects. Turn on **Show on Projects** so the link goes both ways.
+3. **Link a few tasks to projects** by clicking the relation cell.
+4. **In Projects, add a Rollup.** Choose Relation = Tasks, Property = Done (checkbox), and Calculate = **Percent checked**.
+5. **Format it** as a bar or ring. Now each project shows its progress automatically.
+:::
+
+## Rollup calculations
+
+:::compact
+| Calculation | Result |
+|---|---|
+| Show original | The related values themselves |
+| Count all / values / unique | How many related rows or values |
+| Count empty / not empty | Gaps in the data |
+| Percent empty / not empty / checked | Completion percentage |
+| Sum, Average, Median, Min, Max, Range | Number summaries |
+| Earliest / Latest date, Date range | Date summaries |
+:::
+
+## Views
+
+| View | Best for |
+|---|---|
+| **Table** | Spreadsheet-style editing |
+| **Board** | Kanban columns by Status or Select |
+| **Calendar** | Anything with a date |
+| **Timeline** | Projects with start and end dates |
+| **List** | Clean, document-style lists |
+| **Gallery** | Visual cards with cover images |
+| **Chart** | Bar, line, and donut charts (on plans that include them) |
+| **Form** | Collect entries from people (on plans that include forms) |
+
+## Filters, sorts, and groups
+
+:::compact
+| Property type | Filter conditions you'll see |
+|---|---|
+| Text | is, is not, contains, does not contain, starts with, ends with, is empty, is not empty |
+| Number | =, ≠, >, <, ≥, ≤, is empty, is not empty |
+| Select / Status | is, is not, is empty, is not empty |
+| Multi-select | contains, does not contain, is empty, is not empty |
+| Date | is, is before, is after, is on or before, is on or after, is within (past week, next month…), is empty |
+| Checkbox | is checked, is not checked |
+| Person | contains, does not contain, *Me* |
+:::
+
+**Advanced filters** combine rules with *And*/*Or* groups. A classic "My open tasks" view is: Assignee *contains* Me **and** Status *is not* Done. Sort by Due ascending. Group by Project.
+
+## Buttons and automations
+
+A **button** (`/button`) can insert blocks, add or edit database pages, open a page, or send notifications. **Database automations** (the ⚡ icon on a database, on plans that include them) run actions when a property changes, for example "When Status is set to Done, set Completed date to today." Availability depends on your plan.
+
+# Organise Your Whole Workspace
+
+A tidy structure makes everything easier to find. This chapter gives you one proven layout to copy.
+
+:::steps Set up a simple PARA workspace
+1. **Create four top-level pages:** Projects, Areas, Resources, Archive.
+2. **Projects:** one database of active projects, each with a goal and a deadline.
+3. **Areas:** ongoing responsibilities with no end date, such as Health, Finances, and Home.
+4. **Resources:** reference material, notes, and saved articles.
+5. **Archive:** anything finished or inactive. Move pages here rather than deleting them.
+6. **Create a Home dashboard** (Chapter 5) with linked views of "My open tasks" and "Active projects."
+7. **Favourite the Home page** so it's always at the top of your sidebar.
+:::
+
+:::checklist
+- Every database has an owner and a clear purpose
+- Use linked views instead of copying databases
+- Use templates for anything you create more than twice
+- Do a weekly review: archive finished projects, clear your inbox page
+- Use consistent icons and emoji for scanning
+:::
+
+# Troubleshooting and FAQ
+
+:::compact
+| Problem | Fix |
+|---|---|
+| Can't find a page | <kbd>Cmd</kbd> + <kbd>P</kbd> search. Check **Trash** in the sidebar (deleted pages stay there for a limited time) |
+| A page disappeared after a teammate edited it | Open **•••** → **Version history** (history length depends on plan) |
+| Someone can't see a page | Click **Share** and check their access level, and whether the parent page restricts it |
+| Database is slow | Add filters to views, cut down on complex rollups and formulas, and split very large databases |
+| Formula error | Hover over the red underline. Usually a type mismatch, so use `toNumber()` or `format()` |
+| Relation doesn't show on the other side | Turn on **Show on [other database]** in the relation settings |
+| Import from another app looks wrong | Try [[Settings > Import]] with a different format (CSV, Markdown, HTML) |
+| Offline edits didn't sync | Reconnect and keep the app open. Check for a sync-conflict notice |
+:::
+
+**Is my data private?** Pages are private until you share them. Workspace admins on team plans may have additional access. Read Notion's current privacy and security pages for details.
+
+**Can I export everything?** Yes. [[Settings > Export all workspace content]] exports Markdown & CSV, HTML, or PDF (PDF depends on plan).
+
+**Does Notion work offline?** The desktop and mobile apps can work with pages offline, but how much is available offline has changed over time and varies by plan. Check Notion's help centre for the current behaviour.
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet
