@@ -7,8 +7,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#0B8A8A",
-    "pages": 35,
-    "bytes": 657510
+    "pages": 41,
+    "bytes": 730832
   },
   "ai-tools-directory": {
     "slug": "ai-tools-directory",
@@ -62,8 +62,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#2F6FDE",
-    "pages": 39,
-    "bytes": 1099294
+    "pages": 42,
+    "bytes": 1142337
   },
   "n8n": {
     "slug": "n8n",
@@ -84,8 +84,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#C2711B",
-    "pages": 39,
-    "bytes": 1168333
+    "pages": 42,
+    "bytes": 1207018
   },
   "vibe-coding": {
     "slug": "vibe-coding",
@@ -95,8 +95,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#7C4DDB",
-    "pages": 41,
-    "bytes": 761307
+    "pages": 46,
+    "bytes": 892894
   },
   "ai-trading": {
     "slug": "ai-trading",
@@ -107,6 +107,6 @@
     "edition": "October 2026",
     "accent": "#2F7D5B",
     "pages": 39,
-    "bytes": 800391
+    "bytes": 800445
   }
 }

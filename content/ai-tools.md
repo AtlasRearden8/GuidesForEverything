@@ -556,6 +556,116 @@ A grab-bag of reliable prompts, grouped by what you're trying to do.
 
 **Do I have to pay?** Free tiers are capable. Paid plans add higher limits, better models, and extra features. Check current pricing on each provider's site.
 
+# Image Prompt Cookbook
+
+Ready-made image prompts and a style library. They work in most image tools (Chapter 5). Swap the subject in brackets.
+
+:::summary In this chapter
+- The prompt formula, in practice
+- Thirty styles to try
+- Prompts for practical images: logos, product shots, diagrams, social posts
+- Editing existing images
+:::
+
+## Formula recap
+
+**Subject** + **setting** + **style/medium** + **lighting** + **composition** + **mood** + **details to avoid**.
+
+```prompt
+A [golden retriever puppy] sitting in [a sunlit kitchen], [soft watercolour illustration], [warm morning light from a window], [centred, eye-level, plenty of white space], [cosy and cheerful]. No text.
+```
+
+## Thirty styles
+
+:::cols
+- Watercolour illustration
+- Pencil sketch
+- Ink line art (toner-friendly!)
+- Children's book illustration
+- Flat vector icon
+- Isometric 3D
+- Clay / claymation
+- Paper cut-out
+- Low-poly 3D
+- Pixel art
+- Vintage travel poster
+- Mid-century modern
+- Art deco
+- Bauhaus geometric
+- Japanese woodblock print
+- Comic book panel
+- Anime cel shading
+- Studio product photo
+- Film photography, 35mm
+- Polaroid snapshot
+- Cinematic still, wide angle
+- Macro photography
+- Aerial drone shot
+- Blueprint / technical drawing
+- Infographic, flat colours
+- Stained glass
+- Oil painting, impressionist
+- Charcoal drawing
+- Embroidery / cross-stitch
+- Minimalist line icon on white
+:::
+
+## Practical prompts
+
+```prompt
+Logo concept: a simple, flat, single-colour mark for a bakery called "Rise & Shine", combining a sun and a croissant. Vector style, white background, no gradients. Give 4 variations.
+```
+```prompt
+Product photo: [a ceramic mug] on a light oak table, soft daylight, shallow depth of field, neutral background, e-commerce style.
+```
+```prompt
+Simple diagram: 4 boxes connected by arrows showing "Idea → Build → Test → Launch", flat style, black lines on white, large readable labels.
+```
+```prompt
+Social post background: abstract soft gradient in [brand colours], lots of empty space at the top for a headline, square format.
+```
+```prompt
+Colouring page: [a dragon in a castle garden], thick black outlines, no shading, white background, suitable for kids.
+```
+
+> [!TIP]
+> For print, ask for **"black line art on white, no shading."** It saves toner and photocopies cleanly.
+
+## Editing images
+
+```prompt
+Keep everything the same but change the background to a plain light grey studio backdrop.
+```
+```prompt
+Remove the person on the left. Fill the space naturally.
+```
+```prompt
+Make this photo look like a watercolour painting, keeping the faces recognisable.
+```
+
+> [!WARNING]
+> Don't create realistic images of real people doing things they didn't do, and respect copyright and trademarks. Many tools also block this. Label AI images as AI-generated when sharing them publicly where that matters.
+
+# Research Workflows That Hold Up
+
+Step-by-step routines for using AI research tools (Chapter 4) without getting misled.
+
+:::steps Research a decision (e.g. which laptop, which plan, which treatment option to ask about)
+1. **Frame the question.** "I need to decide X. My constraints are A, B, C."
+2. **Run a deep-research or cited search** in a tool like Perplexity, ChatGPT, Claude, or Gemini.
+3. **Ask for a comparison table** with sources per cell.
+4. **Open the three most important sources yourself** (Chapter 12).
+5. **Ask a second tool** the same question and compare.
+6. **Write your own one-paragraph conclusion.** If you can't, you don't understand it yet.
+:::
+
+:::steps Study from your own documents
+1. **Upload sources** to a source-grounded tool like NotebookLM.
+2. **Ask for a study guide,** a timeline, and a glossary.
+3. **Generate practice questions** and answer them without looking.
+4. **Ask "where in the sources does it say that?"** for anything surprising.
+:::
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet

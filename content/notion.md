@@ -717,6 +717,46 @@ A tidy structure makes everything easier to find. This chapter gives you one pro
 
 **Does Notion work offline?** The desktop and mobile apps can work with pages offline, but how much is available offline has changed over time and varies by plan. Check Notion's help centre for the current behaviour.
 
+# Notion AI Prompt Cookbook
+
+Prompts for Notion AI (Chapter 6), on plans that include it. Press <kbd>Space</kbd> on an empty line, or select text and choose **Ask AI**.
+
+:::compact
+| Goal | Prompt |
+|---|---|
+| Summarise a page | "Summarise this page in 5 bullets and list open questions." |
+| Meeting notes → actions | "Extract action items with owner and due date as a to-do list." |
+| Draft from outline | "Turn these bullets into a one-page project brief." |
+| Rewrite | "Make this clearer and shorter. Keep my tone." |
+| Translate | "Translate this page to Spanish, keeping formatting." |
+| Brainstorm | "Give 15 ideas for [x], grouped by theme." |
+| Database fill | Use an **AI autofill** property: "Summarise the page in one sentence" or "Extract the company name." |
+| Search the workspace | "What did we decide about [topic] last month? Cite the pages." |
+| Weekly update | "Write a weekly status update from the Done tasks in this database." |
+| Template | "Create a reusable template for [weekly review] with headings and checklists." |
+:::
+
+> [!TIP]
+> Ask Notion AI to **cite pages** when it answers from your workspace, then click the citations to check them.
+
+# Moving to Notion From Other Apps
+
+:::steps Import your old notes
+1. **Open [[Settings > Import]].** Notion lists the supported sources, such as Evernote, Google Docs, Confluence, Trello, Asana, Word, Markdown, CSV, and HTML. The list varies over time.
+2. **Start with one small notebook or folder** as a test.
+3. **Check formatting, images, and links** on a few pages.
+4. **Import the rest,** then move pages into your PARA structure (Chapter 16).
+5. **Keep the old app read-only for a month** before deleting anything.
+:::
+
+| From | Tip |
+|---|---|
+| Google Docs | Imports as pages. Comments and suggestions may not come across |
+| Evernote | Notebooks become pages. Tags may need re-creating as a multi-select |
+| Trello / Asana | Boards become databases. Check that due dates and assignees mapped correctly |
+| Spreadsheets | Import CSV as a database, then change property types (date, select, number) |
+| Markdown folders | Zip the folder and import. Linked files may need re-linking |
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet

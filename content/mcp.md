@@ -749,6 +749,34 @@ Hands-on recipes, from easiest to most advanced. Each one lists the kind of serv
 - I know how to disconnect it (`/mcp`, or the app's connector settings)
 :::
 
+# Troubleshooting Deep Dive
+
+Chapter 9 covered the basics. This chapter goes symptom by symptom, with the exact checks to run.
+
+:::compact
+| Symptom | Check | Fix |
+|---|---|---|
+| Server never appears | Is the config file valid JSON? (A trailing comma breaks it) | Paste it into a JSON validator. Restart the app fully |
+| "spawn npx ENOENT" or "command not found" | The app can't find Node or the command on its PATH | Install Node.js LTS. Use the full path to `npx` or `python` in `command` |
+| Connects, then disconnects | The server crashed on start | Run the exact command in a terminal to see the error |
+| Garbled or "invalid JSON-RPC" errors | The server prints normal output to stdout | Log to stderr only (Chapter 11) |
+| "Needs authentication" | OAuth not done or expired | `/mcp` → choose the server → sign in, or `claude mcp login <name>` |
+| 401 / 403 from a remote server | Wrong token, scopes, or account | Recreate the token with the right scopes. Check headers |
+| Tools listed but never used | Vague tool descriptions, or too many tools | Ask explicitly ("use the X tool"). Disconnect unused servers |
+| Everything is slow | Many servers loaded, using up context | `/context` in Claude Code. Disable servers you aren't using |
+| Works in Claude Desktop, not Claude Code | Different config files | `claude mcp add-json <name> '<json>'` to copy the config across |
+| Windows path errors | Backslashes in JSON | Use `\\` or forward slashes in paths |
+| Project server "pending approval" | Safety feature for `.mcp.json` | Start `claude` in the project and approve it |
+:::
+
+:::steps Universal debugging routine
+1. **Run the server command by hand** in a terminal. Does it start without errors?
+2. **Open it in MCP Inspector:** `npx @modelcontextprotocol/inspector <command> <args>`.
+3. **Check the app's logs.** For Claude Code, use `claude --debug` or `--debug=mcp`. Other apps usually have an MCP or developer log in settings.
+4. **Simplify.** Remove every other server and test this one alone.
+5. **Update** the app and the server package.
+:::
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet

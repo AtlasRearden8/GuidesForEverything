@@ -707,6 +707,120 @@ Builders and AIs throw these names around constantly. Here's what each one is, i
 
 **When should I move from a builder to an editor or agent?** When you need custom logic, you're hitting builder limits, or credits get expensive. See Chapter 7.
 
+# Deploying, Step by Step
+
+Chapter 8 covered the ideas behind shipping. This chapter is the click-by-click version for the three most common free starting points.
+
+:::summary In this chapter
+- GitHub Pages for static sites
+- Vercel and Netlify for modern apps
+- Environment variables on a host
+- Custom domains and HTTPS
+- Rolling back a bad deploy
+:::
+
+## GitHub Pages (static HTML/CSS/JS)
+
+:::steps
+1. **Push your project to GitHub** (Vol. 2). The home page must be called `index.html`.
+2. **Open [[Settings > Pages]]** in the repository.
+3. **Choose your source:** *Deploy from a branch*, then `main` and `/ (root)`, then **Save**.
+4. **Wait a minute,** then open the URL shown: `https://username.github.io/repo/`.
+5. **For a framework app** (React/Vite), build it first, or use a GitHub Actions workflow that builds and deploys (Vol. 2, Actions cookbook).
+:::
+
+## Vercel or Netlify
+
+:::steps
+1. **Sign in with GitHub** at the host's website.
+2. **Import your repository.** Choose *Add New → Project* (Vercel) or *Add new site → Import an existing project* (Netlify).
+3. **Check the detected settings.** Common build commands: `npm run build`. Output folders: `dist` (Vite), `.next` (Next.js, handled automatically on Vercel), `build` (Create React App).
+4. **Add environment variables** (below) before the first deploy.
+5. **Deploy.** Every later push to `main` redeploys automatically, and pull requests get preview URLs.
+:::
+
+## Environment variables on the host
+
+| Kind | Example | Where it goes |
+|---|---|---|
+| Public (safe in the browser) | `VITE_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Host env settings. Prefixes like `VITE_` and `NEXT_PUBLIC_` expose them to the front end |
+| Secret (server only) | `STRIPE_SECRET_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `OPENAI_API_KEY` | Host env settings, **without** a public prefix, used only in server functions |
+
+> [!CAUTION]
+> Anything with a public prefix ends up inside your site's JavaScript, where anyone can read it. Secret keys must never have one.
+
+## Custom domain
+
+:::steps
+1. **Buy a domain** from a registrar.
+2. **Add it in your host** (Vercel/Netlify: Domains; GitHub Pages: [[Settings > Pages > Custom domain]]).
+3. **Create the DNS records the host shows you,** usually an `A` record for the bare domain and a `CNAME` for `www`.
+4. **Wait for DNS to update.** It can take minutes to hours.
+5. **Turn on HTTPS.** All three hosts provide free certificates. Tick *Enforce HTTPS* where offered.
+:::
+
+## Rolling back
+
+On Vercel and Netlify, open **Deployments**, find the last good one, and choose *Promote* / *Publish deploy*. On GitHub Pages, `git revert` the bad commit and push. Rollbacks take seconds, which is one more reason to deploy small changes often.
+
+# Databases and Security Rules, Explained
+
+Most serious vibe-coding mistakes happen in the database. This chapter explains just enough SQL and row-level security to check the AI's work.
+
+:::summary In this chapter
+- Tables, rows, and columns
+- Five SQL statements to recognise
+- Row-level security (RLS) policies you can read
+:::
+
+## Five SQL statements
+
+```sql
+-- Make a table
+create table tasks (
+  id bigint generated always as identity primary key,
+  user_id uuid references auth.users not null,
+  title text not null,
+  done boolean default false,
+  created_at timestamptz default now()
+);
+
+select * from tasks where done = false;          -- read
+insert into tasks (user_id, title) values (auth.uid(), 'Buy milk');  -- create
+update tasks set done = true where id = 42;      -- change
+delete from tasks where id = 42;                 -- remove
+```
+
+## Row-level security in Supabase
+
+**RLS** decides which rows each logged-in user can see or change. With RLS on and no policies, nobody can access the table through the public API. Each policy opens a specific door.
+
+```sql
+alter table tasks enable row level security;
+
+create policy "Users read own tasks" on tasks
+  for select using (auth.uid() = user_id);
+
+create policy "Users add own tasks" on tasks
+  for insert with check (auth.uid() = user_id);
+
+create policy "Users update own tasks" on tasks
+  for update using (auth.uid() = user_id);
+
+create policy "Users delete own tasks" on tasks
+  for delete using (auth.uid() = user_id);
+```
+
+| Clause | Meaning |
+|---|---|
+| `for select / insert / update / delete` | Which action the policy covers |
+| `using (...)` | Which **existing** rows the user may act on |
+| `with check (...)` | What **new or changed** rows must satisfy |
+| `auth.uid()` | The ID of the logged-in user |
+
+> [!WARNING] Red flags in AI-written policies
+> `using (true)` lets **everyone** see every row. A table with RLS turned **off** is fully exposed to anyone holding your public key. Ask the AI to explain every policy in one plain sentence. If it can't, don't ship it.
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet
