@@ -40,8 +40,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#1F883D",
-    "pages": 55,
-    "bytes": 1725741
+    "pages": 56,
+    "bytes": 1788154
   },
   "maximum-autonomy": {
     "slug": "maximum-autonomy",
@@ -84,8 +84,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#C2711B",
-    "pages": 42,
-    "bytes": 1207018
+    "pages": 43,
+    "bytes": 1244037
   },
   "vibe-coding": {
     "slug": "vibe-coding",
@@ -95,8 +95,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#7C4DDB",
-    "pages": 46,
-    "bytes": 892894
+    "pages": 62,
+    "bytes": 1185437
   },
   "ai-trading": {
     "slug": "ai-trading",

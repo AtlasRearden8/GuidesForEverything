@@ -821,6 +821,304 @@ create policy "Users delete own tasks" on tasks
 > [!WARNING] Red flags in AI-written policies
 > `using (true)` lets **everyone** see every row. A table with RLS turned **off** is fully exposed to anyone holding your public key. Ask the AI to explain every policy in one plain sentence. If it can't, don't ship it.
 
+# Project: Build a Habit Tracker End to End with a Coding Agent
+
+This chapter builds a complete app with a coding agent, such as Claude Code, Cursor's agent, Codex or Copilot agent mode. You go from an empty folder to a deployed site. You don't write code yourself. Your job is to direct the agent, check its work, and decide what to do next.
+
+:::summary
+- **What you build:** a habit tracker. You add habits, tick them off each day, see streaks, and your data stays in the browser.
+- **Stack:** Vite + React + TypeScript, with localStorage for data. There's no backend, so there are no secrets and nothing to bill.
+- **Time:** about 2–3 hours over one or two sessions.
+- **You need:** Node.js LTS, Git, a GitHub account, and one coding agent.
+:::
+
+## Phase 0: Set up the folder
+
+:::steps
+1. Make an empty folder named `habit-tracker` and open a terminal in it.
+2. Run `git init` so every step can be undone.
+3. Start your agent in this folder (for example, `claude` or `codex`, or open the folder in Cursor).
+4. Create a file called `AGENTS.md` (or `CLAUDE.md` for Claude Code) with the rules below. The agent reads it at the start of every session.
+:::
+
+```markdown title=AGENTS.md
+# Project rules
+- Stack: Vite + React + TypeScript. No other frameworks.
+- Store data in localStorage under the key "habits.v1".
+- Keep components small: one component per file in src/components.
+- After every change run: npm run build && npm test
+- Never add a dependency without asking first.
+- Commit after each working feature with a clear message.
+```
+
+## Phase 1: Plan before code
+
+Paste this prompt:
+
+```text
+Read AGENTS.md. Don't write code yet.
+Propose a plan for a habit tracker with: add/rename/delete habits,
+a daily checkbox per habit, a current-streak counter, and a 7-day history grid.
+List the files you'll create, the data shape you'll store, and 5 tests you'll write.
+Wait for my OK.
+```
+
+**Check the plan for:**
+- a data shape you understand, e.g. `{ id, name, createdAt, doneDates: string[] }`
+- dates stored as `YYYY-MM-DD` strings rather than timestamps, which avoids time-zone bugs
+- tests for streak logic, which is the bug-prone part
+
+If any of these is missing, ask the agent to change the plan. Correcting a plan costs nothing. Correcting a codebase costs a lot.
+
+## Phase 2: Scaffold and first run
+
+```text
+OK, go. Scaffold with Vite (react-ts template), add Vitest,
+implement only "add habit" and the list. Run the build and tests, then
+tell me the command to start the dev server.
+```
+
+:::steps
+1. Run the dev server it gives you (usually `npm run dev`) and open the local URL.
+2. Add two habits, then reload the page. **They must still be there.** If they disappear, say: "Habits vanish on reload; check localStorage save and load."
+3. When it works, commit: `git add -A && git commit -m "Add habits list"`. You can also ask the agent to commit.
+:::
+
+## Phase 3: Features, one at a time
+
+Give one prompt per feature. After each one, test it in the browser and then commit.
+
+| # | Prompt | How you check it |
+|---|---|---|
+| 1 | "Add a checkbox per habit for today. Clicking toggles today's date in doneDates." | Tick it, reload, and it's still ticked |
+| 2 | "Add current streak: consecutive days ending today (or yesterday if today isn't done). Write unit tests first." | Tests pass, and the streak shows 1 after ticking |
+| 3 | "Add a 7-day grid showing done/not done for each of the last 7 days." | The oldest day is on the left, and today is highlighted |
+| 4 | "Add rename and delete, with a confirm before delete." | Delete asks first |
+| 5 | "Add export/import of all data as a JSON file." | Export, clear storage, import, and everything comes back |
+| 6 | "Make it look clean on a phone: max width 480px, big tap targets." | Check with your browser's device toolbar |
+
+> [!TIP]
+> Test the streak at midnight without waiting for midnight. Ask: "Make the 'today' date injectable so tests can fake any date, and add tests for month boundaries and leap day."
+
+## Phase 4: Review like an editor
+
+Before you ship, ask for a review of the agent's own work:
+
+```text
+Review the whole codebase as a strict senior engineer. List: bugs,
+accessibility problems, anything that breaks if localStorage is full or
+corrupted, and dead code. Don't fix yet, just list by severity.
+```
+
+Fix the high-severity items one prompt at a time. A common catch is corrupted JSON in localStorage crashing the app. The fix wraps `JSON.parse` in try/catch and falls back to an empty list.
+
+## Phase 5: Deploy
+
+:::steps
+1. Create an empty GitHub repo, then ask: "Add the GitHub remote <url> and push main."
+2. Deploy with any static host from *Deploying, Step by Step*. Use build command `npm run build` and output folder `dist`.
+3. Open the live URL on your phone and add a habit there. It's stored separately from your laptop's data, because localStorage belongs to each browser.
+:::
+
+## Where to take it next
+
+| Next step | What it teaches | Prompt starter |
+|---|---|---|
+| Sync across devices | Databases and auth | "Replace localStorage with Supabase; keep an offline fallback" |
+| Reminders | Notifications and service workers | "Make it an installable PWA with a daily reminder" |
+| Charts | Data visualization | "Add a monthly completion chart using a small chart library; ask before installing" |
+| Sharing | Public read-only views | "Generate a read-only share link of my streaks" |
+
+# Taking Payments Safely with Stripe Test Mode
+
+Payments are where vibe-coded apps get into the most trouble. This chapter shows the safe order: build everything in **test mode**, where no real money moves, and switch to live mode only after a checklist.
+
+> [!CAUTION]
+> Never paste your **secret key** (it starts with `sk_`) into browser code, a public repo, or a chat with an AI tool you don't control. It belongs only in server environment variables. Your publishable key (`pk_`) is designed to be public.
+
+## The safe architecture
+
+| Piece | Where it runs | What it does |
+|---|---|---|
+| "Buy" button | Browser | Calls *your* server endpoint. It never talks to Stripe with a secret |
+| Create Checkout Session | Your server or serverless function | Uses the secret key to make a Stripe Checkout Session and returns its URL |
+| Stripe Checkout page | Stripe | Collects card details, so you never handle card numbers |
+| Webhook endpoint | Your server | Stripe tells you the payment succeeded. **Only this should unlock paid features** |
+
+The success page is not proof of payment. Anyone can visit `/success` by typing the URL. Unlock purchases only when your webhook receives the event and you verify its signature.
+
+## Step by step in test mode
+
+:::steps
+1. Create a Stripe account and stay in the **test mode / sandbox** environment shown in the Dashboard.
+2. Create a product and price in the Dashboard, and copy the price ID (it starts with `price_`).
+3. Put your test secret key in a server-side environment variable, e.g. `STRIPE_SECRET_KEY`, in `.env.local`. Confirm `.env*` is in `.gitignore`.
+4. Ask your agent: "Add a serverless endpoint that creates a Stripe Checkout Session in payment mode for price <price ID>, with success_url and cancel_url, and returns the session URL. Use the official stripe npm package. The secret key comes only from process.env."
+5. Ask: "Add a webhook endpoint that verifies the Stripe signature using STRIPE_WEBHOOK_SECRET and, on checkout.session.completed, marks the user as paid."
+6. Install the Stripe CLI and forward events locally with `stripe listen --forward-to localhost:3000/api/webhook`. It prints a webhook signing secret. Put that in `STRIPE_WEBHOOK_SECRET`.
+7. Pay with Stripe's test card **4242 4242 4242 4242**, any future expiry date, any 3-digit CVC and any postcode.
+8. Watch the terminal running `stripe listen`. You should see `checkout.session.completed` delivered with a 200 response.
+:::
+
+## Test the failure paths too
+
+| Scenario | How to test | What should happen |
+|---|---|---|
+| Card declined | Use a decline test card from Stripe's testing docs (docs.stripe.com/testing) | A friendly error, and nothing unlocked |
+| User closes Checkout | Click back or cancel | Lands on cancel_url, and nothing unlocked |
+| Fake success visit | Open `/success` directly without paying | Nothing unlocked |
+| Webhook replay or forgery | Send a request without a valid signature | 400 response, and nothing unlocked |
+| Same event twice | Resend an event with `stripe events resend <evt_id>` | Still only one purchase recorded (idempotent) |
+
+## Going live checklist
+
+:::checklist
+- [ ] All tests above pass in test mode
+- [ ] Live keys are set only in your host's production environment variables
+- [ ] A live webhook endpoint is created in the Dashboard, and its live signing secret is set
+- [ ] Prices, currency, tax and refund policy have been reviewed by you, not just the agent
+- [ ] A real low-price purchase with your own card succeeds, and you refund it afterward
+- [ ] Terms and privacy pages exist and are linked from checkout
+:::
+
+# Accessibility and Performance Checklist
+
+Run this checklist before every launch. Each item is one prompt to your agent or one quick manual check. Accessibility makes your app usable by more people. Performance stops them from leaving.
+
+## Accessibility (a11y)
+
+| Check | How to test | Fix prompt |
+|---|---|---|
+| Keyboard only | Unplug the mouse and Tab through everything. Can you reach and use every control? | "Make every interactive element reachable and usable by keyboard, with a visible focus outline" |
+| Images have alt text | Inspect `<img>` tags | "Add meaningful alt text to content images and empty alt to decorative ones" |
+| Form labels | Click a label. Does it focus the field? | "Give every input a visible `<label>` linked with htmlFor" |
+| Color contrast | Run your browser's Lighthouse accessibility audit | "Fix all contrast failures Lighthouse reports; keep the palette" |
+| Buttons vs links | Do actions use `<button>` and navigation use `<a>`? | "Replace clickable divs with real buttons or links" |
+| Headings in order | One `h1`, then h2/h3 without skipping levels | "Fix heading levels so they're in logical order" |
+| Screen reader | Try VoiceOver (Mac/iOS) or NVDA (Windows) on your main flow | "Add aria-live to status messages like 'Saved'" |
+| Motion | Respect reduced-motion settings | "Disable animations when prefers-reduced-motion is set" |
+
+## Performance
+
+| Check | How to test | Fix prompt |
+|---|---|---|
+| Lighthouse score | Chrome DevTools → **Lighthouse** → Analyze (mobile) | "Here's the Lighthouse report: <paste>. Fix the top 3 opportunities" |
+| Huge images | Network tab, sorted by size | "Serve images in WebP/AVIF at the displayed size, lazy-load below the fold" |
+| Big JavaScript bundle | Build output sizes | "Find the largest dependencies and code-split or replace them" |
+| Layout shift | Content jumps while loading | "Reserve space for images and embeds with width/height" |
+| Slow API calls | Network tab timing | "Cache this response and show a skeleton while loading" |
+| Fonts | Flash of invisible text | "Use font-display: swap and preload the main font" |
+
+> [!TIP]
+> Run Lighthouse in an incognito window. Browser extensions can make scores look worse than they are.
+
+# After Launch: Maintaining Your App
+
+Shipping is the start, not the end. A small weekly routine keeps a vibe-coded app from rotting.
+
+## Weekly 20-minute routine
+
+:::steps
+1. **Check errors.** Open your host's logs, or an error tracker if you added one. Paste anything new into your agent: "Explain and fix this production error: …"
+2. **Check dependency alerts.** If the repo is on GitHub, look at Dependabot alerts under the repo's **Security** tab.
+3. **Back up data.** Export your database, or confirm automatic backups are on in your provider's dashboard.
+4. **Read feedback.** Turn the top request into one prompt.
+5. **Ship one small improvement** on a branch, preview it, then merge.
+:::
+
+## Monthly
+
+:::checklist
+- [ ] Update dependencies on a branch: "Update dependencies to latest minor versions, run build and tests, report anything that broke"
+- [ ] Rotate any API key that was ever shared or pasted somewhere it shouldn't have been
+- [ ] Review costs: hosting, database, AI APIs, and the agent's own subscription
+- [ ] Re-run the accessibility and performance checklist
+- [ ] Delete test accounts and old preview deployments you no longer need
+:::
+
+## When something breaks in production
+
+| Step | Action |
+|---|---|
+| 1. Stop the bleeding | Roll back to the last good deployment. Most hosts have a one-click "promote" or "rollback" on older deploys |
+| 2. Reproduce | Get the exact error message, URL, browser and time |
+| 3. Fix on a branch | Give the agent the error and the recent changes (`git log -5 --stat`) |
+| 4. Add a test | "Add a test that would have caught this" |
+| 5. Redeploy | Merge, watch the logs for 15 minutes |
+| 6. Write it down | One line in a `CHANGELOG.md` or notes file about what happened |
+
+## Handing your app to someone else
+
+If someone else will maintain the app (a developer you hire, or future you), ask the agent to write it up:
+
+```text
+Write a HANDOFF.md: what the app does, how to run it locally, every
+environment variable (names only, no values), where it's deployed,
+how to deploy, known issues, and the 5 files someone should read first.
+```
+
+# Vibe Coding Prompt Patterns for Every Stage
+
+These are reusable prompt patterns, organized by stage of a project. Replace anything in angle brackets.
+
+## Starting
+
+| Pattern | Prompt |
+|---|---|
+| Interview me | "Before building, ask me up to 10 questions about <idea> to pin down users, features and must-nots. One question at a time." |
+| MVP cut | "Here's my feature list: <list>. Cut it to the smallest version someone would actually use. Explain each cut." |
+| Stack pick | "Suggest the simplest stack for <idea> for a non-programmer. Prefer free tiers. Explain trade-offs in plain English." |
+| Rules file | "Write an AGENTS.md for this project with stack, conventions, test command, and things never to do." |
+
+## Building
+
+| Pattern | Prompt |
+|---|---|
+| One slice | "Implement only <feature>. Don't touch other files. Run the build and tests after." |
+| Tests first | "Write failing tests for <behavior>, show me them, then implement until they pass." |
+| Explain as you go | "After each change, give me a 3-line summary: what changed, why, how I can check it." |
+| Match the style | "Look at <existing file> and build <new thing> the same way." |
+| Mock data | "Add realistic fake data for 20 <items> so I can see the UI filled in." |
+
+## Debugging
+
+| Pattern | Prompt |
+|---|---|
+| Full context | "Here's the exact error, what I did before it, and what I expected: <…>. Find the root cause before changing code." |
+| Bisect | "This worked at commit <hash>. Compare to now and find what broke it." |
+| Add logging | "Add temporary logging around <area> so we can see what's happening, then we'll remove it." |
+| Fresh eyes | "Forget your previous attempts. List 3 different hypotheses and how to test each." |
+| Revert | "Revert your last change completely; we'll try a different approach." |
+
+## Reviewing and shipping
+
+| Pattern | Prompt |
+|---|---|
+| Security pass | "Audit for secrets in code, missing auth checks, and unvalidated input. List by severity." |
+| Simplify | "Find code that's more complicated than it needs to be and propose simpler versions." |
+| Release notes | "Summarize changes since the last tag as user-facing release notes." |
+| Readme | "Write a README for a non-technical user: what it does, how to use it, screenshot placeholders." |
+
+# Ten More App Ideas with Starter Prompts
+
+Each idea below lists its difficulty, what it teaches, and a first prompt you can paste. Start with the beginner ones.
+
+| App | Level | Teaches | First prompt |
+|---|---|---|---|
+| Tip and bill splitter | Beginner | Forms, math, mobile layout | "Build a one-page bill splitter: total, tip %, people, rounding option." |
+| Flashcards | Beginner | localStorage, simple state | "Flashcard app: decks, flip cards, mark known/unknown, shuffle." |
+| Recipe scaler | Beginner | Parsing text, units | "Paste a recipe, choose servings, scale every quantity correctly." |
+| Reading list | Beginner | CRUD, filtering | "Track books: to-read/reading/done, rating, notes, search." |
+| Pomodoro timer | Beginner | Timers, notifications | "25/5 Pomodoro with sounds, a session counter, and a settings panel." |
+| Expense tracker | Intermediate | Charts, CSV export | "Log expenses by category, monthly chart, export CSV." |
+| Event RSVP page | Intermediate | Database, forms, email | "Event page with RSVP form saved to a database; admin page lists guests." |
+| Club membership site | Intermediate | Auth, roles | "Members log in to see a private page; admins approve new members." |
+| AI writing helper | Intermediate | Calling an AI API from a server | "Server endpoint calls an AI API to rewrite text in 3 tones; key stays server-side." |
+| Booking calendar | Advanced | Dates, conflicts, payments | "Book 1-hour slots, prevent double-booking, optional Stripe deposit in test mode." |
+
+> [!NOTE]
+> For any app that stores other people's data, such as RSVPs, members or bookings, read *Security for Vibe Coders* and *Databases and Security Rules, Explained* before you share the link.
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet
