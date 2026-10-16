@@ -666,6 +666,226 @@ Step-by-step routines for using AI research tools (Chapter 4) without getting mi
 4. **Ask "where in the sources does it say that?"** for anything surprising.
 :::
 
+# The Writing Cookbook
+
+Most people use AI for writing more than anything else. These recipes use the same structure every time: **role, task, context, format, constraints**. Copy them, fill in the angle brackets, and edit the result before you send it. You're the author. The AI drafts.
+
+## Email recipes
+
+| Situation | Prompt |
+|---|---|
+| Polite no | "Write a short, warm email declining <request> from <person>. Don't over-apologize. Offer <alternative> if it fits." |
+| Follow-up nudge | "Write a friendly 3-sentence follow-up to <person> about <topic>, which I emailed on <date>. No guilt-tripping." |
+| Complaint that gets results | "Write a firm, polite complaint to <company> about <problem>. Include order <number>, dates, what I want (<refund/replacement>), and a reasonable deadline." |
+| Ask for a favor | "Draft a request to <person> asking for <favor>. Make it easy to say no. Under 120 words." |
+| Bad news to a team | "Tell my team <news> clearly and kindly. Lead with the fact, then what it means for them, then next steps." |
+| Introduction | "Write a double-opt-in intro between <A> and <B>. One line on why each should meet." |
+| Thank-you | "Write a specific thank-you to <person> for <what they did>, mentioning the effect it had: <effect>." |
+
+## Rewriting recipes
+
+| Goal | Prompt |
+|---|---|
+| Shorter | "Cut this by half without losing any facts: <text>" |
+| Plainer | "Rewrite for a 12-year-old reading level. Keep every fact." |
+| Warmer or firmer | "Make this warmer but keep the request clear" / "Make this firmer without being rude" |
+| Fix only errors | "Fix spelling and grammar only. Don't change my wording or tone. List what you changed." |
+| Turn notes into prose | "Turn these bullet notes into a clear paragraph: <notes>" |
+| Turn prose into bullets | "Summarize as 5 bullets, most important first." |
+| Three options | "Give me 3 versions: formal, friendly and very short." |
+
+> [!TIP]
+> Give it a sample of your own writing first: "Here are two emails I wrote. Match this voice in everything that follows." Drafts will sound like you instead of like a press release.
+
+## Longer pieces
+
+:::steps
+1. **Outline first.** "I'm writing <piece> for <audience> to <goal>. Propose an outline with a one-line point for each section."
+2. **Argue with the outline.** Reorder, cut, or add a section. This is where your thinking happens.
+3. **Draft section by section.** "Write section 2 only, about 200 words, using these facts: <facts>."
+4. **Critique.** "Act as a skeptical reader. What's unclear, unsupported or boring?"
+5. **Final pass yourself.** Read it aloud. Delete anything you wouldn't say out loud.
+:::
+
+## Things AI writing gets wrong
+
+| Problem | What to do |
+|---|---|
+| Invented facts, quotes or statistics | Give it the facts yourself, and verify anything it adds (see *Fact-Checking AI*) |
+| Generic filler ("In today's fast-paced world…") | "No preamble, no clichés, start with the point" |
+| Too long | Set a word limit, and ask it to cut again |
+| Same phrasing everywhere | Ask for variation, or edit by hand |
+| Wrong tone for the relationship | Tell it who the reader is and how well you know them |
+
+# Meetings, Voice, and Transcripts
+
+AI is good at turning talk into text and text into action. Always **get consent before recording anyone**. In many places it's a legal requirement, and it's always good manners.
+
+## Before a meeting
+
+| Task | Prompt |
+|---|---|
+| Agenda | "Write a 30-minute agenda for <meeting> with <people>. Goal: <decision>. Include time boxes." |
+| Prep questions | "I'm meeting <role> about <topic>. What are 8 sharp questions I should ask?" |
+| Pre-read summary | "Summarize this document into a one-page pre-read with the decision needed at the top." |
+
+## During: transcription
+
+Many video-call apps (Zoom, Google Meet, Microsoft Teams) have built-in transcripts or AI notes on some plans. Meeting note-taker apps join calls as a bot. Your phone's voice recorder app may also transcribe. Which features you get depends on your plan and your organization's settings, so check what you have before relying on it.
+
+## After: turn a transcript into action
+
+```text
+Here's a meeting transcript. Produce:
+1. A 5-bullet summary of what was decided
+2. Action items as a table: owner, task, due date (write "unspecified" if not said)
+3. Open questions nobody answered
+4. Anything that sounds like a commitment I made
+Quote the transcript for each action item so I can verify it.
+```
+
+> [!WARNING]
+> Transcripts mishear names, numbers and technical terms. Check every action item and figure against the recording before you send the summary to anyone.
+
+## Voice mode for thinking out loud
+
+Most chat assistants' mobile apps have a voice mode. Good uses:
+
+- **Walk-and-talk brainstorming:** "I'll ramble about <problem>. At the end, organize my ideas into options with pros and cons."
+- **Rehearsal:** "Play a tough interviewer for a <job> role. Ask one question at a time and critique my answers."
+- **Language practice:** "Speak only <language> at a beginner level. Correct my mistakes gently after each reply."
+- **Hands-busy help:** cooking, car repair, or assembling furniture. Describe what you see and ask for the next step.
+
+# Job Search with AI
+
+AI can speed up every step of a job search. It can't replace your real experience, and recruiters notice generic AI text. Use it to tailor, practice and organize. **Never let it invent experience, titles, dates or skills.**
+
+## The workflow
+
+:::steps
+1. **Master résumé.** Paste your current résumé. Prompt: "Ask me questions to uncover achievements with numbers for each role. Then rewrite each bullet as action + result. Don't invent anything."
+2. **Decode the posting.** "Here's a job posting. List the top 8 requirements in priority order, and the keywords I should use if they're true of me."
+3. **Tailor.** "Using only facts from my master résumé, reorder and reword it for this posting. Flag requirements I don't meet."
+4. **Cover letter.** "Write a 200-word cover letter: why this company (<specific reason>), my most relevant achievement, and a clear close. No clichés."
+5. **Practice.** "Interview me for this role. Mix behavioral and technical questions. After each answer, give a score out of 5 and one fix."
+6. **Track.** Keep a simple table of company, role, date applied, contact, status and next step. Ask the AI to remind you which ones need follow-up.
+:::
+
+## Interview prep prompts
+
+| Need | Prompt |
+|---|---|
+| STAR stories | "Help me shape this experience into a STAR answer (Situation, Task, Action, Result) under 2 minutes: <experience>" |
+| Weakness question | "Help me answer 'What's your biggest weakness?' honestly using <real weakness> and what I do about it." |
+| Questions to ask them | "Give me 10 smart questions to ask a <role> interviewer at a <type> company." |
+| Salary research | "What factors affect pay for <role> in <city>? What sources should I check?" Then check those sources yourself. AI salary numbers can be out of date or made up |
+| Thank-you note | "Write a short thank-you after my interview with <name>, referencing <specific topic we discussed>." |
+
+> [!CAUTION]
+> Some job "offers" are scams: an interview held only by chat, a request for payment or bank details up front, or a check you must deposit and partly send back. See *Spotting AI Scams and Deepfakes*.
+
+# AI for Families: Safety and Ground Rules
+
+Kids and older relatives are increasingly using AI, often without much guidance. This chapter gives you a starting point for household rules and conversations.
+
+## Check age requirements first
+
+Most major chat assistants set a minimum age in their terms, often 13, and require parental permission for younger teens. Some offer teen or family accounts with extra controls. **Check each app's current terms and parental-control settings yourself.** They vary and change.
+
+## Household rules template
+
+:::checklist
+- [ ] We don't share our full name, address, school, passwords or photos of ourselves with AI chatbots
+- [ ] AI can explain and quiz, but homework you hand in must be your own work, following your school's rules
+- [ ] We check important facts in a second source
+- [ ] If an AI says something upsetting, strange or scary, we tell a grown-up, and nobody gets in trouble for it
+- [ ] AI isn't a friend or a therapist. For feelings, we talk to people. For a crisis, call or text a crisis line, such as 988 in the US
+- [ ] We don't make AI images or voices of real people without their permission
+- [ ] We use a family "safe word" to confirm a voice-call emergency is real
+:::
+
+## Good uses for kids
+
+| Use | Prompt |
+|---|---|
+| Explain like a tutor | "Explain fractions with pizza examples. Then give me 3 practice questions, one at a time. Don't give the answer until I try." |
+| Reading buddy | "I'm reading <book>. Ask me questions about chapter 3 to check I understood." |
+| Creative play | "Let's write a story together. You write one paragraph, then I write one." |
+| Curiosity | "Why is the sky blue? Explain for a 9-year-old, then give me an experiment to try." |
+
+## Helping older relatives
+
+- Set up their assistant with large text and voice mode.
+- Teach the **pause rule**: any urgent message asking for money, gift cards, codes or secrecy gets a pause and a call to a family member on a known number.
+- Show them how to ask the AI to explain a confusing letter, bill or medical leaflet. Then they should confirm with the sender or their doctor before acting.
+
+# A 30-Day Plan to Make AI a Habit
+
+Do one small task a day, about 10–15 minutes each. By day 30 you'll know which tools actually help you.
+
+| Day | Task |
+|---|---|
+| 1 | Pick one chat assistant and sign in. Ask it to explain what it can and can't do |
+| 2 | Rewrite one real email with the Writing Cookbook |
+| 3 | Ask it to plan tomorrow from a messy to-do list |
+| 4 | Summarize a long article, then check the summary against the article |
+| 5 | Try voice mode on a walk |
+| 6 | Plan a week of meals and a shopping list |
+| 7 | **Review:** what helped, and what wasted time? |
+| 8 | Ask a question you know the answer to, and spot any errors |
+| 9 | Use a search-backed assistant and click every source |
+| 10 | Make an image for a card or poster |
+| 11 | Learn something new with "quiz me" |
+| 12 | Turn meeting or class notes into action items |
+| 13 | Write a custom instruction or profile, telling it about you and how you like answers |
+| 14 | **Review**, and set up the one habit you'll keep |
+| 15 | Draft a hard message (complaint or negotiation) |
+| 16 | Compare two assistants on the same prompt |
+| 17 | Explain a document (bill, contract, manual) and list questions to ask |
+| 18 | Brainstorm 20 ideas for a project, then pick 3 |
+| 19 | Practice a conversation or interview by role-play |
+| 20 | Fact-check a viral claim using the five-minute method |
+| 21 | **Review**, and save your 5 best prompts in a note |
+| 22 | Try an agent feature or a connector, such as calendar or email, if your app has one |
+| 23 | Build a simple spreadsheet formula with AI help |
+| 24 | Create a checklist for a recurring chore |
+| 25 | Translate something and check it with a native speaker or a second tool |
+| 26 | Review your privacy settings and history in each app you use |
+| 27 | Teach someone else one trick |
+| 28 | Automate one repeat task (see the n8n or Notion manuals) |
+| 29 | Write your personal "AI rules" in 5 lines |
+| 30 | **Final review:** keep, cancel or upgrade each tool, and set a calendar reminder to review again in 3 months |
+
+# Money and Admin with AI
+
+AI is good at paperwork and number-crunching, as long as you **check the math and never paste account numbers, passwords or full ID numbers**.
+
+| Task | Prompt |
+|---|---|
+| Budget from a statement | Export transactions, remove account numbers, then: "Categorize these transactions and total each category. Flag subscriptions." |
+| Find subscriptions | "Which of these look like recurring charges? List name, amount and frequency." |
+| Compare options | "Compare these 3 phone plans for someone who uses <usage>. Show total cost over 24 months." |
+| Understand a bill | "Explain each line of this bill in plain English, and list anything worth questioning." |
+| Negotiate | "Write a script to call <provider> and ask for a lower rate, mentioning <competitor offer>." |
+| Letters | "Draft a formal letter to <organization> requesting <thing>, citing <reference number>." |
+
+> [!WARNING]
+> AI isn't a financial, legal, tax or medical advisor. Use it to understand your options and prepare questions. Then confirm with a qualified professional or the official source before you act on anything important.
+
+# Travel and Events
+
+| Task | Prompt |
+|---|---|
+| Itinerary | "Plan 3 relaxed days in <city> for <interests>, grouped by neighborhood to cut travel. Note what needs booking ahead." |
+| Packing | "Packing list for <days> in <place> in <month>, carry-on only, for <activities>." |
+| Budget | "Estimate a daily budget range for <city> for food, transit and sights, and say how confident you are." Then verify prices on official sites |
+| Phrasebook | "20 useful phrases in <language> for a traveler, with pronunciation." |
+| Party planning | "Plan a kid's birthday for 12 guests: timeline, games, shopping list, budget under <amount>." |
+| Wedding or big event | "Make a 6-month countdown checklist for <event> with weekly tasks." |
+
+> [!TIP]
+> Opening hours, prices, visa rules and transit schedules change. Treat AI travel answers as a first draft, and confirm on official websites before you book or travel.
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet
