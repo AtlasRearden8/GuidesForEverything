@@ -975,6 +975,205 @@ volumes:
 | `N8N_INVITE_LINKS_EMAIL_ONLY` | Boolean | `false` | When set to true, n8n will only deliver invite links via email and will not expose them through the API. This option enhances… |
 :::
 
+# Built-In Node Directory
+
+Every core node, trigger node, and AI root node documented in the official n8n docs, A–Z. Generated from the n8n documentation source ([github.com/n8n-io/n8n-docs](https://github.com/n8n-io/n8n-docs)) in October 2026. n8n also has hundreds of **app nodes** (Google Sheets, Slack, Notion…) for actions inside specific services. Search the nodes panel for those.
+
+:::summary In this chapter
+- Core nodes: the building blocks
+- Trigger nodes: every documented way a workflow can start from an outside app
+- AI root nodes: agents, chains, and vector stores
+:::
+
+> [!TIP]
+> In the editor, press <kbd>Tab</kbd> or click **+** and type part of a node name. The names below are the ones you'll see in that panel.
+
+:::compact
+| Node | Kind | What it does |
+|---|---|---|
+| **Activation Trigger** | Core | The Activation Trigger node gets triggered when an event gets fired by n8n or a workflow. |
+| **ActiveCampaign Trigger** | Trigger | N8n provides an app node for ActiveCampaign. |
+| **Acuity Scheduling Trigger** | Trigger | Starts a workflow when an event happens in Acuity Scheduling. |
+| **Affinity Trigger** | Trigger | N8n provides an app node for Affinity. |
+| **Aggregate** | Core | Take separate items, or portions of them, and group them together into individual items. |
+| **AI Agent** | AI (cluster root) | The AI Agent node lets you build an AI agent in n8n. |
+| **AI Transform** | Core | Generate code snippets based on your prompt. |
+| **Airtable Trigger** | Trigger | N8n provides an app node for Airtable. |
+| **AMQP Trigger** | Trigger | Starts a workflow when an event happens in AMQP. |
+| **Asana Trigger** | Trigger | N8n provides an app node for Asana. |
+| **Autopilot Trigger** | Trigger | Starts a workflow when an event happens in Autopilot. |
+| **AWS SNS Trigger** | Trigger | Starts a workflow when a message is published to an AWS SNS topic. |
+| **Azure AI Search Vector Store** | AI (cluster root) | Azure AI Search (formerly Azure Cognitive Search) is a cloud search service with vector search capabilities for RAG and semantic search applications. |
+| **Basic LLM Chain** | AI (cluster root) | Set the prompt that the model will use along with setting an optional parser for the response. |
+| **Bitbucket Trigger** | Trigger | Starts a workflow when an event happens in Bitbucket. |
+| **Box Trigger** | Trigger | To get your Target ID in Box:. |
+| **Brevo Trigger** | Trigger | N8n provides an app node for Brevo. |
+| **Cal Trigger** | Trigger | Starts a workflow when an event happens in Cal. |
+| **Calendly Trigger** | Trigger | Here are some common errors and issues with the Calendly Trigger node and steps to resolve or troubleshoot them. |
+| **Chargebee Trigger** | Trigger | To add a Webhook URL in Chargebee:. |
+| **Chat** | Core | Send messages into the chat and optionally wait for responses from users. |
+| **Chat Trigger** | Core | Use the Chat Trigger node when building AI workflows for chatbots and other chat interfaces. |
+| **Chroma Vector Store** | AI (cluster root) | Interact with your Chroma database as vector store. |
+| **ClickUp Trigger** | Trigger | N8n provides an app node for ClickUp. |
+| **Clockify Trigger** | Trigger | This node uses the workflow timezone setting to specify the range of time entries starting time. |
+| **Code** | Core | The Code node lets you run your own JavaScript or Python inside a workflow, so you can transform data or add logic the built-in nodes don't cover. |
+| **Compare Datasets** | Core | The Compare Datasets node helps you compare data from two input streams. |
+| **Compression** | Core | Compress and decompress files. |
+| **Convert to File** | Core | Take input data and output it as a file. |
+| **ConvertKit Trigger** | Trigger | N8n provides an app node for ConvertKit. |
+| **Copper Trigger** | Trigger | N8n provides an app node for Copper. |
+| **Crypto** | Core | Perform cryptographic operations in workflows. |
+| **Customer.io Trigger** | Trigger | N8n provides an app node for Customer.io. |
+| **Data table** | Core | Create and manage internal data tables. |
+| **Databricks Trigger** | Trigger | Respond to events in Databricks and integrate Databricks with other applications. |
+| **Date & Time** | Core | The Date & Time node manipulates date and time data and convert it to different formats. |
+| **Debug Helper** | Core | Trigger different error types or generate random datasets to help test n8n workflows. |
+| **Edit Fields (Set)** | Core | Set workflow data. |
+| **Edit Image** | Core | Manipulate and edit images. |
+| **Email Trigger (IMAP)** | Core | Receive emails using an IMAP email server. |
+| **Emelia Trigger** | Trigger | Starts a workflow when an event happens in Emelia. |
+| **Error Trigger** | Core | You can use the Error Trigger node to create error workflows. |
+| **Evaluation** | Core | The Evaluation node performs various operations related to evaluations to validate your AI workflow reliability. |
+| **Evaluation Trigger** | Core | Use the Evaluation Trigger node when setting up evaluations to validate your AI workflow reliability. |
+| **Eventbrite Trigger** | Trigger | Starts a workflow when an event happens in Eventbrite. |
+| **Execute Command** | Core | The Execute Command node runs shell commands on the host machine that runs n8n. |
+| **Execute Sub-workflow** | Core | Run a different workflow on the host machine that runs n8n. |
+| **Execute Sub-workflow Trigger** | Core | Use this node to start a workflow in response to another workflow. |
+| **Execution Data** | Core | Use this node to save metadata for workflow executions. |
+| **Extract From File** | Core | A common pattern in n8n workflows is to receive a file, either from an [HTTP Request node][] (for files you are fetching from a website), a… |
+| **Facebook Lead Ads Trigger** | Trigger | Respond to events in Facebook Lead Ads and integrate Facebook Lead Ads with other applications. n8n has built-in support for responding to new leads. |
+| **Facebook Trigger** | Trigger | Trigger a workflow when events occur in Facebook. |
+| **Figma Trigger (Beta)** | Trigger | Starts a workflow when an event happens in Figma. |
+| **Filter** | Core | Filter items based on a condition. |
+| **Flow Trigger** | Trigger | Flow is modern task and project management software for teams. |
+| **Form.io Trigger** | Trigger | Starts a workflow when an event happens in Form.io. |
+| **Formstack Trigger** | Trigger | Starts a workflow when an event happens in Formstack. |
+| **FTP** | Core | The FTP node is useful to access and upload files to an FTP or SFTP server. |
+| **GetResponse Trigger** | Trigger | Starts a workflow when an event happens in GetResponse. |
+| **Git** | Core | Configure this operation with these parameters:. |
+| **GitHub Trigger** | Trigger | N8n provides an app node for GitHub. |
+| **GitLab Trigger** | Trigger | If your repository is located within nested GitLab groups or subgroups (for example, `https://gitlab.com/org/subgroup1/subgroup2/my-repo`),… |
+| **Gmail Trigger** | Trigger | Configure the node with these parameters:. |
+| **Google Business Profile Trigger** | Trigger | Respond to events in Google Business Profile and integrate Google Business Profile with other applications. n8n has built-in support for… |
+| **Google Calendar Trigger** | Trigger | N8n provides an app node for Google Calendar. |
+| **Google Drive Trigger** | Trigger | For common questions or issues and suggested solutions, refer to Common issues. |
+| **Google Sheets Trigger** | Trigger | N8n provides an app node for Google Sheets. |
+| **GraphQL** | Core | Select the type of authentication to use. n8n recommends using **Predefined Credential Type** when it's available for the service you want to… |
+| **Guardrails** | Core | Enforce safety, security, and content policies on text. |
+| **Gumroad Trigger** | Trigger | Starts a workflow when an event happens in Gumroad. |
+| **Help Scout Trigger** | Trigger | Starts a workflow when an event happens in Help Scout. |
+| **HTML** | Core | The HTML node provides operations to help you work with HTML in n8n. |
+| **HTTP Request** | Core | The HTTP Request node is one of the most versatile nodes in n8n. |
+| **HubSpot Trigger** | Trigger | N8n provides an app node for HubSpot. |
+| **If** | Core | Split a workflow conditionally based on comparison operations. |
+| **Information Extractor** | AI (cluster root) | Extract structured information from incoming data. |
+| **Invoice Ninja Trigger** | Trigger | Starts a workflow when an event happens in Invoice Ninja. |
+| **Jira Trigger** | Trigger | Starts a workflow when an event happens in Jira. |
+| **Jotform Trigger** | Trigger | Starts a workflow when an event happens in Jotform. |
+| **JWT** | Core | Work with JSON web tokens in your n8n workflows. |
+| **Kafka Trigger** | Trigger | Version 2 runs on a new, actively maintained Kafka engine. |
+| **Keap Trigger** | Trigger | Starts a workflow when an event happens in Keap. |
+| **KoboToolbox Trigger** | Trigger | This node starts a workflow upon new submissions of a specified form. |
+| **LangChain Code** | AI (cluster root) | Import LangChain. |
+| **LDAP** | Core | This node allows you to interact with your LDAP servers to create, find, and update objects. |
+| **Lemlist Trigger** | Trigger | Starts a workflow when an event happens in Lemlist. |
+| **Limit** | Core | Remove items beyond a defined maximum number. |
+| **Linear Trigger** | Trigger | Starts a workflow when an event happens in Linear. |
+| **Local File Trigger** | Core | The Local File Trigger node starts a workflow when it detects changes on the file system. |
+| **LoneScale Trigger** | Trigger | Respond to workflow events in LoneScale and integrate LoneScale with other applications. |
+| **Loop Over Items** | Core | The Loop Over Items node helps you loop through data when needed. |
+| **Mailchimp Trigger** | Trigger | Starts a workflow when an event happens in Mailchimp. |
+| **MailerLite Trigger** | Trigger | Starts a workflow when an event happens in MailerLite. |
+| **Mailjet Trigger** | Trigger | Starts a workflow when an event happens in Mailjet. |
+| **Manual Trigger** | Core | Use this node if you want to start a workflow by selecting **Execute Workflow** and don't want any option for the workflow to run automatically. |
+| **Markdown** | Core | The Markdown node converts between Markdown and HTML formats. |
+| **Mautic Trigger** | Trigger | N8n provides an app node for Mautic. |
+| **MCP Server Trigger** | Core | Allow n8n to act as a Model Context Protocol (MCP) server, making n8n tools and workflows available to MCP clients. |
+| **Merge** | Core | Combine data from multiple streams, once data of all streams is available. |
+| **Message an Agent** | Core | Send a message to an agent from a workflow, then use the agent's reply in the nodes that follow. |
+| **Microsoft Agent 365 Trigger** | AI (cluster root) | Receive messages from Microsoft Agent 365 and respond with AI-powered agent capabilities. |
+| **Microsoft OneDrive Trigger** | Trigger | Respond to events in Microsoft OneDrive and integrate Microsoft OneDrive with other applications. n8n has built-in support for file and folder… |
+| **Microsoft Outlook Trigger** | Trigger | Respond to events in Microsoft Outlook and integrate Microsoft Outlook with other applications. |
+| **Microsoft SharePoint Trigger** | Trigger | Start a workflow when a file or a list item changes in Microsoft SharePoint. |
+| **Microsoft Teams Trigger** | Trigger | Respond to events in Microsoft Teams and integrate Microsoft Teams with other applications. |
+| **Milvus Vector Store** | AI (cluster root) | Interact with your Milvus database as vector store. |
+| **MongoDB Atlas Vector Store** | AI (cluster root) | MongoDB Atlas Vector Search is a feature of MongoDB Atlas that enables users to store and query vector embeddings. |
+| **MQTT Trigger** | Trigger | Starts a workflow when an event happens in MQTT. |
+| **n8n** | Core | A node to integrate with n8n itself. |
+| **n8n Form** | Core | Create user-facing forms with multiple steps. |
+| **n8n Form Trigger** | Core | Use the n8n Form trigger to start a workflow when a user submits a form, taking the input data from the form. |
+| **n8n Trigger** | Core | The n8n Trigger node triggers when the workflow containing this node updates or gets published, or when the n8n instance starts or restarts. |
+| **Netlify Trigger** | Trigger | N8n provides an app node for Netlify. |
+| **No Operation, do nothing** | Core | Use the No Operation, do nothing node when you don't want to perform any operations. |
+| **Notion Trigger** | Trigger | N8n provides an app node for Notion. |
+| **Onfleet Trigger** | Trigger | Trigger a workflow on:. |
+| **Oracle Database Vector Store** | AI (cluster root) | Interact with Oracle Database as a vector store. |
+| **PayPal Trigger** | Trigger | Starts a workflow when an event happens in PayPal. |
+| **PGVector Vector Store** | AI (cluster root) | PGVector is an extension of Postgresql. |
+| **Pinecone Vector Store** | AI (cluster root) | Interact with your Pinecone database as vector store. |
+| **Pipedrive Trigger** | Trigger | Starts a workflow when an event happens in Pipedrive. |
+| **Postgres Trigger** | Trigger | Respond to events in Postgres and integrate Postgres with other applications. n8n has built-in support responding to insert, update, and delete… |
+| **Postmark Trigger** | Trigger | Starts a workflow when an event happens in Postmark. |
+| **Pushcut Trigger** | Trigger | Follow these steps to configure your Pushcut Trigger node with your Pushcut app. |
+| **Qdrant Vector Store** | AI (cluster root) | Interact with your Qdrant collection as a vector store. |
+| **Question and Answer Chain** | AI (cluster root) | Use a vector store as a retriever. |
+| **RabbitMQ Trigger** | Trigger | Starts a workflow when a message arrives in a RabbitMQ queue. |
+| **Read/Write Files from Disk** | Core | Read and write files from/to the machine where n8n is running. |
+| **Redis Trigger** | Trigger | Subscribe to a Redis channel. |
+| **Redis Vector Store** | AI (cluster root) | Interact with your Redis database as a vector store. |
+| **Remove Duplicates** | Core | Identify and delete items that are:. |
+| **Rename Keys** | Core | Rename the keys of a key-value pair in n8n. |
+| **Respond to Webhook** | Core | Control the response to incoming webhooks. |
+| **RSS Feed Trigger** | Core | The RSS Feed Trigger node allows you to start an n8n workflow when a new RSS feed item has been published. |
+| **RSS Read** | Core | Read data from RSS feeds published on the internet. |
+| **Salesforce Trigger** | Trigger | Respond to events in Salesforce and integrate Salesforce with other applications. |
+| **Schedule Trigger** | Core | Run workflows at fixed intervals and times. |
+| **SeaTable Trigger** | Trigger | Starts a workflow when an event happens in SeaTable. |
+| **Send Email** | Core | The Send Email node sends emails using an SMTP email server. |
+| **Sentiment Analysis** | AI (cluster root) | Analyze the sentiment of incoming text data. |
+| **Shopify Trigger** | Trigger | Starts a workflow when an event happens in Shopify. |
+| **Simple Vector Store** | AI (cluster root) | Store and retrieve embeddings in n8n's in-app memory. |
+| **Slack Trigger** | Trigger | Respond to events in Slack and integrate Slack with other applications. |
+| **Sort** | Core | Organize lists of items in a desired ordering, or generate a random selection. |
+| **Split Out** | Core | Separate a single data item containing a list into multiple items. |
+| **SSE Trigger** | Core | Server-Sent Events (SSE) is a server push technology enabling a client to receive automatic updates from a server using HTTP connection. |
+| **SSH** | Core | The SSH node is useful for executing commands using the Secure Shell Protocol. |
+| **Stop And Error** | Core | Display custom error messages, cause executions to fail under certain conditions, and send custom error information to error workflows. |
+| **Strava Trigger** | Trigger | Starts a workflow when an event happens in Strava. |
+| **Stripe Trigger** | Trigger | The Stripe Trigger node can verify that incoming webhook requests genuinely come from Stripe. |
+| **Summarization Chain** | AI (cluster root) | Summarize multiple documents. |
+| **Summarize** | Core | Aggregate items together, in a manner similar to Excel pivot tables. |
+| **Supabase Vector Store** | AI (cluster root) | Use the Supabase Vector Store to interact with your Supabase database as vector store. |
+| **SurveyMonkey Trigger** | Trigger | Starts a workflow when an event happens in SurveyMonkey. |
+| **Switch** | Core | Route a workflow conditionally based on comparison operations. |
+| **Taiga Trigger** | Trigger | Starts a workflow when an event happens in Taiga. |
+| **Telegram Trigger** | Trigger | Some **events may require additional permissions**, see Telegram's API documentation for more information. |
+| **Text Classifier** | AI (cluster root) | Classify (categorize) incoming data. |
+| **TheHive 5 Trigger** | Trigger | Respond to events in TheHive and integrate TheHive with other applications. |
+| **TheHive Trigger** | Trigger | N8n provides an app node for TheHive. |
+| **Toggl Trigger** | Trigger | Starts a workflow when an event happens in Toggl. |
+| **TOTP** | Core | The TOTP node provides a way to generate a TOTP (time-based one-time password). |
+| **Track Time Saved** | Core | Record how many minutes a workflow saves, based on the path an execution actually takes. n8n adds up every Track Time Saved node that runs during… |
+| **Trello Trigger** | Trigger | The model ID is the ID of any model in Trello. |
+| **Twilio Trigger** | Trigger | Respond to events in Twilio and integrate Twilio with other applications. |
+| **Typeform Trigger** | Trigger | Starts a workflow when an event happens in Typeform. |
+| **Venafi TLS Protect Cloud Trigger** | Trigger | Start a workflow in n8n in response to events in the cloud-based Venafi TLS Protect service. |
+| **Wait** | Core | Use the Wait node pause your workflow's execution. |
+| **Weaviate Vector Store** | AI (cluster root) | Interact with your Weaviate collection as a vector store. |
+| **Webex by Cisco Trigger** | Trigger | Starts a workflow when an event happens in Webex by Cisco. |
+| **Webflow Trigger** | Trigger | Starts a workflow when an event happens in Webflow. |
+| **Webhook** | Core | Create webhooks, which can receive data from apps and services when an event occurs. |
+| **WhatsApp Trigger** | Trigger | Respond to events in WhatsApp and integrate WhatsApp with other applications. |
+| **Wise Trigger** | Trigger | Starts a workflow when an event happens in Wise. |
+| **WooCommerce Trigger** | Trigger | Starts a workflow when an event happens in WooCommerce. |
+| **Workable Trigger** | Trigger | Respond to events in the Workable recruiting platform and integrate Workable with other applications. |
+| **Workflow Trigger** | Core | The Workflow Trigger node gets triggered when a workflow is updated or activated. |
+| **Wufoo Trigger** | Trigger | Starts a workflow when an event happens in Wufoo. |
+| **XML** | Core | Convert data from and to XML. |
+| **Zendesk Trigger** | Trigger | Starts a workflow when an event happens in Zendesk. |
+| **Zep Vector Store** | AI (cluster root) | Use the Zep Vector Store to interact with Zep vector databases. |
+:::
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet
