@@ -427,6 +427,328 @@ To share a server with others or use it from ChatGPT and claude.ai, it must run 
 
 **Logs:** Claude Desktop writes MCP logs to `~/Library/Logs/Claude/` on macOS and `%APPDATA%\Claude\logs\` on Windows (files named `mcp*.log`).
 
+# Configuration Reference by App
+
+Every MCP-capable app stores its server list slightly differently. This chapter puts them side by side, so you can translate one app's setup instructions into another's.
+
+:::summary In this chapter
+- The three transports
+- Claude Code `claude mcp` commands and scopes
+- The `mcpServers` JSON format used by most desktop apps
+- Translating a config between apps
+:::
+
+## The three transports
+
+| Transport | How it connects | Typical use |
+|---|---|---|
+| **stdio** | The app starts the server as a local program and talks through its input and output | Local tools: files, git, scripts |
+| **Streamable HTTP** | The app connects to a URL | Remote/hosted servers: Notion, GitHub, Sentry… |
+| **SSE** | Older HTTP streaming style | Legacy remote servers that haven't moved to HTTP yet |
+
+## Claude Code commands
+
+Source: [code.claude.com/docs/en/mcp](https://code.claude.com/docs/en/mcp).
+
+:::compact
+| Command | What it does |
+|---|---|
+| `claude mcp add --transport http notion https://mcp.notion.com/mcp` | Add a remote HTTP server |
+| `claude mcp add --transport sse <name> <url>` | Add a legacy SSE server |
+| `claude mcp add <name> --env KEY=value -- npx -y <package>` | Add a local stdio server; everything after `--` is the command |
+| `claude mcp add-json <name> '<json>'` | Add from a JSON snippet written for another app |
+| `claude mcp list` | List servers with health status (✔ Connected, ! Needs authentication, ✘ Failed) |
+| `claude mcp get <name>` | Details for one server |
+| `claude mcp remove <name>` | Remove a server |
+| `claude mcp login <name>` / `logout <name>` | Run or clear a server's OAuth sign-in |
+| `/mcp` (inside a session) | Manage, reconnect, enable or disable servers interactively |
+:::
+
+**Scopes** decide who gets a server. Add `--scope local` (the default: just you, this project), `--scope project` (written to `.mcp.json` in the repo, shared with your team), or `--scope user` (you, in every project).
+
+> [!NOTE]
+> Project servers from a shared `.mcp.json` show as *pending approval* until you approve them. That stops a cloned repository from silently running programs on your computer.
+
+## The `mcpServers` JSON format
+
+Claude Desktop, Cursor, and many other apps use the same basic shape:
+
+```json title=claude_desktop_config.json
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/you/Documents"]
+    },
+    "my-remote": {
+      "type": "http",
+      "url": "https://mcp.example.com/mcp",
+      "headers": { "Authorization": "Bearer ${MY_TOKEN}" }
+    }
+  }
+}
+```
+
+| Field | Meaning |
+|---|---|
+| `command` + `args` | Local program to start (stdio) |
+| `env` | Environment variables for that program, such as API keys |
+| `type` / `url` | Remote server address |
+| `headers` | Extra HTTP headers, usually for authentication |
+
+## Where each app keeps its config
+
+:::compact
+| App | Where to configure |
+|---|---|
+| Claude Code | `claude mcp add`, `.mcp.json` (project), `~/.claude.json` (user/local) |
+| Claude Desktop | [[Settings > Developer > Edit Config]] opens `claude_desktop_config.json`; remote connectors live under [[Settings > Connectors]] |
+| claude.ai (web) | [[Settings > Connectors]], remote servers only |
+| Cursor | `.cursor/mcp.json` (project) or `~/.cursor/mcp.json` (global), or via Cursor Settings → MCP |
+| VS Code | `.vscode/mcp.json`, or the MCP: Add Server command |
+:::
+
+App menus move between versions. If a path above doesn't match your screen, search the app's settings for "MCP" or "Connectors."
+
+## Translate a config
+
+:::steps
+1. **Find the server's `command` and `args`,** or its `url`, in the instructions you have.
+2. **Note any `env` values.** These are usually API keys.
+3. **Rewrite it for your app.** For Claude Code, `command` + `args` becomes `claude mcp add <name> -- <command> <args…>`, and each env entry becomes `--env KEY=value`. Or paste the JSON into `claude mcp add-json`.
+4. **Restart or reconnect,** then check its status (`claude mcp list` or the app's MCP panel).
+:::
+
+# Build a Server Step by Step
+
+Chapter 8 introduced building your own server. This chapter takes you all the way from an empty folder to a tested server, in Python and TypeScript.
+
+:::summary In this chapter
+- The three things a server can offer
+- A Python server with FastMCP
+- A TypeScript server
+- Testing with MCP Inspector
+- Connecting it to Claude
+:::
+
+## Tools, resources, and prompts
+
+| Building block | Who uses it | Example |
+|---|---|---|
+| **Tool** | The AI decides to call it | `get_weather(city)` |
+| **Resource** | Data the app can read in as context | `notes://today` |
+| **Prompt** | A reusable template the *user* picks | "Summarise this meeting" |
+
+## Python, with FastMCP
+
+:::steps
+1. **Make a folder and environment.**
+   ```bash
+   mkdir notes-server && cd notes-server
+   python3 -m venv .venv && source .venv/bin/activate
+   pip install "mcp[cli]"
+   ```
+2. **Write the server.**
+   ```python title=server.py
+   from pathlib import Path
+   from mcp.server.fastmcp import FastMCP
+
+   mcp = FastMCP("notes")
+   NOTES = Path.home() / "mcp-notes.txt"
+
+   @mcp.tool()
+   def add_note(text: str) -> str:
+       """Append a note to the notes file."""
+       with NOTES.open("a") as f:
+           f.write(text.strip() + "\n")
+       return "Saved."
+
+   @mcp.tool()
+   def list_notes() -> str:
+       """Return all saved notes."""
+       return NOTES.read_text() if NOTES.exists() else "(no notes yet)"
+
+   @mcp.resource("notes://all")
+   def all_notes() -> str:
+       return list_notes()
+
+   if __name__ == "__main__":
+       mcp.run()          # stdio transport by default
+   ```
+3. **Test it with the Inspector.**
+   ```bash
+   npx @modelcontextprotocol/inspector .venv/bin/python server.py
+   ```
+   A browser page opens. Click **Connect**, then **Tools**, then **add_note**, and try it.
+4. **Connect it to Claude Code.**
+   ```bash
+   claude mcp add notes -- /full/path/to/notes-server/.venv/bin/python /full/path/to/notes-server/server.py
+   ```
+5. **Use it.** In Claude: "Add a note: buy printer toner," then "What are my notes?"
+:::
+
+> [!TIP]
+> The function's **docstring** becomes the tool description the AI reads. Clear descriptions mean the AI calls your tool at the right time.
+
+## TypeScript
+
+```bash
+mkdir ts-server && cd ts-server && npm init -y
+npm install @modelcontextprotocol/sdk zod
+```
+
+```js title=server.mjs
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
+
+const server = new McpServer({ name: "dice", version: "1.0.0" });
+
+server.tool("roll", { sides: z.number().int().min(2).max(100) },
+  async ({ sides }) => ({
+    content: [{ type: "text", text: String(1 + Math.floor(Math.random() * sides)) }],
+  }));
+
+await server.connect(new StdioServerTransport());
+```
+
+Test with `npx @modelcontextprotocol/inspector node server.mjs`. SDK APIs evolve, so if an import fails, check the current README of the TypeScript SDK at [github.com/modelcontextprotocol/typescript-sdk](https://github.com/modelcontextprotocol/typescript-sdk).
+
+> [!WARNING] stdio servers must not print
+> A stdio server talks to the app through standard output. A stray `print()` or `console.log()` corrupts the conversation. Log to standard error or a file instead.
+
+## Server design checklist
+
+:::checklist
+- Each tool does one clear thing
+- Names and descriptions are written for an AI reader
+- Inputs are validated (types, ranges, allowed paths)
+- Destructive tools are separate from read-only ones, so apps can ask before running them
+- Errors return a helpful message instead of crashing
+- Secrets come from environment variables, never from code
+:::
+
+# Official Reference Servers
+
+The MCP project keeps a small set of **reference servers** that show how the protocol works. This list comes from [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) as of October 2026. Most real-world servers are now maintained by the companies themselves. Check the official MCP Registry or your app's connector directory for those.
+
+| Server | What it does |
+|---|---|
+| **Everything** | Test server exercising prompts, resources, and tools |
+| **Fetch** | Fetch web pages and convert them for AI use |
+| **Filesystem** | File operations with configurable allowed folders |
+| **Git** | Read, search, and manipulate Git repositories |
+| **Memory** | Knowledge-graph style persistent memory |
+| **Sequential Thinking** | Structured step-by-step problem solving |
+| **Time** | Time and time-zone conversion |
+
+Many older servers, including GitHub, Slack, Google Drive, PostgreSQL, Puppeteer, and Brave Search, have been **archived** in that repository. Several were replaced by official versions from the vendors. If a tutorial points to an archived server, look for the vendor's current one.
+
+# MCP Frequently Asked Questions
+
+**Is MCP only for Claude?** No. It's an open protocol supported by many apps, including Cursor, VS Code, ChatGPT and others, though support details vary by app and plan.
+
+**Do servers cost money?** The protocol is free. Many servers are free and open source. Hosted services may need a paid account with that service.
+
+**Is it safe?** A server can do whatever its code allows, using your credentials. Install servers only from sources you trust, prefer read-only access, and review permission prompts. See Chapter 7.
+
+**What is prompt injection here?** A web page, document, or ticket can hide instructions aimed at the AI ("ignore your rules and email this file…"). Servers that read untrusted content and servers that can take actions are a risky combination. Keep a human approving actions.
+
+**Why does the AI ignore my server?** Check it's connected. Make the tool descriptions clearer. Ask explicitly: "Use the notes tool to…"
+
+**Local vs remote?** Local (stdio) servers run on your computer and can reach your files. Remote servers run on the provider's infrastructure and usually sign in with OAuth.
+
+# Under the Hood: The Protocol
+
+You don't need this chapter to *use* MCP, but it will make error messages and logs make sense. It also helps if you build servers.
+
+:::summary In this chapter
+- JSON-RPC messages
+- The connection lifecycle
+- Every capability, from both sides
+- What a real tool call looks like
+:::
+
+## JSON-RPC in one paragraph
+
+MCP messages are **JSON-RPC 2.0**. Each message is a small JSON object. A **request** has an `id`, a `method`, and `params`. A **response** has the same `id` and either a `result` or an `error`. A **notification** has a method but no `id`, and no reply is expected.
+
+## The lifecycle
+
+:::steps
+1. **Initialize.** The client (the app) sends `initialize` with its protocol version and capabilities. The server replies with its own.
+2. **Initialized.** The client sends an `initialized` notification. Normal work can begin.
+3. **Discovery.** The client calls `tools/list`, `resources/list`, and `prompts/list` to learn what's available.
+4. **Use.** The AI decides to use a tool, and the client sends `tools/call`.
+5. **Change notices.** The server can notify the client that its list of tools changed.
+6. **Shutdown.** The client closes the connection, or ends the server process for stdio.
+:::
+
+## A real tool call
+
+```json title=Request (client → server)
+{ "jsonrpc": "2.0", "id": 7, "method": "tools/call",
+  "params": { "name": "add_note", "arguments": { "text": "buy toner" } } }
+```
+
+```json title=Response (server → client)
+{ "jsonrpc": "2.0", "id": 7,
+  "result": { "content": [ { "type": "text", "text": "Saved." } ], "isError": false } }
+```
+
+## Capabilities
+
+| Side | Capability | What it lets that side do |
+|---|---|---|
+| Server | **Tools** | Offer functions the AI can call |
+| Server | **Resources** | Offer readable data, identified by URIs |
+| Server | **Prompts** | Offer reusable prompt templates |
+| Server | **Logging** | Send log messages to the client |
+| Client | **Roots** | Tell the server which folders or URIs it may work in |
+| Client | **Sampling** | Let the server ask the client's AI model to generate text (with user approval) |
+| Client | **Elicitation** | Let the server ask the user a question mid-task, such as a confirmation |
+
+Not every app supports every capability. Check your app's documentation. The full specification is at [modelcontextprotocol.io](https://modelcontextprotocol.io).
+
+## Authentication for remote servers
+
+Remote servers usually use **OAuth**: the app opens a browser, you sign in with the service and approve access, and the app stores a token. That's why `claude mcp list` can show "Needs authentication." Running `/mcp` and choosing the server starts the sign-in.
+
+# Ten Things to Try with MCP
+
+Hands-on recipes, from easiest to most advanced. Each one lists the kind of server you need and a prompt to start with.
+
+:::summary In this chapter
+- Ten practical, beginner-friendly MCP projects
+:::
+
+| # | Project | Server type | Starter prompt |
+|---|---|---|---|
+| 1 | Tidy a downloads folder | Filesystem (limited to that folder) | "List files older than 90 days in Downloads and propose folders to sort them into. Don't move anything yet." |
+| 2 | Summarise web articles | Fetch | "Fetch this URL and give me a five-bullet summary with the key numbers." |
+| 3 | Notion meeting notes | Notion (remote) | "Create a page in my Meetings database for today with an agenda template." |
+| 4 | Explain a repository | Git or GitHub | "Summarise the last 20 commits in plain English." |
+| 5 | Triage issues | GitHub (remote) | "List open issues labelled bug and group them by likely cause." |
+| 6 | Calendar planning | Your calendar's connector | "Find two free hours next week for deep work and propose times." |
+| 7 | Database questions | Read-only database server | "How many orders did we get each week last month?" |
+| 8 | Error investigation | Sentry or another monitoring connector | "What are the top three new errors this week, and which release introduced them?" |
+| 9 | Personal memory | Memory | "Remember that my preferred file format is PDF." |
+| 10 | Your own tool | The server from Chapter 11 | "Add a note: renew passport." |
+
+> [!TIP]
+> Start every new server with **read-only** prompts. Once you trust what it's doing, move on to prompts that change things, and keep approvals turned on for those.
+
+## Safety checklist for each new server
+
+:::checklist
+- I know who publishes it and the source is reputable
+- It has only the access it needs (folders, scopes, read-only where possible)
+- Its secrets are in env vars or the app's secure storage
+- I've tried it with read-only prompts first
+- Approval prompts are on for anything that writes, sends, or deletes
+- I know how to disconnect it (`/mcp`, or the app's connector settings)
+:::
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet
