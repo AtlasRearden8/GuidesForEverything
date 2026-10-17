@@ -185,5 +185,16 @@
     "accent": "#15803D",
     "pages": 45,
     "bytes": 789105
+  },
+  "ai-privacy-security": {
+    "slug": "ai-privacy-security",
+    "title": "AI Privacy & Security",
+    "subtitle": "Control what AI companies keep, protect your accounts, and use chatbots, connectors and agents without getting burned",
+    "volume": 18,
+    "kicker": "A Beginner's Manual",
+    "edition": "October 2026",
+    "accent": "#1D4ED8",
+    "pages": 43,
+    "bytes": 977799
   }
 }
