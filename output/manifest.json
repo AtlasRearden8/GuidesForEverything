@@ -174,5 +174,16 @@
     "accent": "#EA580C",
     "pages": 49,
     "bytes": 1048777
+  },
+  "ai-personal-finance": {
+    "slug": "ai-personal-finance",
+    "title": "AI for Personal Finance & Admin",
+    "subtitle": "Budgets, bills, subscriptions, debt plans, tax paperwork and life admin, with your data handled safely",
+    "volume": 17,
+    "kicker": "A Beginner's Manual",
+    "edition": "October 2026",
+    "accent": "#15803D",
+    "pages": 45,
+    "bytes": 789105
   }
 }
