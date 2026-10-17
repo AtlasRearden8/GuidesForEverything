@@ -55,9 +55,21 @@ claude --cloud "add input validation to the signup form"
 
 When it's done, Claude pushes a branch for you to review. Bring a cloud session back to your terminal with `/teleport` or `claude --teleport`. Chapter 25 covers this in more detail.
 
+## Choosing the right way to run in parallel
+
+| You want | Use |
+|---|---|
+| A side job that reports back into this chat | `/subtask` or a subagent |
+| A second attempt you can compare | `/fork` or `/branch` |
+| Two tasks editing different code at once | `claude -w <name>` in two terminals |
+| Many similar changes across the codebase | `/batch` |
+| Work that continues with your laptop closed | A cloud session (`claude --cloud`) |
+
+> [!TIP]
+> Start small: one main session plus one worktree is plenty for most people. Every extra session uses your plan's usage too.
+
 :::checklist
 - I name sessions I'll come back to
-- I've resumed a session by name
 - I use `claude -w` when I want two tasks at once
 :::
 

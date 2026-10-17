@@ -217,9 +217,15 @@ A **prompt injection** is text hidden in a web page, file, issue, or tool result
 
 When you open a project someone else wrote, its `.claude/settings.json` hooks, `.mcp.json` servers, and skills can run code. Read them before choosing **Yes** at the trust prompt. Remember that `claude -p` shows no trust prompt at all.
 
+## Extra steps for teams
+
+- Share safe defaults in a committed `.claude/settings.json`: deny rules for secrets, ask rules for `git push`.
+- Ask administrators about **managed settings**, which can enforce rules nobody can override.
+- Review changes to `.claude/`, `.mcp.json`, and workflow files in pull requests as carefully as code.
+- Report suspected security issues in Claude Code through Anthropic's official channels, not in public issues.
+
 :::checklist
 - I know my plan's data training and retention rules
 - My secret files are covered by deny rules
 - I read hooks, MCP servers, and skills before trusting a stranger's project
-- I use bypass mode only in disposable containers or virtual machines
 :::

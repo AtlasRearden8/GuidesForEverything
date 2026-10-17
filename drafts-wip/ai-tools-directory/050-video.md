@@ -6,7 +6,6 @@
 | Tool | What it does | Price |
 |---|---|---|
 | **Google Veo** (Gemini, **Flow**) | Realistic video with native sound; Flow is Google's filmmaking tool | {{Freemium}} |
-| **OpenAI Sora** | Cinematic video generation and a social app for remixing | {{Freemium}} |
 | **Runway** | Video generation plus pro editing and effects | {{Freemium}} |
 | **Kling** (Kuaishou) | High-quality text- and image-to-video | {{Freemium}} |
 | **Luma Dream Machine / Ray** | Fast, fluid video generation | {{Freemium}} |

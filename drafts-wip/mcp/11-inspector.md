@@ -110,8 +110,7 @@ $I https://example.com/mcp --transport http --method tools/list \
 - Each tool works with normal input
 - Each tool gives a readable error for wrong input (missing, too long, wrong type)
 - Empty results ("nothing found") are handled gracefully
-- The Console tab shows no warnings or tracebacks
-- Resources and prompts render correctly
+- Resources and prompts render, and the Console tab shows no tracebacks
 - After changes, I rerun the CLI checks before reconnecting a real app
 :::
 

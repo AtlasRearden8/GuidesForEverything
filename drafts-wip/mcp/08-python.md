@@ -417,7 +417,6 @@ the MCP Inspector CLI, and show me the Claude Desktop config to add it.
 - My tools have clear names, docstrings, and type hints
 - I raise `ToolError` for problems the AI should hear about
 - I use `logging`, never `print`, in a stdio server
-- I've tested every tool in the Inspector before connecting a real app
-- My host config uses absolute paths
+- I've tested every tool in the Inspector, and my host config uses absolute paths
 :::
 

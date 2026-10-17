@@ -115,7 +115,5 @@ Next to **Editor** at the top of each workflow is **Executions**: a list of ever
 - I can open the nodes panel and add a node
 - I can connect, insert and delete connections
 - I know the three panels of the node details view
-- I've added a sticky note
-- I know <kbd>Ctrl</kbd>/<kbd>Cmd</kbd> + <kbd>K</kbd> opens the command bar
 :::
 

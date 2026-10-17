@@ -2498,10 +2498,8 @@ Claude Code reads settings from several files. When the same setting appears in 
 ```
 
 :::checklist
-- I know which permission mode I'm in from the status bar
 - I've added an allow rule for a safe command I run often
 - My `.env` and secret files are protected by deny rules
-- I never use bypass mode on my everyday computer
 :::
 # Settings Files
 
@@ -2781,9 +2779,21 @@ claude --cloud "add input validation to the signup form"
 
 When it's done, Claude pushes a branch for you to review. Bring a cloud session back to your terminal with `/teleport` or `claude --teleport`. Chapter 25 covers this in more detail.
 
+## Choosing the right way to run in parallel
+
+| You want | Use |
+|---|---|
+| A side job that reports back into this chat | `/subtask` or a subagent |
+| A second attempt you can compare | `/fork` or `/branch` |
+| Two tasks editing different code at once | `claude -w <name>` in two terminals |
+| Many similar changes across the codebase | `/batch` |
+| Work that continues with your laptop closed | A cloud session (`claude --cloud`) |
+
+> [!TIP]
+> Start small: one main session plus one worktree is plenty for most people. Every extra session uses your plan's usage too.
+
 :::checklist
 - I name sessions I'll come back to
-- I've resumed a session by name
 - I use `claude -w` when I want two tasks at once
 :::
 
@@ -3679,10 +3689,19 @@ More ways, from Anthropic's guidance:
 > [!TIP]
 > If you hit a limit mid-task, `/rate-limit-options` shows your choices: wait for the reset, add usage credits, or upgrade.
 
+## A simple daily routine
+
+:::steps Keep usage low every day
+1. **Start each task fresh** with `/clear` and a specific first prompt.
+2. **Plan big changes** in plan mode, on `opusplan` or Opus.
+3. **Build on Sonnet** at `medium` effort; drop to Haiku for chores.
+4. **Compact with a focus** when `/context` shows the window filling.
+5. **Check `/usage`** at the end of the day to see what used the most.
+:::
+
 :::checklist
 - I check `/usage` once in a while
 - I `/clear` between tasks and choose lighter models for simple jobs
-- I know Claude Code can wait and continue after a limit resets
 :::
 # Project Recipes
 
@@ -3903,11 +3922,17 @@ A **prompt injection** is text hidden in a web page, file, issue, or tool result
 
 When you open a project someone else wrote, its `.claude/settings.json` hooks, `.mcp.json` servers, and skills can run code. Read them before choosing **Yes** at the trust prompt. Remember that `claude -p` shows no trust prompt at all.
 
+## Extra steps for teams
+
+- Share safe defaults in a committed `.claude/settings.json`: deny rules for secrets, ask rules for `git push`.
+- Ask administrators about **managed settings**, which can enforce rules nobody can override.
+- Review changes to `.claude/`, `.mcp.json`, and workflow files in pull requests as carefully as code.
+- Report suspected security issues in Claude Code through Anthropic's official channels, not in public issues.
+
 :::checklist
 - I know my plan's data training and retention rules
 - My secret files are covered by deny rules
 - I read hooks, MCP servers, and skills before trusting a stranger's project
-- I use bypass mode only in disposable containers or virtual machines
 :::
 # Troubleshooting
 
@@ -4019,7 +4044,6 @@ Most problems have a quick fix. Start with the right diagnostic tool, then look 
 | `/release-notes` | What's new | `/exit` | Quit |
 :::
 
-**Aliases:** `/reset` `/new` → `/clear` · `/undo` `/checkpoint` → `/rewind` · `/continue` → `/resume` · `/review` → `/code-review` · `/cost` `/stats` → `/usage` · `/settings` → `/config` · `/quit` → `/exit` · `/bg` → `/background` · `/checkup` → `/doctor`
 
 # Quick Reference {.unnumbered}
 
@@ -4039,6 +4063,8 @@ Most problems have a quick fix. Start with the right diagnostic tool, then look 
 **Script it:** `claude -p "…" --output-format json --allowedTools "Read"`
 
 **Your own command:** `~/.claude/skills/<name>/SKILL.md` → `/<name> $ARGUMENTS`
+
+**Aliases:** `/reset` `/new` → `/clear` · `/undo` `/checkpoint` → `/rewind` · `/continue` → `/resume` · `/review` → `/code-review` · `/cost` `/stats` → `/usage` · `/settings` → `/config` · `/quit` → `/exit` · `/bg` → `/background` · `/checkup` → `/doctor`
 
 **Health check:** `claude doctor` · **Update:** `claude update` · **Usage:** `/usage`
 :::

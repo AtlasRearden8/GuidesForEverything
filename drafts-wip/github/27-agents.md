@@ -44,12 +44,6 @@ Address each comment with a separate commit, reply to each comment
 explaining what you did, and re-run the tests.
 ```
 
-```prompt
-Explain this repository to me as a beginner: what it does, how the
-folders are organized, how to run it, and where I'd make a change to
-the homepage text.
-```
-
 :::checklist
 - `main` is protected before any agent touches the repository
 - Every agent task happens on its own branch and pull request

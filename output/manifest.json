@@ -35,13 +35,13 @@
   "github": {
     "slug": "github",
     "title": "GitHub",
-    "subtitle": "Save, share, and collaborate on your work, with Git explained from zero",
+    "subtitle": "Save, share, and collaborate on your work, with Git explained from zero to confident",
     "volume": 2,
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#1F883D",
-    "pages": 31,
-    "bytes": 1004014
+    "pages": 148,
+    "bytes": 4007203
   },
   "maximum-autonomy": {
     "slug": "maximum-autonomy",
@@ -57,35 +57,35 @@
   "mcp": {
     "slug": "mcp",
     "title": "MCP",
-    "subtitle": "The Model Context Protocol, the universal way to plug AI into your apps, files, and tools",
+    "subtitle": "The Model Context Protocol, the universal way to plug AI into your apps, files, and tools, explained from zero to building and deploying your own servers",
     "volume": 5,
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#2F6FDE",
-    "pages": 27,
-    "bytes": 791992
+    "pages": 105,
+    "bytes": 3219615
   },
   "n8n": {
     "slug": "n8n",
     "title": "n8n",
-    "subtitle": "Automate your work and build AI agents, visually, one node at a time",
+    "subtitle": "Automate your work and build AI agents, visually, one node at a time, from your first click to your own server",
     "volume": 6,
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#E8456B",
-    "pages": 28,
-    "bytes": 763561
+    "pages": 136,
+    "bytes": 3659491
   },
   "notion": {
     "slug": "notion",
     "title": "Notion",
-    "subtitle": "One workspace for notes, docs, projects, and databases, with AI built in",
+    "subtitle": "One workspace for notes, docs, projects, and databases, with AI built in. A complete beginner's manual",
     "volume": 7,
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#C2711B",
-    "pages": 24,
-    "bytes": 681436
+    "pages": 132,
+    "bytes": 3578015
   },
   "vibe-coding": {
     "slug": "vibe-coding",

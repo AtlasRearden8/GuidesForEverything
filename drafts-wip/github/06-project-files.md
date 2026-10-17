@@ -134,6 +134,5 @@ before starting big changes. Keep it under 300 words.
 :::checklist
 - README answers what, why, install, use, and license
 - A LICENSE file chosen on purpose (or deliberately none)
-- `.gitignore` covers secrets, dependencies, and system junk
-- CONTRIBUTING and SECURITY files for any public project
+- `.gitignore` covers secrets, dependencies, and junk; CONTRIBUTING and SECURITY added to public projects
 :::

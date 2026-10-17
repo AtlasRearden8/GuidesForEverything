@@ -129,8 +129,17 @@ More ways, from Anthropic's guidance:
 > [!TIP]
 > If you hit a limit mid-task, `/rate-limit-options` shows your choices: wait for the reset, add usage credits, or upgrade.
 
+## A simple daily routine
+
+:::steps Keep usage low every day
+1. **Start each task fresh** with `/clear` and a specific first prompt.
+2. **Plan big changes** in plan mode, on `opusplan` or Opus.
+3. **Build on Sonnet** at `medium` effort; drop to Haiku for chores.
+4. **Compact with a focus** when `/context` shows the window filling.
+5. **Check `/usage`** at the end of the day to see what used the most.
+:::
+
 :::checklist
 - I check `/usage` once in a while
 - I `/clear` between tasks and choose lighter models for simple jobs
-- I know Claude Code can wait and continue after a limit resets
 :::

@@ -30,7 +30,6 @@
 | `/release-notes` | What's new | `/exit` | Quit |
 :::
 
-**Aliases:** `/reset` `/new` → `/clear` · `/undo` `/checkpoint` → `/rewind` · `/continue` → `/resume` · `/review` → `/code-review` · `/cost` `/stats` → `/usage` · `/settings` → `/config` · `/quit` → `/exit` · `/bg` → `/background` · `/checkup` → `/doctor`
 
 # Quick Reference {.unnumbered}
 
@@ -50,6 +49,8 @@
 **Script it:** `claude -p "…" --output-format json --allowedTools "Read"`
 
 **Your own command:** `~/.claude/skills/<name>/SKILL.md` → `/<name> $ARGUMENTS`
+
+**Aliases:** `/reset` `/new` → `/clear` · `/undo` `/checkpoint` → `/rewind` · `/continue` → `/resume` · `/review` → `/code-review` · `/cost` `/stats` → `/usage` · `/settings` → `/config` · `/quit` → `/exit` · `/bg` → `/background` · `/checkup` → `/doctor`
 
 **Health check:** `claude doctor` · **Update:** `claude update` · **Usage:** `/usage`
 :::

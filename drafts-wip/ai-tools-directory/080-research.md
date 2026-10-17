@@ -4,7 +4,7 @@
 | Tool | What it does | Price |
 |---|---|---|
 | **Perplexity** | Cited answers, deep research, finance, and shopping | {{Freemium}} |
-| **NotebookLM** (Google) | AI grounded in your sources: audio and video overviews, quizzes | {{Freemium}} |
+| **Gemini Notebook** (formerly NotebookLM) | AI grounded in your sources: audio and video overviews, quizzes | {{Freemium}} |
 | **Google AI Mode** | Conversational answers in Google Search | {{Free}} |
 | **ChatGPT / Claude / Gemini Deep Research** | Long, cited research reports | {{Freemium}} |
 | **Kagi** | Ad-free search with an AI assistant | {{Paid}} |

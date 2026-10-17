@@ -84,6 +84,5 @@ Test it with a sample, show me the result, and don't publish it.
 - I've given an agent tools from an MCP server
 - I've exposed one workflow with the MCP Server Trigger and authentication
 - I've connected an AI app to instance-level MCP
-- I've enabled only the workflows I want AI apps to use
 :::
 

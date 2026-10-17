@@ -119,7 +119,7 @@ The shortcut `~` (meaning "my home folder") works in a terminal but often **not*
 
 ## Environment variables and secrets
 
-An **environment variable** is a named setting a program can read, such as `GITHUB_TOKEN=abc123`. MCP servers often read their API keys this way. In a config file, the `env` block sets them for that server only.
+An **environment variable** is a named setting a program can read, such as `GITHUB_TOKEN=abc123`. MCP servers often read their API keys this way. In a config file, the `env` block sets them for that server only. Some apps also let you reference a variable instead of writing the secret into the file: Claude Code understands `${API_KEY}`, Cursor `${env:API_KEY}`, and Gemini CLI `$API_KEY`.
 
 :::checklist
 - Never paste API keys into a chat with an AI; put them in the config's `env` or `headers`
@@ -128,7 +128,4 @@ An **environment variable** is a named setting a program can read, such as `GITH
 - Store keys you might need again in a password manager
 - If a key leaks, revoke it on the service's website straight away and make a new one
 :::
-
-> [!NOTE]
-> Some apps let you reference a variable instead of writing the secret into the file. Claude Code understands `${API_KEY}`, Cursor understands `${env:API_KEY}`, and Gemini CLI understands `$API_KEY`. You'll see these in Chapters 4 and 5.
 

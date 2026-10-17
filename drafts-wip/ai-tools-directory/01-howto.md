@@ -37,7 +37,7 @@ Not sure where to start? These are safe first choices in the most common categor
 | If you want to… | Start with | Price |
 |---|---|---|
 | Ask questions and write | ChatGPT, Claude, or Gemini | {{Freemium}} |
-| Research with sources | Perplexity or NotebookLM | {{Freemium}} |
+| Research with sources | Perplexity or Gemini Notebook | {{Freemium}} |
 | Make an image | ChatGPT Images or Gemini | {{Freemium}} |
 | Make a short video | Google Veo (Flow) or Kling | {{Freemium}} |
 | Transcribe a meeting | Otter or Fathom | {{Freemium}} |

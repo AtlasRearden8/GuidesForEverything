@@ -48,7 +48,7 @@ AI tutors explain things at your pace, quiz you, and practice languages with you
 | **ChatGPT study mode** | Step-by-step tutoring instead of straight answers | {{Freemium}} |
 | **Claude learning mode** | Guides you to work things out yourself | {{Freemium}} |
 | **Gemini Guided Learning** | Gemini as a patient tutor | {{Freemium}} |
-| **NotebookLM** | Study guides, quizzes, and audio from your notes | {{Freemium}} |
+| **Gemini Notebook** | Study guides, quizzes, and audio from your notes | {{Freemium}} |
 | **Khanmigo** | Khan Academy's tutor; free for teachers | {{Freemium}} |
 | **Photomath** | Step-by-step math help from a photo | {{Freemium}} |
 | **Google Lens** | Point your camera at homework for help | {{Free}} |

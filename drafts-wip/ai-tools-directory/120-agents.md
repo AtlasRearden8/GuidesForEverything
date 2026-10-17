@@ -6,7 +6,7 @@
 | Tool | What it does | Price |
 |---|---|---|
 | **ChatGPT agent** | Browses, uses apps, and completes multi-step tasks | {{Paid}} |
-| **Claude Cowork** | Desktop agent that works on your files, browser, and connectors | {{Paid}} |
+| **Claude desktop agent** (formerly Cowork) | Agent in the Claude app that works on your files, browser, and connectors | {{Paid}} |
 | **Gemini Agent** | Google's multi-step task agent | {{Paid}} |
 | **Manus** | General autonomous agent for research and building | {{Freemium}} |
 | **Genspark** | Super-agent for slides, sheets, calls, and research | {{Freemium}} |

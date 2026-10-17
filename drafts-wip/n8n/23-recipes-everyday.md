@@ -89,7 +89,5 @@ The next three chapters are a cookbook: twelve complete workflows you can build 
 :::checklist
 - I've built at least one recipe end to end
 - It uses Remove Duplicates or a data table so it never repeats work
-- It has my error workflow attached
-- I tested it with **Execute workflow** before publishing
 :::
 

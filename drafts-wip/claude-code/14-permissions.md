@@ -153,8 +153,6 @@ Claude Code reads settings from several files. When the same setting appears in 
 ```
 
 :::checklist
-- I know which permission mode I'm in from the status bar
 - I've added an allow rule for a safe command I run often
 - My `.env` and secret files are protected by deny rules
-- I never use bypass mode on my everyday computer
 :::
