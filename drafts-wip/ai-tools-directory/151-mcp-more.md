@@ -176,9 +176,3 @@
 > [!CAUTION]
 > An MCP server can read and change whatever you let it reach. Install community servers only from sources you trust, give the narrowest access possible, and review what an agent wants to do before you approve it.
 
-:::checklist
-- I prefer the vendor's official server over a community copy
-- I gave read-only access where I could
-- I know how to remove a server from my AI app
-:::
-

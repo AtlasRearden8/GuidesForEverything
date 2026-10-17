@@ -73,7 +73,7 @@
 | **Khroma**, **Coolors** | AI color palette generators | {{Freemium}} |
 :::
 
-## 3D, worlds, and game assets
+## Worlds, 3D models, and game assets
 
 **3D generation** turns a prompt or a photo into a model you can spin around, print, or drop into a game.
 

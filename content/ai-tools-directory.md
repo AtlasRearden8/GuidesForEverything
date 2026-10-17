@@ -506,7 +506,7 @@ An **IDE** (integrated development environment) is the app programmers write cod
 | **Khroma**, **Coolors** | AI color palette generators | {{Freemium}} |
 :::
 
-## 3D, worlds, and game assets
+## Worlds, 3D models, and game assets
 
 **3D generation** turns a prompt or a photo into a model you can spin around, print, or drop into a game.
 
@@ -2581,55 +2581,44 @@ Both platforms let you drop AI steps into workflows. In Zapier you pick an app; 
 > [!CAUTION]
 > An MCP server can read and change whatever you let it reach. Install community servers only from sources you trust, give the narrowest access possible, and review what an agent wants to do before you approve it.
 
-:::checklist
-- I prefer the vendor's official server over a community copy
-- I gave read-only access where I could
-- I know how to remove a server from my AI app
-:::
-
 # Index of Categories {.unnumbered}
 
-:::cols
-- **Chat Assistants**: general AI, extensions, desktop apps, companions
-- **Coding**: editors, agents, IDE extensions, app and site builders, review, testing
-- **Images and Design**: generation, photo editing, diagrams, 3D, game assets
-- **Video**: generation, avatars, editing, dubbing
-- **Audio**: voices, speech APIs, meeting notes, music
-- **Writing**: grammar, copy, translation, AI detectors
-- **Research**: search engines, academic tools
-- **Education**: tutors, languages, teacher tools
-- **Health**: wellbeing apps, clinician tools
-- **Productivity**: notes, email, calendar, projects, slides, data, PDFs
-- **Business**: overview of AI at work
-- **Sales and CRM**: CRMs, prospecting, outreach
-- **Marketing and SEO**: SEO, AI visibility, social, ads, email
-- **Customer Support**: help desks, phone agents
-- **HR and Recruiting**: employer tools, job seekers
-- **Legal**: research, contracts, practice tools
-- **Finance**: accounting, personal finance
-- **Investing Research**: market data and research
-- **Automation**: workflow platforms and RPA
-- **Agents**: ready-made agents, browsers, frameworks, sandboxes
-- **Developer Infrastructure**: APIs, open models, inference, local runners, vectors, evals, hosting
-- **Connectors**: Claude connectors and plugins, ChatGPT apps, Zapier and n8n
-- **MCP Servers**: by domain, plus registries and tools
+:::compact
+| Category | What you will find |
+|---|---|
+| **Chat Assistants** | general AI, extensions, desktop apps, companions |
+| **Coding** | editors, agents, IDE extensions, app and site builders, review, testing |
+| **Images and Design** | generation, photo editing, diagrams, 3D, game assets |
+| **Video** | generation, avatars, editing, dubbing |
+| **Audio** | voices, speech APIs, meeting notes, music |
+| **Writing** | grammar, copy, translation, AI detectors |
+| **Research** | search engines, academic tools |
+| **Education** | tutors, languages, teacher tools |
+| **Health** | wellbeing apps, clinician tools |
+| **Productivity** | notes, email, calendar, projects, slides, data, PDFs |
+| **Business** | overview of AI at work |
+| **Sales and CRM** | CRMs, prospecting, outreach |
+| **Marketing and SEO** | SEO, AI visibility, social, ads, email |
+| **Customer Support** | help desks, phone agents |
+| **HR and Recruiting** | employer tools, job seekers |
+| **Legal** | research, contracts, practice tools |
+| **Finance** | accounting, personal finance |
+| **Investing Research** | market data and research |
+| **Automation** | workflow platforms and RPA |
+| **Agents** | ready-made agents, browsers, frameworks, sandboxes |
+| **Developer Infrastructure** | APIs, open models, inference, local runners, vectors, evals, hosting |
+| **Connectors** | Claude connectors and plugins, ChatGPT apps, Zapier and n8n |
+| **MCP Servers** | by domain, plus registries and tools |
 :::
 
 # Alphabetical Index {.unnumbered}
 
 Every tool in the directory, with the chapter where you will find it. Some tools appear in more than one chapter.
 
-### 0–9
-
 :::cols
 - **10Web**: Coding
 - **11x**: Sales
 - **15Five**: HR
-:::
-
-### A
-
-:::cols
 - **Abacus.AI ChatLLM**: Chat
 - **Abridge**: Health
 - **ACE Studio**: Audio
@@ -2764,11 +2753,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Azure DevOps MCP**: MCP
 - **Azure Document Intelligence**: Productivity
 - **Azure MCP**: MCP
-:::
-
-### B
-
-:::cols
 - **B12**: Coding
 - **Babbel**: Education
 - **BambooHR**: HR
@@ -2833,11 +2817,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Builder.io (Fusion)**: Coding
 - **Buildkite MCP**: MCP
 - **Burp Suite MCP**: MCP
-:::
-
-### C
-
-:::cols
 - **Cal AI**: Health
 - **Cal.com**: Productivity
 - **Cal.com MCP**: MCP
@@ -2992,11 +2971,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Cursor CLI**: Coding
 - **Customer Support**: Connectors
 - **CustomGPT.ai**: Support
-:::
-
-### D
-
-:::cols
 - **Daloopa**: Investing, Connectors, MCP
 - **Danelfin**: Investing
 - **Databricks**: MCP
@@ -3070,11 +3044,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Durable**: Coding
 - **Dyad**: Coding
 - **Dzine**: Images
-:::
-
-### E
-
-:::cols
 - **E2B**: Agents
 - **Eden AI**: Dev infra
 - **Eduaide**: Education
@@ -3112,11 +3081,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Explorium MCP**: MCP
 - **Expo MCP**: MCP
 - **Express**: Connectors
-:::
-
-### F
-
-:::cols
 - **FaceApp**: Images
 - **Factory**: Coding
 - **FactSet**: MCP
@@ -3175,11 +3139,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Freshsales**: Sales
 - **Front**: Support
 - **Fyxer AI**: Productivity
-:::
-
-### G
-
-:::cols
 - **Galileo**: Dev infra
 - **Galileo / Stitch**: Coding
 - **Gamma**: Productivity
@@ -3283,11 +3242,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Guru**: Productivity, Connectors
 - **Guru MCP**: MCP
 - **Gusto**: HR
-:::
-
-### H
-
-:::cols
 - **Hailuo**: Video
 - **Happy Scribe**: Audio
 - **HARPA AI**: Chat
@@ -3341,11 +3295,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Hyperbrowser**: Agents
 - **Hyperbrowser MCP**: MCP
 - **Hypotenuse AI**: Writing
-:::
-
-### I
-
-:::cols
 - **iAsk**: Research
 - **IBM watsonx.ai**: Dev infra
 - **ICD-10 Codes**: Connectors, MCP
@@ -3372,11 +3321,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Iris.ai**: Research
 - **Ironclad**: Legal
 - **iZotope Ozone**: Audio
-:::
-
-### J
-
-:::cols
 - **Jamie**: Audio
 - **Jan**: Dev infra
 - **Jasper**: Writing
@@ -3392,11 +3336,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Julius AI**: Productivity
 - **Junie**: Coding
 - **Juro**: Legal
-:::
-
-### K
-
-:::cols
 - **Kaedim**: Images
 - **Kaggle**: Dev infra
 - **Kagi**: Research
@@ -3440,11 +3379,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Krisp**: Audio
 - **Kubernetes MCP**: MCP
 - **Kustomer**: Support
-:::
-
-### L
-
-:::cols
 - **Lakera**: Dev infra
 - **LALAL.AI**: Audio
 - **Lambda**: Dev infra
@@ -3525,11 +3459,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Lusha**: Sales, Connectors
 - **Lusha MCP**: MCP
 - **Lyria**: Audio
-:::
-
-### M
-
-:::cols
 - **mabl**: Coding
 - **MacWhisper**: Audio
 - **Madgicx**: Marketing
@@ -3663,11 +3592,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **MusicFX DJ**: Audio
 - **Mux MCP**: MCP
 - **MyFitnessPal**: Health
-:::
-
-### N
-
-:::cols
 - **n8n**: Automation, Connectors
 - **n8n instance MCP**: MCP
 - **Nabla**: Health
@@ -3713,11 +3637,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **NVIDIA Broadcast**: Audio
 - **NVIDIA NIM**: Dev infra
 - **Nx MCP**: MCP
-:::
-
-### O
-
-:::cols
 - **Obsidian**: Productivity
 - **Obsidian MCP**: MCP
 - **Octoparse**: Agents
@@ -3753,11 +3672,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Outreach**: Sales
 - **Oxylabs**: Agents
 - **Oxylabs MCP**: MCP
-:::
-
-### P
-
-:::cols
 - **Pabbly Connect**: Automation
 - **Paddle MCP**: MCP
 - **PagerDuty**: Connectors
@@ -3867,11 +3781,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Pydantic AI**: Agents
 - **Pydantic Logfire**: Dev infra
 - **Pylon**: Support
-:::
-
-### Q
-
-:::cols
 - **QA Wolf**: Coding
 - **Qdrant**: Dev infra, Connectors, MCP
 - **Qodo**: Coding
@@ -3887,11 +3796,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Qwen Chat**: Chat
 - **Qwen Code**: Coding
 - **Qwen-Image**: Images
-:::
-
-### R
-
-:::cols
 - **Ragas**: Dev infra
 - **RAGFlow**: Dev infra
 - **Ragie**: Dev infra
@@ -3960,11 +3864,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Runware**: Dev infra
 - **Runway**: Video
 - **Rytr**: Writing
-:::
-
-### S
-
-:::cols
 - **Sage Copilot**: Finance
 - **Sales**: Connectors
 - **Salesforce**: Connectors
@@ -4124,11 +4023,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Synthesis Tutor**: Education
 - **Synthesizer V**: Audio
 - **Synthflow**: Support
-:::
-
-### T
-
-:::cols
 - **T3 Chat**: Chat
 - **Tabby**: Coding
 - **Tableau Agent**: Productivity
@@ -4195,11 +4089,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Typefully**: Marketing
 - **Typesense**: Dev infra
 - **TypingMind**: Chat
-:::
-
-### U
-
-:::cols
 - **Ubersuggest**: Marketing
 - **Udio**: Audio
 - **UiPath**: Automation
@@ -4221,11 +4110,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Upstash MCP**: MCP
 - **Upstash Vector**: Dev infra
 - **UpToDate Expert AI**: Health
-:::
-
-### V
-
-:::cols
 - **v0**: Coding
 - **Val Town**: Automation
 - **Vanta MCP**: MCP
@@ -4261,11 +4145,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **VoltAgent**: Agents
 - **Voyage AI**: Dev infra
 - **VS Code + GitHub Copilot**: Coding
-:::
-
-### W
-
-:::cols
 - **Wan**: Video
 - **Warmly**: Sales
 - **Warp**: Coding
@@ -4309,22 +4188,12 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **Writer Palmyra**: Dev infra
 - **Writesonic**: Writing
 - **Wysa**: Health
-:::
-
-### X
-
-:::cols
 - **xAI API**: Dev infra
 - **XcodeBuildMCP**: MCP
 - **Xcode Intelligence**: Coding
 - **Xero**: Finance
 - **Xero MCP**: MCP
 - **Xmind**: Productivity
-:::
-
-### Y
-
-:::cols
 - **Yellow.ai**: Support
 - **Yoodli**: HR
 - **You.com**: Research
@@ -4332,11 +4201,6 @@ Every tool in the directory, with the chapter where you will find it. Some tools
 - **YouTube auto-dubbing**: Video
 - **YouTube transcript MCP**: MCP
 - **Yuanbao**: Chat
-:::
-
-### Z
-
-:::cols
 - **Z.ai API**: Dev infra
 - **Z.ai Chat**: Chat
 - **Zapier**: Automation, Connectors

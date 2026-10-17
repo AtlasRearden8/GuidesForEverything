@@ -13,13 +13,13 @@
   "ai-tools-directory": {
     "slug": "ai-tools-directory",
     "title": "AI Tools, Connectors & MCP Directory",
-    "subtitle": "Hundreds of AI tools, connectors, and MCP servers, sorted by category, each with a plain-English description and a price label",
+    "subtitle": "More than 1,500 AI tools, connectors, and MCP servers, sorted into 23 categories, each with a plain-English description and a price label",
     "volume": 9,
     "kicker": "A Field Guide",
     "edition": "October 2026",
     "accent": "#5B4BDB",
-    "pages": 28,
-    "bytes": 1308723
+    "pages": 107,
+    "bytes": 5117334
   },
   "claude-code": {
     "slug": "claude-code",
@@ -29,8 +29,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#C8603C",
-    "pages": 154,
-    "bytes": 4913886
+    "pages": 152,
+    "bytes": 4944563
   },
   "github": {
     "slug": "github",
@@ -97,5 +97,16 @@
     "accent": "#7C4DDB",
     "pages": 110,
     "bytes": 2412245
+  },
+  "ai-trading": {
+    "slug": "ai-trading",
+    "title": "Autonomous AI Trading",
+    "subtitle": "Build, test, and run a hands-off trading bot, step by step",
+    "volume": 10,
+    "kicker": "A Beginner’s Manual",
+    "edition": "October 2026",
+    "accent": "#0F8A5F",
+    "pages": 17,
+    "bytes": 499279
   }
 }
