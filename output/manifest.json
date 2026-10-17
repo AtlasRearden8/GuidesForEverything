@@ -207,5 +207,16 @@
     "accent": "#0E7490",
     "pages": 42,
     "bytes": 676756
+  },
+  "prompt-maximization": {
+    "slug": "prompt-maximization",
+    "title": "Get the Most from Every AI Plan",
+    "subtitle": "Understand usage limits, stretch free and paid plans, batch your work, and rotate between ChatGPT, Claude, Gemini, Grok and Perplexity",
+    "volume": 20,
+    "kicker": "A Beginner's Manual",
+    "edition": "October 2026",
+    "accent": "#7E22CE",
+    "pages": 43,
+    "bytes": 800586
   }
 }
