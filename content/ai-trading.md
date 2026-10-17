@@ -15,142 +15,187 @@ blurb: |
 disclaimer: This manual is education, not financial, legal, or tax advice. Trading involves risk, including the loss of all money you put in; past and simulated results do not predict future returns. Only trade money you can afford to lose, and paper-trade first. Broker features, fees, rules, and tax law were checked against official sources in October 2026 and change often; confirm current details with your broker, the IRS, FINRA, the SEC, or a qualified professional before acting.
 ---
 
-# Market Data
+# Strategies in Plain English
 
-Your bot can only be as good as the prices it sees. **Market data** is the stream of prices and trading volume coming out of the exchanges. In this chapter you'll download your first prices, understand what they mean, and learn how data goes wrong.
+A **strategy** is a set of rules precise enough that a computer can follow them without asking you. This chapter covers six classic beginner strategies, from the safest to the most active, each with plain-English rules and a short Python function. None of them is a secret money machine; each works in some markets and fails in others.
 
 :::summary In this chapter
-- Bars, OHLCV, and timeframes
-- Feeds: IEX versus SIP
-- Downloading daily bars with `alpaca-py`
-- Adjusted prices, missing data, and sanity checks
+- DCA and rebalancing bots: the safest autonomous start
+- Moving-average trend following
+- Mean reversion
+- Momentum
+- Grid bots for crypto
+- How to choose
 :::
 
-## Bars and OHLCV
+## 1. Dollar-cost averaging (DCA)
 
-Prices are usually grouped into **bars** (also called candles). A daily bar summarises one trading day with five numbers, known as **OHLCV**:
+**Rule:** Every week (or month), buy a fixed dollar amount of the same fund, no matter the price.
 
-| Field | Meaning |
-|---|---|
-| Open | First trade price of the period |
-| High | Highest price |
-| Low | Lowest price |
-| Close | Last trade price |
-| Volume | How many shares traded |
+**Dollar-cost averaging** doesn't try to predict anything. When prices are low, your fixed amount buys more shares; when high, fewer. It's the simplest useful bot, and a great first project because there's almost nothing to go wrong.
 
-The bot in this manual uses **daily closes**: one number per day per symbol.
+```python title=dca.py
+from alpaca.trading.requests import MarketOrderRequest
+from alpaca.trading.enums import OrderSide, TimeInForce
 
-## Feeds: IEX and SIP
 
-U.S. stocks trade on many exchanges at once. The **SIP** (securities information processor) combines all of them. **IEX** is a single exchange. Alpaca's free Basic plan gives you real-time IEX data, while for historical requests it can serve full SIP data as long as you don't ask for the most recent 15 minutes. For a daily bot that reads *yesterday's* closes, the free plan is plenty.
-
-## Your first data script
-
-Create a file named `hello_data.py`:
-
-```python title=hello_data.py
-import os
-from datetime import datetime, timedelta, timezone
-
-from dotenv import load_dotenv
-from alpaca.data.historical import StockHistoricalDataClient
-from alpaca.data.requests import StockBarsRequest
-from alpaca.data.timeframe import TimeFrame
-from alpaca.data.enums import Adjustment
-
-load_dotenv()
-client = StockHistoricalDataClient(
-    os.environ["ALPACA_API_KEY"], os.environ["ALPACA_SECRET_KEY"]
-)
-
-request = StockBarsRequest(
-    symbol_or_symbols=["SPY", "TLT"],
-    timeframe=TimeFrame.Day,
-    start=datetime.now(timezone.utc) - timedelta(days=30),
-    adjustment=Adjustment.ALL,
-)
-bars = client.get_stock_bars(request).df
-print(bars.tail(10))
+def dca_buy(trading, symbol: str, dollars: float):
+    """Buy a fixed dollar amount (fractional shares allowed)."""
+    order = MarketOrderRequest(
+        symbol=symbol,
+        notional=dollars,          # dollars, not shares
+        side=OrderSide.BUY,
+        time_in_force=TimeInForce.DAY,
+    )
+    return trading.submit_order(order)
 ```
 
-Run it with `python hello_data.py`. You'll see a table with a two-level index (symbol, then timestamp) and columns including `open`, `high`, `low`, `close`, and `volume`.
+`notional` means "spend this many dollars." Alpaca then buys a **fractional share** (part of a share) if needed. Fractional dollar orders use a `DAY` time in force: the order is valid only for that trading day.
 
-What each part does:
+## 2. Rebalancing
 
-- `StockHistoricalDataClient` is the object that talks to Alpaca's data service.
-- `StockBarsRequest` describes what you want: which symbols, what bar size, and from when.
-- `Adjustment.ALL` asks for prices **adjusted** for stock splits and dividends (explained below).
-- `.df` turns the answer into a pandas **DataFrame**, a table you can calculate with.
+**Rule:** Keep a fixed mix, say 60% stocks and 40% bonds. When the mix drifts more than 5 percentage points from target, trade back to it.
 
-### Reshape into one column per symbol
+**Rebalancing** quietly sells what has risen and buys what has fallen. It's a classic, low-turnover approach and an excellent autonomous bot.
 
-Strategies are easier to write when each symbol is its own column:
+```python title=rebalance.py
+def rebalance_plan(values: dict, targets: dict, band=0.05):
+    """Return {symbol: dollars to buy (+) or sell (-)}.
 
-```python
-closes = bars["close"].unstack(level=0)   # rows: dates, cols: symbols
-closes.index = closes.index.date          # drop the time of day
-print(closes.tail())
+    values:  current dollar value held of each symbol
+    targets: desired weights that add up to 1.0
+    """
+    total = sum(values.values())
+    plan = {}
+    for sym, weight in targets.items():
+        current = values.get(sym, 0.0)
+        drift = current / total - weight if total else -weight
+        if abs(drift) > band:
+            plan[sym] = round(weight * total - current, 2)
+    return plan
 ```
 
-### Crypto data
-
-Alpaca's crypto data doesn't even need keys:
+Example: you hold $7,000 of VTI and $3,000 of BND, targeting 60/40. VTI is at 70%, ten points over, so the plan says sell $1,000 of VTI and buy $1,000 of BND.
 
 ```python
-from alpaca.data.historical import CryptoHistoricalDataClient
-from alpaca.data.requests import CryptoBarsRequest
-
-crypto = CryptoHistoricalDataClient()
-req = CryptoBarsRequest(
-    symbol_or_symbols=["BTC/USD"],
-    timeframe=TimeFrame.Day,
-    start=datetime.now(timezone.utc) - timedelta(days=30),
-)
-print(crypto.get_crypto_bars(req).df.tail())
+>>> rebalance_plan({"VTI": 7000, "BND": 3000}, {"VTI": .6, "BND": .4})
+{'VTI': -1000.0, 'BND': 1000.0}
 ```
 
-Note the slash: Alpaca writes crypto pairs as `BTC/USD`.
+> [!TIP]
+> DCA and rebalancing are the safest autonomous start. Many readers should build one of these first, run it for a few months, and only then move on to signal-based strategies.
 
-## Adjusted prices
+## 3. Moving-average trend following
 
-When a company does a 4-for-1 **stock split**, the price drops to a quarter overnight, but nobody lost money. Unadjusted data shows a fake 75% crash, and your bot might sell in panic. **Adjusted** data rewrites history to remove that jump, and also accounts for **dividends** (cash payments to shareholders). Always backtest and signal on adjusted prices.
+**Rule:** Own the fund when its 50-day average price is above its 200-day average. Otherwise hold cash.
 
-## How data goes wrong
+A **moving average** (MA) is the average closing price over the last N days, recalculated each day. **Trend following** assumes that prices that have been rising tend to keep rising for a while. The 50/200 crossover is slow and trades only a few times a year. Its goal is to sidestep long, deep declines, at the cost of being late on both the way in and the way out, and of getting "whipsawed" in choppy markets.
 
-| Problem | Symptom | Defense |
-|---|---|---|
-| Missing days | Fewer rows than expected | Require a minimum row count |
-| Today's partial bar | Last "close" is a mid-day price | Drop today's row before computing signals |
-| Bad tick | One absurd price | Reject moves over, say, 25% in a day for an ETF |
-| Stale data | Last date is days old | Check the last date is the previous trading day |
-| Rate limits | HTTP 429 errors | Fewer requests; ask for many symbols at once |
+```python title=signals.py
+import pandas as pd
 
-A quick sanity check you'll reuse in the bot:
+
+def trend_signal(closes: pd.Series, fast=50, slow=200) -> str:
+    """'BUY' if the fast average is above the slow one, else 'SELL'.
+    Returns 'HOLD' if there isn't enough history yet."""
+    closes = closes.dropna()
+    if len(closes) < slow:
+        return "HOLD"
+    fast_ma = closes.rolling(fast).mean().iloc[-1]
+    slow_ma = closes.rolling(slow).mean().iloc[-1]
+    return "BUY" if fast_ma > slow_ma else "SELL"
+```
+
+`rolling(50).mean()` computes the 50-day moving average for every day; `.iloc[-1]` takes the latest one. This is the strategy your full bot uses in Chapters 14 and 15.
+
+## 4. Mean reversion
+
+**Rule:** When a fund falls unusually far below its recent average, buy; sell when it returns to the average.
+
+**Mean reversion** bets that stretched prices snap back. A common measure is the **z-score**: how many standard deviations today's price is from its 20-day average. (**Standard deviation** measures how spread out prices usually are.)
 
 ```python
-def sane(series, max_jump=0.25, min_rows=200):
-    """True if a price series looks usable."""
-    s = series.dropna()
-    if len(s) < min_rows:
-        return False
-    biggest_move = s.pct_change().abs().max()
-    return biggest_move < max_jump
+def zscore_signal(closes: pd.Series, window=20, entry=-2.0) -> str:
+    """'BUY' when price is unusually low, 'SELL' when back to normal."""
+    closes = closes.dropna()
+    if len(closes) < window:
+        return "HOLD"
+    recent = closes.iloc[-window:]
+    z = (closes.iloc[-1] - recent.mean()) / recent.std()
+    if z <= entry:
+        return "BUY"
+    if z >= 0:
+        return "SELL"
+    return "HOLD"
 ```
 
 > [!WARNING]
-> Free, unofficial data sources such as the `yfinance` library are handy for quick experiments, but they scrape public websites, can break without warning, and aren't licensed for every use. For anything your bot trades on, use your broker's official data.
+> Mean reversion fails badly when a drop is the start of a real collapse. Always pair it with a stop-loss (Chapter 13), and use it on diversified ETFs, not single companies.
 
-## Other data you might want
+## 5. Momentum
 
-- **News:** Alpaca's data API includes news articles for stocks and crypto (used in Chapter 10).
-- **Market calendar and clock:** Alpaca's trading API tells you if the market is open and lists trading days and early closes (Chapter 16).
-- **Fundamentals and alternative data:** Company earnings, sentiment, and so on. Skip these for your first bot.
+**Rule:** Once a month, rank your watchlist by its return over the past 12 months, skipping the most recent month. Hold the top two.
+
+**Momentum** compares assets with each other: the recent winners tend to keep outperforming for a while. Skipping the last month avoids short-term reversals.
+
+```python
+def momentum_picks(closes: pd.DataFrame, top_n=2,
+                   lookback=252, skip=21) -> list[str]:
+    """Symbols with the best 12-1 month return."""
+    if len(closes) < lookback:
+        return []
+    past = closes.iloc[-lookback]
+    recent = closes.iloc[-skip]
+    returns = (recent / past - 1).dropna()
+    return list(returns.sort_values(ascending=False).index[:top_n])
+```
+
+There are about 252 trading days in a year and 21 in a month, which is where those numbers come from.
+
+## 6. Grid bots (crypto)
+
+**Rule:** Place buy orders at evenly spaced prices below the current price and sell orders above it. Each time a buy fills, place a sell one level higher.
+
+A **grid bot** profits from prices bouncing up and down within a range. It's popular on crypto exchanges.
+
+```python
+def grid_levels(low: float, high: float, n: int) -> list[float]:
+    """n+1 evenly spaced prices from low to high."""
+    step = (high - low) / n
+    return [round(low + i * step, 2) for i in range(n + 1)]
+
+# grid_levels(60000, 70000, 5)
+# -> [60000.0, 62000.0, 64000.0, 66000.0, 68000.0, 70000.0]
+```
+
+> [!CAUTION]
+> Grid bots have a nasty failure mode: if the price falls out of the bottom of your range and keeps going, you end up holding a pile of coins bought all the way down. Decide in advance what the bot does below the range (usually: stop and alert you), and make sure fees are smaller than the gap between levels.
+
+## Choosing your first strategy
+
+| Strategy | Trades/year | Hardest part | Beginner fit |
+|---|---|---|---|
+| DCA | 12–52 | Nothing | Best |
+| Rebalancing | 1–4 | Cash flows | Best |
+| MA trend | 2–6 per symbol | Whipsaws | Very good |
+| Mean reversion | 10–30 | Falling knives | Okay with stops |
+| Momentum | 12 rebalances | Turnover, taxes | Good |
+| Grid | Many | Breakouts, fees | Later |
+
+> [!NOTE]
+> A strategy's rules are only a hypothesis. Chapter 11 shows you how to test whether a strategy *would* have worked, and why "would have" is a weaker promise than it sounds.
+
+```prompt
+Explain the 50/200-day moving-average strategy to a beginner. Then
+list three market conditions where it tends to lose money, with a
+historical example of each. Be honest about its weaknesses.
+```
 
 :::checklist
-- I ran `hello_data.py` and saw real daily bars
-- I can reshape bars into one column per symbol
-- I use adjusted prices for anything my bot decides with
-- I know the five ways data goes wrong and how to check for them
+- I can describe each strategy's rule in one sentence
+- I understand why DCA and rebalancing are the safest start
+- I've chosen a first strategy to test (the MA trend is the default here)
+- I know each strategy's main way of failing
 :::
 
 # Glossary {.unnumbered}
