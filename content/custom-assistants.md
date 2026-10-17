@@ -755,7 +755,7 @@ meal-planner/
 
 Each recipe gives a name, a description for skill systems, and instructions you can paste into any Project or skill. Adapt the details in brackets.
 
-## Recipe 1: Plain-English explainer
+### Recipe 1: Plain-English explainer
 
 **Description:** Use when the user pastes a confusing document (a bill, a contract clause, a letter) and wants it explained simply.
 
@@ -767,7 +767,7 @@ I should ask. Quote the exact sentence for any deadline or amount.
 Do not give legal or financial advice; suggest who to ask if it matters.
 ```
 
-## Recipe 2: Email tone checker
+### Recipe 2: Email tone checker
 
 **Description:** Use when the user asks whether an email sounds right, or wants it rewritten to be clearer or kinder.
 
@@ -778,7 +778,7 @@ keeps my meaning, is 20% shorter, and ends with a clear request.
 Keep my voice: casual, friendly, no corporate jargon.
 ```
 
-## Recipe 3: Meeting notes to action items
+### Recipe 3: Meeting notes to action items
 
 **Description:** Use when the user pastes meeting notes or a transcript and wants decisions and tasks.
 
@@ -788,7 +788,7 @@ Open questions (bullets). Only include owners and dates that appear in
 the notes; otherwise write "unassigned" or "no date". Under 250 words.
 ```
 
-## Recipe 4: Study coach
+### Recipe 4: Study coach
 
 **Description:** Use when the user wants to study a topic from their class files using quizzes and explanations.
 
@@ -799,7 +799,7 @@ and wrong. Every 5 questions, give a short summary of my weak spots.
 Cite the file and section for each explanation.
 ```
 
-## Recipe 5: Household manual bot
+### Recipe 5: Household manual bot
 
 **Description:** Use when the user asks how to operate, clean, reset or troubleshoot an appliance or device in the home.
 
@@ -810,7 +810,7 @@ involves gas, high voltage or water near electricity, say so clearly
 and stop. If the answer isn't in the manuals, say "Not in your manuals."
 ```
 
-## Recipe 6: Brand voice writer
+### Recipe 6: Brand voice writer
 
 **Description:** Use when the user wants social posts, product descriptions or newsletters written in the company's voice.
 
@@ -820,7 +820,7 @@ Follow style-guide.md exactly. Voice: warm, confident, no hype words
 Mark any factual claim that isn't in product-facts.md with [CHECK].
 ```
 
-## Recipe 7: Trip planner
+### Recipe 7: Trip planner
 
 **Description:** Use when the user wants an itinerary, packing list or day plan for a trip.
 
@@ -831,7 +831,7 @@ estimated travel times, and one rainy-day alternative per day.
 Remind me to confirm opening hours and prices on official sites.
 ```
 
-## Recipe 8: Job application helper
+### Recipe 8: Job application helper
 
 **Description:** Use when the user pastes a job posting and wants a tailored résumé summary or cover letter.
 
@@ -841,7 +841,7 @@ experience matches each (be honest about gaps). Then write a 150-word
 cover-letter opening. Never invent experience, titles, dates or numbers.
 ```
 
-## Recipe 9: Spreadsheet formula helper
+### Recipe 9: Spreadsheet formula helper
 
 **Description:** Use when the user needs a formula for Excel or Google Sheets.
 
@@ -851,7 +851,7 @@ then explain each part in one line, then one example with sample data.
 Prefer simple, widely supported functions. Warn about common errors.
 ```
 
-## Recipe 10: Customer reply drafter
+### Recipe 10: Customer reply drafter
 
 **Description:** Use when the user pastes a customer message and wants a reply based on company policy.
 
@@ -862,7 +862,7 @@ next step. If the policy does not cover the case, draft a holding reply
 and flag "Needs a human decision". Never promise refunds not in policy.
 ```
 
-## Recipe 11: Recipe adapter
+### Recipe 11: Recipe adapter
 
 **Description:** Use when the user wants to scale, substitute or simplify a recipe.
 
@@ -872,7 +872,7 @@ the math for each ingredient. Offer substitutions with notes on how
 they change taste or texture. Use US measurements.
 ```
 
-## Recipe 12: Personal research brief
+### Recipe 12: Personal research brief
 
 **Description:** Use when the user wants a balanced summary of a topic before making a decision.
 

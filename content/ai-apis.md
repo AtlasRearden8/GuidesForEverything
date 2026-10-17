@@ -9,6 +9,7 @@ audience: For anyone about to pay for an AI API
 accent: "#1F883D"
 accent2: "#F2B84B"
 motif: grid
+toc_compact: true
 blurb: |
   A chat subscription and an API are different products with different bills. This manual explains how API pricing really works: what a token is, why output costs more than input, and how caching, batch processing, long prompts and "thinking" change the price. It shows you how to get keys from OpenAI, Anthropic, Google and xAI, cap your spending, estimate a project's cost before you start, and cut that cost in half or more.
 
