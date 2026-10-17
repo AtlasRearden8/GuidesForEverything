@@ -56,6 +56,14 @@ These tools sign in to Notion with **OAuth** (a "log in and approve" screen) and
 > [!TIP]
 > If a tool says it "can't find" your database, open the database's **••• › More › Connections** and check the tool is listed. Chapter 25 explains why.
 
+## Choosing a no-code tool
+
+| Tool | Good for | Notes |
+|---|---|---|
+| **Zapier** | The widest range of apps | Easiest for beginners |
+| **Make** | Visual, multi-step scenarios | Drag-and-drop builder |
+| **n8n** | Self-hosting and complex logic | See the *n8n* manual |
+
 :::checklist
 - I opened Settings › Connections
 - I pasted a link as a preview

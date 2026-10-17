@@ -581,6 +581,15 @@ Select one or more blocks and the menu shows how many words and characters they 
 7. **Add a reminder** to follow up: `@remind next Monday 10am`.
 :::
 
+## When shortcuts don't work
+
+| Problem | Try this |
+|---|---|
+| `/` just types a slash | You're inside a code block or a database cell; click into a normal text line |
+| Markdown didn't convert | Type the symbol at the very *start* of a line, then a space |
+| `@` menu keeps popping up | Press <kbd>Esc</kbd> to type a plain @ |
+| Shortcut does nothing on Windows | Another app may use <kbd>Ctrl</kbd> + <kbd>Shift</kbd>; try the slash command instead |
+
 :::checklist
 - I can open the slash menu and filter it by typing
 - I know at least five Markdown shortcuts
@@ -1593,6 +1602,15 @@ The **Send webhook** action sends an HTTP POST request (a small package of data)
 
 Free plan users can still *use* automations that come in templates, but can't edit them. Creating automations needs full access to the database.
 
+## When automations misbehave
+
+| Problem | Try this |
+|---|---|
+| Nothing happens | Check the trigger conditions, and that pages aren't in Private |
+| It ran twice | Two automations share a trigger; combine them |
+| A multi-trigger rule never fires | "All of these" edits must happen within about three seconds; use a more specific trigger |
+| Gmail action is greyed out | Only the person who linked Gmail can edit that action |
+
 :::checklist
 - I made a database template with a checklist
 - I set a template to repeat weekly
@@ -2516,6 +2534,13 @@ Search my Gmail for emails from Acme about the contract this month,
 summarize where things stand, and draft a polite reply to the latest one.
 ```
 
+## Tips for a calm calendar
+
+- **Color-code** each calendar and database so you can tell work, home, and deadlines apart at a glance.
+- **Hide** calendars you only need occasionally, rather than disconnecting them.
+- **Drag a Notion item** to a new day to reschedule it in the database too (you need Can edit content access).
+- **Start meeting notes from the event** so the notes page is named and dated for you.
+
 :::checklist
 - I installed Notion Calendar and connected a calendar
 - I connected my Notion workspace
@@ -2659,6 +2684,14 @@ These tools sign in to Notion with **OAuth** (a "log in and approve" screen) and
 
 > [!TIP]
 > If a tool says it "can't find" your database, open the database's **••• › More › Connections** and check the tool is listed. Chapter 25 explains why.
+
+## Choosing a no-code tool
+
+| Tool | Good for | Notes |
+|---|---|---|
+| **Zapier** | The widest range of apps | Easiest for beginners |
+| **Make** | Visual, multi-step scenarios | Drag-and-drop builder |
+| **n8n** | Self-hosting and complex logic | See the *n8n* manual |
 
 :::checklist
 - I opened Settings › Connections

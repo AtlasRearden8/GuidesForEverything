@@ -119,6 +119,15 @@ The **Send webhook** action sends an HTTP POST request (a small package of data)
 
 Free plan users can still *use* automations that come in templates, but can't edit them. Creating automations needs full access to the database.
 
+## When automations misbehave
+
+| Problem | Try this |
+|---|---|
+| Nothing happens | Check the trigger conditions, and that pages aren't in Private |
+| It ran twice | Two automations share a trigger; combine them |
+| A multi-trigger rule never fires | "All of these" edits must happen within about three seconds; use a more specific trigger |
+| Gmail action is greyed out | Only the person who linked Gmail can edit that action |
+
 :::checklist
 - I made a database template with a checklist
 - I set a template to repeat weekly

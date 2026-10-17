@@ -147,6 +147,15 @@ Select one or more blocks and the menu shows how many words and characters they 
 7. **Add a reminder** to follow up: `@remind next Monday 10am`.
 :::
 
+## When shortcuts don't work
+
+| Problem | Try this |
+|---|---|
+| `/` just types a slash | You're inside a code block or a database cell; click into a normal text line |
+| Markdown didn't convert | Type the symbol at the very *start* of a line, then a space |
+| `@` menu keeps popping up | Press <kbd>Esc</kbd> to type a plain @ |
+| Shortcut does nothing on Windows | Another app may use <kbd>Ctrl</kbd> + <kbd>Shift</kbd>; try the slash command instead |
+
 :::checklist
 - I can open the slash menu and filter it by typing
 - I know at least five Markdown shortcuts

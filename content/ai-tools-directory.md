@@ -1,7 +1,7 @@
 ---
 title: AI Tools, Connectors & MCP Directory
 title_html: AI Tools, Connectors <span class="soft">&amp;</span> MCP Directory
-subtitle: Hundreds of AI tools, connectors, and MCP servers, sorted by category, each with a plain-English description and a price label
+subtitle: More than 1,500 AI tools, connectors, and MCP servers, sorted into 23 categories, each with a plain-English description and a price label
 volume: 9
 edition: October 2026
 kicker: A Field Guide
@@ -39,6 +39,59 @@ For **connectors** and **MCP servers**, the label reflects what it costs *you* t
 > [!TIP]
 > New to a category? The other manuals in this series explain how to use the main tools: *Everyday AI Tools*, *Vibe Coding*, *Claude Code*, *MCP*, *n8n*, and *Notion*.
 
+
+## How to read this directory
+
+Each chapter covers one kind of job, such as making images or answering customer emails. Inside each chapter, small tables list the tools. Every row has three parts:
+
+| Part | What it tells you |
+|---|---|
+| **Name** (maker) | The product, with the company behind it in brackets when the name alone is unclear |
+| What it does | One plain-English line about the main job it is good at |
+| Price label | Whether you can start for free (see the labels above) |
+
+A few words come up again and again. Here they are in plain English (the Glossary at the back has more):
+
+- **Model**: the "brain" behind an AI tool. Several apps can use the same model.
+- **Open source** or **open-weight**: the code or the model itself is published, so anyone can download and run it.
+- **Local**: runs on your own computer instead of on a company's servers. Private, but needs a capable machine.
+- **API**: a way for programs (not people) to use a service. API tools are for developers and usually charge per use.
+- **Agent**: an AI that can take several steps on its own, such as browsing, clicking, and filling in forms.
+- **Connector** and **MCP server**: plug-ins that let an assistant read and act in your other apps.
+
+:::steps Find the right tool in five minutes
+1. **Name the job.** Write one sentence: "I want to turn my meeting recordings into notes."
+2. **Open the matching chapter.** Use the table of contents or the category index at the back.
+3. **Shortlist two or three.** Prefer {{Free}} or {{Freemium}} rows so you can test before paying.
+4. **Try the same task in each.** Use one real example, not a toy one, and compare results.
+5. **Check privacy and price.** Read the vendor's pricing page and data policy before you upload anything personal.
+6. **Keep one, drop the rest.** Cancel trials you will not use, so you are not charged later.
+:::
+
+> [!NOTE]
+> "Free" rarely means unlimited. Free tiers usually cap how much you can use per day or month, add watermarks, or keep the newest models for paying users.
+
+## Quick picks for beginners
+
+Not sure where to start? These are safe first choices in the most common categories.
+
+:::compact
+| If you want to… | Start with | Price |
+|---|---|---|
+| Ask questions and write | ChatGPT, Claude, or Gemini | {{Freemium}} |
+| Research with sources | Perplexity or Gemini Notebook | {{Freemium}} |
+| Make an image | ChatGPT Images or Gemini | {{Freemium}} |
+| Make a short video | Google Veo (Flow) or Kling | {{Freemium}} |
+| Transcribe a meeting | Otter or Fathom | {{Freemium}} |
+| Build a simple app | Lovable or Bolt | {{Freemium}} |
+| Automate a chore | Zapier or n8n | {{Freemium}} |
+| Run AI privately offline | LM Studio or Ollama | {{Free}} |
+| Connect AI to your apps | Your assistant's connector directory | {{Free}} |
+:::
+
+> [!CAUTION]
+> Never paste passwords, bank details, medical records, or confidential work files into a tool you have not checked. When in doubt, use your employer's approved tools.
+
 # Chat Assistants
 
 General-purpose AI you talk to: ask questions, write, analyze files, brainstorm, and more.
@@ -47,13 +100,13 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | Tool | What it does | Price |
 |---|---|---|
 | **ChatGPT** (OpenAI) | The most popular assistant: chat, images, voice, agents, apps, deep research | {{Freemium}} |
-| **Claude** (Anthropic) | Thoughtful writing and reasoning, long documents, Artifacts, Cowork, connectors | {{Freemium}} |
+| **Claude** (Anthropic) | Thoughtful writing and reasoning, long documents, Artifacts, desktop agent (formerly Cowork), connectors | {{Freemium}} |
 | **Gemini** (Google) | Google's assistant, built into Android, Gmail, Docs, and Search; image and video generation | {{Freemium}} |
 | **Microsoft Copilot** | Microsoft's assistant in Windows, Edge, and Microsoft 365 apps | {{Freemium}} |
 | **Meta AI** | Free assistant inside WhatsApp, Instagram, Messenger, and Ray-Ban Meta glasses | {{Free}} |
 | **Grok** (xAI) | Assistant with real-time X data; bundled with X and Cursor in "The X Subscription" | {{Freemium}} |
 | **Perplexity** | Answer engine with cited web sources; Comet AI browser | {{Freemium}} |
-| **Le Chat** (Mistral) | Fast European assistant with web search, documents, and agents | {{Freemium}} |
+| **Vibe** (Mistral, formerly Le Chat) | Fast European assistant with web search, documents, and agents | {{Freemium}} |
 | **DeepSeek** | Strong free reasoning models from China | {{Free}} |
 | **Qwen Chat** (Alibaba) | Alibaba's assistant with open-weight models | {{Free}} |
 | **Kimi** (Moonshot AI) | Long-context assistant and research agent | {{Freemium}} |
@@ -68,6 +121,82 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | **Apple Intelligence** | Writing tools, Siri, and image features built into Apple devices | {{Free}} |
 | **Samsung Galaxy AI** | Translation, photo editing, and summaries on Galaxy phones | {{Free}} |
 :::
+
+## More assistants from around the world
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Doubao** (ByteDance) | China's most-used consumer chat assistant | {{Free}} |
+| **Yuanbao** (Tencent) | Tencent's assistant, linked to WeChat content | {{Free}} |
+| **ERNIE** (Baidu) | Baidu's assistant and model family | {{Free}} |
+| **Z.ai Chat** (Zhipu) | Chat with the open GLM models | {{Freemium}} |
+| **MiniMax Agent** | Assistant and agent from MiniMax | {{Freemium}} |
+| **Lumo** (Proton) | Privacy-first assistant that keeps no chat logs | {{Freemium}} |
+| **Brave Leo** | Assistant built into the Brave browser | {{Freemium}} |
+| **Kagi Assistant** | Multi-model chat included with Kagi search plans | {{Paid}} |
+| **Alexa+** (Amazon) | Upgraded voice assistant on Echo devices; included with Prime | {{Paid}} |
+| **Siri** (Apple) | Apple's voice assistant, with optional ChatGPT help | {{Free}} |
+| **Abacus.AI ChatLLM** | Many top models in one low-cost subscription | {{Paid}} |
+| **Mammouth** | Several leading models for one monthly price | {{Paid}} |
+| **Cohere North** | Secure workplace assistant for enterprises | {{Paid}} |
+:::
+
+## Browser sidebars and helper extensions
+
+These add an AI panel to your web browser, so you can summarize a page or draft a reply without switching tabs.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Monica** | Sidebar chat, page summaries, and writing help | {{Freemium}} |
+| **Sider** | Sidebar with many models, PDF chat, and translation | {{Freemium}} |
+| **Merlin** | Summarize pages, YouTube videos, and emails | {{Freemium}} |
+| **HARPA AI** | Page-aware assistant with web automations | {{Freemium}} |
+| **MaxAI** | One-click AI on any page or text box | {{Freemium}} |
+| **ChatHub** | Compare answers from several chatbots side by side | {{Freemium}} |
+| **Glasp** | Highlight the web and get AI summaries | {{Free}} |
+:::
+
+## Desktop and self-hosted chat apps
+
+**Self-hosted** means you install it yourself, on your computer or your own server, and plug in a model or an API key.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Msty** | Desktop app for local and online models, side by side | {{Freemium}} |
+| **AnythingLLM** | Chat with your documents locally; all-in-one desktop app | {{Free}} |
+| **Chatbox AI** | Cross-platform chat client for many providers | {{Freemium}} |
+| **Cherry Studio** | Desktop client for many models and assistants | {{Free}} |
+| **LobeChat** (LobeHub) | Open-source chat interface with plugins | {{Freemium}} |
+| **BoltAI** | Native Mac chat app with many providers | {{Paid}} |
+| **big-AGI** | Power-user web chat with multi-model "beam" answers | {{Free}} |
+| **Khoj** | Open-source personal assistant over your notes | {{Freemium}} |
+| **SillyTavern** | Open-source front end for role-play and characters | {{Free}} |
+:::
+
+## Companion apps
+
+Companion apps are built for friendly, ongoing conversation rather than work. Use them thoughtfully, and talk to a real person if you are struggling.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Replika** | Long-running AI friend with memory | {{Freemium}} |
+| **Nomi** | Companions with memory and voice | {{Paid}} |
+| **Kindroid** | Customizable companions with voice calls | {{Freemium}} |
+| **Talkie** | Chat with community-made characters | {{Freemium}} |
+| **Chai** | Social app for chatting with bots | {{Freemium}} |
+:::
+
+> [!TIP]
+> Try the same question in two assistants. You quickly learn which one "thinks" the way you like, and that matters more than any benchmark.
+
+```prompt
+I'm new to AI assistants. Ask me five quick questions about how I work,
+then suggest three everyday tasks you could help me with this week.
+```
 
 # Coding and Vibe Coding
 
@@ -166,6 +295,110 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | **Galileo / Stitch** (Google) | Generate UI designs from text prompts | {{Free}} |
 :::
 
+## More coding agents and terminal tools
+
+A **terminal agent** works in the text window where developers type commands. You describe a change; it reads your files, edits them, and runs tests.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Cursor CLI** | Cursor's agent in the terminal | {{Freemium}} |
+| **Qwen Code** | Open-source terminal agent tuned for Qwen models | {{Free}} |
+| **Crush** (Charm) | Stylish open-source terminal agent for any model | {{Free}} |
+| **Droid** (Factory) | Factory's agent in terminal and IDE | {{Paid}} |
+| **Augment Code** | Context-aware agent for large codebases; Auggie CLI | {{Paid}} |
+| **Rovo Dev** (Atlassian) | Coding agent tied to Jira and Bitbucket | {{Paid}} |
+| **GitLab Duo** | AI chat, review, and agents inside GitLab | {{Paid}} |
+| **Gemini Code Assist** | Google's IDE assistant; free for individuals | {{Freemium}} |
+| **Mistral Vibe** | Mistral's terminal coding agent | {{Freemium}} |
+| **Plandex** | Open-source agent for big multi-file tasks | {{Free}} |
+| **SWE-agent** | Research agent that fixes GitHub issues | {{Free}} |
+| **Refact.ai** | Open-source agent; self-hostable | {{Freemium}} |
+| **Tabby** | Self-hosted open-source code completion server | {{Free}} |
+| **CodeGeeX** | Free multilingual code assistant | {{Free}} |
+| **Pieces** | Saves snippets and context with an on-device copilot | {{Freemium}} |
+| **Sourcegraph** | Code search across huge codebases with AI answers | {{Paid}} |
+:::
+
+## IDE extensions
+
+An **IDE** (integrated development environment) is the app programmers write code in. An **extension** adds features to it.
+
+:::compact
+| Extension | Works in | Price |
+|---|---|---|
+| **Claude Code for VS Code / JetBrains** | VS Code, Cursor, JetBrains IDEs | {{Paid}} |
+| **Codex IDE extension** | VS Code, Cursor, Windsurf | {{Paid}} |
+| **GitHub Copilot** | VS Code, Visual Studio, JetBrains, Xcode, Eclipse | {{Freemium}} |
+| **Gemini Code Assist** | VS Code, JetBrains, Android Studio | {{Freemium}} |
+| **Amazon Q Developer** | VS Code, JetBrains, Visual Studio | {{Freemium}} |
+| **Cline**, **Roo Code**, **Kilo Code** | VS Code and forks | {{Free}} |
+| **Continue** | VS Code, JetBrains | {{Free}} |
+| **Tabnine** | Most major IDEs | {{Paid}} |
+| **Qodo Gen** | VS Code, JetBrains | {{Freemium}} |
+| **Gemini in Android Studio** | Android Studio | {{Free}} |
+| **Copilot for Xcode** | Xcode | {{Freemium}} |
+:::
+
+## More app builders
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Emergent** | Agent that builds and deploys full-stack apps | {{Freemium}} |
+| **Mocha** | No-code app builder with database and auth included | {{Freemium}} |
+| **Dyad** | Free, open-source, local Lovable-style builder | {{Free}} |
+| **Chef** (Convex) | Builds full-stack apps on a Convex backend | {{Freemium}} |
+| **Hostinger Horizons** | Prompt-to-web-app with hosting included | {{Paid}} |
+| **Databutton** | AI developer for business apps | {{Paid}} |
+| **FlutterFlow** | Visual mobile app builder with AI generation | {{Freemium}} |
+| **Adalo**, **Thunkable** | No-code mobile apps with AI helpers | {{Freemium}} |
+| **AppSheet** (Google) | No-code apps from spreadsheets with Gemini | {{Freemium}} |
+| **Power Apps** (Microsoft) | Business apps with Copilot | {{Paid}} |
+| **Retool** | Internal tools and AI apps on your data | {{Freemium}} |
+| **Appsmith**, **Budibase** | Open-source internal-tool builders | {{Freemium}} |
+| **Claude Artifacts** | Small apps and pages made right in chat | {{Freemium}} |
+| **ChatGPT Canvas** | Write and run code side by side in ChatGPT | {{Freemium}} |
+| **Gemini Canvas** | Build and preview apps inside Gemini | {{Freemium}} |
+| **Websim** | Generate and share playful web pages | {{Freemium}} |
+:::
+
+## Website builders with AI
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Squarespace Blueprint AI** | Guided AI site setup | {{Paid}} |
+| **GoDaddy Airo** | AI site, logo, and marketing help | {{Freemium}} |
+| **Hostinger AI Website Builder** | Site from a short description | {{Paid}} |
+| **Shopify Magic / Sidekick** | AI store setup and assistant for merchants | {{Paid}} |
+| **Relume** | AI sitemaps and wireframes for web designers | {{Freemium}} |
+| **B12** | AI websites for professional services | {{Freemium}} |
+| **Unicorn Platform** | Landing pages for startups | {{Freemium}} |
+:::
+
+## Docs, testing, and security for code
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Mintlify** | Developer docs sites with an AI assistant | {{Freemium}} |
+| **GitBook** | Product docs with AI search | {{Freemium}} |
+| **DeepWiki** (Cognition) | Auto-written wiki for any public GitHub repo | {{Free}} |
+| **Swimm** | Code documentation kept in sync | {{Paid}} |
+| **Bito** | AI code review in Git and IDEs | {{Freemium}} |
+| **Testim**, **mabl** | AI-assisted test automation | {{Paid}} |
+| **Applitools** | Visual AI testing | {{Freemium}} |
+| **Diffblue** | Writes Java unit tests automatically | {{Freemium}} |
+| **Semgrep** | Code scanning with an AI assistant | {{Freemium}} |
+| **Socket** | Catches risky open-source packages | {{Freemium}} |
+| **GitHub Copilot Autofix** | Suggests fixes for security alerts | {{Paid}} |
+| **SonarQube** | Code quality with AI CodeFix | {{Freemium}} |
+:::
+
+> [!TIP]
+> New to coding? Start with an app builder such as Lovable or Bolt. Move to an editor like Cursor or an agent like Claude Code once you want to own and change the code yourself.
+
 # Images and Graphic Design
 
 :::compact
@@ -198,6 +431,115 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | **Automatic1111 / Forge** | Popular local Stable Diffusion interfaces | {{Free}} |
 :::
 
+## More image generators
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Meta AI Imagine** | Free image generation in Meta's apps | {{Free}} |
+| **Image Playground** (Apple) | Playful images and Genmoji on Apple devices | {{Free}} |
+| **Playground** | Design-focused generator for graphics and social posts | {{Freemium}} |
+| **NightCafe** | Community generator with many models and daily credits | {{Freemium}} |
+| **OpenArt** | Many models, character consistency, and workflows | {{Freemium}} |
+| **SeaArt**, **Tensor.Art** | Community image platforms with shared models | {{Freemium}} |
+| **Civitai** | Hub for community Stable Diffusion and FLUX models | {{Freemium}} |
+| **Dzine** | Image design tool with layers and style control | {{Freemium}} |
+| **Getimg.ai** | Generation, editing, and custom models | {{Freemium}} |
+| **ImagineArt** | Image and video generator for creators | {{Freemium}} |
+| **Artbreeder** | Blend and evolve images and portraits | {{Freemium}} |
+| **Craiyon** | Simple, free image generator | {{Freemium}} |
+| **Kaiber** | Creative canvas for images, video, and music visuals | {{Paid}} |
+| **Luma Photon** | Luma's image model | {{Freemium}} |
+| **Higgsfield Soul** | Fashion-grade, realistic photo generation | {{Freemium}} |
+| **Getty Images Generative AI** | Commercially safe images from licensed content | {{Paid}} |
+| **Shutterstock AI** | Generate licensable stock images | {{Paid}} |
+| **Adobe Stock** generative | Generate and license stock inside Adobe | {{Paid}} |
+| **HiDream**, **HunyuanImage** | Open-weight image models | {{Free}} |
+:::
+
+## Photo editing and enhancement
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Adobe Photoshop** | Generative Fill, Expand, and Remove in the pro editor | {{Paid}} |
+| **Adobe Lightroom** | AI masking, denoise, and distraction removal | {{Paid}} |
+| **Google Photos Magic Editor** | Move, erase, and reimagine parts of a photo | {{Free}} |
+| **Snapseed** (Google) | Free mobile photo editor | {{Free}} |
+| **Luminar Neo** | Desktop editor with one-click AI tools | {{Paid}} |
+| **Pixlr** | Browser photo editor with AI tools | {{Freemium}} |
+| **Fotor** | Quick online editing and AI effects | {{Freemium}} |
+| **Picsart** | Mobile and web editor with AI tools | {{Freemium}} |
+| **Pixelcut** | Product photos and background removal | {{Freemium}} |
+| **PicWish** | Background removal and photo restoration | {{Freemium}} |
+| **Cleanup.pictures** | Remove objects and people from photos | {{Freemium}} |
+| **Upscayl** | Free open-source image upscaler | {{Free}} |
+| **Let's Enhance** | Upscale and improve image quality | {{Freemium}} |
+| **Vectorizer.AI** | Turn pixel images into clean vector files | {{Paid}} |
+| **FaceApp** | Face filters and edits on mobile | {{Freemium}} |
+| **Aragon AI**, **HeadshotPro** | Professional headshots from selfies | {{Paid}} |
+:::
+
+## Design, diagrams, and visuals
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Figma AI** | Generate, rename, and search designs in Figma | {{Freemium}} |
+| **Adobe Express** | Quick designs with Firefly built in | {{Freemium}} |
+| **Kittl** | Graphic design for merch, logos, and posters | {{Freemium}} |
+| **Visme** | Infographics, reports, and presentations | {{Freemium}} |
+| **Piktochart** | Infographics from text | {{Freemium}} |
+| **Venngage** | Infographics and reports with AI | {{Freemium}} |
+| **Napkin AI** | Turns text into diagrams and visuals | {{Freemium}} |
+| **Whimsical** | Flowcharts, mind maps, and wireframes with AI | {{Freemium}} |
+| **Miro AI** | AI on a collaborative whiteboard | {{Freemium}} |
+| **Lucid** (Lucidchart) | Diagrams generated from prompts | {{Freemium}} |
+| **Eraser** | Technical diagrams from text or code | {{Freemium}} |
+| **Mermaid Chart** | Diagram-as-code with an AI helper | {{Freemium}} |
+| **Excalidraw** | Hand-drawn style whiteboard; text to diagram | {{Freemium}} |
+| **tldraw** | Infinite canvas with "make real" AI demos | {{Freemium}} |
+| **draw.io** | Free diagramming app | {{Free}} |
+| **Visily** | Wireframes and UI from screenshots | {{Freemium}} |
+| **Motiff** | AI-powered interface design tool | {{Freemium}} |
+| **Penpot** | Open-source design and prototyping | {{Free}} |
+| **Khroma**, **Coolors** | AI color palette generators | {{Freemium}} |
+:::
+
+## 3D, worlds, and game assets
+
+**3D generation** turns a prompt or a photo into a model you can spin around, print, or drop into a game.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Meshy** | Text and image to textured 3D models | {{Freemium}} |
+| **Tripo** | Fast 3D models from images and prompts | {{Freemium}} |
+| **Rodin** (Hyper3D) | High-detail 3D asset generation | {{Freemium}} |
+| **Hunyuan3D** (Tencent) | Open-weight image-to-3D models | {{Free}} |
+| **TRELLIS** (Microsoft) | Open-source 3D asset generation | {{Free}} |
+| **Spline** | Web 3D design with AI generation | {{Freemium}} |
+| **Sloyd** | Game-ready 3D props from presets | {{Freemium}} |
+| **Kaedim** | Production 3D assets for studios | {{Paid}} |
+| **World Labs Marble** | Explorable 3D worlds from text or images | {{Freemium}} |
+| **Skybox AI** (Blockade Labs) | 360° environments from prompts | {{Freemium}} |
+| **Polycam** | 3D scans and Gaussian splats with your phone | {{Freemium}} |
+| **Scaniverse** | Free phone 3D scanning | {{Free}} |
+| **KIRI Engine** | Photo-to-3D scanning app | {{Freemium}} |
+| **Autodesk Flow Studio** | Swap actors for CG characters (formerly Wonder Studio) | {{Freemium}} |
+| **Move.ai** | Markerless motion capture from video | {{Freemium}} |
+| **Rokoko Vision** | Free AI motion capture from a webcam | {{Free}} |
+| **DeepMotion** | Turn videos into 3D animation | {{Freemium}} |
+| **Cascadeur** | AI-assisted character animation | {{Freemium}} |
+| **Scenario** | Consistent game art trained on your style | {{Freemium}} |
+| **Unity AI** | AI assistant and generators in the Unity editor | {{Paid}} |
+| **Roblox Assistant** | AI help for building Roblox experiences | {{Free}} |
+| **Inworld AI** | Voices and characters for games and apps | {{Freemium}} |
+:::
+
+> [!IMPORTANT]
+> Check the license before using AI images commercially. Some free tiers forbid commercial use, and some models were trained on data that makes their output risky for brand work. Adobe Firefly and Getty are designed for commercial safety.
+
 # Video
 
 ## Video generation
@@ -206,7 +548,6 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | Tool | What it does | Price |
 |---|---|---|
 | **Google Veo** (Gemini, **Flow**) | Realistic video with native sound; Flow is Google's filmmaking tool | {{Freemium}} |
-| **OpenAI Sora** | Cinematic video generation and a social app for remixing | {{Freemium}} |
 | **Runway** | Video generation plus pro editing and effects | {{Freemium}} |
 | **Kling** (Kuaishou) | High-quality text- and image-to-video | {{Freemium}} |
 | **Luma Dream Machine / Ray** | Fast, fluid video generation | {{Freemium}} |
@@ -248,6 +589,83 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | **DaVinci Resolve (Neural Engine)** | Pro editor with AI masking, voice isolation, and more | {{Freemium}} |
 | **Topaz Video** | AI upscaling and frame interpolation | {{Paid}} |
 :::
+
+## More video generators
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Adobe Firefly Video** | Commercially safe video clips and extensions | {{Freemium}} |
+| **Vidu** (Shengshu) | Fast text- and image-to-video with reference control | {{Freemium}} |
+| **PixVerse** | Quick effects and stylized clips | {{Freemium}} |
+| **Hedra** | Expressive talking characters from a photo and audio | {{Freemium}} |
+| **Viggle** | Make characters dance and move from a template video | {{Freemium}} |
+| **Moonvalley Marey** | Video model trained on licensed footage | {{Paid}} |
+| **Krea Video** | Many video models in one interface | {{Freemium}} |
+| **Pollo AI** | Access many video models in one place | {{Freemium}} |
+| **Domo AI** | Turn videos into anime and other styles | {{Freemium}} |
+| **LTX-2** (Lightricks) | Open-weight video model with audio | {{Free}} |
+| **HunyuanVideo** (Tencent) | Open-weight video model | {{Free}} |
+| **Mochi** (Genmo) | Open-source video model | {{Free}} |
+:::
+
+## More avatars and explainer video
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Colossyan** | Training videos with avatars and quizzes | {{Paid}} |
+| **Elai** | Presenter videos from text or slides | {{Freemium}} |
+| **DeepBrain AI Studios** | Realistic avatars for news and training | {{Freemium}} |
+| **Tavus** | Personalized avatar video and real-time video agents | {{Freemium}} |
+| **Argil** | Your own avatar for social-media clips | {{Paid}} |
+| **Arcads** | AI actors for user-style video ads | {{Paid}} |
+| **Creatify** | Product-link-to-video ads | {{Freemium}} |
+| **Vidnoz** | Free avatars and templates | {{Freemium}} |
+| **Fliki** | Text to video with voiceovers | {{Freemium}} |
+| **Lumen5** | Blog posts into social videos | {{Freemium}} |
+| **Steve AI**, **Animaker** | Animated explainer videos | {{Freemium}} |
+:::
+
+## More editing, clipping, and screen recording
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Submagic** | Animated captions and short-form edits | {{Paid}} |
+| **Klap** | Turn long videos into TikToks and Shorts | {{Paid}} |
+| **Vizard** | Clip, caption, and schedule short videos | {{Freemium}} |
+| **Gling** | Removes silences and bad takes for YouTubers | {{Freemium}} |
+| **Wisecut** | Automatic cuts, music, and subtitles | {{Freemium}} |
+| **FireCut** | AI editing plugin for Premiere | {{Paid}} |
+| **AutoPod** | Automatic multicam podcast edits in Premiere | {{Paid}} |
+| **Wondershare Filmora** | Easy editor with AI tools | {{Freemium}} |
+| **Clipchamp** (Microsoft) | Browser editor with auto-captions | {{Freemium}} |
+| **Adobe Express video** | Quick social videos with Firefly | {{Freemium}} |
+| **Canva Video** | Template-based video with Magic tools | {{Freemium}} |
+| **Loom** (Atlassian) | Screen recordings with AI titles and summaries | {{Freemium}} |
+| **Tella** | Polished screen recordings | {{Paid}} |
+| **Camtasia** | Screen recording and editing with AI | {{Paid}} |
+| **Scribe**, **Tango** | Turn clicks into step-by-step guides | {{Freemium}} |
+| **Flowframes** | Free frame interpolation for smooth slow-motion | {{Free}} |
+:::
+
+## Dubbing and subtitles
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **ElevenLabs Dubbing** | Translate video while keeping the speaker's voice | {{Freemium}} |
+| **YouTube auto-dubbing** | Automatic dubbed audio tracks for creators | {{Free}} |
+| **CAMB.AI** | Voice-preserving dubbing in many languages | {{Freemium}} |
+| **Dubverse** | Quick AI dubbing and subtitles | {{Freemium}} |
+| **Maestra** | Transcription, subtitles, and voiceover | {{Freemium}} |
+| **Deepdub** | Studio-grade dubbing for media companies | {{Paid}} |
+| **Subtitle Edit** | Free subtitle editor with Whisper transcription | {{Free}} |
+:::
+
+> [!WARNING]
+> Only clone or animate a real person's face or voice with their clear permission. Many platforms ban impersonation, and some places have laws against it.
 
 # Audio, Voice, and Music
 
@@ -303,6 +721,94 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | **Auphonic** | Automatic audio leveling and cleanup | {{Freemium}} |
 :::
 
+## More voices and speech tools
+
+**Text-to-speech** (TTS) reads text aloud. **Speech-to-text** (STT) writes down what is said. **Voice cloning** copies a voice from a short sample.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **ElevenReader** | Listen to articles, PDFs, and books in natural voices | {{Freemium}} |
+| **LOVO** (Genny) | Voiceover and video editor | {{Freemium}} |
+| **Listnr** | Voiceovers and podcasts from text | {{Freemium}} |
+| **Narakeet** | Turn slides and scripts into narrated video | {{Paid}} |
+| **Fish Audio** | Voice cloning and TTS with a big voice library | {{Freemium}} |
+| **Respeecher** | Studio voice conversion for film and games | {{Paid}} |
+| **Voicemod** | Real-time voice changer for streaming and calls | {{Freemium}} |
+| **Kokoro**, **Piper** | Small, free open-source TTS voices | {{Free}} |
+| **Chatterbox** (Resemble) | Open-source TTS with voice cloning | {{Free}} |
+| **Azure AI Speech** | Microsoft's TTS and STT for developers | {{Freemium}} |
+| **Google Cloud Text-to-Speech** | Google's voices via API | {{Freemium}} |
+| **Amazon Polly** | AWS text-to-speech | {{Freemium}} |
+:::
+
+## Speech-to-text APIs
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Deepgram** | Fast transcription and voice-agent APIs | {{Freemium}} |
+| **AssemblyAI** | Accurate transcription with speech understanding | {{Freemium}} |
+| **Speechmatics** | Transcription in many languages and accents | {{Freemium}} |
+| **Gladia** | Real-time multilingual transcription API | {{Freemium}} |
+| **Soniox** | Low-latency multilingual STT | {{Paid}} |
+| **Rev AI** | Developer API from Rev | {{Paid}} |
+:::
+
+## More transcription and meeting notes
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **MeetGeek** | Meeting recordings, notes, and highlights | {{Freemium}} |
+| **Supernormal** | Notes and follow-ups for Meet, Zoom, and Teams | {{Freemium}} |
+| **Tactiq** | Live transcripts in Google Meet, Zoom, and Teams | {{Freemium}} |
+| **Circleback** | Detailed notes and action items, CRM sync | {{Paid}} |
+| **Fellow** | Meeting agendas, notes, and recordings | {{Freemium}} |
+| **Avoma** | Notes and conversation intelligence for sales | {{Paid}} |
+| **Sembly** | Notes and insights across meetings | {{Freemium}} |
+| **Jamie** | Bot-free meeting notes on your device | {{Freemium}} |
+| **Bluedot** | Bot-free recorder as a browser extension | {{Freemium}} |
+| **Grain** | Recordings and clips for customer teams | {{Freemium}} |
+| **Claap** | Video wiki and meeting recorder | {{Freemium}} |
+| **Spinach AI** | Meeting assistant that updates your tools | {{Freemium}} |
+| **Noota** | Meeting notes for recruiting and sales | {{Freemium}} |
+| **Notion AI Meeting Notes** | Transcribe and summarize inside Notion | {{Paid}} |
+| **Google Meet "Take notes for me"** | Gemini notes saved to Docs | {{Paid}} |
+| **Webex AI Assistant** | Summaries and translation in Webex | {{Paid}} |
+| **Plaud Note** | Pocket recorder with AI summaries | {{Paid}} |
+| **Happy Scribe** | Transcripts and subtitles in many languages | {{Freemium}} |
+| **Sonix**, **Trint** | Transcription for journalists and media | {{Paid}} |
+:::
+
+## More music and sound
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Lyria** / **MusicFX DJ** (Google) | Google's music models and live music mixing | {{Free}} |
+| **Beatoven.ai** | Royalty-free background music by mood | {{Freemium}} |
+| **Loudly** | AI music for creators and brands | {{Freemium}} |
+| **Soundful** | Royalty-free tracks for creators | {{Freemium}} |
+| **Boomy** | Make songs and release them to streaming | {{Freemium}} |
+| **Producer.ai** (Riffusion) | Chat-based song creation | {{Freemium}} |
+| **ACE Studio** | AI singing voices for music producers | {{Paid}} |
+| **Synthesizer V** | Realistic singing voice synthesis | {{Paid}} |
+| **Kits.ai** | AI voice models for musicians | {{Freemium}} |
+| **LANDR** | AI mastering and music tools | {{Paid}} |
+| **iZotope Ozone** | Assisted mixing and mastering plugins | {{Paid}} |
+| **BandLab** | Free studio with AI mastering and SongStarter | {{Free}} |
+| **Splice** | Sample library with AI search and Create | {{Paid}} |
+| **Demucs**, **Ultimate Vocal Remover** | Free, open-source stem separation | {{Free}} |
+| **NVIDIA Broadcast** | Free noise removal for RTX graphics cards | {{Free}} |
+| **Wondercraft** | AI podcasts and audio ads | {{Freemium}} |
+| **Castmagic** | Show notes and posts from podcast audio | {{Paid}} |
+| **Cleanvoice** | Removes filler words and mouth sounds | {{Freemium}} |
+:::
+
+> [!TIP]
+> For podcasts, a cheap microphone in a quiet room plus Adobe Podcast or Auphonic beats an expensive mic in an echoey room.
+
 # Writing and Content
 
 :::compact
@@ -325,13 +831,69 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | **Google Translate** | Free translation with AI-powered conversation mode | {{Free}} |
 :::
 
+## More writing assistants
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **LanguageTool** | Grammar and style checker for many languages | {{Freemium}} |
+| **Writer** | Enterprise writing platform with its own models | {{Paid}} |
+| **Anyword** | Marketing copy with performance predictions | {{Paid}} |
+| **Hypotenuse AI** | Product descriptions and e-commerce content | {{Paid}} |
+| **Simplified** | Copy, design, and social scheduling in one | {{Freemium}} |
+| **Koala AI** | Long SEO blog posts | {{Paid}} |
+| **Squibler** | Book and script writing assistant | {{Freemium}} |
+| **Novelcrafter** | Plan and write novels with AI help | {{Paid}} |
+| **Jenni AI** | Academic writing with citations | {{Freemium}} |
+| **Paperpal** | Language help for researchers | {{Freemium}} |
+| **Writefull** | Academic English feedback | {{Freemium}} |
+| **Trinka** | Grammar for academic and technical writing | {{Freemium}} |
+| **Text Blaze** | Snippets and AI templates you type with shortcuts | {{Freemium}} |
+| **Magical** | Text expander and form-filling AI | {{Freemium}} |
+:::
+
+## Translation and localization
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Microsoft Translator** | Free text, voice, and conversation translation | {{Free}} |
+| **Papago** (Naver) | Strong Korean, Japanese, and Chinese translation | {{Free}} |
+| **Reverso** | Translations with examples in context | {{Freemium}} |
+| **Lara Translate** | Context-aware translation with explanations | {{Freemium}} |
+| **Smartcat** | Translation platform for teams | {{Freemium}} |
+| **Phrase** | Localization platform with AI translation | {{Paid}} |
+| **Lokalise** | App and website localization | {{Paid}} |
+| **Crowdin** | Localization with AI pre-translation | {{Freemium}} |
+| **Weglot** | Translate a website in minutes | {{Freemium}} |
+:::
+
+## AI-text detectors
+
+Detectors guess whether text was written by AI. They are often wrong, so never treat a score as proof.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **GPTZero** | AI detection for teachers and writers | {{Freemium}} |
+| **Originality.ai** | AI and plagiarism checks for publishers | {{Paid}} |
+| **Copyleaks** | AI and plagiarism detection | {{Freemium}} |
+| **Pangram** | AI-text detection with low false positives | {{Freemium}} |
+| **Turnitin** | Plagiarism and AI checks for schools | {{Paid}} |
+:::
+
+```prompt
+Here is my draft. Keep my voice. Fix grammar, cut repetition, and list
+the three biggest changes you made and why.
+```
+
 # Research, Search, and Learning
 
 :::compact
 | Tool | What it does | Price |
 |---|---|---|
 | **Perplexity** | Cited answers, deep research, finance, and shopping | {{Freemium}} |
-| **NotebookLM** (Google) | AI grounded in your sources: audio and video overviews, quizzes | {{Freemium}} |
+| **Gemini Notebook** (formerly NotebookLM) | AI grounded in your sources: audio and video overviews, quizzes | {{Freemium}} |
 | **Google AI Mode** | Conversational answers in Google Search | {{Free}} |
 | **ChatGPT / Claude / Gemini Deep Research** | Long, cited research reports | {{Freemium}} |
 | **Kagi** | Ad-free search with an AI assistant | {{Paid}} |
@@ -348,6 +910,157 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | **Duolingo Max** | AI conversation practice in language learning | {{Paid}} |
 | **Quizlet AI** | Flashcards and study guides from your notes | {{Freemium}} |
 | **Coursera Coach** | AI learning assistant inside courses | {{Freemium}} |
+:::
+
+## More search engines and answer tools
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Microsoft Copilot Search** (Bing) | AI answers with sources in Bing | {{Free}} |
+| **Brave Search** | Independent search with AI answers | {{Free}} |
+| **Liner** | Research assistant with reliable sources | {{Freemium}} |
+| **Felo** | Multilingual AI search and slides | {{Freemium}} |
+| **Andi** | Ad-free conversational search | {{Free}} |
+| **iAsk** | Free AI search engine | {{Freemium}} |
+| **WolframAlpha** | Computes answers in math, science, and data | {{Freemium}} |
+| **Arc Search** | Mobile browser that builds a page of answers | {{Free}} |
+| **Morphic** | Open-source AI answer engine | {{Free}} |
+:::
+
+## More tools for academic research
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Google Scholar** | Free search across academic papers | {{Free}} |
+| **Ai2 Asta** | Free AI research assistant for scientific literature | {{Free}} |
+| **alphaXiv** | Discuss and get AI explanations of arXiv papers | {{Free}} |
+| **Scholarcy** | Summary flashcards for papers | {{Freemium}} |
+| **Litmaps** | Citation maps and alerts | {{Freemium}} |
+| **Inciteful** | Free citation network explorer | {{Free}} |
+| **Keenious** | Finds papers related to what you are writing | {{Freemium}} |
+| **Iris.ai** | Research workspace for R&D teams | {{Paid}} |
+| **Zotero** | Free reference manager with AI plugins | {{Free}} |
+| **Readwise Reader** | Read-later app with an AI helper | {{Paid}} |
+| **Recall** | Summarize anything into a knowledge base | {{Freemium}} |
+| **Statista AI** | Ask questions of Statista's statistics | {{Paid}} |
+:::
+
+> [!TIP]
+> Always click through to the source. AI search tools can misread a page or cite something that does not say what they claim.
+
+# Education and Learning
+
+AI tutors explain things at your pace, quiz you, and practice languages with you. The best ones ask you questions instead of just giving answers.
+
+## Tutors and study tools
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **ChatGPT study mode** | Step-by-step tutoring instead of straight answers | {{Freemium}} |
+| **Claude learning mode** | Guides you to work things out yourself | {{Freemium}} |
+| **Gemini Guided Learning** | Gemini as a patient tutor | {{Freemium}} |
+| **Gemini Notebook** | Study guides, quizzes, and audio from your notes | {{Freemium}} |
+| **Khanmigo** | Khan Academy's tutor; free for teachers | {{Freemium}} |
+| **Photomath** | Step-by-step math help from a photo | {{Freemium}} |
+| **Google Lens** | Point your camera at homework for help | {{Free}} |
+| **Gauth** | Photo homework help across subjects | {{Freemium}} |
+| **Brainly** | Homework answers and AI explanations | {{Freemium}} |
+| **Mathway**, **Symbolab** | Math solvers with steps | {{Freemium}} |
+| **Knowt** | Free flashcards and quizzes from notes | {{Freemium}} |
+| **StudyFetch** | Turns course material into an AI tutor | {{Freemium}} |
+| **RemNote** | Notes and spaced-repetition flashcards | {{Freemium}} |
+| **Anki** | Free flashcard app; AI add-ons available | {{Free}} |
+| **Coursera** | Courses with an AI coach and dialogues | {{Freemium}} |
+| **Codecademy** | Coding lessons with AI help | {{Freemium}} |
+| **Synthesis Tutor** | AI math tutor for kids | {{Paid}} |
+:::
+
+## Language learning
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Duolingo** | Bite-size lessons; Max adds AI video calls | {{Freemium}} |
+| **Speak** | Speaking practice with an AI tutor | {{Paid}} |
+| **Praktika** | AI avatar tutors for conversation | {{Freemium}} |
+| **ELSA Speak** | English pronunciation coach | {{Freemium}} |
+| **Babbel** | Lessons with AI speaking practice | {{Paid}} |
+| **Memrise** | Vocabulary with AI conversation | {{Freemium}} |
+| **Talkpal** | Chat and talk with an AI language partner | {{Freemium}} |
+:::
+
+## For teachers
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **MagicSchool** | 80+ AI tools for lesson plans and feedback | {{Freemium}} |
+| **Brisk Teaching** | Chrome extension for feedback and resources | {{Freemium}} |
+| **Diffit** | Adapts any text to different reading levels | {{Freemium}} |
+| **Eduaide** | Lesson and activity generator | {{Freemium}} |
+| **Curipod** | Interactive lessons from a topic | {{Freemium}} |
+| **SchoolAI** | Safe AI spaces for students | {{Freemium}} |
+| **Wayground** (formerly Quizizz) | Quizzes and lessons with AI | {{Freemium}} |
+| **Kahoot!** | Game quizzes with an AI question generator | {{Freemium}} |
+| **Gradescope** | AI-assisted grading | {{Paid}} |
+| **Gemini for Education** | Gemini in Google Workspace for schools | {{Free}} |
+| **ChatGPT Edu**, **Claude for Education** | Campus-wide AI plans | {{Paid}} |
+:::
+
+```prompt
+Teach me the basics of compound interest. Explain one idea at a time,
+then ask me a question to check I understood before moving on.
+```
+
+:::checklist
+- I asked the tutor to quiz me, not just explain
+- I checked important facts against a textbook or teacher
+- I know my school's rules on using AI for assignments
+:::
+
+# Health and Wellbeing
+
+AI health tools can explain test results, track habits, and take notes for doctors. They do not replace a professional.
+
+> [!CAUTION]
+> Nothing in this chapter is medical advice. In an emergency, call your local emergency number. Ask a doctor before acting on anything an AI tells you about your health.
+
+## For everyone
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Ada** | Symptom checker that suggests next steps | {{Free}} |
+| **K Health** | AI-assisted chat with real doctors | {{Paid}} |
+| **Wysa** | Self-help conversations for stress and mood | {{Freemium}} |
+| **Youper** | Mood tracking and guided self-help | {{Freemium}} |
+| **WHOOP Coach** | AI coaching from your WHOOP data | {{Paid}} |
+| **Oura Advisor** | AI insights from your Oura ring | {{Paid}} |
+| **Strava Athlete Intelligence** | Plain-English summaries of workouts | {{Paid}} |
+| **Fitbod** | AI strength-training plans | {{Paid}} |
+| **Cal AI** | Count calories from a photo of your meal | {{Paid}} |
+| **MyFitnessPal** | Food logging with meal scan | {{Freemium}} |
+:::
+
+## For clinicians
+
+**Ambient scribes** listen to a consultation (with consent) and draft the clinical note.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **OpenEvidence** | Medical answers from journals; free for professionals | {{Free}} |
+| **Doximity GPT** | Clinical writing help for US clinicians | {{Free}} |
+| **Glass Health** | Diagnosis and plan drafting for clinicians | {{Freemium}} |
+| **UpToDate Expert AI** | AI answers from UpToDate content | {{Paid}} |
+| **Abridge** | Ambient clinical notes for health systems | {{Paid}} |
+| **Microsoft Dragon Copilot** | Ambient notes (formerly DAX Copilot) | {{Paid}} |
+| **Heidi Health** | AI scribe for clinicians | {{Freemium}} |
+| **Freed** | AI scribe for small practices | {{Paid}} |
+| **Nabla**, **Suki**, **Ambience** | Ambient documentation assistants | {{Paid}} |
 :::
 
 # Productivity and Office
@@ -402,6 +1115,144 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | **Adobe Acrobat AI Assistant** | Summaries and Q&A in PDFs | {{Paid}} |
 :::
 
+## More notes and knowledge tools
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Tana** | Outliner notes with AI and meeting capture | {{Freemium}} |
+| **Capacities** | Object-based notes with an AI assistant | {{Freemium}} |
+| **Heptabase** | Visual whiteboards for research notes | {{Paid}} |
+| **Logseq** | Free, open-source outliner; AI plugins | {{Free}} |
+| **Saner.ai** | AI notes and to-dos for scattered minds | {{Freemium}} |
+| **Microsoft Loop** | Collaborative pages with Copilot | {{Freemium}} |
+| **Google Keep** | Quick notes with Gemini help | {{Free}} |
+| **Apple Notes** | Notes with Apple Intelligence writing tools | {{Free}} |
+| **Taskade** | Tasks, docs, and AI agents in one | {{Freemium}} |
+| **Mapify** | Mind maps from documents and videos | {{Freemium}} |
+| **Xmind**, **MindMeister** | Mind mapping with AI | {{Freemium}} |
+| **Screenpipe** | Open-source, searchable record of your screen | {{Freemium}} |
+| **Glean** | AI search across all your work apps | {{Paid}} |
+| **Guru** | Company knowledge base with AI answers | {{Paid}} |
+:::
+
+## More email tools
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Gmail with Gemini** | Summaries, smart replies, and drafting | {{Freemium}} |
+| **Outlook with Copilot** | Drafts, summaries, and coaching | {{Paid}} |
+| **Fyxer AI** | Sorts your inbox and drafts replies in your voice | {{Paid}} |
+| **Canary Mail** | Secure email with an AI copilot | {{Freemium}} |
+| **Missive** | Shared team inbox with AI | {{Paid}} |
+| **SaneBox** | Filters unimportant mail automatically | {{Paid}} |
+| **Mailbutler** | Assistant for Gmail, Outlook, and Apple Mail | {{Freemium}} |
+| **Inbox Zero** | Open-source AI email assistant | {{Freemium}} |
+:::
+
+## Calendar and scheduling
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Calendly** | Booking links with AI scheduling help | {{Freemium}} |
+| **Cal.com** | Open-source scheduling | {{Freemium}} |
+| **Akiflow** | Tasks and calendar in one place | {{Paid}} |
+| **Sunsama** | Calm daily planner | {{Paid}} |
+| **Morgen** | Calendar with an AI planner | {{Freemium}} |
+| **Vimcal** | Fast calendar for busy people | {{Paid}} |
+| **Dola** | AI calendar assistant in your messaging apps | {{Free}} |
+| **Howie** | Email-based AI scheduling assistant | {{Paid}} |
+| **Google Calendar** | Gemini can create and find events | {{Free}} |
+:::
+
+## Project and work management
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Linear** | Issue tracking with AI triage and agents | {{Freemium}} |
+| **Jira with Rovo** | Atlassian's AI across Jira and Confluence | {{Freemium}} |
+| **Trello** | Boards with Atlassian AI | {{Freemium}} |
+| **Wrike** | Project management with AI | {{Paid}} |
+| **Smartsheet** | Spreadsheet-style projects with AI | {{Paid}} |
+| **Airtable** | Databases with AI fields and app building | {{Freemium}} |
+| **Slack AI** | Summaries, search answers, and recaps | {{Paid}} |
+| **Zoom Workplace** | Docs, chat, and AI Companion | {{Freemium}} |
+:::
+
+## More presentations
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **PowerPoint Copilot** | Draft and redesign decks in PowerPoint | {{Paid}} |
+| **Google Slides with Gemini** | Generate slides and images | {{Paid}} |
+| **Prezi AI** | Zooming presentations from a prompt | {{Freemium}} |
+| **Plus AI** | AI slides inside Google Slides and PowerPoint | {{Paid}} |
+| **Decktopus** | Quick decks from a topic | {{Freemium}} |
+| **SlidesAI** | Text to slides in Google Slides | {{Freemium}} |
+| **Presentations.AI** | Brand-aware deck generator | {{Freemium}} |
+| **MagicSlides** | Slides from text, PDFs, or videos | {{Freemium}} |
+| **Skywork** | Agent that makes slides, docs, and sheets | {{Freemium}} |
+| **Storydoc** | Interactive scrolling decks | {{Paid}} |
+:::
+
+## Spreadsheets and data analysis
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Google Sheets with Gemini** | Formulas, tables, and the AI function | {{Paid}} |
+| **Quadratic** | AI spreadsheet with Python and SQL | {{Freemium}} |
+| **GPT for Sheets and Docs** | Run AI on thousands of cells | {{Freemium}} |
+| **Formula Bot** | Formulas and analysis from plain English | {{Freemium}} |
+| **Ajelix** | Excel and Sheets AI helpers | {{Freemium}} |
+| **Hex** | Data notebooks with AI | {{Freemium}} |
+| **Deepnote** | Collaborative data notebooks with AI | {{Freemium}} |
+| **Power BI Copilot** | AI reports in Microsoft Power BI | {{Paid}} |
+| **Tableau Agent** | AI analysis in Tableau | {{Paid}} |
+| **Looker with Gemini** | Conversational analytics on Google Cloud | {{Paid}} |
+| **ThoughtSpot Spotter** | Ask questions of business data | {{Paid}} |
+| **Databricks AI/BI Genie** | Chat with your lakehouse data | {{Paid}} |
+| **Metabase** | Open-source BI with an AI helper | {{Freemium}} |
+| **Zoho Analytics** | BI with the Zia assistant | {{Freemium}} |
+:::
+
+## PDFs and document processing
+
+**OCR** (optical character recognition) turns pictures of text, such as scans, into real text.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **PDF.ai** | Chat with PDFs | {{Freemium}} |
+| **Smallpdf** | PDF tools with an AI summarizer | {{Freemium}} |
+| **UPDF** | PDF editor with AI chat | {{Paid}} |
+| **PDFelement** | PDF editor with AI | {{Paid}} |
+| **Foxit PDF Editor** | PDF editing with AI assistant | {{Paid}} |
+| **PopAi** | Chat with documents and make slides | {{Freemium}} |
+| **Docling** (IBM) | Open-source document-to-Markdown converter | {{Free}} |
+| **Marker**, **MinerU** | Open-source PDF-to-text tools | {{Free}} |
+| **LlamaParse** | Document parsing for AI apps | {{Freemium}} |
+| **Unstructured** | Prepares documents for AI pipelines | {{Freemium}} |
+| **Reducto** | Accurate parsing of complex documents | {{Paid}} |
+| **Mistral OCR** | OCR API from Mistral | {{Paid}} |
+| **Azure Document Intelligence** | Extract fields from forms and invoices | {{Freemium}} |
+| **Google Document AI** | Document extraction on Google Cloud | {{Paid}} |
+| **Amazon Textract** | AWS document text extraction | {{Paid}} |
+| **Nanonets** | Invoice and document automation | {{Freemium}} |
+| **Parseur** | Pull data out of emails and PDFs | {{Freemium}} |
+| **PandaDoc** | Proposals and contracts with AI | {{Paid}} |
+:::
+
+:::checklist
+- I picked one notes app and one task app, not five
+- I turned on AI features only where my data is allowed to go
+- I tried AI summaries on a real meeting or document this week
+:::
+
 # Business and Work
 
 :::compact
@@ -429,6 +1280,323 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | **Textio** | Inclusive job posts and feedback | {{Paid}} |
 :::
 
+# Sales and CRM
+
+A **CRM** (customer relationship management) system is where a business keeps track of customers, deals, and conversations. AI sales tools find leads, write outreach, and take call notes.
+
+## CRMs with AI
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Attio** | Flexible AI-native CRM | {{Freemium}} |
+| **Pipedrive** | Deal pipeline with an AI sales assistant | {{Paid}} |
+| **Zoho CRM** | CRM with the Zia assistant | {{Freemium}} |
+| **Freshsales** | CRM with Freddy AI | {{Freemium}} |
+| **Close** | CRM for calling and email-heavy teams | {{Paid}} |
+| **folk** | Lightweight CRM for relationships | {{Paid}} |
+| **monday CRM** | Sales CRM on monday.com | {{Paid}} |
+| **Microsoft Dynamics 365 Sales** | Enterprise CRM with Copilot | {{Paid}} |
+:::
+
+## Prospecting and data
+
+**Enrichment** means filling in missing details about a contact or company, such as job title or company size.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **ZoomInfo Copilot** | Company and contact data with AI insights | {{Paid}} |
+| **Lusha** | Contact data and prospecting | {{Freemium}} |
+| **Cognism** | B2B contact data with phone numbers | {{Paid}} |
+| **Seamless.AI** | Searchable contact database | {{Freemium}} |
+| **Explorium** | Company and people data for agents | {{Freemium}} |
+| **Common Room** | Buying signals from communities and the web | {{Freemium}} |
+| **Persana** | AI prospecting and enrichment | {{Freemium}} |
+| **Unify** | Signal-based outbound | {{Paid}} |
+| **Warmly** | Identifies website visitors and engages them | {{Freemium}} |
+| **RB2B** | Names the people visiting your site (US) | {{Freemium}} |
+| **Crystal** | Personality insights for selling | {{Freemium}} |
+:::
+
+## Outreach, calls, and coaching
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Outreach** | Sales engagement with AI agents | {{Paid}} |
+| **Salesloft** | Cadences and deal management | {{Paid}} |
+| **Clari** | Forecasting and revenue intelligence | {{Paid}} |
+| **Instantly** | Cold email at scale with AI | {{Paid}} |
+| **Smartlead** | Cold email infrastructure | {{Paid}} |
+| **lemlist** | Personalized multichannel outreach | {{Paid}} |
+| **Reply.io** | Outreach with an AI SDR | {{Paid}} |
+| **Amplemarket** | AI sales copilot and data | {{Paid}} |
+| **Regie.ai** | AI prospecting agents and content | {{Paid}} |
+| **11x** | AI "digital workers" for sales | {{Paid}} |
+| **Artisan** | AI BDR named Ava | {{Paid}} |
+| **Nooks**, **Orum** | AI-assisted parallel dialing | {{Paid}} |
+| **Momentum** | Captures call insights into the CRM | {{Paid}} |
+| **Attention** | Call notes and CRM updates | {{Paid}} |
+| **Hyperbound**, **Second Nature** | Practice sales calls with AI buyers | {{Paid}} |
+| **Highspot**, **Seismic** | Sales content and enablement with AI | {{Paid}} |
+:::
+
+# Marketing and SEO
+
+**SEO** (search engine optimization) helps your pages show up in search. **GEO** or AEO (generative or answer engine optimization) is the newer job of showing up in AI answers.
+
+## SEO and AI visibility
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Similarweb** | Website traffic and AI-search insights | {{Freemium}} |
+| **Moz** | SEO toolkit with AI features | {{Freemium}} |
+| **SE Ranking** | Rank tracking and AI-search tracking | {{Paid}} |
+| **Ubersuggest** | Budget keyword research | {{Freemium}} |
+| **AnswerThePublic**, **AlsoAsked** | Questions people search for | {{Freemium}} |
+| **Screaming Frog** | Website crawler for SEO audits | {{Freemium}} |
+| **MarketMuse** | Content planning and briefs | {{Freemium}} |
+| **NeuronWriter** | Content optimization for search | {{Paid}} |
+| **Search Atlas** | SEO platform with automation | {{Paid}} |
+| **Profound** | Tracks how AI assistants mention your brand | {{Paid}} |
+| **Peec AI** | AI-search visibility analytics | {{Paid}} |
+| **Otterly.AI** | Monitors brand mentions in AI answers | {{Paid}} |
+| **Scrunch AI** | Optimizes brands for AI search | {{Paid}} |
+| **AthenaHQ** | Generative engine optimization | {{Paid}} |
+:::
+
+## Social media and content
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Buffer** | Scheduling with an AI assistant | {{Freemium}} |
+| **Hootsuite** | Social management with OwlyWriter AI | {{Paid}} |
+| **Later** | Instagram and TikTok scheduling with AI captions | {{Paid}} |
+| **Sprout Social** | Social suite with AI listening | {{Paid}} |
+| **Metricool** | Scheduling and analytics | {{Freemium}} |
+| **Publer** | Social scheduler with AI assist | {{Freemium}} |
+| **Postiz** | Open-source social scheduler with AI | {{Freemium}} |
+| **Predis.ai** | Social posts and ads from a prompt | {{Freemium}} |
+| **Typefully** | Write and schedule threads | {{Freemium}} |
+| **Taplio** | LinkedIn growth and post writing | {{Paid}} |
+:::
+
+## Ads, email, and analytics
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Meta Advantage+** | AI campaign automation in Meta ads | {{Paid}} |
+| **Google Performance Max** | AI-driven Google ad campaigns | {{Paid}} |
+| **Pencil** | Generates and tests ad creatives | {{Paid}} |
+| **Madgicx** | AI for Meta ad optimization | {{Paid}} |
+| **Mailchimp** | Email marketing with AI tools | {{Freemium}} |
+| **Klaviyo** | E-commerce email and SMS with AI | {{Freemium}} |
+| **Brevo** | Email, SMS, and CRM with AI | {{Freemium}} |
+| **beehiiv** | Newsletters with an AI writer | {{Freemium}} |
+| **Kit** | Creator email marketing | {{Freemium}} |
+| **ActiveCampaign** | Automation with AI suggestions | {{Paid}} |
+| **Unbounce** | Landing pages with AI copy | {{Paid}} |
+| **Amplitude**, **Mixpanel** | Product analytics with AI answers | {{Freemium}} |
+| **PostHog** | Open-source product analytics with an AI assistant | {{Freemium}} |
+| **Microsoft Clarity** | Free heatmaps with Copilot summaries | {{Free}} |
+| **Hotjar** | Heatmaps and surveys with AI | {{Freemium}} |
+| **Brand24**, **Meltwater** | Brand monitoring and sentiment | {{Paid}} |
+| **Modash** | Find and vet influencers | {{Paid}} |
+:::
+
+# Customer Support
+
+AI support agents answer customer questions from your help articles, day and night, and hand hard cases to a human. A **help desk** is the software where support tickets are tracked.
+
+## Help desks and chat agents
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Ada** | Enterprise AI customer-service agent | {{Paid}} |
+| **Forethought** | AI agents for support teams | {{Paid}} |
+| **Freshdesk** | Help desk with Freddy AI | {{Freemium}} |
+| **Gorgias** | E-commerce help desk with AI agent | {{Paid}} |
+| **Help Scout** | Friendly help desk with AI answers | {{Freemium}} |
+| **Front** | Shared inbox with AI copilot | {{Paid}} |
+| **Kustomer**, **Gladly** | Customer-centric support platforms | {{Paid}} |
+| **HubSpot Customer Agent** | Breeze AI agent for service | {{Paid}} |
+| **Chatbase** | Custom chatbot from your website and docs | {{Freemium}} |
+| **CustomGPT.ai** | No-code chatbot on your content | {{Paid}} |
+| **Botpress** | Build support and sales bots | {{Freemium}} |
+| **Crisp** | Live chat with an AI agent | {{Freemium}} |
+| **Kore.ai** | Enterprise conversational AI | {{Paid}} |
+| **Yellow.ai** | Multilingual customer-service agents | {{Paid}} |
+| **Siena AI** | Empathetic support agent for brands | {{Paid}} |
+| **eesel AI** | AI agent that learns from past tickets | {{Paid}} |
+| **Pylon**, **Plain** | B2B support platforms with AI | {{Paid}} |
+| **Zendesk QA** | AI quality scoring of conversations | {{Paid}} |
+:::
+
+## Phone agents and receptionists
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **PolyAI** | Natural voice agents for call centers | {{Paid}} |
+| **Parloa** | Enterprise voice AI | {{Paid}} |
+| **Cognigy** (NICE) | Contact-center AI agents | {{Paid}} |
+| **Synthflow** | No-code phone agents | {{Freemium}} |
+| **Bland AI** | Programmable phone agents | {{Freemium}} |
+| **Dialpad** | Business phone with built-in AI | {{Paid}} |
+| **Aircall** | Cloud phone with AI summaries | {{Paid}} |
+| **Talkdesk**, **Five9** | Contact-center platforms with AI | {{Paid}} |
+| **Smith.ai** | AI plus human receptionists | {{Paid}} |
+| **Goodcall**, **Rosie** | AI phone answering for small businesses | {{Paid}} |
+| **Slang.ai** | AI phone host for restaurants | {{Paid}} |
+:::
+
+# HR and Recruiting
+
+**ATS** stands for applicant tracking system: the software employers use to manage job applications.
+
+## For employers
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Workday Illuminate** | AI agents across Workday HR | {{Paid}} |
+| **Greenhouse** | ATS with AI sourcing and summaries | {{Paid}} |
+| **Ashby** | All-in-one recruiting with AI | {{Paid}} |
+| **Lever** | ATS and CRM for talent | {{Paid}} |
+| **Gem** | AI recruiting platform | {{Paid}} |
+| **SeekOut**, **hireEZ** | AI candidate sourcing | {{Paid}} |
+| **Juicebox** (PeopleGPT) | Search for candidates in plain English | {{Freemium}} |
+| **Findem** | Talent data and sourcing | {{Paid}} |
+| **HireVue** | Video interviews and assessments | {{Paid}} |
+| **Metaview** | AI interview notes for recruiters | {{Freemium}} |
+| **LinkedIn Hiring Assistant** | AI agent for LinkedIn Recruiter | {{Paid}} |
+| **Rippling**, **Deel**, **Gusto** | HR and payroll with AI help | {{Paid}} |
+| **BambooHR** | HR for small businesses with AI | {{Paid}} |
+| **Lattice**, **Culture Amp**, **15Five** | Performance and engagement with AI | {{Paid}} |
+| **Leena AI**, **Moveworks** | AI help desks for employees | {{Paid}} |
+:::
+
+## For job seekers
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Teal** | Résumé builder and job tracker | {{Freemium}} |
+| **Kickresume**, **Rezi** | AI résumé and cover-letter writers | {{Freemium}} |
+| **Jobscan** | Checks your résumé against a job post | {{Freemium}} |
+| **Huntr** | Job tracker with AI tailoring | {{Freemium}} |
+| **Simplify** | Autofill job applications | {{Freemium}} |
+| **Careerflow** | LinkedIn and résumé optimization | {{Freemium}} |
+| **Yoodli** | Practice interviews and speeches | {{Freemium}} |
+:::
+
+```prompt
+Here is a job ad and my résumé. List the five requirements I match best,
+the gaps I should address, and three tailored bullet points I could add.
+```
+
+# Legal
+
+> [!CAUTION]
+> AI legal tools help professionals work faster. They are not a lawyer. Have a qualified lawyer check anything with real consequences.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Lexis+ AI** | Legal research and drafting on LexisNexis | {{Paid}} |
+| **Westlaw** (CoCounsel) | Thomson Reuters research with AI | {{Paid}} |
+| **Legora** | Collaborative AI for law firms | {{Paid}} |
+| **Luminance** | Contract review and negotiation | {{Paid}} |
+| **Ironclad** | Contract management with AI | {{Paid}} |
+| **Juro** | AI contract platform for in-house teams | {{Paid}} |
+| **LegalOn** | AI contract review | {{Paid}} |
+| **Clio** | Practice management with Clio Duo AI | {{Paid}} |
+| **vLex Vincent AI** | Research across many jurisdictions | {{Paid}} |
+| **EvenUp** | Demand letters for injury lawyers | {{Paid}} |
+| **Eve** | AI for plaintiff law firms | {{Paid}} |
+| **Supio** | Case-file analysis for litigators | {{Paid}} |
+| **Paxton** | Legal research and drafting for small firms | {{Paid}} |
+| **GC AI** | Assistant for in-house counsel | {{Paid}} |
+| **Genie AI** | Contract drafting and templates | {{Freemium}} |
+| **Docusign IAM** | Agreement management with AI | {{Paid}} |
+:::
+
+# Finance and Accounting
+
+## Accounting and finance teams
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Xero** | Small-business accounting with the JAX assistant | {{Paid}} |
+| **Sage Copilot** | AI in Sage accounting | {{Paid}} |
+| **FreshBooks** | Invoicing and accounting for freelancers | {{Paid}} |
+| **Zeni**, **Pilot** | Bookkeeping services powered by AI | {{Paid}} |
+| **Digits** | AI-native accounting | {{Paid}} |
+| **Puzzle** | Startup accounting with AI | {{Freemium}} |
+| **Vic.ai** | Automates accounts payable | {{Paid}} |
+| **Booke AI** | Bookkeeping automation | {{Paid}} |
+| **Basis** | AI agents for accounting firms | {{Paid}} |
+| **Numeric** | Month-end close with AI | {{Paid}} |
+| **Datarails** | FP&A with an AI assistant | {{Paid}} |
+| **Cube**, **Pigment** | Planning and forecasting with AI | {{Paid}} |
+| **NetSuite** (Oracle) | ERP with AI assistance | {{Paid}} |
+| **Bill**, **Stampli** | AI bill pay and invoice processing | {{Paid}} |
+| **Expensify** | Expenses with the Concierge assistant | {{Freemium}} |
+| **Navan** | Travel and expenses with AI | {{Paid}} |
+| **Mercury** | Business banking with AI features | {{Free}} |
+| **Airwallex** | Global payments with AI tools | {{Freemium}} |
+| **TurboTax** | Taxes with Intuit Assist (US) | {{Freemium}} |
+| **H&R Block AI Tax Assist** | AI tax help (US) | {{Freemium}} |
+:::
+
+## Personal finance
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Cleo** | Chatty budgeting assistant | {{Freemium}} |
+| **Monarch Money** | Budgeting with an AI assistant | {{Paid}} |
+| **Copilot Money** | Smart budgeting for Apple devices | {{Paid}} |
+| **Rocket Money** | Track subscriptions and cut bills | {{Freemium}} |
+| **Origin** | Money tracking with an AI financial adviser | {{Paid}} |
+| **Credit Karma** | Free credit scores and insights (US) | {{Free}} |
+:::
+
+# Trading and Investing Research
+
+> [!CAUTION]
+> These tools help you research. None of them can predict markets. Never invest money you cannot afford to lose, and be wary of anyone selling guaranteed AI trading profits.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Perplexity Finance** | Free market data and cited answers | {{Free}} |
+| **Fiscal.ai** (formerly FinChat) | Company data and AI research | {{Freemium}} |
+| **Koyfin** | Charts and fundamentals for investors | {{Freemium}} |
+| **TradingView** | Charts, screeners, and community ideas | {{Freemium}} |
+| **Simply Wall St** | Visual company analysis | {{Freemium}} |
+| **Seeking Alpha** | Research with AI summaries | {{Paid}} |
+| **Quartr** | Earnings calls and transcripts | {{Freemium}} |
+| **Danelfin** | AI stock scores | {{Freemium}} |
+| **TrendSpider** | Automated technical analysis | {{Paid}} |
+| **Trade Ideas** | AI stock scanning for traders | {{Paid}} |
+| **Composer** | Build trading strategies in plain English | {{Paid}} |
+| **Public** | Brokerage with the Alpha AI assistant | {{Free}} |
+| **AlphaSense** | Market intelligence for professionals | {{Paid}} |
+| **Bloomberg Terminal** | Pro data with AI summaries | {{Paid}} |
+| **Daloopa** | Financial data for analyst models | {{Paid}} |
+| **Bigdata.com** | AI research over news and filings | {{Paid}} |
+| **Aiera** | Event and earnings-call intelligence | {{Paid}} |
+| **Fintool** | AI analyst for SEC filings | {{Paid}} |
+| **Kavout** | AI stock rankings | {{Freemium}} |
+:::
+
 # Automation and Workflows
 
 :::compact
@@ -450,6 +1618,43 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | **Apple Shortcuts** | Automations on iPhone and Mac, with Apple Intelligence | {{Free}} |
 :::
 
+## More automation tools
+
+**RPA** (robotic process automation) is software that clicks through apps the way a person would, for tasks with no API.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Zapier Agents** | AI teammates that act across your apps | {{Freemium}} |
+| **Zapier Copilot** | Builds Zaps from a description | {{Freemium}} |
+| **Zapier Tables**, **Interfaces** | Simple databases and forms for automations | {{Freemium}} |
+| **Make AI Agents** | Agents inside Make scenarios | {{Freemium}} |
+| **Power Automate Desktop** | Free desktop RPA for Windows | {{Free}} |
+| **Automation Anywhere** | Enterprise RPA with AI agents | {{Paid}} |
+| **Microsoft Copilot Studio flows** | Agent flows in Microsoft 365 | {{Paid}} |
+| **Google Workspace Flows** | Gemini-powered automations in Workspace | {{Paid}} |
+| **Pabbly Connect** | Low-cost Zapier alternative | {{Paid}} |
+| **Integrately** | One-click integrations | {{Freemium}} |
+| **Bika.ai** | AI agents and automation databases | {{Freemium}} |
+| **Val Town** | Run small scripts and webhooks in the cloud | {{Freemium}} |
+| **Windmill** | Open-source scripts, flows, and apps | {{Freemium}} |
+| **Node-RED** | Free flow-based automation for devices | {{Free}} |
+| **Home Assistant** | Open-source smart home with AI voice | {{Free}} |
+| **Tasker** | Android automation | {{Paid}} |
+| **Keyboard Maestro** | Mac automation | {{Paid}} |
+:::
+
+> [!TIP]
+> Start with one boring weekly task, such as copying form answers into a spreadsheet. Automate only that, run it for a week, then add the next one.
+
+:::steps Plan your first automation
+1. **Write the trigger.** "When a new form response arrives…"
+2. **Write the steps.** "…summarize it with AI, add a row to my sheet, and message me."
+3. **Pick a platform.** Zapier for the fastest start; n8n for free self-hosting.
+4. **Test with real data.** Run it on three real examples and read the AI output.
+5. **Add a human check.** Have it ask for approval before anything is sent to a customer.
+:::
+
 # Agents and Agent Platforms
 
 ## Agents you can use
@@ -458,7 +1663,7 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | Tool | What it does | Price |
 |---|---|---|
 | **ChatGPT agent** | Browses, uses apps, and completes multi-step tasks | {{Paid}} |
-| **Claude Cowork** | Desktop agent that works on your files, browser, and connectors | {{Paid}} |
+| **Claude desktop agent** (formerly Cowork) | Agent in the Claude app that works on your files, browser, and connectors | {{Paid}} |
 | **Gemini Agent** | Google's multi-step task agent | {{Paid}} |
 | **Manus** | General autonomous agent for research and building | {{Freemium}} |
 | **Genspark** | Super-agent for slides, sheets, calls, and research | {{Freemium}} |
@@ -501,6 +1706,116 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | **Amazon Bedrock AgentCore** | Deploy and run agents on AWS | {{Paid}} |
 | **Vertex AI Agent Builder** | Google Cloud's agent platform | {{Paid}} |
 | **Voiceflow**, **Vapi**, **Retell** | Build chat and phone voice agents | {{Freemium}} |
+:::
+
+## More ready-made agents
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Perplexity Labs** | Builds reports, dashboards, and simple apps | {{Paid}} |
+| **Flowith** | Canvas-based agent for big research tasks | {{Freemium}} |
+| **Kimi Agent** (OK Computer) | Moonshot's agent for sites and slides | {{Freemium}} |
+| **Microsoft 365 Copilot agents** | Researcher and Analyst agents | {{Paid}} |
+| **Agentforce for Slack** | Salesforce agents in Slack | {{Paid}} |
+| **Lindy** | Personal assistant agents for email and calls | {{Freemium}} |
+| **Devin**, **Claude Code**, **Codex** | Coding agents (see Coding) | {{Paid}} |
+:::
+
+## More browser agents and web data
+
+A **headless browser** is a web browser with no window, controlled by code. **Scraping** means pulling information out of web pages automatically. Respect each site's terms.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Stagehand** (Browserbase) | Open-source SDK for AI browser automation | {{Free}} |
+| **Skyvern** | Automates browser workflows with vision | {{Freemium}} |
+| **Hyperbrowser** | Cloud browsers for agents | {{Freemium}} |
+| **Anchor Browser** | Agent-ready cloud browsers | {{Freemium}} |
+| **Browserless** | Hosted headless Chrome | {{Freemium}} |
+| **Kernel** | Fast cloud browsers for agents | {{Freemium}} |
+| **Airtop** | Cloud browsers controlled in plain English | {{Freemium}} |
+| **Nanobrowser** | Open-source agent in a Chrome extension | {{Free}} |
+| **Magnitude** | Open-source vision-based browser agent | {{Free}} |
+| **TinyFish** | Enterprise web agents at scale | {{Paid}} |
+| **Firecrawl** | Turn websites into clean data for AI | {{Freemium}} |
+| **Apify** | Marketplace of scrapers and actors | {{Freemium}} |
+| **Bright Data** | Proxies, scrapers, and web datasets | {{Paid}} |
+| **Crawl4AI** | Open-source crawler built for LLMs | {{Free}} |
+| **Jina Reader** | Turns any URL into LLM-friendly text | {{Freemium}} |
+| **ScrapingBee**, **ScraperAPI** | Scraping APIs that handle blocking | {{Paid}} |
+| **Zyte**, **Oxylabs** | Enterprise web data | {{Paid}} |
+| **Diffbot** | Structured data and a knowledge graph of the web | {{Paid}} |
+| **Browse AI** | No-code website monitoring and scraping | {{Freemium}} |
+| **Octoparse** | Point-and-click scraper | {{Freemium}} |
+| **Thunderbit** | AI web scraper Chrome extension | {{Freemium}} |
+:::
+
+## More AI browsers
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Microsoft Edge Copilot Mode** | Edge with Copilot that can act on tabs | {{Free}} |
+| **Brave** with **Leo** | Private browser with an AI assistant | {{Freemium}} |
+| **Opera One** with **Aria** | Free AI built into Opera | {{Free}} |
+| **Fellou** | Agentic browser that does tasks for you | {{Freemium}} |
+| **Genspark Browser** | Browser with Genspark's agents | {{Freemium}} |
+| **Norton Neo** | AI browser from Norton | {{Free}} |
+| **Arc** | Browser with AI tab tidy and summaries | {{Free}} |
+| **Firefox** AI features | Sidebar chatbot of your choice and summaries | {{Free}} |
+:::
+
+> [!WARNING]
+> Agentic browsers can be tricked by hidden instructions on web pages (**prompt injection**). Do not let an agent use logged-in accounts for banking or shopping without watching it, and approve each payment yourself.
+
+## More agent frameworks and SDKs
+
+An **SDK** (software development kit) is a ready-made code library for building on a platform. A **framework** gives you the structure for an app so you only fill in the details.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **smolagents** (Hugging Face) | Tiny Python library for code-writing agents | {{Free}} |
+| **Strands Agents** (AWS) | Model-driven open-source agent SDK | {{Free}} |
+| **BeeAI** (IBM) | Open-source agent framework | {{Free}} |
+| **CAMEL**, **MetaGPT** | Multi-agent research frameworks | {{Free}} |
+| **AutoGPT** | Open-source autonomous agent platform | {{Free}} |
+| **Langroid** | Multi-agent Python framework | {{Free}} |
+| **Inngest AgentKit** | TypeScript agent networks | {{Free}} |
+| **VoltAgent** | Open-source TypeScript agent framework | {{Free}} |
+| **Rasa** | Conversational AI framework | {{Freemium}} |
+| **CopilotKit** | In-app copilots for React; AG-UI protocol | {{Freemium}} |
+| **assistant-ui** | React components for AI chat | {{Free}} |
+| **Chainlit**, **Streamlit**, **Gradio** | Quick Python UIs for AI apps | {{Free}} |
+| **LiveKit Agents** | Real-time voice and video agents | {{Freemium}} |
+| **Pipecat** (Daily) | Open-source voice agent framework | {{Free}} |
+| **ElevenLabs Agents** | Voice agents with ElevenLabs voices | {{Freemium}} |
+| **Ultravox** | Speech-native voice agent model and API | {{Freemium}} |
+| **Agent2Agent (A2A)** | Open protocol for agents to talk to each other | {{Free}} |
+:::
+
+## Memory, tools, and sandboxes for agents
+
+A **sandbox** is a safe, sealed-off computer where an agent can run code without touching yours.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Mem0** | Long-term memory layer for agents | {{Freemium}} |
+| **Zep** | Memory with a temporal knowledge graph | {{Freemium}} |
+| **Supermemory** | Memory API and personal memory app | {{Freemium}} |
+| **Cognee** | Open-source memory for AI apps | {{Freemium}} |
+| **Composio** | Hundreds of tool integrations with auth | {{Freemium}} |
+| **Arcade** | Secure tool calling with user sign-in | {{Freemium}} |
+| **E2B** | Cloud sandboxes for AI-written code | {{Freemium}} |
+| **Daytona** | Fast sandboxes for agents | {{Freemium}} |
+| **Vercel Sandbox** | Run untrusted code on Vercel | {{Freemium}} |
+| **Cloudflare Sandbox** | Containers for agents on Cloudflare | {{Paid}} |
+| **Temporal** | Durable execution for long agent jobs | {{Freemium}} |
+| **Trigger.dev** | Background jobs for AI tasks | {{Freemium}} |
+| **Inngest** | Durable workflows and queues | {{Freemium}} |
 :::
 
 # Developer Infrastructure
@@ -576,6 +1891,222 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | **Stripe** | Payments, billing, and agentic commerce | {{Freemium}} |
 :::
 
+## More model APIs
+
+:::compact
+| Provider | What it offers | Price |
+|---|---|---|
+| **Perplexity Sonar API** | Search-grounded answers via API | {{Paid}} |
+| **AI21** | Jamba models for long documents | {{Paid}} |
+| **Z.ai API** (Zhipu) | GLM models | {{Paid}} |
+| **Moonshot API** | Kimi models | {{Paid}} |
+| **MiniMax API** | Text, speech, and video models | {{Paid}} |
+| **Alibaba Cloud Model Studio** | Qwen models via API | {{Freemium}} |
+| **IBM watsonx.ai** | Granite and other models for business | {{Freemium}} |
+| **NVIDIA NIM** | Optimized model containers and a free trial API | {{Freemium}} |
+| **Oracle OCI Generative AI** | Models on Oracle Cloud | {{Paid}} |
+| **Snowflake Cortex AI** | LLM functions inside Snowflake | {{Paid}} |
+| **Writer Palmyra** | Enterprise models via API | {{Paid}} |
+| **Inception** (Mercury) | Very fast diffusion language models | {{Freemium}} |
+| **fal** | Fast image, video, and audio model APIs | {{Paid}} |
+| **Runware** | Low-cost image and video generation API | {{Paid}} |
+| **Stability AI API** | Image, 3D, and audio models | {{Paid}} |
+:::
+
+## Open-weight model families
+
+**Open-weight** models can be downloaded and run on your own hardware. Check each license: some limit commercial use.
+
+:::compact
+| Model family | From | Price |
+|---|---|---|
+| **gpt-oss** | OpenAI | {{Free}} |
+| **Gemma** | Google | {{Free}} |
+| **Llama** | Meta | {{Free}} |
+| **Qwen** | Alibaba | {{Free}} |
+| **DeepSeek** | DeepSeek | {{Free}} |
+| **Mistral** and **Devstral** | Mistral AI | {{Free}} |
+| **Kimi K2** | Moonshot AI | {{Free}} |
+| **GLM** | Zhipu (Z.ai) | {{Free}} |
+| **MiniMax M** series | MiniMax | {{Free}} |
+| **Phi** | Microsoft | {{Free}} |
+| **Granite** | IBM | {{Free}} |
+| **Nemotron** | NVIDIA | {{Free}} |
+| **OLMo** | Ai2 (fully open, including data) | {{Free}} |
+| **SmolLM** | Hugging Face | {{Free}} |
+| **Liquid LFM** | Liquid AI | {{Free}} |
+| **Falcon** | TII | {{Free}} |
+:::
+
+## Model routers and gateways
+
+A **gateway** sits between your app and many model providers. It handles keys, fallbacks, caching, and spending limits in one place.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **LiteLLM** | Open-source proxy for 100+ model APIs | {{Free}} |
+| **Portkey** | AI gateway with guardrails and logs | {{Freemium}} |
+| **Vercel AI Gateway** | One endpoint for many models | {{Freemium}} |
+| **Cloudflare AI Gateway** | Caching, rate limits, and analytics | {{Free}} |
+| **Kong AI Gateway** | Enterprise API and AI gateway | {{Freemium}} |
+| **Requesty** | Router with cost controls | {{Freemium}} |
+| **Not Diamond** | Picks the best model for each prompt | {{Freemium}} |
+| **Eden AI** | One API for many AI services | {{Freemium}} |
+:::
+
+## More inference and GPU clouds
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **SambaNova Cloud** | Fast inference on custom chips | {{Freemium}} |
+| **DeepInfra** | Cheap hosted open models | {{Paid}} |
+| **Novita AI** | Model APIs and GPU instances | {{Paid}} |
+| **Hyperbolic** | Low-cost GPUs and inference | {{Paid}} |
+| **Nebius AI Studio** | Open-model inference and fine-tuning | {{Paid}} |
+| **Lambda** | GPU cloud for training and inference | {{Paid}} |
+| **CoreWeave**, **Crusoe** | Large-scale GPU clouds | {{Paid}} |
+| **Vast.ai** | Marketplace of rentable GPUs | {{Paid}} |
+| **Anyscale** | Managed Ray for scaling AI | {{Paid}} |
+| **DigitalOcean Gradient AI** | Simple GPUs and agent hosting | {{Paid}} |
+| **Cerebrium**, **Beam** | Serverless GPU apps | {{Freemium}} |
+| **Google Colab** | Free notebooks with GPU time | {{Freemium}} |
+| **Kaggle** | Free notebooks, GPUs, and datasets | {{Free}} |
+| **Lightning AI** | Cloud studios for AI development | {{Freemium}} |
+:::
+
+## Local and open-source runners
+
+Running a model **locally** keeps your data on your machine. **Quantization** shrinks a model so it fits in less memory, with a small loss in quality. **GGUF** is a popular file format for these smaller models.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **LocalAI** | Drop-in local replacement for the OpenAI API | {{Free}} |
+| **KoboldCpp** | One-file local runner, popular for stories | {{Free}} |
+| **text-generation-webui** | Feature-rich local web interface | {{Free}} |
+| **llamafile** (Mozilla) | A model and runner in one file | {{Free}} |
+| **MLX** / **mlx-lm** (Apple) | Fast local models on Apple silicon | {{Free}} |
+| **MLC LLM** | Run models on phones and browsers | {{Free}} |
+| **SGLang** | Fast open-source serving engine | {{Free}} |
+| **TensorRT-LLM** (NVIDIA) | Optimized inference on NVIDIA GPUs | {{Free}} |
+| **ExLlamaV2** | Fast quantized inference on GPUs | {{Free}} |
+| **Docker Model Runner** | Pull and run models like containers | {{Free}} |
+| **RamaLama** | Run models in containers | {{Free}} |
+| **Foundry Local** (Microsoft) | Local models on Windows and Mac | {{Free}} |
+| **Lemonade** (AMD) | Local inference tuned for AMD hardware | {{Free}} |
+| **PrivateGPT** | Private document Q&A, fully offline | {{Free}} |
+| **PocketPal AI** | Run small models on your phone | {{Free}} |
+| **Google AI Edge Gallery** | Try on-device models on Android | {{Free}} |
+| **Private LLM** | Offline models for iPhone and Mac | {{Paid}} |
+| **LLM** (Simon Willison) | Command-line tool for many models | {{Free}} |
+| **Unsloth** | Faster, lower-memory fine-tuning | {{Free}} |
+| **Axolotl**, **LLaMA-Factory** | Open-source fine-tuning toolkits | {{Free}} |
+| **TRL**, **PEFT** (Hugging Face) | Libraries for training and adapters | {{Free}} |
+:::
+
+> [!TIP]
+> Rough rule: a computer with 16 GB of memory runs 7–8 billion parameter models comfortably; 32 GB or more opens up much stronger ones. Start with a small model in LM Studio and work up.
+
+## More vector databases and search
+
+An **embedding** turns text into a list of numbers that captures its meaning. A **vector database** stores embeddings so an app can find similar text fast. Together they power **RAG** (retrieval-augmented generation): looking up your documents before the AI answers.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **LanceDB** | Embedded, open-source vector database | {{Freemium}} |
+| **Vespa** | Search and recommendation engine | {{Freemium}} |
+| **Elasticsearch** | Search with vector and hybrid retrieval | {{Freemium}} |
+| **OpenSearch** | Open-source search with vectors | {{Free}} |
+| **Redis** | In-memory database with vector search | {{Freemium}} |
+| **MongoDB Atlas Vector Search** | Vectors next to your documents | {{Freemium}} |
+| **Supabase Vector** | pgvector managed by Supabase | {{Freemium}} |
+| **Upstash Vector** | Serverless vector database | {{Freemium}} |
+| **Cloudflare Vectorize** | Vector search on Cloudflare | {{Freemium}} |
+| **Amazon S3 Vectors** | Cheap vector storage in S3 | {{Paid}} |
+| **Azure AI Search** | Microsoft's search with vectors | {{Paid}} |
+| **Vertex AI Vector Search** | Google Cloud vector search | {{Paid}} |
+| **Astra DB** (DataStax) | Serverless vector database | {{Freemium}} |
+| **SingleStore**, **Couchbase** | Databases with vector search | {{Freemium}} |
+| **FAISS** (Meta) | Free library for similarity search | {{Free}} |
+| **Typesense**, **Meilisearch** | Fast search engines with AI search | {{Freemium}} |
+| **Algolia** | Hosted search with AI ranking | {{Freemium}} |
+:::
+
+## Embeddings, rerankers, and RAG platforms
+
+A **reranker** re-sorts search results so the most relevant come first.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Voyage AI** | High-quality embeddings and rerankers | {{Freemium}} |
+| **Jina AI** | Embeddings, rerankers, and reader API | {{Freemium}} |
+| **Cohere Embed** / **Rerank** | Multilingual embeddings and reranking | {{Freemium}} |
+| **Nomic Embed** | Open embedding models | {{Freemium}} |
+| **Mixedbread** | Open embeddings and search API | {{Freemium}} |
+| **Vectara** | RAG-as-a-service with hallucination checks | {{Freemium}} |
+| **Ragie** | Managed RAG for developers | {{Freemium}} |
+| **Pinecone Assistant** | Upload files, get a cited chat API | {{Freemium}} |
+| **LlamaCloud** | Managed parsing and indexing | {{Freemium}} |
+| **RAGFlow** | Open-source RAG engine | {{Free}} |
+| **Onyx** | Open-source enterprise search and chat | {{Freemium}} |
+:::
+
+## More observability, evals, and guardrails
+
+An **eval** is a repeatable test of AI output quality. **Observability** means recording what your AI app did so you can debug it. **Guardrails** block unsafe inputs or outputs.
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **Arize AX** | Enterprise LLM observability | {{Freemium}} |
+| **Datadog LLM Observability** | Traces and costs in Datadog | {{Paid}} |
+| **Galileo** | Evals and guardrail metrics | {{Freemium}} |
+| **HoneyHive** | Testing and monitoring for agents | {{Freemium}} |
+| **Opik** (Comet) | Open-source tracing and evals | {{Freemium}} |
+| **Promptfoo** | Open-source prompt testing and red teaming | {{Freemium}} |
+| **Confident AI** / **DeepEval** | Unit tests for LLM apps | {{Freemium}} |
+| **Ragas** | Open-source RAG evaluation | {{Free}} |
+| **Laminar** | Open-source agent tracing | {{Freemium}} |
+| **Agenta** | Prompt management and evals | {{Freemium}} |
+| **PromptLayer** | Prompt registry and logging | {{Freemium}} |
+| **Pydantic Logfire** | Observability with AI tracing | {{Freemium}} |
+| **MLflow** | Open-source ML and LLM tracking | {{Free}} |
+| **Weights & Biases** | Experiment tracking for training | {{Freemium}} |
+| **Inspect** (UK AISI) | Open-source evaluation framework | {{Free}} |
+| **LMArena** | Public leaderboard from blind votes | {{Free}} |
+| **Artificial Analysis** | Independent model speed and quality benchmarks | {{Free}} |
+| **Guardrails AI** | Open-source output validation | {{Free}} |
+| **NeMo Guardrails** (NVIDIA) | Programmable rails for chatbots | {{Free}} |
+| **Llama Guard** | Open safety classifier model | {{Free}} |
+| **Lakera** | Prompt-injection protection | {{Paid}} |
+:::
+
+## More hosting, backends, and auth
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **AWS Amplify** | Full-stack hosting on AWS | {{Freemium}} |
+| **Heroku** | Simple app platform with AI add-ons | {{Paid}} |
+| **DigitalOcean App Platform** | Easy app hosting | {{Freemium}} |
+| **Appwrite** | Open-source backend platform | {{Freemium}} |
+| **PocketBase** | One-file open-source backend | {{Free}} |
+| **Turso** | Edge SQLite database | {{Freemium}} |
+| **PlanetScale** | Managed MySQL and Postgres | {{Paid}} |
+| **Prisma Postgres** | Serverless Postgres with Prisma | {{Freemium}} |
+| **Upstash** | Serverless Redis, queues, and vectors | {{Freemium}} |
+| **WorkOS** | Enterprise sign-in and agent auth | {{Freemium}} |
+| **Stytch**, **Descope** | Authentication APIs | {{Freemium}} |
+| **Better Auth** | Open-source TypeScript auth library | {{Free}} |
+| **Resend** | Email API for developers | {{Freemium}} |
+| **Twilio** | SMS, voice, and WhatsApp APIs | {{Paid}} |
+| **Sentry** | Error monitoring with AI root-cause help | {{Freemium}} |
+:::
+
 # Connectors
 
 **Connectors** link an AI assistant to the apps you use, so it can read and act in them. Claude calls them *connectors*, ChatGPT calls them *apps*, and Gemini calls them *extensions* or *apps*. Many are built on MCP. Availability differs by assistant and plan, so check each assistant's connector directory (in Claude: [[Settings > Connectors]]).
@@ -642,6 +2173,116 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 | **Spotify** | Make playlists and find music | {{Freemium}} |
 | **Instacart**, **DoorDash** | Shop groceries and order food from chat | {{Free}} |
 | **Zillow** | Search homes for sale and rent | {{Free}} |
+:::
+
+## More Claude connectors
+
+Claude's directory lists connectors from many companies. A selection beyond the ones above, grouped by use:
+
+:::compact
+| Connector | What Claude can do | Price |
+|---|---|---|
+| **Miro**, **Lucid** | Read and create boards and diagrams | {{Freemium}} |
+| **Monday.com** | Boards, items, and docs | {{Freemium}} |
+| **Gumloop** | Run and build AI automations | {{Freemium}} |
+| **n8n** | Search, build, and run workflows | {{Freemium}} |
+| **Docusign** | Create envelopes and track agreements | {{Paid}} |
+| **Apollo**, **Lusha**, **Common Room** | Prospect and enrich contacts | {{Freemium}} |
+| **Gong** | Search call recordings and insights | {{Paid}} |
+| **Guru** | Search company knowledge | {{Paid}} |
+| **Datadog**, **PagerDuty** | Investigate incidents and alerts | {{Paid}} |
+| **Honeycomb**, **Grafana**, **SigNoz** | Query traces, logs, and dashboards | {{Freemium}} |
+| **ClickHouse**, **BigQuery**, **PlanetScale** | Query databases and warehouses | {{Freemium}} |
+| **Exa**, **Tavily**, **Bright Data** | Web search and extraction | {{Freemium}} |
+| **Airtable**, **Box**, **Dropbox** | Bases and files | {{Freemium}} |
+| **Wix**, **Base44**, **Sanity** | Sites, apps, and content | {{Freemium}} |
+| **Intuit QuickBooks**, **Credit Karma** | Business books and credit insights | {{Freemium}} |
+| **Carta** | Cap tables, funds, and investor CRM | {{Paid}} |
+| **S&P Global**, **LSEG**, **Daloopa** | Financial data for analysts | {{Paid}} |
+| **Bigdata.com** | News and filings research | {{Paid}} |
+| **PubMed**, **bioRxiv** | Search biomedical papers and preprints | {{Free}} |
+| **ClinicalTrials.gov**, **ChEMBL**, **Open Targets** | Trials, compounds, and drug targets | {{Free}} |
+| **Consensus** | Search peer-reviewed research | {{Freemium}} |
+| **CMS Coverage**, **ICD-10 Codes**, **NPI Registry** | US health coverage, codes, and providers | {{Free}} |
+| **Coursera** | Find and learn from courses | {{Freemium}} |
+:::
+
+## Claude plugins
+
+**Plugins** bundle skills (written know-how), connectors, and commands for one kind of work. Anthropic publishes these for knowledge workers, and companies publish their own.
+
+:::compact
+| Plugin | What it adds | Price |
+|---|---|---|
+| **Productivity** | Task and memory management | {{Paid}} |
+| **Sales** | Call prep, pipeline reviews, outreach drafts | {{Paid}} |
+| **Marketing** | Campaign plans, briefs, SEO audits | {{Paid}} |
+| **Customer Support** | Ticket triage, replies, knowledge articles | {{Paid}} |
+| **Legal** | Contract and NDA review, risk checks | {{Paid}} |
+| **Finance** | Reconciliations, journal entries, close | {{Paid}} |
+| **Human Resources** | Offers, reviews, onboarding | {{Paid}} |
+| **Engineering** | Code review, incidents, system design | {{Paid}} |
+| **Design** | Critiques, handoffs, UX copy | {{Paid}} |
+| **Product Management** | Specs, roadmaps, research synthesis | {{Paid}} |
+| **Operations** | Runbooks, process docs, vendor reviews | {{Paid}} |
+| **Enterprise Search** | Search across connected tools | {{Paid}} |
+| **Bio-Research** | Literature, trials, and lab-data workflows | {{Paid}} |
+| **Small Business** | Invoices, payroll prep, marketing for owners | {{Paid}} |
+| Vendor plugins | Figma, Canva, Adobe, HubSpot, Twilio, Unity, and more | {{Paid}} |
+:::
+
+## ChatGPT apps
+
+ChatGPT "apps" open an interactive panel inside the chat. Mention one by name, or pick it from [[Apps]] in ChatGPT.
+
+:::compact
+| App | What you can do in ChatGPT | Price |
+|---|---|---|
+| **Canva** | Turn an outline into a design | {{Freemium}} |
+| **Figma** | Make diagrams and FigJam boards | {{Freemium}} |
+| **Adobe Photoshop**, **Express**, **Acrobat** | Edit photos, designs, and PDFs | {{Freemium}} |
+| **Coursera** | Watch and ask about courses | {{Freemium}} |
+| **Booking.com**, **Expedia** | Find hotels and trips | {{Free}} |
+| **Tripadvisor**, **AllTrails** | Plan trips and hikes | {{Free}} |
+| **Spotify**, **Apple Music** | Build playlists | {{Freemium}} |
+| **Zillow** | Browse homes on a map | {{Free}} |
+| **Instacart**, **DoorDash** | Shop groceries and order food | {{Free}} |
+| **OpenTable** | Book restaurants | {{Free}} |
+| **Peloton** | Find classes | {{Paid}} |
+| **Replit** | Build an app from chat | {{Freemium}} |
+| Workplace apps | Google Drive, SharePoint, GitHub, Notion, Linear, HubSpot | {{Freemium}} |
+:::
+
+## AI apps in Zapier and n8n
+
+Both platforms let you drop AI steps into workflows. In Zapier you pick an app; in n8n you add a **node** (one box in the workflow).
+
+:::compact
+| Integration | Where | What it does | Price |
+|---|---|---|---|
+| **AI by Zapier** | Zapier | Built-in AI step, no API key needed | {{Freemium}} |
+| **ChatGPT (OpenAI)** | Both | Generate, classify, and transcribe | {{Paid}} |
+| **Anthropic (Claude)** | Both | Claude models in a step | {{Paid}} |
+| **Google Gemini** | Both | Gemini models in a step | {{Freemium}} |
+| **Perplexity** | Both | Search-backed answers | {{Paid}} |
+| **Mistral AI**, **DeepSeek**, **Groq** | n8n | Chat-model nodes | {{Paid}} |
+| **Ollama** | n8n | Local models in workflows | {{Free}} |
+| **OpenRouter** | n8n | Many models through one key | {{Freemium}} |
+| **AI Agent** node | n8n | An agent with tools and memory | {{Free}} |
+| **MCP Client Tool** / **MCP Server Trigger** | n8n | Use or expose MCP tools | {{Free}} |
+| **Pinecone**, **Qdrant**, **Supabase** vector stores | n8n | RAG over your documents | {{Freemium}} |
+| **ElevenLabs** | Both | Voiceovers from text | {{Freemium}} |
+| **AssemblyAI** | Zapier | Transcribe audio files | {{Freemium}} |
+| **Fireflies**, **Fathom**, **Otter** | Zapier | Send meeting notes onward | {{Freemium}} |
+| **Zapier Chatbots** | Zapier | Chatbots that trigger Zaps | {{Freemium}} |
+:::
+
+:::steps Connect your first app to an assistant
+1. **Open the directory.** In Claude: [[Settings > Connectors]]. In ChatGPT: [[Settings > Apps]].
+2. **Pick one app you use daily.** Google Drive or your calendar is a good first choice.
+3. **Sign in and review permissions.** Grant read-only access first if you can.
+4. **Ask a real question.** "What's on my calendar on Thursday, and what should I prepare?"
+5. **Disconnect what you don't use.** Fewer connections means less risk.
 :::
 
 # MCP Servers
@@ -762,21 +2403,2101 @@ General-purpose AI you talk to: ask questions, write, analyze files, brainstorm,
 > [!NOTE]
 > Find more servers in the official **MCP Registry**, Anthropic's connector directory at claude.ai/directory, the `modelcontextprotocol/servers` repository on GitHub, and each vendor's documentation.
 
+## More developer MCP servers
+
+:::compact
+| Server | What it does | Price |
+|---|---|---|
+| **DeepWiki MCP** (Cognition) | Ask questions about any public GitHub repo | {{Free}} |
+| **GitMCP** | Turns any GitHub repo into a docs server | {{Free}} |
+| **Ref** | Token-efficient documentation search | {{Freemium}} |
+| **Next.js DevTools MCP** (Vercel) | Errors and routes from a running Next.js app | {{Free}} |
+| **shadcn MCP** | Browse and install UI components | {{Free}} |
+| **Svelte MCP**, **Angular CLI MCP** | Framework docs and helpers | {{Free}} |
+| **Nx MCP** | Monorepo structure for agents | {{Free}} |
+| **Storybook MCP** | Component stories as context | {{Free}} |
+| **Prisma MCP** | Database schema and migrations | {{Freemium}} |
+| **Postman MCP** | APIs, collections, and tests | {{Freemium}} |
+| **Apollo MCP Server** | Expose GraphQL operations as tools | {{Free}} |
+| **Buildkite MCP**, **CircleCI MCP** | CI pipelines and build logs | {{Freemium}} |
+| **Azure DevOps MCP** | Work items, repos, and pipelines | {{Freemium}} |
+| **Pulumi MCP** | Infrastructure as code | {{Freemium}} |
+| **Heroku MCP**, **Render MCP**, **Railway MCP** | Deploy and inspect apps | {{Freemium}} |
+| **DigitalOcean MCP** | Manage droplets and apps | {{Paid}} |
+| **Firebase MCP** | Firebase projects through the CLI | {{Freemium}} |
+| **Expo MCP** | React Native app help | {{Freemium}} |
+| **XcodeBuildMCP** | Build and run iOS apps (community) | {{Free}} |
+| **Unity MCP** | Control the Unity editor | {{Paid}} |
+| **Blender MCP** | Build 3D scenes by prompt (community) | {{Free}} |
+| **LaunchDarkly MCP**, **GrowthBook MCP** | Feature flags and experiments | {{Freemium}} |
+| **PostHog MCP**, **Amplitude MCP**, **Mixpanel MCP** | Product analytics queries | {{Freemium}} |
+| **Auth0 MCP** | Manage apps and users | {{Freemium}} |
+| **Fastly MCP** | CDN services and stats | {{Paid}} |
+| **Cloudinary MCP** | Upload, transform, and search media | {{Freemium}} |
+| **Mux MCP** | Video assets and analytics | {{Paid}} |
+| **Sanity MCP**, **Contentful MCP**, **Storyblok MCP** | Headless CMS content | {{Freemium}} |
+| **WordPress MCP** | Posts and site management | {{Free}} |
+| **Mailgun MCP**, **Postmark MCP** | Transactional email | {{Freemium}} |
+| **Claude Code as MCP** (`claude mcp serve`) | Use Claude Code's tools from another app | {{Paid}} |
+:::
+
+## Security MCP servers
+
+:::compact
+| Server | What it does | Price |
+|---|---|---|
+| **Snyk MCP** | Scan code and dependencies | {{Freemium}} |
+| **Semgrep MCP** | Static analysis for security bugs | {{Freemium}} |
+| **SonarQube MCP** | Code quality and security issues | {{Freemium}} |
+| **Socket MCP** | Check package risk before installing | {{Free}} |
+| **StackHawk MCP** | API security testing | {{Paid}} |
+| **Vanta MCP** | Compliance tests and remediation | {{Paid}} |
+| **GitGuardian MCP** | Find leaked secrets | {{Freemium}} |
+| **HashiCorp Vault MCP** | Secrets management | {{Freemium}} |
+| **Burp Suite MCP** (PortSwigger) | Web security testing | {{Freemium}} |
+:::
+
+## More data MCP servers
+
+:::compact
+| Server | What it does | Price |
+|---|---|---|
+| **BigQuery MCP** (Google) | Query BigQuery datasets | {{Paid}} |
+| **Postgres MCP Pro** | Postgres tuning and safe SQL (community) | {{Free}} |
+| **MotherDuck / DuckDB MCP** | Fast analytics on local or cloud data | {{Freemium}} |
+| **Neo4j MCP** | Graph database queries | {{Freemium}} |
+| **Couchbase MCP**, **SingleStore MCP** | Database queries | {{Freemium}} |
+| **Upstash MCP** | Redis and queues | {{Freemium}} |
+| **Convex MCP** | Inspect Convex backends | {{Freemium}} |
+| **dbt MCP** | Models, lineage, and metrics | {{Freemium}} |
+| **Atlan MCP** | Data catalog search | {{Paid}} |
+| **Tableau MCP**, **Power BI MCP** | Dashboards and semantic models | {{Paid}} |
+| **Algolia MCP**, **Meilisearch MCP** | Search indexes | {{Freemium}} |
+| **Weaviate MCP**, **Milvus MCP** | Vector stores | {{Freemium}} |
+| **Data Commons MCP** (Google) | Public statistics | {{Free}} |
+| **Pixeltable MCP** | Multimodal data tables | {{Free}} |
+| **DataRobot MCP** | Predictive models | {{Paid}} |
+:::
+
+## More productivity and communication servers
+
+:::compact
+| Server | What it does | Price |
+|---|---|---|
+| **Google Drive**, **Gmail**, **Calendar** MCP (Google) | Files, mail, and events | {{Free}} |
+| **Todoist MCP** | Tasks and projects | {{Freemium}} |
+| **Miro MCP** | Boards and diagrams | {{Freemium}} |
+| **Smartsheet MCP** | Sheets and projects | {{Paid}} |
+| **Egnyte MCP** | Business files | {{Paid}} |
+| **Guru MCP**, **Glean MCP** | Company knowledge | {{Paid}} |
+| **Fireflies MCP**, **Granola MCP** | Meeting transcripts | {{Freemium}} |
+| **Docusign MCP** | Envelopes and agreements | {{Paid}} |
+| **Cal.com MCP** | Bookings and availability | {{Freemium}} |
+| **Google Maps MCP** | Places and directions | {{Freemium}} |
+| **Mapbox MCP** | Maps, geocoding, and routes | {{Freemium}} |
+| **ServiceNow MCP** | IT tickets and workflows | {{Paid}} |
+| **Zendesk MCP** | Support tickets | {{Paid}} |
+| **Postiz MCP** | Schedule social posts | {{Freemium}} |
+| **Discord**, **Telegram**, **WhatsApp** MCP | Messaging (community) | {{Free}} |
+| **Apple MCP** | Notes, Reminders, and Messages on a Mac (community) | {{Free}} |
+| **Home Assistant MCP** | Control your smart home | {{Free}} |
+| **Basic Memory** | Persistent Markdown memory (community) | {{Free}} |
+| **Mem0 MCP** (OpenMemory) | Shared memory across AI apps | {{Freemium}} |
+:::
+
+## Sales, finance, and commerce servers
+
+:::compact
+| Server | What it does | Price |
+|---|---|---|
+| **Attio MCP**, **Close MCP** | CRM records | {{Freemium}} |
+| **Apollo MCP**, **Lusha MCP**, **ZoomInfo MCP** | Prospect data | {{Freemium}} |
+| **Explorium MCP** | Company and contact data | {{Freemium}} |
+| **Common Room MCP** | Buyer signals | {{Freemium}} |
+| **Gong MCP** | Call insights | {{Paid}} |
+| **QuickBooks MCP**, **Xero MCP** | Accounting data | {{Paid}} |
+| **NetSuite MCP** | ERP records | {{Paid}} |
+| **Ramp MCP**, **Mercury MCP** | Spend and banking | {{Free}} |
+| **Airwallex MCP** | Payments and cards | {{Freemium}} |
+| **Adyen MCP**, **Razorpay MCP**, **Paddle MCP** | Payments | {{Paid}} |
+| **Alpaca MCP** | Market data and paper trading | {{Freemium}} |
+| **Coinbase AgentKit** | Crypto wallets for agents | {{Free}} |
+| **CoinGecko MCP** | Crypto prices | {{Freemium}} |
+| **Daloopa**, **S&P Global**, **LSEG**, **FactSet** MCP | Professional financial data | {{Paid}} |
+| **Shopify Storefront MCP** | Let shoppers search a store | {{Free}} |
+| **commercetools MCP** | Commerce catalogs | {{Paid}} |
+:::
+
+## Science and health servers
+
+:::compact
+| Server | What it does | Price |
+|---|---|---|
+| **PubMed** | Biomedical literature | {{Free}} |
+| **bioRxiv / medRxiv** | Preprints | {{Free}} |
+| **ClinicalTrials.gov** | Trial registry search | {{Free}} |
+| **ChEMBL** | Bioactive compounds | {{Free}} |
+| **Open Targets** | Drug-target evidence | {{Free}} |
+| **ICD-10 Codes**, **NPI Registry**, **CMS Coverage** | US medical codes, providers, and Medicare policy | {{Free}} |
+| **Synapse**, **BioRender**, **Benchling** | Research data, figures, and lab notebooks | {{Freemium}} |
+| **Wiley Scholar Gateway** | Peer-reviewed content | {{Paid}} |
+:::
+
+## More search, scraping, and media servers
+
+:::compact
+| Server | What it does | Price |
+|---|---|---|
+| **Kagi MCP** | Kagi search and summarizer | {{Paid}} |
+| **Linkup MCP**, **Parallel MCP** | Web search APIs for agents | {{Freemium}} |
+| **Jina AI MCP** | Read URLs and search | {{Freemium}} |
+| **SerpApi MCP** | Google and other search results | {{Freemium}} |
+| **Oxylabs MCP**, **ScrapeGraphAI MCP** | Scraping with AI extraction | {{Freemium}} |
+| **Hyperbrowser MCP**, **Browser Use MCP** | Cloud browser control | {{Freemium}} |
+| **Nimble MCP**, **TinyFish MCP** | Enterprise web data | {{Paid}} |
+| **fal MCP**, **Replicate MCP** | Run image and video models | {{Paid}} |
+| **Adobe MCP** | Photoshop, Express, and Acrobat actions | {{Freemium}} |
+| **Wikipedia**, **arXiv** MCP | Reference lookups (community) | {{Free}} |
+:::
+
+## Finding, hosting, and managing servers
+
+:::compact
+| Tool | What it does | Price |
+|---|---|---|
+| **MCP Registry** | Official public list of servers | {{Free}} |
+| **Smithery** | Directory and hosting for MCP servers | {{Freemium}} |
+| **Glama** | MCP directory and hosted gateway | {{Freemium}} |
+| **PulseMCP**, **mcp.so** | Community directories | {{Free}} |
+| **MCP Inspector** | Official tool to test a server | {{Free}} |
+| **FastMCP** | Build Python servers quickly | {{Free}} |
+| **mcp-use** | Connect any model to any server | {{Free}} |
+| **mcp-remote** | Bridge remote servers to local-only apps | {{Free}} |
+| **MetaMCP** | Combine many servers behind one | {{Free}} |
+| **Klavis AI** | Hosted MCP integrations | {{Freemium}} |
+| **Cloudflare remote MCP** | Host your own remote server | {{Freemium}} |
+:::
+
+> [!CAUTION]
+> An MCP server can read and change whatever you let it reach. Install community servers only from sources you trust, give the narrowest access possible, and review what an agent wants to do before you approve it.
+
+:::checklist
+- I prefer the vendor's official server over a community copy
+- I gave read-only access where I could
+- I know how to remove a server from my AI app
+:::
+
 # Index of Categories {.unnumbered}
 
 :::cols
-- **Chat Assistants**: general AI to talk to
-- **Coding and Vibe Coding**: editors, agents, app builders, review, design-to-code
-- **Images**: generation, editing, logos, upscaling
-- **Video**: generation, avatars, editing
-- **Audio**: voice, transcription, meetings, music
-- **Writing**: grammar, copy, SEO, translation
-- **Research**: search, academic, learning
-- **Productivity**: notes, email, calendar, slides, data
-- **Business**: sales, support, legal, finance, HR
-- **Automation**: workflow platforms
-- **Agents**: ready-made agents, AI browsers, frameworks
-- **Developer Infrastructure**: models, inference, data, deployment
-- **Connectors**: assistant-to-app links
-- **MCP Servers**: official, developer, data, productivity, web, automation
+- **Chat Assistants**: general AI, extensions, desktop apps, companions
+- **Coding**: editors, agents, IDE extensions, app and site builders, review, testing
+- **Images and Design**: generation, photo editing, diagrams, 3D, game assets
+- **Video**: generation, avatars, editing, dubbing
+- **Audio**: voices, speech APIs, meeting notes, music
+- **Writing**: grammar, copy, translation, AI detectors
+- **Research**: search engines, academic tools
+- **Education**: tutors, languages, teacher tools
+- **Health**: wellbeing apps, clinician tools
+- **Productivity**: notes, email, calendar, projects, slides, data, PDFs
+- **Business**: overview of AI at work
+- **Sales and CRM**: CRMs, prospecting, outreach
+- **Marketing and SEO**: SEO, AI visibility, social, ads, email
+- **Customer Support**: help desks, phone agents
+- **HR and Recruiting**: employer tools, job seekers
+- **Legal**: research, contracts, practice tools
+- **Finance**: accounting, personal finance
+- **Investing Research**: market data and research
+- **Automation**: workflow platforms and RPA
+- **Agents**: ready-made agents, browsers, frameworks, sandboxes
+- **Developer Infrastructure**: APIs, open models, inference, local runners, vectors, evals, hosting
+- **Connectors**: Claude connectors and plugins, ChatGPT apps, Zapier and n8n
+- **MCP Servers**: by domain, plus registries and tools
+:::
+
+# Alphabetical Index {.unnumbered}
+
+Every tool in the directory, with the chapter where you will find it. Some tools appear in more than one chapter.
+
+### 0–9
+
+:::cols
+- **10Web**: Coding
+- **11x**: Sales
+- **15Five**: HR
+:::
+
+### A
+
+:::cols
+- **Abacus.AI ChatLLM**: Chat
+- **Abridge**: Health
+- **ACE Studio**: Audio
+- **Acrobat**: Connectors
+- **ActiveCampaign**: Marketing
+- **Activepieces**: Automation
+- **Ada**: Health, Support
+- **Adalo**: Coding
+- **AdCreative.ai**: Business
+- **Adobe**: Connectors
+- **Adobe Acrobat AI Assistant**: Productivity
+- **Adobe Express**: Images
+- **Adobe Express video**: Video
+- **Adobe Firefly**: Images
+- **Adobe Firefly Video**: Video
+- **Adobe Lightroom**: Images
+- **Adobe MCP**: MCP
+- **Adobe Photoshop**: Images, Connectors
+- **Adobe Podcast**: Audio
+- **Adobe Premiere (Generative Extend)**: Video
+- **Adobe Stock**: Images
+- **Adyen MCP**: MCP
+- **Agent2Agent (A2A)**: Agents
+- **Agenta**: Dev infra
+- **Agentforce for Slack**: Agents
+- **AgentKit**: Agents
+- **Agno**: Agents
+- **Ahrefs AI**: Business
+- **AI21**: Dev infra
+- **Ai2 Asta**: Research
+- **AI Agent**: Connectors
+- **AI by Zapier**: Connectors
+- **Aider**: Coding
+- **Aiera**: Investing
+- **Aircall**: Support
+- **Airtable**: Productivity, Connectors
+- **Airtable MCP**: MCP
+- **Airtop**: Agents
+- **Airwallex**: Finance
+- **Airwallex MCP**: MCP
+- **AIVA**: Audio
+- **Ajelix**: Productivity
+- **Akiflow**: Productivity
+- **Alexa+**: Chat
+- **Algolia**: Dev infra
+- **Algolia MCP**: MCP
+- **Alibaba Cloud Model Studio**: Dev infra
+- **AllTrails**: Connectors
+- **Alpaca MCP**: MCP
+- **AlphaSense**: Investing
+- **alphaXiv**: Research
+- **AlsoAsked**: Marketing
+- **Amazon Bedrock**: Dev infra
+- **Amazon Bedrock AgentCore**: Agents
+- **Amazon Polly**: Audio
+- **Amazon Q Developer**: Coding
+- **Amazon S3 Vectors**: Dev infra
+- **Amazon Textract**: Productivity
+- **Ambience**: Health
+- **Amp**: Coding
+- **Amplemarket**: Sales
+- **Amplitude**: Marketing
+- **Amplitude MCP**: MCP
+- **Anchor Browser**: Agents
+- **Andi**: Research
+- **Angular CLI MCP**: MCP
+- **Anima**: Coding
+- **Animaker**: Video
+- **Anki**: Education
+- **AnswerThePublic**: Marketing
+- **Anthropic API**: Dev infra
+- **Anthropic (Claude)**: Connectors
+- **Anyscale**: Dev infra
+- **AnythingLLM**: Chat
+- **Anyword**: Writing
+- **Apify**: Agents
+- **Apify MCP**: MCP
+- **Apollo**: Business, Connectors
+- **Apollo MCP**: MCP
+- **Apollo MCP Server**: MCP
+- **Apple Intelligence**: Chat
+- **Apple MCP**: MCP
+- **Apple Music**: Connectors
+- **Apple Notes**: Productivity
+- **Apple Shortcuts**: Automation
+- **Applitools**: Coding
+- **AppSheet**: Coding
+- **Appsmith**: Coding
+- **Appwrite**: Dev infra
+- **Aragon AI**: Images
+- **Arc**: Agents
+- **Arcade**: Agents
+- **Arcads**: Video
+- **Arc Search**: Research
+- **Argil**: Video
+- **Aria**: Agents
+- **Arize AX**: Dev infra
+- **Arize Phoenix**: Dev infra
+- **Artbreeder**: Images
+- **Artificial Analysis**: Dev infra
+- **Artisan**: Sales
+- **arXiv**: MCP
+- **Asana**: Connectors
+- **Asana AI**: Productivity
+- **Asana MCP**: MCP
+- **Ashby**: HR
+- **AssemblyAI**: Audio, Connectors
+- **assistant-ui**: Agents
+- **Astra DB**: Dev infra
+- **AthenaHQ**: Marketing
+- **Atlan MCP**: MCP
+- **Atlassian**: Connectors
+- **Atlassian Remote MCP**: MCP
+- **Attention**: Sales
+- **Attio**: Sales
+- **Attio MCP**: MCP
+- **Augment Code**: Coding
+- **Auphonic**: Audio
+- **Auth0**: Dev infra
+- **Auth0 MCP**: MCP
+- **Autodesk Flow Studio**: Images
+- **AutoGPT**: Agents
+- **Automatic1111 / Forge**: Images
+- **Automation Anywhere**: Automation
+- **AutoPod**: Video
+- **Avoma**: Audio
+- **AWS Amplify**: Dev infra
+- **AWS Labs MCP servers**: MCP
+- **Axolotl**: Dev infra
+- **Azure AI Search**: Dev infra
+- **Azure AI Speech**: Audio
+- **Azure DevOps MCP**: MCP
+- **Azure Document Intelligence**: Productivity
+- **Azure MCP**: MCP
+:::
+
+### B
+
+:::cols
+- **B12**: Coding
+- **Babbel**: Education
+- **BambooHR**: HR
+- **BandLab**: Audio
+- **Bardeen**: Automation
+- **Base44**: Coding, Connectors
+- **Baseten**: Dev infra
+- **Basic Memory**: MCP
+- **Basis**: Finance
+- **Beam**: Dev infra
+- **Beatoven.ai**: Audio
+- **Beautiful.ai**: Productivity
+- **BeeAI**: Agents
+- **beehiiv**: Marketing
+- **Benchling**: MCP
+- **Better Auth**: Dev infra
+- **big-AGI**: Chat
+- **Bigdata.com**: Investing, Connectors
+- **BigQuery**: Connectors
+- **BigQuery MCP**: MCP
+- **Bika.ai**: Automation
+- **Bill**: Finance
+- **BioRender**: MCP
+- **Bio-Research**: Connectors
+- **bioRxiv**: Connectors
+- **bioRxiv / medRxiv**: MCP
+- **Bito**: Coding
+- **Bland AI**: Support
+- **Blender MCP**: MCP
+- **Bloomberg Terminal**: Investing
+- **Bluedot**: Audio
+- **Bolt**: Coding
+- **BoltAI**: Chat
+- **Booke AI**: Finance
+- **Booking.com**: Connectors
+- **Boomy**: Audio
+- **Botpress**: Support
+- **Box**: Connectors
+- **Box MCP**: MCP
+- **Brainly**: Education
+- **Braintrust**: Dev infra
+- **Brand24**: Marketing
+- **Brandmark**: Images
+- **Brave**: Agents
+- **Brave Leo**: Chat
+- **Brave Search**: Research
+- **Brave Search MCP**: MCP
+- **Brevo**: Marketing
+- **Brex**: Business
+- **Bright Data**: Agents, Connectors
+- **Bright Data MCP**: MCP
+- **Brisk Teaching**: Education
+- **Browse AI**: Agents
+- **Browserbase**: Agents
+- **Browserbase MCP**: MCP
+- **Browserless**: Agents
+- **Browser Use**: Agents
+- **Browser Use MCP**: MCP
+- **Bubble AI**: Coding
+- **Budibase**: Coding
+- **Buffer**: Marketing
+- **Builder.io (Fusion)**: Coding
+- **Buildkite MCP**: MCP
+- **Burp Suite MCP**: MCP
+:::
+
+### C
+
+:::cols
+- **Cal AI**: Health
+- **Cal.com**: Productivity
+- **Cal.com MCP**: MCP
+- **Calendar**: MCP
+- **Calendly**: Productivity
+- **CAMB.AI**: Video
+- **CAMEL**: Agents
+- **Camtasia**: Video
+- **Canary Mail**: Productivity
+- **Canva**: Connectors
+- **Canva AI**: Images
+- **Canva MCP**: MCP
+- **Canva Presentations**: Productivity
+- **Canva Video**: Video
+- **Capacities**: Productivity
+- **CapCut**: Video
+- **Captions**: Video
+- **Careerflow**: HR
+- **Carta**: Connectors
+- **Cartesia**: Audio
+- **Cascadeur**: Images
+- **Castmagic**: Audio
+- **Cerebras**: Dev infra
+- **Cerebrium**: Dev infra
+- **Chai**: Chat
+- **Chainlit**: Agents
+- **Character.AI**: Chat
+- **Chatbase**: Support
+- **Chatbox AI**: Chat
+- **ChatGPT**: Chat
+- **ChatGPT agent**: Agents
+- **ChatGPT Atlas**: Agents
+- **ChatGPT Canvas**: Coding
+- **ChatGPT / Claude / Gemini Deep Research**: Research
+- **ChatGPT Edu**: Education
+- **ChatGPT Images**: Images
+- **ChatGPT (OpenAI)**: Connectors
+- **ChatGPT study mode**: Education
+- **ChatHub**: Chat
+- **ChatPDF**: Productivity
+- **Chatterbox**: Audio
+- **Chef**: Coding
+- **ChEMBL**: Connectors, MCP
+- **Cherry Studio**: Chat
+- **Chroma**: Dev infra, MCP
+- **Chrome DevTools MCP**: MCP
+- **Circleback**: Audio
+- **CircleCI MCP**: MCP
+- **Civitai**: Images
+- **Claap**: Audio
+- **Clari**: Sales
+- **Claude**: Chat
+- **Claude Agent SDK**: Agents
+- **Claude Artifacts**: Coding
+- **Claude / ChatGPT file creation**: Productivity
+- **Claude Code**: Coding, Agents
+- **Claude Code as MCP**: MCP
+- **Claude Code for VS Code / JetBrains**: Coding
+- **Claude Code Review**: Coding
+- **Claude Design**: Coding
+- **Claude desktop agent**: Agents
+- **Claude for Education**: Education
+- **Claude in Chrome**: Agents
+- **Claude learning mode**: Education
+- **Clay**: Business
+- **Cleanup.pictures**: Images
+- **Cleanvoice**: Audio
+- **Clearscope**: Writing
+- **Cleo**: Finance
+- **Clerk**: Dev infra
+- **ClickHouse**: Connectors
+- **ClickHouse MCP**: MCP
+- **ClickUp**: Connectors
+- **ClickUp Brain**: Productivity
+- **ClickUp MCP**: MCP
+- **Cline**: Coding
+- **ClinicalTrials.gov**: Connectors, MCP
+- **Clio**: Legal
+- **Clipchamp**: Video
+- **Clipdrop**: Images
+- **Close**: Sales
+- **Close MCP**: MCP
+- **Cloudflare**: Dev infra, Connectors
+- **Cloudflare AI Gateway**: Dev infra
+- **Cloudflare MCP**: MCP
+- **Cloudflare remote MCP**: MCP
+- **Cloudflare Sandbox**: Agents
+- **Cloudflare Vectorize**: Dev infra
+- **Cloudflare Workers AI**: Dev infra
+- **Cloudinary MCP**: MCP
+- **CMS Coverage**: Connectors, MCP
+- **CoCounsel**: Business
+- **Coda AI**: Productivity
+- **Codecademy**: Education
+- **CodeGeeX**: Coding
+- **CodeRabbit**: Coding
+- **Codex**: Agents
+- **Codex IDE extension**: Coding
+- **Cognee**: Agents
+- **Cognigy**: Support
+- **Cognism**: Sales
+- **Cohere**: Dev infra
+- **Cohere Embed**: Dev infra
+- **Cohere North**: Chat
+- **Coinbase AgentKit**: MCP
+- **CoinGecko MCP**: MCP
+- **Colossyan**: Video
+- **ComfyUI**: Images
+- **commercetools MCP**: MCP
+- **Common Room**: Sales, Connectors
+- **Common Room MCP**: MCP
+- **Composer**: Investing
+- **Composio**: Agents, MCP
+- **Confident AI**: Dev infra
+- **Connected Papers**: Research
+- **Consensus**: Research, Connectors
+- **Contentful MCP**: MCP
+- **Context7**: MCP
+- **Continue**: Coding
+- **Convex**: Dev infra
+- **Convex MCP**: MCP
+- **Coolors**: Images
+- **Copilot CLI**: Coding
+- **Copilot code review**: Coding
+- **Copilot for Xcode**: Coding
+- **CopilotKit**: Agents
+- **Copilot Money**: Finance
+- **Copy.ai**: Writing
+- **Copyleaks**: Writing
+- **CoreWeave**: Dev infra
+- **Couchbase**: Dev infra
+- **Couchbase MCP**: MCP
+- **Coursera**: Education, Connectors
+- **Coursera Coach**: Research
+- **Craft**: Productivity
+- **Craiyon**: Images
+- **Crawl4AI**: Agents
+- **Create / Anything**: Coding
+- **Creatify**: Video
+- **Credit Karma**: Finance, Connectors
+- **CrewAI**: Agents
+- **Crisp**: Support
+- **Crowdin**: Writing
+- **Crush**: Coding
+- **Crusoe**: Dev infra
+- **Crystal**: Sales
+- **Cube**: Finance
+- **Culture Amp**: HR
+- **Curipod**: Education
+- **Cursor**: Coding
+- **Cursor Bugbot**: Coding
+- **Cursor CLI**: Coding
+- **Customer Support**: Connectors
+- **CustomGPT.ai**: Support
+:::
+
+### D
+
+:::cols
+- **Daloopa**: Investing, Connectors, MCP
+- **Danelfin**: Investing
+- **Databricks**: MCP
+- **Databricks AI/BI Genie**: Productivity
+- **Databutton**: Coding
+- **Data Commons MCP**: MCP
+- **Datadog**: Connectors, MCP
+- **Datadog LLM Observability**: Dev infra
+- **Datarails**: Finance
+- **DataRobot MCP**: MCP
+- **DaVinci Resolve (Neural Engine)**: Video
+- **Daytona**: Agents
+- **dbt MCP**: MCP
+- **Decagon**: Business
+- **Decktopus**: Productivity
+- **Deel**: HR
+- **DeepBrain AI Studios**: Video
+- **Deepdub**: Video
+- **DeepEval**: Dev infra
+- **Deepgram**: Audio
+- **DeepInfra**: Dev infra
+- **DeepL Translator**: Writing
+- **DeepL Write**: Writing
+- **DeepMotion**: Images
+- **Deepnote**: Productivity
+- **DeepSeek**: Chat, Dev infra, Connectors
+- **DeepSeek API**: Dev infra
+- **DeepWiki**: Coding
+- **DeepWiki MCP**: MCP
+- **Demucs**: Audio
+- **Descope**: Dev infra
+- **Descript**: Video
+- **Design**: Connectors
+- **Desktop Commander**: MCP
+- **Devin**: Coding, Agents
+- **Devin Desktop**: Coding
+- **Devstral**: Dev infra
+- **Dia**: Agents
+- **Dialpad**: Support
+- **D-ID**: Video
+- **Diffblue**: Coding
+- **Diffbot**: Agents
+- **Diffit**: Education
+- **Dify**: Agents
+- **DigitalOcean App Platform**: Dev infra
+- **DigitalOcean Gradient AI**: Dev infra
+- **DigitalOcean MCP**: MCP
+- **Digits**: Finance
+- **Discord**: MCP
+- **Docker MCP Toolkit**: MCP
+- **Docker Model Runner**: Dev infra
+- **Docling**: Productivity
+- **DocuSign**: Connectors
+- **Docusign**: Connectors
+- **Docusign IAM**: Legal
+- **Docusign MCP**: MCP
+- **Dola**: Productivity
+- **Domo AI**: Video
+- **DoorDash**: Connectors
+- **Doubao**: Chat
+- **Doximity GPT**: Health
+- **draw.io**: Images
+- **Droid**: Coding
+- **Dropbox**: Connectors
+- **Dropbox MCP**: MCP
+- **DSPy**: Dev infra
+- **Dubverse**: Video
+- **Duck.ai**: Chat
+- **Duolingo**: Education
+- **Duolingo Max**: Research
+- **Durable**: Coding
+- **Dyad**: Coding
+- **Dzine**: Images
+:::
+
+### E
+
+:::cols
+- **E2B**: Agents
+- **Eden AI**: Dev infra
+- **Eduaide**: Education
+- **eesel AI**: Support
+- **Egnyte MCP**: MCP
+- **Eightfold**: Business
+- **Elai**: Video
+- **Elasticsearch**: Dev infra
+- **Elasticsearch MCP**: MCP
+- **ElevenLabs**: Audio, Connectors
+- **ElevenLabs Agents**: Agents
+- **ElevenLabs Dubbing**: Video
+- **ElevenLabs MCP**: MCP
+- **ElevenLabs Music**: Audio
+- **ElevenReader**: Audio
+- **Elicit**: Research
+- **ELSA Speak**: Education
+- **Emergent**: Coding
+- **Engineering**: Connectors
+- **Enterprise Search**: Connectors
+- **Eraser**: Images
+- **ERNIE**: Chat
+- **Eve**: Legal
+- **EvenUp**: Legal
+- **Evernote AI**: Productivity
+- **Everything**: MCP
+- **Exa**: Research, Connectors
+- **Exa MCP**: MCP
+- **Excalidraw**: Images
+- **Excel Copilot / Agent Mode**: Productivity
+- **ExLlamaV2**: Dev infra
+- **Expedia**: Connectors
+- **Expensify**: Finance
+- **Explorium**: Sales
+- **Explorium MCP**: MCP
+- **Expo MCP**: MCP
+- **Express**: Connectors
+:::
+
+### F
+
+:::cols
+- **FaceApp**: Images
+- **Factory**: Coding
+- **FactSet**: MCP
+- **FAISS**: Dev infra
+- **fal**: Dev infra
+- **Falcon**: Dev infra
+- **fal MCP**: MCP
+- **Fastly MCP**: MCP
+- **FastMCP**: MCP
+- **Fathom**: Audio, Connectors
+- **Fellou**: Agents
+- **Fellow**: Audio
+- **Felo**: Research
+- **Fetch**: MCP
+- **Figma**: Connectors
+- **Figma AI**: Images
+- **Figma Dev Mode MCP**: MCP
+- **Figma Make**: Coding
+- **Filesystem**: MCP
+- **Finance**: Connectors
+- **Findem**: HR
+- **Fintool**: Investing
+- **Firebase**: Dev infra
+- **Firebase MCP**: MCP
+- **Firecrawl**: Agents
+- **Firecrawl MCP**: MCP
+- **FireCut**: Video
+- **Fireflies**: Audio, Connectors
+- **Fireflies MCP**: MCP
+- **Firefox**: Agents
+- **Fireworks AI**: Dev infra
+- **Fiscal.ai**: Investing
+- **Fish Audio**: Audio
+- **Fitbod**: Health
+- **Five9**: Support
+- **Fliki**: Video
+- **Flow**: Video
+- **Flowframes**: Video
+- **Flowise**: Agents
+- **Flowith**: Agents
+- **FlutterFlow**: Coding
+- **FLUX**: Images
+- **Fly.io**: Dev infra
+- **folk**: Sales
+- **Forethought**: Support
+- **Formula Bot**: Productivity
+- **Fotor**: Images
+- **Foundry Local**: Dev infra
+- **Foxit PDF Editor**: Productivity
+- **Framer AI**: Coding
+- **Frase**: Writing
+- **Freed**: Health
+- **Freepik AI Suite**: Images
+- **FreshBooks**: Finance
+- **Freshdesk**: Support
+- **Freshsales**: Sales
+- **Front**: Support
+- **Fyxer AI**: Productivity
+:::
+
+### G
+
+:::cols
+- **Galileo**: Dev infra
+- **Galileo / Stitch**: Coding
+- **Gamma**: Productivity
+- **Gauth**: Education
+- **GC AI**: Legal
+- **Gem**: HR
+- **Gemini**: Chat
+- **Gemini Agent**: Agents
+- **Gemini Canvas**: Coding
+- **Gemini CLI**: Coding
+- **Gemini Code Assist**: Coding
+- **Gemini for Education**: Education
+- **Gemini Guided Learning**: Education
+- **Gemini in Android Studio**: Coding
+- **Gemini in Chrome**: Agents
+- **Gemini in Google Workspace**: Productivity
+- **Gemini / Nano Banana**: Images
+- **Gemini Notebook**: Research, Education
+- **Gemma**: Dev infra
+- **Genie AI**: Legal
+- **Genspark**: Agents
+- **Genspark Browser**: Agents
+- **Getimg.ai**: Images
+- **Getty Images Generative AI**: Images
+- **Git**: MCP
+- **GitBook**: Coding
+- **GitGuardian MCP**: MCP
+- **GitHub**: Connectors
+- **GitHub Copilot**: Coding
+- **GitHub Copilot Autofix**: Coding
+- **GitHub Copilot coding agent**: Coding
+- **GitHub MCP**: MCP
+- **GitHub Spark**: Coding
+- **GitLab Duo**: Coding
+- **GitLab MCP**: MCP
+- **GitMCP**: MCP
+- **Gladia**: Audio
+- **Gladly**: Support
+- **Glama**: MCP
+- **Glasp**: Chat
+- **Glass Health**: Health
+- **Glean**: Productivity
+- **Glean MCP**: MCP
+- **Glide**: Coding
+- **Gling**: Video
+- **GLM**: Dev infra
+- **Gmail**: Connectors, MCP
+- **Gmail with Gemini**: Productivity
+- **GoDaddy Airo**: Coding
+- **Gong**: Business, Connectors
+- **Gong MCP**: MCP
+- **Goodcall**: Support
+- **Google ADK**: Agents
+- **Google AI Edge Gallery**: Dev infra
+- **Google AI Mode**: Research
+- **Google AI Studio (Build)**: Coding
+- **Google Antigravity**: Coding
+- **Google Calendar**: Productivity, Connectors
+- **Google Cloud MCP**: MCP
+- **Google Cloud Text-to-Speech**: Audio
+- **Google Colab**: Dev infra
+- **Google Document AI**: Productivity
+- **Google Drive**: Connectors, MCP
+- **Google Gemini**: Connectors
+- **Google Gemini API**: Dev infra
+- **Google Keep**: Productivity
+- **Google Lens**: Education
+- **Google Maps MCP**: MCP
+- **Google Meet "Take notes for me"**: Audio
+- **Google Performance Max**: Marketing
+- **Google Photos Magic Editor**: Images
+- **Google Scholar**: Research
+- **Google Sheets with Gemini**: Productivity
+- **Google Slides with Gemini**: Productivity
+- **Google Translate**: Writing
+- **Google Veo**: Video
+- **Google Workspace Flows**: Automation
+- **Goose**: Coding
+- **Gorgias**: Support
+- **GPT4All**: Dev infra
+- **GPT for Sheets and Docs**: Productivity
+- **gpt-oss**: Dev infra
+- **GPTZero**: Writing
+- **Gradescope**: Education
+- **Gradio**: Agents
+- **Grafana**: Connectors, MCP
+- **Grain**: Audio
+- **Grammarly**: Writing
+- **Granite**: Dev infra
+- **Granola**: Audio, Connectors
+- **Granola MCP**: MCP
+- **Graphite**: Coding
+- **Greenhouse**: HR
+- **Greptile**: Coding
+- **Grok**: Chat
+- **Grok Imagine**: Video
+- **Groq**: Dev infra, Connectors
+- **GrowthBook MCP**: MCP
+- **Guardrails AI**: Dev infra
+- **Gumloop**: Automation, Connectors
+- **Guru**: Productivity, Connectors
+- **Guru MCP**: MCP
+- **Gusto**: HR
+:::
+
+### H
+
+:::cols
+- **Hailuo**: Video
+- **Happy Scribe**: Audio
+- **HARPA AI**: Chat
+- **Harvey**: Business
+- **HashiCorp Vault MCP**: MCP
+- **Haystack**: Dev infra
+- **HeadshotPro**: Images
+- **Hebbia**: Business
+- **Hedra**: Video
+- **Heidi Health**: Health
+- **Helicone**: Dev infra
+- **Help Scout**: Support
+- **Hemingway Editor**: Writing
+- **Heptabase**: Productivity
+- **Heroku**: Dev infra
+- **Heroku MCP**: MCP
+- **Hex**: Productivity
+- **HeyGen**: Video
+- **HiDream**: Images
+- **Higgsfield**: Video
+- **Higgsfield Soul**: Images
+- **Highspot**: Sales
+- **hireEZ**: HR
+- **HireVue**: HR
+- **Home Assistant**: Automation
+- **Home Assistant MCP**: MCP
+- **Honeycomb**: Connectors, MCP
+- **HoneyHive**: Dev infra
+- **Hootsuite**: Marketing
+- **Hostinger AI Website Builder**: Coding
+- **Hostinger Horizons**: Coding
+- **Hotjar**: Marketing
+- **Howie**: Productivity
+- **H&R Block AI Tax Assist**: Finance
+- **HubSpot**: Connectors
+- **HubSpot Breeze**: Business
+- **HubSpot Customer Agent**: Support
+- **HubSpot MCP**: MCP
+- **HuggingChat**: Chat
+- **Hugging Face**: Dev infra, Connectors
+- **Hugging Face MCP**: MCP
+- **Human Resources**: Connectors
+- **Humata**: Productivity
+- **Hume**: Audio
+- **Huntr**: HR
+- **Hunyuan3D**: Images
+- **HunyuanImage**: Images
+- **HunyuanVideo**: Video
+- **Hyperbolic**: Dev infra
+- **Hyperbound**: Sales
+- **Hyperbrowser**: Agents
+- **Hyperbrowser MCP**: MCP
+- **Hypotenuse AI**: Writing
+:::
+
+### I
+
+:::cols
+- **iAsk**: Research
+- **IBM watsonx.ai**: Dev infra
+- **ICD-10 Codes**: Connectors, MCP
+- **Ideogram**: Images
+- **IFTTT**: Automation
+- **Image Playground**: Images
+- **ImagineArt**: Images
+- **Inbox Zero**: Productivity
+- **Inception**: Dev infra
+- **Inciteful**: Research
+- **Inngest**: Agents
+- **Inngest AgentKit**: Agents
+- **Inspect**: Dev infra
+- **Instacart**: Connectors
+- **Instantly**: Sales
+- **Integrately**: Automation
+- **Intercom**: Connectors
+- **Intercom Fin**: Business
+- **Intercom MCP**: MCP
+- **Interfaces**: Automation
+- **Intuit QuickBooks**: Connectors
+- **InVideo AI**: Video
+- **Inworld AI**: Images
+- **Iris.ai**: Research
+- **Ironclad**: Legal
+- **iZotope Ozone**: Audio
+:::
+
+### J
+
+:::cols
+- **Jamie**: Audio
+- **Jan**: Dev infra
+- **Jasper**: Writing
+- **Jenni AI**: Writing
+- **JetBrains AI**: Coding
+- **Jina AI**: Dev infra
+- **Jina AI MCP**: MCP
+- **Jina Reader**: Agents
+- **Jira with Rovo**: Productivity
+- **Jobscan**: HR
+- **Juicebox**: HR
+- **Jules**: Coding
+- **Julius AI**: Productivity
+- **Junie**: Coding
+- **Juro**: Legal
+:::
+
+### K
+
+:::cols
+- **Kaedim**: Images
+- **Kaggle**: Dev infra
+- **Kagi**: Research
+- **Kagi Assistant**: Chat
+- **Kagi MCP**: MCP
+- **Kahoot!**: Education
+- **Kaiber**: Images
+- **Kapwing**: Video
+- **Kavout**: Investing
+- **Keenious**: Research
+- **Kernel**: Agents
+- **Keyboard Maestro**: Automation
+- **Khanmigo**: Research, Education
+- **K Health**: Health
+- **Khoj**: Chat
+- **Khroma**: Images
+- **Kickresume**: HR
+- **Kilo Code**: Coding
+- **Kimi**: Chat
+- **Kimi Agent**: Agents
+- **Kimi K2**: Dev infra
+- **Kindroid**: Chat
+- **KIRI Engine**: Images
+- **Kiro**: Coding
+- **Kit**: Marketing
+- **Kits.ai**: Audio
+- **Kittl**: Images
+- **Klap**: Video
+- **Klavis AI**: MCP
+- **Klaviyo**: Marketing
+- **Kling**: Video
+- **Knowt**: Education
+- **Koala AI**: Writing
+- **KoboldCpp**: Dev infra
+- **Kokoro**: Audio
+- **Kong AI Gateway**: Dev infra
+- **Kore.ai**: Support
+- **Koyfin**: Investing
+- **Krea**: Images
+- **Krea Video**: Video
+- **Krisp**: Audio
+- **Kubernetes MCP**: MCP
+- **Kustomer**: Support
+:::
+
+### L
+
+:::cols
+- **Lakera**: Dev infra
+- **LALAL.AI**: Audio
+- **Lambda**: Dev infra
+- **Laminar**: Dev infra
+- **LanceDB**: Dev infra
+- **LANDR**: Audio
+- **LangChain**: Dev infra
+- **Langflow**: Agents
+- **Langfuse**: Dev infra
+- **LangGraph**: Agents
+- **Langroid**: Agents
+- **LangSmith**: Dev infra
+- **LanguageTool**: Writing
+- **Lara Translate**: Writing
+- **Later**: Marketing
+- **Lattice**: HR
+- **LaunchDarkly MCP**: MCP
+- **Lavender**: Business
+- **Leena AI**: HR
+- **Legal**: Connectors
+- **LegalOn**: Legal
+- **Legora**: Legal
+- **lemlist**: Sales
+- **Lemonade**: Dev infra
+- **Lensa**: Images
+- **Leo**: Agents
+- **Leonardo.ai**: Images
+- **Let's Enhance**: Images
+- **Letta**: Agents
+- **Lever**: HR
+- **Lex**: Writing
+- **Lexis+ AI**: Legal
+- **LibreChat**: Chat
+- **Lightning AI**: Dev infra
+- **Lindy**: Automation, Agents
+- **Linear**: Productivity, Connectors
+- **Linear MCP**: MCP
+- **Liner**: Research
+- **LinkedIn Hiring Assistant**: HR
+- **Linkup MCP**: MCP
+- **Liquid LFM**: Dev infra
+- **Listnr**: Audio
+- **LiteLLM**: Dev infra
+- **Litmaps**: Research
+- **LiveKit Agents**: Agents
+- **Llama**: Dev infra
+- **LlamaCloud**: Dev infra
+- **llama.cpp**: Dev infra
+- **LLaMA-Factory**: Dev infra
+- **llamafile**: Dev infra
+- **Llama Guard**: Dev infra
+- **LlamaIndex**: Dev infra
+- **LlamaParse**: Productivity
+- **LLM**: Dev infra
+- **LMArena**: Dev infra
+- **LM Studio**: Dev infra
+- **LobeChat**: Chat
+- **LocalAI**: Dev infra
+- **Locofy**: Coding
+- **Logseq**: Productivity
+- **Lokalise**: Writing
+- **Looka**: Images
+- **Looker with Gemini**: Productivity
+- **Loom**: Video
+- **Loudly**: Audio
+- **Lovable**: Coding
+- **LOVO**: Audio
+- **LSEG**: Connectors, MCP
+- **LTX-2**: Video
+- **LTX Studio**: Video
+- **Lucid**: Images, Connectors
+- **Luma Dream Machine / Ray**: Video
+- **Luma Photon**: Images
+- **Lumen5**: Video
+- **Luminance**: Legal
+- **Luminar Neo**: Images
+- **Lumo**: Chat
+- **Lusha**: Sales, Connectors
+- **Lusha MCP**: MCP
+- **Lyria**: Audio
+:::
+
+### M
+
+:::cols
+- **mabl**: Coding
+- **MacWhisper**: Audio
+- **Madgicx**: Marketing
+- **Maestra**: Video
+- **Magical**: Writing
+- **MagicSchool**: Education
+- **MagicSlides**: Productivity
+- **Magnific**: Images
+- **Magnitude**: Agents
+- **Mailbutler**: Productivity
+- **Mailchimp**: Marketing
+- **Mailgun MCP**: MCP
+- **Make**: Automation
+- **Make AI Agents**: Automation
+- **Make MCP**: MCP
+- **Mammouth**: Chat
+- **Manus**: Agents
+- **Mapbox MCP**: MCP
+- **Mapify**: Productivity
+- **Marker**: Productivity
+- **Marketing**: Connectors
+- **MarketMuse**: Marketing
+- **Mastra**: Agents
+- **Mathway**: Education
+- **MaxAI**: Chat
+- **MCP Client Tool**: Connectors
+- **MCP Inspector**: MCP
+- **MCP Registry**: MCP
+- **mcp-remote**: MCP
+- **MCP Server Trigger**: Connectors
+- **mcp.so**: MCP
+- **MCP Toolbox for Databases**: MCP
+- **mcp-use**: MCP
+- **MeetGeek**: Audio
+- **Meilisearch**: Dev infra
+- **Meilisearch MCP**: MCP
+- **Meltwater**: Marketing
+- **Mem**: Productivity
+- **Mem0**: Agents
+- **Mem0 MCP**: MCP
+- **Memory**: MCP
+- **Memrise**: Education
+- **Mercury**: Finance
+- **Mercury MCP**: MCP
+- **Merlin**: Chat
+- **Mermaid Chart**: Images
+- **Meshy**: Images
+- **Meta Advantage+**: Marketing
+- **Meta AI**: Chat
+- **Meta AI Imagine**: Images
+- **Metabase**: Productivity
+- **MetaGPT**: Agents
+- **Meta Llama**: Dev infra
+- **MetaMCP**: MCP
+- **Metaview**: HR
+- **Metricool**: Marketing
+- **Microsoft 365**: Connectors
+- **Microsoft 365 Copilot**: Productivity
+- **Microsoft 365 Copilot agents**: Agents
+- **Microsoft Agent Framework**: Agents
+- **Microsoft Clarity**: Marketing
+- **Microsoft Copilot**: Chat
+- **Microsoft Copilot Actions**: Agents
+- **Microsoft Copilot Search**: Research
+- **Microsoft Copilot Studio**: Agents
+- **Microsoft Copilot Studio flows**: Automation
+- **Microsoft Designer / Bing Image Creator**: Images
+- **Microsoft Dragon Copilot**: Health
+- **Microsoft Dynamics 365 Sales**: Sales
+- **Microsoft Edge Copilot Mode**: Agents
+- **Microsoft Foundry**: Dev infra
+- **Microsoft Learn MCP**: MCP
+- **Microsoft Loop**: Productivity
+- **Microsoft Power Automate**: Automation
+- **Microsoft Teams Copilot / Google Meet Gemini**: Audio
+- **Microsoft Translator**: Writing
+- **Midjourney**: Images
+- **Midjourney Video**: Video
+- **Milvus MCP**: MCP
+- **Milvus / Zilliz**: Dev infra
+- **MindMeister**: Productivity
+- **MinerU**: Productivity
+- **MiniMax Agent**: Chat
+- **MiniMax API**: Dev infra
+- **MiniMax M**: Dev infra
+- **Mintlify**: Coding
+- **Miro**: Connectors
+- **Miro AI**: Images
+- **Miro MCP**: MCP
+- **Missive**: Productivity
+- **Mistral**: Dev infra
+- **Mistral AI**: Dev infra, Connectors
+- **Mistral OCR**: Productivity
+- **Mistral Vibe**: Coding
+- **Mixedbread**: Dev infra
+- **Mixpanel**: Marketing
+- **Mixpanel MCP**: MCP
+- **MLC LLM**: Dev infra
+- **MLflow**: Dev infra
+- **MLX**: Dev infra
+- **mlx-lm**: Dev infra
+- **Mocha**: Coding
+- **Mochi**: Video
+- **Modal**: Dev infra
+- **Modash**: Marketing
+- **Moises**: Audio
+- **Momentic**: Coding
+- **Momentum**: Sales
+- **Monarch Money**: Finance
+- **monday AI**: Productivity
+- **monday.com**: Connectors
+- **Monday.com**: Connectors
+- **monday.com MCP**: MCP
+- **monday CRM**: Sales
+- **MongoDB Atlas Vector Search**: Dev infra
+- **MongoDB MCP**: MCP
+- **Monica**: Chat
+- **Moonshot API**: Dev infra
+- **Moonvalley Marey**: Video
+- **Morgen**: Productivity
+- **Morphic**: Research
+- **MotherDuck / DuckDB MCP**: MCP
+- **Motiff**: Images
+- **Motion**: Productivity
+- **Move.ai**: Images
+- **Moveworks**: HR
+- **Moz**: Marketing
+- **Msty**: Chat
+- **Mubert**: Audio
+- **Murf**: Audio
+- **MusicFX DJ**: Audio
+- **Mux MCP**: MCP
+- **MyFitnessPal**: Health
+:::
+
+### N
+
+:::cols
+- **n8n**: Automation, Connectors
+- **n8n instance MCP**: MCP
+- **Nabla**: Health
+- **Nanobrowser**: Agents
+- **Nanonets**: Productivity
+- **Napkin AI**: Images
+- **Narakeet**: Audio
+- **NaturalReader**: Audio
+- **Navan**: Finance
+- **Nebius AI Studio**: Dev infra
+- **NeMo Guardrails**: Dev infra
+- **Nemotron**: Dev infra
+- **Neo4j MCP**: MCP
+- **Neon**: Dev infra, Connectors
+- **Neon MCP**: MCP
+- **Netlify**: Dev infra, Connectors
+- **Netlify MCP**: MCP
+- **NetSuite**: Finance
+- **NetSuite MCP**: MCP
+- **NeuronWriter**: Marketing
+- **Next.js DevTools MCP**: MCP
+- **NightCafe**: Images
+- **Nimble MCP**: MCP
+- **Node-RED**: Automation
+- **Nomi**: Chat
+- **Nomic Embed**: Dev infra
+- **Nooks**: Sales
+- **Noota**: Audio
+- **Norton Neo**: Agents
+- **Not Diamond**: Dev infra
+- **Notion**: Connectors
+- **Notion AI**: Productivity
+- **Notion AI Meeting Notes**: Audio
+- **Notion Custom Agents**: Agents
+- **Notion Mail / Calendar**: Productivity
+- **Notion MCP**: MCP
+- **Notta**: Audio
+- **NovelAI**: Writing
+- **Novelcrafter**: Writing
+- **Novita AI**: Dev infra
+- **NPI Registry**: Connectors, MCP
+- **Numeric**: Finance
+- **NVIDIA Broadcast**: Audio
+- **NVIDIA NIM**: Dev infra
+- **Nx MCP**: MCP
+:::
+
+### O
+
+:::cols
+- **Obsidian**: Productivity
+- **Obsidian MCP**: MCP
+- **Octoparse**: Agents
+- **Ollama**: Dev infra, Connectors
+- **OLMo**: Dev infra
+- **Onyx**: Dev infra
+- **OpenAI Agents SDK**: Agents
+- **OpenAI API**: Dev infra
+- **OpenAI Codex**: Coding
+- **OpenAI voice**: Audio
+- **OpenArt**: Images
+- **opencode**: Coding
+- **OpenEvidence**: Health
+- **OpenHands**: Coding
+- **OpenRouter**: Dev infra, Connectors
+- **OpenSearch**: Dev infra
+- **OpenTable**: Connectors
+- **Open Targets**: Connectors, MCP
+- **Open WebUI**: Chat
+- **Opera Neon**: Agents
+- **Opera One**: Agents
+- **Operations**: Connectors
+- **Opik**: Dev infra
+- **OpusClip**: Video
+- **Oracle OCI Generative AI**: Dev infra
+- **Origin**: Finance
+- **Originality.ai**: Writing
+- **Orum**: Sales
+- **Otter**: Audio, Connectors
+- **Otterly.AI**: Marketing
+- **Oura Advisor**: Health
+- **Outlook with Copilot**: Productivity
+- **Outreach**: Sales
+- **Oxylabs**: Agents
+- **Oxylabs MCP**: MCP
+:::
+
+### P
+
+:::cols
+- **Pabbly Connect**: Automation
+- **Paddle MCP**: MCP
+- **PagerDuty**: Connectors
+- **PagerDuty MCP**: MCP
+- **PandaDoc**: Productivity
+- **Pangram**: Writing
+- **Papago**: Writing
+- **Paperpal**: Writing
+- **Paradox**: Business
+- **Parallel MCP**: MCP
+- **Parloa**: Support
+- **Parseur**: Productivity
+- **Paxton**: Legal
+- **PayPal**: Connectors
+- **PayPal MCP**: MCP
+- **PDF.ai**: Productivity
+- **PDFelement**: Productivity
+- **Peec AI**: Marketing
+- **PEFT**: Dev infra
+- **Peloton**: Connectors
+- **Pencil**: Marketing
+- **Penpot**: Images
+- **Perplexity**: Chat, Research, Connectors
+- **Perplexity Comet**: Agents
+- **Perplexity Finance**: Investing
+- **Perplexity Labs**: Agents
+- **Perplexity Sonar API**: Dev infra
+- **Perplexity (Sonar) MCP**: MCP
+- **Persana**: Sales
+- **pgvector**: Dev infra
+- **Phi**: Dev infra
+- **Photomath**: Education
+- **Photoroom**: Images
+- **Phrase**: Writing
+- **Pi**: Chat
+- **Picsart**: Images
+- **Pictory**: Video
+- **PicWish**: Images
+- **Pieces**: Coding
+- **Pigment**: Finance
+- **Pika**: Video
+- **Piktochart**: Images
+- **Pilot**: Finance
+- **Pinecone**: Dev infra, Connectors, MCP
+- **Pinecone Assistant**: Dev infra
+- **Pipecat**: Agents
+- **Pipedream**: Automation
+- **Pipedream MCP**: MCP
+- **Pipedrive**: Sales
+- **Piper**: Audio
+- **Pitch**: Productivity
+- **Pixelcut**: Images
+- **Pixeltable MCP**: MCP
+- **Pixlr**: Images
+- **PixVerse**: Video
+- **Plaid MCP**: MCP
+- **Plain**: Support
+- **Plandex**: Coding
+- **PlanetScale**: Dev infra, Connectors
+- **PlanetScale MCP**: MCP
+- **Plaud Note**: Audio
+- **Playground**: Images
+- **Playwright MCP**: MCP
+- **Plus AI**: Productivity
+- **PocketBase**: Dev infra
+- **PocketPal AI**: Dev infra
+- **Podcastle**: Audio
+- **Poe**: Chat
+- **Pollo AI**: Video
+- **PolyAI**: Support
+- **Polycam**: Images
+- **PopAi**: Productivity
+- **Portkey**: Dev infra
+- **Postgres MCP Pro**: MCP
+- **PostHog**: Marketing
+- **PostHog MCP**: MCP
+- **Postiz**: Marketing
+- **Postiz MCP**: MCP
+- **Postman MCP**: MCP
+- **Postmark MCP**: MCP
+- **Power Apps**: Coding
+- **Power Automate Desktop**: Automation
+- **Power BI Copilot**: Productivity
+- **Power BI MCP**: MCP
+- **PowerPoint Copilot**: Productivity
+- **Praktika**: Education
+- **Predis.ai**: Marketing
+- **Presentations.AI**: Productivity
+- **Prezi AI**: Productivity
+- **Prisma MCP**: MCP
+- **Prisma Postgres**: Dev infra
+- **PrivateGPT**: Dev infra
+- **Private LLM**: Dev infra
+- **Producer.ai**: Audio
+- **Productivity**: Connectors
+- **Product Management**: Connectors
+- **Profound**: Marketing
+- **Promptfoo**: Dev infra
+- **PromptLayer**: Dev infra
+- **ProWritingAid**: Writing
+- **Publer**: Marketing
+- **Public**: Investing
+- **PubMed**: Connectors, MCP
+- **PulseMCP**: MCP
+- **Pulumi MCP**: MCP
+- **Puzzle**: Finance
+- **Pydantic AI**: Agents
+- **Pydantic Logfire**: Dev infra
+- **Pylon**: Support
+:::
+
+### Q
+
+:::cols
+- **QA Wolf**: Coding
+- **Qdrant**: Dev infra, Connectors, MCP
+- **Qodo**: Coding
+- **Qodo Gen**: Coding
+- **Quadratic**: Productivity
+- **Quartr**: Investing
+- **QuickBooks**: Connectors
+- **QuickBooks Intuit Assist**: Business
+- **QuickBooks MCP**: MCP
+- **QuillBot**: Writing
+- **Quizlet AI**: Research
+- **Qwen**: Dev infra
+- **Qwen Chat**: Chat
+- **Qwen Code**: Coding
+- **Qwen-Image**: Images
+:::
+
+### R
+
+:::cols
+- **Ragas**: Dev infra
+- **RAGFlow**: Dev infra
+- **Ragie**: Dev infra
+- **Railway**: Dev infra
+- **Railway MCP**: MCP
+- **RamaLama**: Dev infra
+- **Ramp**: Business
+- **Ramp MCP**: MCP
+- **Rasa**: Agents
+- **Rask AI**: Video
+- **Raycast AI**: Productivity
+- **Razorpay MCP**: MCP
+- **RB2B**: Sales
+- **Read AI**: Audio
+- **Readwise Reader**: Research
+- **Recall**: Research
+- **Reclaim**: Productivity
+- **Recraft**: Images
+- **Redis**: Dev infra
+- **Redis MCP**: MCP
+- **Reducto**: Productivity
+- **Ref**: MCP
+- **Refact.ai**: Coding
+- **Reflect**: Productivity
+- **Regie.ai**: Sales
+- **Relay.app**: Automation
+- **Relevance AI**: Agents
+- **Relume**: Coding
+- **Remini**: Images
+- **RemNote**: Education
+- **remove.bg**: Images
+- **Render**: Dev infra
+- **Render MCP**: MCP
+- **Replicate**: Dev infra
+- **Replicate MCP**: MCP
+- **Replika**: Chat
+- **Replit**: Coding, Connectors
+- **Reply.io**: Sales
+- **Requesty**: Dev infra
+- **Rerank**: Dev infra
+- **Research Rabbit**: Research
+- **Resemble AI**: Audio
+- **Resend**: Dev infra
+- **Resend MCP**: MCP
+- **Respeecher**: Audio
+- **Retell**: Agents
+- **Retool**: Coding
+- **Rev**: Audio
+- **Rev AI**: Audio
+- **Reve**: Images
+- **Reverso**: Writing
+- **Rezi**: HR
+- **Rippling**: HR
+- **Riverside**: Audio
+- **Roblox Assistant**: Images
+- **Rocket Money**: Finance
+- **Rodin**: Images
+- **Rogo**: Business
+- **Rokoko Vision**: Images
+- **Roo Code**: Coding
+- **Rork**: Coding
+- **Rosie**: Support
+- **Rovo Dev**: Coding
+- **Rows**: Productivity
+- **RunPod**: Dev infra
+- **Runware**: Dev infra
+- **Runway**: Video
+- **Rytr**: Writing
+:::
+
+### S
+
+:::cols
+- **Sage Copilot**: Finance
+- **Sales**: Connectors
+- **Salesforce**: Connectors
+- **Salesforce Agentforce**: Business
+- **Salesforce MCP**: MCP
+- **Salesloft**: Sales
+- **SambaNova Cloud**: Dev infra
+- **Samsung Galaxy AI**: Chat
+- **SaneBox**: Productivity
+- **Saner.ai**: Productivity
+- **Sanity**: Connectors
+- **Sanity MCP**: MCP
+- **Scaniverse**: Images
+- **Scenario**: Images
+- **Scholarcy**: Research
+- **SchoolAI**: Education
+- **SciSpace**: Research
+- **Scite**: Research
+- **ScrapeGraphAI MCP**: MCP
+- **ScraperAPI**: Agents
+- **ScrapingBee**: Agents
+- **Screaming Frog**: Marketing
+- **Screenpipe**: Productivity
+- **Scribe**: Video
+- **Scrunch AI**: Marketing
+- **SeaArt**: Images
+- **Seamless.AI**: Sales
+- **Search Atlas**: Marketing
+- **Second Nature**: Sales
+- **Seedance**: Video
+- **Seedream**: Images
+- **Seeking Alpha**: Investing
+- **SeekOut**: HR
+- **Seismic**: Sales
+- **Semantic Scholar**: Research
+- **Sembly**: Audio
+- **Semgrep**: Coding
+- **Semgrep MCP**: MCP
+- **Semrush AI**: Business
+- **Sentry**: Dev infra, Connectors
+- **Sentry MCP**: MCP
+- **Sequential Thinking**: MCP
+- **SE Ranking**: Marketing
+- **Serena**: MCP
+- **SerpApi MCP**: MCP
+- **ServiceNow MCP**: MCP
+- **SGLang**: Dev infra
+- **shadcn MCP**: MCP
+- **Shopify**: Connectors
+- **Shopify Dev MCP**: MCP
+- **Shopify Magic / Sidekick**: Coding
+- **Shopify Storefront MCP**: MCP
+- **Shortwave**: Productivity
+- **Shutterstock AI**: Images
+- **Sider**: Chat
+- **Siena AI**: Support
+- **Sierra**: Business
+- **SigNoz**: Connectors
+- **SillyTavern**: Chat
+- **Similarweb**: Marketing
+- **Simplified**: Writing
+- **Simplify**: HR
+- **Simply Wall St**: Investing
+- **SingleStore**: Dev infra
+- **SingleStore MCP**: MCP
+- **Siri**: Chat
+- **Skybox AI**: Images
+- **Skyvern**: Agents
+- **Skywork**: Productivity
+- **Slack**: Connectors
+- **Slack AI**: Productivity
+- **Slack MCP**: MCP
+- **Slang.ai**: Support
+- **SlidesAI**: Productivity
+- **Sloyd**: Images
+- **Small Business**: Connectors
+- **Smallpdf**: Productivity
+- **Smartcat**: Writing
+- **Smartlead**: Sales
+- **Smartsheet**: Productivity
+- **Smartsheet MCP**: MCP
+- **Smith.ai**: Support
+- **Smithery**: MCP
+- **smolagents**: Agents
+- **SmolLM**: Dev infra
+- **Snapseed**: Images
+- **Snowflake**: MCP
+- **Snowflake Cortex AI**: Dev infra
+- **Snyk**: Coding
+- **Snyk MCP**: MCP
+- **Socket**: Coding
+- **Socket MCP**: MCP
+- **Softr**: Coding
+- **SonarQube**: Coding
+- **SonarQube MCP**: MCP
+- **Soniox**: Audio
+- **Sonix**: Audio
+- **Soundful**: Audio
+- **Soundraw**: Audio
+- **Sourcegraph**: Coding
+- **Sourcery**: Coding
+- **Spark**: Productivity
+- **Speak**: Education
+- **Speechify**: Audio
+- **Speechmatics**: Audio
+- **Spellbook**: Business
+- **S&P Global**: Connectors, MCP
+- **Spinach AI**: Audio
+- **Splice**: Audio
+- **Spline**: Images
+- **Spotify**: Connectors
+- **Sprout Social**: Marketing
+- **Square**: Connectors
+- **Square MCP**: MCP
+- **Squarespace Blueprint AI**: Coding
+- **Squibler**: Writing
+- **Stability AI API**: Dev infra
+- **Stable Audio**: Audio
+- **Stable Diffusion**: Images
+- **StackHawk MCP**: MCP
+- **Stagehand**: Agents
+- **Stampli**: Finance
+- **Statista AI**: Research
+- **Steel**: Agents
+- **Steve AI**: Video
+- **Storyblok MCP**: MCP
+- **Storybook MCP**: MCP
+- **Storydoc**: Productivity
+- **Strands Agents**: Agents
+- **Strava Athlete Intelligence**: Health
+- **Streamlit**: Agents
+- **Stripe**: Dev infra, Connectors
+- **Stripe MCP**: MCP
+- **StudyFetch**: Education
+- **Stytch**: Dev infra
+- **Submagic**: Video
+- **Subtitle Edit**: Video
+- **Sudowrite**: Writing
+- **Suki**: Health
+- **Suno**: Audio
+- **Sunsama**: Productivity
+- **Supabase**: Dev infra, Connectors
+- **Supabase MCP**: MCP
+- **Supabase Vector**: Dev infra
+- **Superhuman**: Productivity
+- **Supermemory**: Agents
+- **Supernormal**: Audio
+- **Superwhisper**: Audio
+- **Supio**: Legal
+- **Surfer SEO**: Writing
+- **Svelte MCP**: MCP
+- **SWE-agent**: Coding
+- **Swimm**: Coding
+- **Symbolab**: Education
+- **Synapse**: MCP
+- **Synthesia**: Video
+- **Synthesis Tutor**: Education
+- **Synthesizer V**: Audio
+- **Synthflow**: Support
+:::
+
+### T
+
+:::cols
+- **T3 Chat**: Chat
+- **Tabby**: Coding
+- **Tableau Agent**: Productivity
+- **Tableau MCP**: MCP
+- **Tabnine**: Coding
+- **Tactiq**: Audio
+- **Talkdesk**: Support
+- **Talkie**: Chat
+- **Talkpal**: Education
+- **Tana**: Productivity
+- **Tango**: Video
+- **Taplio**: Marketing
+- **Taskade**: Productivity
+- **Tasker**: Automation
+- **Tavily**: Research, Connectors
+- **Tavily MCP**: MCP
+- **Tavus**: Video
+- **Teal**: HR
+- **Telegram**: MCP
+- **Tella**: Video
+- **Temporal**: Agents
+- **Tensor.Art**: Images
+- **TensorRT-LLM**: Dev infra
+- **Terraform MCP**: MCP
+- **Testim**: Coding
+- **Text Blaze**: Writing
+- **text-generation-webui**: Dev infra
+- **Textio**: Business
+- **ThoughtSpot Spotter**: Productivity
+- **Thunderbit**: Agents
+- **Thunkable**: Coding
+- **TickTick**: Productivity
+- **Tidio Lyro**: Business
+- **Time**: MCP
+- **TinyFish**: Agents
+- **TinyFish MCP**: MCP
+- **tldraw**: Images
+- **tl;dv**: Audio
+- **Todoist**: Connectors
+- **Todoist AI**: Productivity
+- **Todoist MCP**: MCP
+- **Together AI**: Dev infra
+- **Topaz Photo**: Images
+- **Topaz Video**: Video
+- **Trade Ideas**: Investing
+- **TradingView**: Investing
+- **Trae**: Coding
+- **Tray.ai**: Automation
+- **TRELLIS**: Images
+- **Trello**: Productivity
+- **TrendSpider**: Investing
+- **Trigger.dev**: Agents
+- **Trinka**: Writing
+- **Trint**: Audio
+- **Tripadvisor**: Connectors
+- **Tripo**: Images
+- **TRL**: Dev infra
+- **Turbopuffer**: Dev infra
+- **TurboTax**: Finance
+- **Turnitin**: Writing
+- **Turso**: Dev infra
+- **Twilio**: Dev infra
+- **Twilio MCP**: MCP
+- **Typefully**: Marketing
+- **Typesense**: Dev infra
+- **TypingMind**: Chat
+:::
+
+### U
+
+:::cols
+- **Ubersuggest**: Marketing
+- **Udio**: Audio
+- **UiPath**: Automation
+- **Uizard**: Coding
+- **Ultimate Vocal Remover**: Audio
+- **Ultrareview**: Coding
+- **Ultravox**: Agents
+- **Unbounce**: Marketing
+- **Undermind**: Research
+- **Unicorn Platform**: Coding
+- **Unify**: Sales
+- **Unity AI**: Images
+- **Unity MCP**: MCP
+- **Unsloth**: Dev infra
+- **Unstructured**: Productivity
+- **UPDF**: Productivity
+- **Upscayl**: Images
+- **Upstash**: Dev infra
+- **Upstash MCP**: MCP
+- **Upstash Vector**: Dev infra
+- **UpToDate Expert AI**: Health
+:::
+
+### V
+
+:::cols
+- **v0**: Coding
+- **Val Town**: Automation
+- **Vanta MCP**: MCP
+- **Vapi**: Agents
+- **Vast.ai**: Dev infra
+- **Vectara**: Dev infra
+- **Vectorizer.AI**: Images
+- **Veed**: Video
+- **Venice**: Chat
+- **Venngage**: Images
+- **Vercel**: Dev infra, Connectors
+- **Vercel AI Gateway**: Dev infra
+- **Vercel AI SDK**: Dev infra
+- **Vercel MCP**: MCP
+- **Vercel Sandbox**: Agents
+- **Vertex AI Agent Builder**: Agents
+- **Vertex AI Vector Search**: Dev infra
+- **Vespa**: Dev infra
+- **Vibe**: Chat
+- **Vic.ai**: Finance
+- **Vidnoz**: Video
+- **Vidu**: Video
+- **Viggle**: Video
+- **Vimcal**: Productivity
+- **Visily**: Images
+- **Visme**: Images
+- **Vizard**: Video
+- **vLex Vincent AI**: Legal
+- **vLLM**: Dev infra
+- **Voiceflow**: Agents
+- **Voicemod**: Audio
+- **Void**: Coding
+- **VoltAgent**: Agents
+- **Voyage AI**: Dev infra
+- **VS Code + GitHub Copilot**: Coding
+:::
+
+### W
+
+:::cols
+- **Wan**: Video
+- **Warmly**: Sales
+- **Warp**: Coding
+- **Wayground**: Education
+- **W&B Weave**: Dev infra
+- **Weaviate**: Dev infra
+- **Weaviate MCP**: MCP
+- **Webex AI Assistant**: Audio
+- **Webflow**: Connectors
+- **Webflow AI**: Coding
+- **Webflow MCP**: MCP
+- **Websim**: Coding
+- **Weglot**: Writing
+- **Weights & Biases**: Dev infra
+- **WellSaid**: Audio
+- **Westlaw**: Legal
+- **WhatsApp**: MCP
+- **Whimsical**: Images
+- **Whisper**: Audio
+- **WHOOP Coach**: Health
+- **Wikipedia**: MCP
+- **Wiley Scholar Gateway**: MCP
+- **Windmill**: Automation
+- **Wisecut**: Video
+- **Wispr Flow**: Audio
+- **Wix**: Connectors
+- **Wix AI website builder**: Coding
+- **Wix MCP**: MCP
+- **WolframAlpha**: Research
+- **Wondercraft**: Audio
+- **Wondershare Filmora**: Video
+- **WordPress MCP**: MCP
+- **Wordtune**: Writing
+- **Workato**: Automation
+- **Workday Illuminate**: HR
+- **WorkOS**: Dev infra
+- **World Labs Marble**: Images
+- **Wrike**: Productivity
+- **Writefull**: Writing
+- **Writer**: Writing
+- **Writer Palmyra**: Dev infra
+- **Writesonic**: Writing
+- **Wysa**: Health
+:::
+
+### X
+
+:::cols
+- **xAI API**: Dev infra
+- **XcodeBuildMCP**: MCP
+- **Xcode Intelligence**: Coding
+- **Xero**: Finance
+- **Xero MCP**: MCP
+- **Xmind**: Productivity
+:::
+
+### Y
+
+:::cols
+- **Yellow.ai**: Support
+- **Yoodli**: HR
+- **You.com**: Research
+- **Youper**: Health
+- **YouTube auto-dubbing**: Video
+- **YouTube transcript MCP**: MCP
+- **Yuanbao**: Chat
+:::
+
+### Z
+
+:::cols
+- **Z.ai API**: Dev infra
+- **Z.ai Chat**: Chat
+- **Zapier**: Automation, Connectors
+- **Zapier Agents**: Automation
+- **Zapier Chatbots**: Connectors
+- **Zapier Copilot**: Automation
+- **Zapier MCP**: MCP
+- **Zapier Tables**: Automation
+- **Zed**: Coding
+- **Zendesk AI**: Business
+- **Zendesk MCP**: MCP
+- **Zendesk QA**: Support
+- **Zeni**: Finance
+- **Zep**: Agents
+- **Zillow**: Connectors
+- **Zoho Analytics**: Productivity
+- **Zoho CRM**: Sales
+- **Zoom**: Connectors
+- **Zoom AI Companion**: Audio
+- **ZoomInfo Copilot**: Sales
+- **ZoomInfo MCP**: MCP
+- **Zoom Workplace**: Productivity
+- **Zotero**: Research
+- **Zyte**: Agents
+:::
+
+# Glossary {.unnumbered}
+
+:::glossary
+Agent
+: An AI that takes several steps on its own, such as searching, clicking, and filling in forms, to finish a task.
+
+Ambient scribe
+: A tool that listens to a conversation, with consent, and drafts notes from it. Common in healthcare.
+
+API
+: A way for programs to use a service. Developers usually pay per use.
+
+ATS
+: Applicant tracking system: software employers use to manage job applications.
+
+Connector
+: A link between an AI assistant and another app, so the assistant can read and act in it. ChatGPT calls these apps.
+
+CRM
+: Customer relationship management: software that tracks customers, deals, and conversations.
+
+Embedding
+: A list of numbers that captures the meaning of a piece of text, used to find similar text.
+
+Enrichment
+: Filling in missing details about a contact or company, such as job title or company size.
+
+Eval
+: A repeatable test that checks the quality of an AI's output.
+
+Framework
+: Ready-made code structure for building an app, so you only fill in the details.
+
+Freemium
+: A product with a useful free tier and paid upgrades.
+
+Gateway
+: A service between your app and many AI providers that handles keys, fallbacks, and spending limits.
+
+GEO
+: Generative engine optimization: helping your brand appear in AI assistants' answers. Also called AEO.
+
+GGUF
+: A popular file format for compressed models you run locally.
+
+Guardrails
+: Checks that block unsafe or unwanted AI inputs and outputs.
+
+Headless browser
+: A web browser with no window, controlled by code.
+
+Help desk
+: Software where customer support tickets are tracked and answered.
+
+IDE
+: Integrated development environment: the app programmers write code in.
+
+Extension
+: An add-on that gives an app, such as a browser or code editor, new features.
+
+Local
+: Running on your own computer rather than a company's servers.
+
+MCP
+: Model Context Protocol: an open standard that lets AI apps connect to tools and data through "servers".
+
+MCP server
+: A small program or web address that gives an AI app a set of tools, such as searching a database.
+
+Model
+: The trained AI "brain" behind a tool. Many apps can use the same model.
+
+Node
+: One box, or step, in a visual workflow tool such as n8n.
+
+Observability
+: Recording what an AI app did, step by step, so you can debug and improve it.
+
+OCR
+: Optical character recognition: turning pictures of text into real text.
+
+Open source
+: Software whose code is published so anyone can use, change, and share it.
+
+Open-weight
+: A model whose trained weights can be downloaded and run yourself. Check the license for limits.
+
+Plugin
+: A bundle of skills, connectors, and commands that adds a kind of work to Claude.
+
+Prompt injection
+: Hidden instructions in a web page or file that try to trick an AI into doing something you did not ask for.
+
+Quantization
+: Shrinking a model so it fits in less memory, with a small loss in quality.
+
+RAG
+: Retrieval-augmented generation: looking up relevant documents before the AI answers.
+
+Reranker
+: A model that re-sorts search results so the most relevant come first.
+
+RPA
+: Robotic process automation: software that clicks through apps the way a person would.
+
+Sandbox
+: A sealed-off computer where an agent can run code safely.
+
+Scraping
+: Pulling information out of web pages automatically.
+
+SDK
+: Software development kit: a code library for building on a platform.
+
+Self-hosted
+: Installed and run by you, on your own computer or server.
+
+SEO
+: Search engine optimization: helping pages rank in search results.
+
+Speech-to-text
+: Turning spoken audio into written text. Also called transcription or STT.
+
+Terminal agent
+: A coding agent that works in the text window where developers type commands.
+
+Text-to-speech
+: Reading text aloud in a synthetic voice. Also called TTS.
+
+Vector database
+: A database that stores embeddings so apps can find similar content quickly.
+
+Vibe coding
+: Building software by describing what you want to an AI, rather than writing the code yourself.
+
+Voice cloning
+: Copying a person's voice from a short sample. Use only with permission.
 :::

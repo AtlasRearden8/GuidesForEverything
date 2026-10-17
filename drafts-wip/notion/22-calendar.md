@@ -52,6 +52,13 @@ Search my Gmail for emails from Acme about the contract this month,
 summarize where things stand, and draft a polite reply to the latest one.
 ```
 
+## Tips for a calm calendar
+
+- **Color-code** each calendar and database so you can tell work, home, and deadlines apart at a glance.
+- **Hide** calendars you only need occasionally, rather than disconnecting them.
+- **Drag a Notion item** to a new day to reschedule it in the database too (you need Can edit content access).
+- **Start meeting notes from the event** so the notes page is named and dated for you.
+
 :::checklist
 - I installed Notion Calendar and connected a calendar
 - I connected my Notion workspace

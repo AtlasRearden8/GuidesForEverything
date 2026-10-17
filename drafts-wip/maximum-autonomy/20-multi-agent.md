@@ -33,7 +33,8 @@ Several tools create worktrees for you:
 
 ```bash
 tmux new -s fleet -d
-tmux send-keys -t fleet "cd ../my-app-tests && claude --bg 'Raise test coverage'" C-m
+tmux send-keys -t fleet "cd ../my-app-tests" C-m
+tmux send-keys -t fleet "claude --bg 'Raise test coverage'" C-m
 tmux split-window -t fleet
 tmux send-keys -t fleet "cd ../my-app-deps && codex --yolo" C-m
 tmux attach -t fleet
