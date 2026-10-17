@@ -488,6 +488,9 @@ Every assistant sometimes **hallucinates**, meaning it states false things fluen
 - I'd be comfortable if someone fact-checked me
 :::
 
+> [!TIP]
+> Make this checklist a habit for anything you publish, send to a customer or use to make a decision. For a quick personal question, checking the one or two facts you will actually act on is usually enough. The more an answer matters, the more items on the list you should tick before you rely on it.
+
 # Spotting AI Scams and Deepfakes
 
 The same tools that help you can be used against you. Know the warning signs.

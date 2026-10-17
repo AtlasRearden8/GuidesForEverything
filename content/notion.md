@@ -689,6 +689,9 @@ A tidy structure makes everything easier to find. This chapter gives you one pro
 - Use consistent icons and emoji for scanning
 :::
 
+> [!TIP]
+> You do not need to adopt every habit at once. Pick the two that would fix your biggest annoyance today, such as a messy sidebar or duplicated databases, and practice them for a couple of weeks. Add one more habit each month and your workspace stays tidy without a big cleanup weekend.
+
 # Troubleshooting and FAQ
 
 :::compact

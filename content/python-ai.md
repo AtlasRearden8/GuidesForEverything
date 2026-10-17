@@ -1304,7 +1304,9 @@ ERROR (full traceback):
 **Control flow**
 - `if / elif / else`, `for item in items:`, `while cond:`, `break`, `continue`
 - `try: ... except SomeError: ...`
+:::
 
+:::cheatsheet
 **Files**
 - `Path("a.txt").read_text(encoding="utf-8")`, `.write_text(...)`
 - `Path("folder").glob("*.txt")`, `.mkdir(exist_ok=True)`
