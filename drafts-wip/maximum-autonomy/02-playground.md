@@ -209,15 +209,12 @@ Create a second user account on your Mac or PC just for agents. Your personal fi
 |---|---|
 | "cannot be used with root/sudo privileges" | Set a non-root `remoteUser`, or run Docker with `--user` |
 | Sign-in lost on every rebuild | Mount a volume at `~/.claude` and set `CLAUDE_CONFIG_DIR` |
-| Browser sign-in never completes in the container | Paste the code from the browser at the terminal's "Paste code here" prompt |
 | Bash sandbox silently off on Linux | Install `bubblewrap` and `socat`; set `failIfUnavailable` |
 | Bubblewrap fails inside Docker | Set `sandbox.enableWeakerNestedSandbox` to `true` |
 | `npm install` fails in the box | Add the registry to the network allowlist |
 
 :::checklist
 - I've picked a box for each project that will run in bypass mode
-- The agent runs as a non-root user
-- The network is limited to an allowlist (or I've accepted the risk)
-- My sign-in survives rebuilds
-- I can throw the box away and rebuild it in minutes
+- The agent runs as a non-root user, and the network is limited to an allowlist
+- I can throw the box away and rebuild it in minutes, sign-in included
 :::

@@ -292,8 +292,6 @@ deploys. Show me the diff before saving.
 
 :::checklist
 - `~/.claude/settings.json` sets `defaultMode` to `auto` or `bypassPermissions`
-- `skipDangerousModePermissionPrompt` is `true` (if using bypass)
 - Deny rules cover the few things you never want, even in bypass
-- `/auto-mode-setup` has taught the classifier your trusted infrastructure
-- Bypass sessions run only inside a box from Chapter 2
+- `/auto-mode-setup` has taught the classifier; bypass runs only in a box
 :::
