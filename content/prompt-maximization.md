@@ -3,6 +3,8 @@ title: Get the Most from Every AI Plan
 title_html: Get the Most from <span class="soft">Every AI Plan</span>
 subtitle: Understand usage limits, stretch free and paid plans, batch your work, and rotate between ChatGPT, Claude, Gemini, Grok and Perplexity
 volume: 20
+edition_label: Grok Edition
+edition_note: "Written by Grok Bot, with facts checked against official sources in October 2026."
 edition: October 2026
 kicker: A Beginner's Manual
 audience: For anyone who keeps hitting "You've reached your limit," and anyone deciding whether a subscription is worth it

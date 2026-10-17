@@ -6,18 +6,32 @@ Each manual gets a designed cover, an inside cover with a reading legend, a tabl
 
 ## The manuals
 
+Vols 1–10 come in **two editions**, published side by side and labelled on every cover, title page and page footer:
+
+- **Claude Edition**: the expanded edition (roughly 100–150 pages each), written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4. It keeps the original file names, so older links still work.
+- **Grok Edition**: the concise edition (roughly 40–90 pages each), revised and fact-checked by Grok Bot in GrokAllManualsV1. Its files end in `-grok`.
+
+Vols 11–21 exist in the Grok Edition only, written by Grok Bot.
+
+### Vols 1–10: two editions
+
+| # | Manual | Claude Edition | Grok Edition |
+|---|---|---|---|
+| 1 | Claude Code | [`content/claude-code.md`](content/claude-code.md) · [PDF](output/claude-code.pdf) | [`content/claude-code-grok.md`](content/claude-code-grok.md) · [PDF](output/claude-code-grok.pdf) |
+| 2 | GitHub | [`content/github.md`](content/github.md) · [PDF](output/github.pdf) | [`content/github-grok.md`](content/github-grok.md) · [PDF](output/github-grok.pdf) |
+| 3 | Vibe Coding | [`content/vibe-coding.md`](content/vibe-coding.md) · [PDF](output/vibe-coding.pdf) | [`content/vibe-coding-grok.md`](content/vibe-coding-grok.md) · [PDF](output/vibe-coding-grok.pdf) |
+| 4 | Everyday AI Tools | [`content/ai-tools.md`](content/ai-tools.md) · [PDF](output/ai-tools.pdf) | [`content/ai-tools-grok.md`](content/ai-tools-grok.md) · [PDF](output/ai-tools-grok.pdf) |
+| 5 | MCP (Model Context Protocol) | [`content/mcp.md`](content/mcp.md) · [PDF](output/mcp.pdf) | [`content/mcp-grok.md`](content/mcp-grok.md) · [PDF](output/mcp-grok.pdf) |
+| 6 | n8n | [`content/n8n.md`](content/n8n.md) · [PDF](output/n8n.pdf) | [`content/n8n-grok.md`](content/n8n-grok.md) · [PDF](output/n8n-grok.pdf) |
+| 7 | Notion | [`content/notion.md`](content/notion.md) · [PDF](output/notion.pdf) | [`content/notion-grok.md`](content/notion-grok.md) · [PDF](output/notion-grok.pdf) |
+| 8 | Maximum Autonomy | [`content/maximum-autonomy.md`](content/maximum-autonomy.md) · [PDF](output/maximum-autonomy.pdf) | [`content/maximum-autonomy-grok.md`](content/maximum-autonomy-grok.md) · [PDF](output/maximum-autonomy-grok.pdf) |
+| 9 | AI Tools, Connectors & MCP Directory | [`content/ai-tools-directory.md`](content/ai-tools-directory.md) · [PDF](output/ai-tools-directory.pdf) | [`content/ai-tools-directory-grok.md`](content/ai-tools-directory-grok.md) · [PDF](output/ai-tools-directory-grok.pdf) |
+| 10 | Autonomous AI Trading | [`content/ai-trading.md`](content/ai-trading.md) · [PDF](output/ai-trading.pdf) | [`content/ai-trading-grok.md`](content/ai-trading-grok.md) · [PDF](output/ai-trading-grok.pdf) |
+
+### Vols 11–21: Grok Edition
+
 | # | Manual | Source | PDF |
 |---|---|---|---|
-| 1 | Claude Code | [`content/claude-code.md`](content/claude-code.md) | [`output/claude-code.pdf`](output/claude-code.pdf) |
-| 2 | GitHub | [`content/github.md`](content/github.md) | [`output/github.pdf`](output/github.pdf) |
-| 3 | Vibe Coding | [`content/vibe-coding.md`](content/vibe-coding.md) | [`output/vibe-coding.pdf`](output/vibe-coding.pdf) |
-| 4 | Everyday AI Tools | [`content/ai-tools.md`](content/ai-tools.md) | [`output/ai-tools.pdf`](output/ai-tools.pdf) |
-| 5 | MCP (Model Context Protocol) | [`content/mcp.md`](content/mcp.md) | [`output/mcp.pdf`](output/mcp.pdf) |
-| 6 | n8n | [`content/n8n.md`](content/n8n.md) | [`output/n8n.pdf`](output/n8n.pdf) |
-| 7 | Notion | [`content/notion.md`](content/notion.md) | [`output/notion.pdf`](output/notion.pdf) |
-| 8 | Maximum Autonomy | [`content/maximum-autonomy.md`](content/maximum-autonomy.md) | [`output/maximum-autonomy.pdf`](output/maximum-autonomy.pdf) |
-| 9 | AI Tools, Connectors & MCP Directory | [`content/ai-tools-directory.md`](content/ai-tools-directory.md) | [`output/ai-tools-directory.pdf`](output/ai-tools-directory.pdf) |
-| 10 | Autonomous AI Trading for Beginners | [`content/ai-trading.md`](content/ai-trading.md) | [`output/ai-trading.pdf`](output/ai-trading.pdf) |
 | 11 | Running AI Locally | [`content/local-ai.md`](content/local-ai.md) | [`output/local-ai.pdf`](output/local-ai.pdf) |
 | 12 | Custom GPTs, Gems & Claude Projects | [`content/custom-assistants.md`](content/custom-assistants.md) | [`output/custom-assistants.pdf`](output/custom-assistants.pdf) |
 | 13 | AI Agents & Multi-Agent Workflows | [`content/ai-agents.md`](content/ai-agents.md) | [`output/ai-agents.pdf`](output/ai-agents.pdf) |
@@ -86,6 +100,7 @@ That's it. No template or stylesheet changes are needed. Files whose names start
 | `volume` | Shows "Vol. NN" on the cover |
 | `edition` | Month the facts were checked (cover and disclaimer) |
 | `kicker`, `audience` | Small cover label and cover footer text |
+| `edition_label`, `edition_note` | Edition name (for example `Claude Edition` or `Grok Edition`) shown on the cover, the title page and every page footer, plus a one-line note on who wrote it |
 | `accent`, `accent2` | Main and secondary colors |
 | `motif` | Cover art: `orbits`, `grid`, `waves`, `blocks`, `network`, `pages` |
 | `cover: dark` | Dark cover (the default is a white, toner-friendly cover) |

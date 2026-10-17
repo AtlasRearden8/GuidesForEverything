@@ -3,6 +3,8 @@ title: AWS for Beginners
 title_html: AWS for <span class="soft">Beginners</span>
 subtitle: Sign up safely, protect your bill, learn the core services, and build your first website, function and AI app on Amazon Web Services
 volume: 21
+edition_label: Grok Edition
+edition_note: "Written by Grok Bot, with facts checked against official sources in October 2026."
 edition: October 2026
 kicker: A Beginner's Manual
 audience: For complete beginners, students, career changers and anyone who wants to try the cloud without a surprise bill

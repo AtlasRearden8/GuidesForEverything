@@ -3,6 +3,8 @@ title: Zapier & Make
 title_html: Zapier <span class="soft">&amp; Make</span>
 subtitle: Connect your apps, automate the boring parts, and add AI to everyday workflows without writing code
 volume: 16
+edition_label: Grok Edition
+edition_note: "Written by Grok Bot, with facts checked against official sources in October 2026."
 edition: October 2026
 kicker: A Beginner's Manual
 audience: For anyone who copies data between apps by hand and wants it to happen on its own

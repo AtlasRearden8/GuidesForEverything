@@ -3,6 +3,8 @@ title: AI APIs & Costs
 title_html: AI APIs <span class="soft">&amp; Costs</span>
 subtitle: Keys, tokens, prices and budgets for OpenAI, Anthropic, Google and xAI, explained for beginners
 volume: 15
+edition_label: Grok Edition
+edition_note: "Written by Grok Bot, with facts checked against official sources in October 2026."
 edition: October 2026
 kicker: A Beginner's Manual
 audience: For anyone about to pay for an AI API

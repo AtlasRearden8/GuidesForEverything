@@ -3,6 +3,8 @@ title: AI Privacy & Security
 title_html: AI Privacy <span class="soft">&amp; Security</span>
 subtitle: Control what AI companies keep, protect your accounts, and use chatbots, connectors and agents without getting burned
 volume: 18
+edition_label: Grok Edition
+edition_note: "Written by Grok Bot, with facts checked against official sources in October 2026."
 edition: October 2026
 kicker: A Beginner's Manual
 audience: For everyone who uses AI at home or at work and wants to stay in control of their data

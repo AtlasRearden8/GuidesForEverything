@@ -3,6 +3,8 @@ title: AI for Personal Finance & Admin
 title_html: AI for Personal Finance <span class="soft">&amp; Admin</span>
 subtitle: Budgets, bills, subscriptions, debt plans, tax paperwork and life admin, with your data handled safely
 volume: 17
+edition_label: Grok Edition
+edition_note: "Written by Grok Bot, with facts checked against official sources in October 2026."
 edition: October 2026
 kicker: A Beginner's Manual
 audience: For anyone who wants a clearer picture of their money and less paperwork, without handing over control
