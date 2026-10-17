@@ -17,7 +17,7 @@ Each manual gets a designed cover, an inside cover with a reading legend, a tabl
 | 7 | Notion | [`content/notion.md`](content/notion.md) | [`output/notion.pdf`](output/notion.pdf) |
 | 8 | Maximum Autonomy | [`content/maximum-autonomy.md`](content/maximum-autonomy.md) | [`output/maximum-autonomy.pdf`](output/maximum-autonomy.pdf) |
 | 9 | AI Tools, Connectors & MCP Directory | [`content/ai-tools-directory.md`](content/ai-tools-directory.md) | [`output/ai-tools-directory.pdf`](output/ai-tools-directory.pdf) |
-| 10 | Autonomous AI Trading for Beginners | [`content/ai-trading.md`](content/ai-trading.md) | [`output/ai-trading.pdf`](output/ai-trading.pdf) |
+| 10 | Autonomous AI Trading | [`content/ai-trading.md`](content/ai-trading.md) | [`output/ai-trading.pdf`](output/ai-trading.pdf) |
 
 Facts (install commands, settings, menu paths, flags, pricing) were checked against official documentation in October 2026.
 
@@ -80,7 +80,6 @@ That's it. No template or stylesheet changes are needed. Files whose names start
 | `cover: dark` | Dark cover (the default is a white, toner-friendly cover) |
 | `chapter_break: false` | Chapters flow continuously (good for directories) |
 | `toc_depth: 1` | Contents shows chapters only |
-| `toc_compact: true` | Tightens Contents spacing (use if the last Contents page is nearly empty) |
 | `numbered: false` | No chapter/section numbers |
 | `blurb`, `disclaimer` | Inside-cover text (Markdown allowed in `blurb`) |
 
