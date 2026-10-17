@@ -4,6 +4,7 @@ subtitle: The Model Context Protocol, the universal way to plug AI into your app
 volume: 5
 edition_label: Claude Edition
 edition_note: "Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4."
+toc_compact: true
 edition: October 2026
 accent: "#2F6FDE"
 accent2: "#FF8A5B"

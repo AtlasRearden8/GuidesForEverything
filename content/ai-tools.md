@@ -4,6 +4,7 @@ subtitle: Chat assistants, prompting, research, writing, images, video, voice, p
 volume: 4
 edition_label: Claude Edition
 edition_note: "Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4."
+toc_compact: dense
 edition: October 2026
 accent: "#0B8A8A"
 accent2: "#F2A93B"

@@ -461,7 +461,7 @@ function manualHtml(slug, file) {
     cover_art: coverArt(slug, meta.motif, meta.cover !== 'dark'),
     chapter_break: meta.chapter_break === false ? 'no-chapter-break' : 'chapter-break',
     toc: buildToc(toc, meta.toc_depth ?? 2),
-    toc_class: ((meta.toc_depth ?? 2) >= 2 ? 'toc-deep' : 'toc-shallow') + (meta.toc_compact ? ' toc-compact' : ''),
+    toc_class: ((meta.toc_depth ?? 2) >= 2 ? 'toc-deep' : 'toc-shallow') + (meta.toc_compact ? ' toc-compact' : '') + (meta.toc_compact === 'dense' ? ' toc-dense' : '') + (meta.glossary_compact ? ' glossary-compact' : ''),
     body: html,
     disclaimer: escapeHtml(
       meta.disclaimer ||
@@ -521,32 +521,48 @@ function buildSite(manifest, { out = path.join(ROOT, 'index.html'), pdfHref = (s
     'claude-code': 'Build & create',
     github: 'Build & create',
     'vibe-coding': 'Build & create',
+    'python-ai': 'Build & create',
+    'ai-apis': 'Build & create',
+    'aws-beginners': 'Build & create',
     'ai-tools': 'AI & agents',
     'ai-tools-directory': 'AI & agents',
     mcp: 'AI & agents',
     'maximum-autonomy': 'AI & agents',
+    'local-ai': 'AI & agents',
+    'custom-assistants': 'AI & agents',
+    'ai-agents': 'AI & agents',
+    'prompt-maximization': 'AI & agents',
     n8n: 'Work smarter',
     notion: 'Work smarter',
+    'zapier-make': 'Work smarter',
+    'ai-personal-finance': 'Work smarter',
+    'ai-healthcare': 'Work smarter',
+    'ai-privacy-security': 'Work smarter',
     'ai-trading': 'Explore',
   };
-  const topicFor = (manual) => topicBySlug[manual.slug] || 'Explore';
+  const baseSlug = (slug) => slug.replace(/-grok$/, '');
+  const topicFor = (manual) => topicBySlug[baseSlug(manual.slug)] || 'Explore';
   const topics = [...new Set(manuals.map(topicFor))];
   const filters = [
     '<button class="filter" type="button" data-filter="all" aria-pressed="true">All guides</button>',
     ...topics.map((topic) => `<button class="filter" type="button" data-filter="${escapeHtml(topic)}" aria-pressed="false">${escapeHtml(topic)}</button>`),
   ].join('\n');
   const mb = (bytes) => `${(bytes / 1048576).toFixed(1)} MB`;
-  const cards = manuals
-    .map((m) => {
-      const vol = m.volume != null ? `Vol. ${String(m.volume).padStart(2, '0')}` : '';
-      const topic = topicFor(m);
-      const searchText = `${m.title} ${m.subtitle} ${topic} Vol ${m.volume ?? ''}`.toLowerCase();
-      return `<li class="book" style="--book: ${escapeHtml(m.accent)}" data-topic="${escapeHtml(topic)}" data-search="${escapeHtml(searchText)}">
-  <a class="cover" href="${pdfHref(m.slug)}" aria-label="Open ${escapeHtml(m.title)} (PDF)"><img src="output/covers/${m.slug}.jpg" alt="Cover of ${escapeHtml(m.title)}" width="816" height="1056" loading="lazy"></a>
+  const volLabel = (v) => (v != null ? `Vol. ${String(v).padStart(2, '0')}` : '');
+  const edClass = (m) => (/claude/i.test(m.edition_label || '') ? 'ed-claude' : 'ed-grok');
+  const card = (m) => {
+    const topic = topicFor(m);
+    const label = m.edition_label || '';
+    const searchText = `${m.title} ${m.subtitle} ${topic} ${label} Vol ${m.volume ?? ''}`.toLowerCase();
+    const fullTitle = label ? `${m.title} (${label})` : m.title;
+    return `<li class="book ${edClass(m)}" style="--book: ${escapeHtml(m.accent)}" data-topic="${escapeHtml(topic)}" data-search="${escapeHtml(searchText)}">
+  <a class="cover" href="${pdfHref(m.slug)}" aria-label="Open ${escapeHtml(fullTitle)} (PDF)"><img src="output/covers/${m.slug}.jpg" alt="Cover of ${escapeHtml(fullTitle)}" width="816" height="1056" loading="lazy"></a>
   <div class="book-text">
-    <p class="vol">${vol}<span>${escapeHtml(m.kicker)}</span></p>
+    <p class="vol">${volLabel(m.volume)}<span>${escapeHtml(m.kicker)}</span></p>
+    ${label ? `<p class="edition-tag">${escapeHtml(label)}</p>` : ''}
     <h3>${escapeHtml(m.title)}</h3>
     <p class="sub">${escapeHtml(m.subtitle)}</p>
+    ${m.edition_note ? `<p class="ed-note">${escapeHtml(m.edition_note)}</p>` : ''}
     <p class="meta">${m.pages} pages · ${mb(m.bytes)} · PDF</p>
     <div class="actions">
       <a class="btn primary" href="${pdfHref(m.slug)}">Read</a>
@@ -554,13 +570,69 @@ function buildSite(manifest, { out = path.join(ROOT, 'index.html'), pdfHref = (s
     </div>
   </div>
 </li>`;
-    })
+  };
+  // Group by volume: volumes with more than one edition are shown as side-by-side pairs.
+  const byVol = new Map();
+  for (const m of manuals) {
+    const k = m.volume ?? `x-${m.slug}`;
+    if (!byVol.has(k)) byVol.set(k, []);
+    byVol.get(k).push(m);
+  }
+  const edOrder = (m) => (edClass(m) === 'ed-claude' ? 0 : 1);
+  const pairs = [];
+  const singles = [];
+  for (const [, group] of byVol) {
+    group.sort((a, b) => edOrder(a) - edOrder(b));
+    if (group.length > 1) pairs.push(group);
+    else singles.push(group[0]);
+  }
+  const pairHtml = pairs
+    .map((g) => `<li class="pair" aria-label="${escapeHtml(volLabel(g[0].volume))}: ${escapeHtml(baseTitle(g))}, two editions">
+  <p class="pair-head"><span>${escapeHtml(volLabel(g[0].volume))}</span> ${escapeHtml(baseTitle(g))} <em>${g.map((m) => `${escapeHtml(m.edition_label || 'Edition')}: ${m.pages} pages`).join(' · ')}</em></p>
+  <ol class="pair-books">
+${g.map(card).join('\n')}
+  </ol>
+</li>`)
     .join('\n');
+  function baseTitle(g) {
+    const t = g.find((m) => edClass(m) === 'ed-claude') || g[0];
+    return t.title;
+  }
+  const volsOf = (list) => list.map((m) => m.volume).filter((v) => v != null);
+  const range = (vs) => (vs.length ? `${Math.min(...vs)}–${Math.max(...vs)}` : '');
+  const pairVols = range(pairs.map((g) => g[0].volume).filter((v) => v != null));
+  const singleVols = range(volsOf(singles));
+  const shelves = [
+    pairs.length
+      ? `<section class="edition-shelf" data-shelf>
+  <div class="edition-head">
+    <h3 class="shelf-title">Vols ${pairVols}: two editions</h3>
+    <p class="shelf-note">Every volume here comes in two clearly labelled editions. <b class="tag-claude">Claude Edition</b> is the expanded edition, written by Claude (Anthropic's AI) in Claude Code. <b class="tag-grok">Grok Edition</b> is the concise edition, revised and fact-checked by Grok Bot.</p>
+  </div>
+  <ol class="pairs">
+${pairHtml}
+  </ol>
+</section>`
+      : '',
+    singles.length
+      ? `<section class="edition-shelf" data-shelf>
+  <div class="edition-head">
+    <h3 class="shelf-title">Vols ${singleVols}: Grok Edition</h3>
+    <p class="shelf-note">New volumes written by Grok Bot, with facts checked against official sources.</p>
+  </div>
+  <ol class="shelf">
+${singles.map(card).join('\n')}
+  </ol>
+</section>`
+      : '',
+  ].join('\n');
   const editions = [...new Set(manuals.map((m) => m.edition).filter(Boolean))];
   const vars = {
-    cards,
+    cards: shelves,
+    shelves,
     filters,
     count: String(manuals.length),
+    volumes: String(byVol.size),
     total_pages: String(manuals.reduce((n, m) => n + m.pages, 0)),
     edition: escapeHtml(editions.join(' & ') || ''),
   };

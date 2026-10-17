@@ -4,6 +4,7 @@ subtitle: One workspace for notes, docs, projects, and databases, with AI built 
 volume: 7
 edition_label: Claude Edition
 edition_note: "Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4."
+glossary_compact: true
 edition: October 2026
 accent: "#C2711B"
 accent2: "#2E8C74"

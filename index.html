@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Guides for Everything</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Free, print-ready beginner manuals for Claude Code, GitHub, vibe coding, AI tools, MCP, n8n, Notion, autonomous AI trading, and more.">
+<meta name="description" content="Free, print-ready beginner manuals for Claude Code, GitHub, vibe coding, AI tools, MCP, n8n, Notion, AI trading, local AI, AI agents, Python, AI APIs, Zapier and Make, personal finance, privacy, healthcare, AI plan limits and AWS. Vols 1–10 come in a Claude Edition and a Grok Edition.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
@@ -253,6 +253,23 @@ h3 { font-size:clamp(18px,1.5vw,23px); line-height:1.1; letter-spacing:-.015em; 
 .actions { gap:7px; margin-top:2px; }
 .btn { min-height:38px; padding-inline:14px; border:1px solid var(--rule); background:transparent; font-size:12px; }
 .btn:hover { color:var(--book); }
+.edition-shelf { margin-top:34px; }
+.edition-shelf[hidden], .pair[hidden] { display:none; }
+.edition-head { display:grid; gap:8px; margin-bottom:18px; padding-top:22px; border-top:1px solid var(--rule); }
+.shelf-title { font:600 clamp(22px,2.6vw,30px)/1.15 var(--display); letter-spacing:-.02em; }
+.edition-head .shelf-note { max-width:52em; font-size:14px; line-height:1.55; }
+.tag-claude, .tag-grok, .edition-tag { display:inline-block; padding:3px 8px; border-radius:999px; font:700 10.5px/1.3 var(--ui); letter-spacing:.12em; text-transform:uppercase; }
+.tag-claude, .ed-claude .edition-tag { color:#9a4a1f; background:#f6e7dc; }
+.tag-grok, .ed-grok .edition-tag { color:#1f3a8a; background:#e2e8f8; }
+.edition-tag { width:fit-content; margin:0; }
+.ed-note { margin:0; font:500 11.5px/1.45 var(--ui); color:var(--ink-2); }
+.pairs { list-style:none; margin:0; padding:0; display:grid; gap:26px; }
+.pair { display:grid; gap:10px; }
+.pair-head { margin:0; font:600 15px/1.3 var(--ui); color:var(--ink); }
+.pair-head span { margin-right:6px; color:var(--accent); font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:12px; }
+.pair-head em { display:block; margin-top:3px; font-style:normal; font-weight:500; font-size:12px; color:var(--ink-2); }
+.pair-books { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+@media (max-width:720px) { .pair-books { grid-template-columns:minmax(0,1fr); gap:13px; } }
 .empty { display:none; padding:40px 20px; border:1px dashed var(--rule); border-radius:16px; color:var(--ink-2); text-align:center; font:500 14px/1.5 var(--ui); }
 .empty.is-visible { display:block; }
 .notes { grid-template-columns:1.2fr 1fr 1fr; margin-top:75px; padding-block:40px 56px; }
@@ -327,8 +344,9 @@ h3 { font-size:clamp(18px,1.5vw,23px); line-height:1.1; letter-spacing:-.015em; 
         <a class="text-link" href="#about">What makes them different</a>
       </div>
       <ul class="colophon-line" aria-label="About this edition">
-        <li><b>11</b><span>practical guides</span></li>
-        <li><b>1534</b><span>pages of know-how</span></li>
+        <li><b>21</b><span>volumes</span></li>
+        <li><b>31</b><span>editions to read</span></li>
+        <li><b>2575</b><span>pages of know-how</span></li>
         <li><b>100%</b><span>free to read</span></li>
       </ul>
     </div>
@@ -352,9 +370,9 @@ h3 { font-size:clamp(18px,1.5vw,23px); line-height:1.1; letter-spacing:-.015em; 
       <div class="filters" role="group" aria-label="Filter manuals by topic">
 <button class="filter" type="button" data-filter="all" aria-pressed="true">All guides</button>
 <button class="filter" type="button" data-filter="Build &amp; create" aria-pressed="false">Build &amp; create</button>
-<button class="filter" type="button" data-filter="Explore" aria-pressed="false">Explore</button>
 <button class="filter" type="button" data-filter="AI &amp; agents" aria-pressed="false">AI &amp; agents</button>
 <button class="filter" type="button" data-filter="Work smarter" aria-pressed="false">Work smarter</button>
+<button class="filter" type="button" data-filter="Explore" aria-pressed="false">Explore</button>
       </div>
       <label class="search">
         <span class="sr-only">Search guides</span>
@@ -363,26 +381,38 @@ h3 { font-size:clamp(18px,1.5vw,23px); line-height:1.1; letter-spacing:-.015em; 
       </label>
     </div>
     <p class="results" id="guide-results" role="status" aria-live="polite"></p>
-    <ol class="shelf">
-<li class="book" style="--book: #C8603C" data-topic="Build &amp; create" data-search="claude code your first ai coding partner, from installation to every slash command, shortcut, and everyday project build &amp; create vol 1">
-  <a class="cover" href="output/claude-code.pdf" aria-label="Open Claude Code (PDF)"><img src="output/covers/claude-code.jpg" alt="Cover of Claude Code" width="816" height="1056" loading="lazy"></a>
+<section class="edition-shelf" data-shelf>
+  <div class="edition-head">
+    <h3 class="shelf-title">Vols 1–10: two editions</h3>
+    <p class="shelf-note">Every volume here comes in two clearly labelled editions. <b class="tag-claude">Claude Edition</b> is the expanded edition, written by Claude (Anthropic's AI) in Claude Code. <b class="tag-grok">Grok Edition</b> is the concise edition, revised and fact-checked by Grok Bot.</p>
+  </div>
+  <ol class="pairs">
+<li class="pair" aria-label="Vol. 01: Claude Code, two editions">
+  <p class="pair-head"><span>Vol. 01</span> Claude Code <em>Claude Edition: 202 pages · Grok Edition: 90 pages</em></p>
+  <ol class="pair-books">
+<li class="book ed-claude" style="--book: #C8603C" data-topic="Build &amp; create" data-search="claude code your first ai coding partner, from installation to every slash command, shortcut, and everyday project build &amp; create claude edition vol 1">
+  <a class="cover" href="output/claude-code.pdf" aria-label="Open Claude Code (Claude Edition) (PDF)"><img src="output/covers/claude-code.jpg" alt="Cover of Claude Code (Claude Edition)" width="816" height="1056" loading="lazy"></a>
   <div class="book-text">
     <p class="vol">Vol. 01<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Claude Edition</p>
     <h3>Claude Code</h3>
     <p class="sub">Your first AI coding partner, from installation to every slash command, shortcut, and everyday project</p>
-    <p class="meta">201 pages · 7.0 MB · PDF</p>
+    <p class="ed-note">Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4.</p>
+    <p class="meta">202 pages · 6.7 MB · PDF</p>
     <div class="actions">
       <a class="btn primary" href="output/claude-code.pdf">Read</a>
       <a class="btn" href="output/claude-code.pdf" download>Download</a>
     </div>
   </div>
 </li>
-<li class="book" style="--book: #C8603C" data-topic="Explore" data-search="claude code your first ai coding partner, from installation to everyday mastery explore vol 1">
-  <a class="cover" href="output/claude-code-grok.pdf" aria-label="Open Claude Code (PDF)"><img src="output/covers/claude-code-grok.jpg" alt="Cover of Claude Code" width="816" height="1056" loading="lazy"></a>
+<li class="book ed-grok" style="--book: #C8603C" data-topic="Build &amp; create" data-search="claude code your first ai coding partner, from installation to everyday mastery build &amp; create grok edition vol 1">
+  <a class="cover" href="output/claude-code-grok.pdf" aria-label="Open Claude Code (Grok Edition) (PDF)"><img src="output/covers/claude-code-grok.jpg" alt="Cover of Claude Code (Grok Edition)" width="816" height="1056" loading="lazy"></a>
   <div class="book-text">
     <p class="vol">Vol. 01<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
     <h3>Claude Code</h3>
     <p class="sub">Your first AI coding partner, from installation to everyday mastery</p>
+    <p class="ed-note">Concise edition, revised and fact-checked by Grok Bot in GrokAllManualsV1.</p>
     <p class="meta">90 pages · 3.3 MB · PDF</p>
     <div class="actions">
       <a class="btn primary" href="output/claude-code-grok.pdf">Read</a>
@@ -390,90 +420,229 @@ h3 { font-size:clamp(18px,1.5vw,23px); line-height:1.1; letter-spacing:-.015em; 
     </div>
   </div>
 </li>
-<li class="book" style="--book: #1F883D" data-topic="Build &amp; create" data-search="github save, share, and collaborate on your work, with git explained from zero to confident build &amp; create vol 2">
-  <a class="cover" href="output/github.pdf" aria-label="Open GitHub (PDF)"><img src="output/covers/github.jpg" alt="Cover of GitHub" width="816" height="1056" loading="lazy"></a>
+  </ol>
+</li>
+<li class="pair" aria-label="Vol. 02: GitHub, two editions">
+  <p class="pair-head"><span>Vol. 02</span> GitHub <em>Claude Edition: 146 pages · Grok Edition: 69 pages</em></p>
+  <ol class="pair-books">
+<li class="book ed-claude" style="--book: #1F883D" data-topic="Build &amp; create" data-search="github save, share, and collaborate on your work, with git explained from zero to confident build &amp; create claude edition vol 2">
+  <a class="cover" href="output/github.pdf" aria-label="Open GitHub (Claude Edition) (PDF)"><img src="output/covers/github.jpg" alt="Cover of GitHub (Claude Edition)" width="816" height="1056" loading="lazy"></a>
   <div class="book-text">
     <p class="vol">Vol. 02<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Claude Edition</p>
     <h3>GitHub</h3>
     <p class="sub">Save, share, and collaborate on your work, with Git explained from zero to confident</p>
-    <p class="meta">146 pages · 3.8 MB · PDF</p>
+    <p class="ed-note">Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4.</p>
+    <p class="meta">146 pages · 3.6 MB · PDF</p>
     <div class="actions">
       <a class="btn primary" href="output/github.pdf">Read</a>
       <a class="btn" href="output/github.pdf" download>Download</a>
     </div>
   </div>
 </li>
-<li class="book" style="--book: #7C4DDB" data-topic="Build &amp; create" data-search="vibe coding build real apps, websites, extensions and tools by describing them in plain english build &amp; create vol 3">
-  <a class="cover" href="output/vibe-coding.pdf" aria-label="Open Vibe Coding (PDF)"><img src="output/covers/vibe-coding.jpg" alt="Cover of Vibe Coding" width="816" height="1056" loading="lazy"></a>
+<li class="book ed-grok" style="--book: #1F883D" data-topic="Build &amp; create" data-search="github save, share, and collaborate on your work, with git explained from zero build &amp; create grok edition vol 2">
+  <a class="cover" href="output/github-grok.pdf" aria-label="Open GitHub (Grok Edition) (PDF)"><img src="output/covers/github-grok.jpg" alt="Cover of GitHub (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 02<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>GitHub</h3>
+    <p class="sub">Save, share, and collaborate on your work, with Git explained from zero</p>
+    <p class="ed-note">Concise edition, revised and fact-checked by Grok Bot in GrokAllManualsV1.</p>
+    <p class="meta">69 pages · 2.1 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/github-grok.pdf">Read</a>
+      <a class="btn" href="output/github-grok.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+  </ol>
+</li>
+<li class="pair" aria-label="Vol. 03: Vibe Coding, two editions">
+  <p class="pair-head"><span>Vol. 03</span> Vibe Coding <em>Claude Edition: 142 pages · Grok Edition: 61 pages</em></p>
+  <ol class="pair-books">
+<li class="book ed-claude" style="--book: #7C4DDB" data-topic="Build &amp; create" data-search="vibe coding build real apps, websites, extensions and tools by describing them in plain english build &amp; create claude edition vol 3">
+  <a class="cover" href="output/vibe-coding.pdf" aria-label="Open Vibe Coding (Claude Edition) (PDF)"><img src="output/covers/vibe-coding.jpg" alt="Cover of Vibe Coding (Claude Edition)" width="816" height="1056" loading="lazy"></a>
   <div class="book-text">
     <p class="vol">Vol. 03<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Claude Edition</p>
     <h3>Vibe Coding</h3>
     <p class="sub">Build real apps, websites, extensions and tools by describing them in plain English</p>
-    <p class="meta">141 pages · 2.9 MB · PDF</p>
+    <p class="ed-note">Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4.</p>
+    <p class="meta">142 pages · 2.7 MB · PDF</p>
     <div class="actions">
       <a class="btn primary" href="output/vibe-coding.pdf">Read</a>
       <a class="btn" href="output/vibe-coding.pdf" download>Download</a>
     </div>
   </div>
 </li>
-<li class="book" style="--book: #0B8A8A" data-topic="AI &amp; agents" data-search="everyday ai tools chat assistants, prompting, research, writing, images, video, voice, phones, agents, privacy, and everyday recipes, explained for complete beginners ai &amp; agents vol 4">
-  <a class="cover" href="output/ai-tools.pdf" aria-label="Open Everyday AI Tools (PDF)"><img src="output/covers/ai-tools.jpg" alt="Cover of Everyday AI Tools" width="816" height="1056" loading="lazy"></a>
+<li class="book ed-grok" style="--book: #7C4DDB" data-topic="Build &amp; create" data-search="vibe coding build real apps and websites by describing them in plain english build &amp; create grok edition vol 3">
+  <a class="cover" href="output/vibe-coding-grok.pdf" aria-label="Open Vibe Coding (Grok Edition) (PDF)"><img src="output/covers/vibe-coding-grok.jpg" alt="Cover of Vibe Coding (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 03<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>Vibe Coding</h3>
+    <p class="sub">Build real apps and websites by describing them in plain English</p>
+    <p class="ed-note">Concise edition, revised and fact-checked by Grok Bot in GrokAllManualsV1.</p>
+    <p class="meta">61 pages · 1.1 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/vibe-coding-grok.pdf">Read</a>
+      <a class="btn" href="output/vibe-coding-grok.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+  </ol>
+</li>
+<li class="pair" aria-label="Vol. 04: Everyday AI Tools, two editions">
+  <p class="pair-head"><span>Vol. 04</span> Everyday AI Tools <em>Claude Edition: 129 pages · Grok Edition: 54 pages</em></p>
+  <ol class="pair-books">
+<li class="book ed-claude" style="--book: #0B8A8A" data-topic="AI &amp; agents" data-search="everyday ai tools chat assistants, prompting, research, writing, images, video, voice, phones, agents, privacy, and everyday recipes, explained for complete beginners ai &amp; agents claude edition vol 4">
+  <a class="cover" href="output/ai-tools.pdf" aria-label="Open Everyday AI Tools (Claude Edition) (PDF)"><img src="output/covers/ai-tools.jpg" alt="Cover of Everyday AI Tools (Claude Edition)" width="816" height="1056" loading="lazy"></a>
   <div class="book-text">
     <p class="vol">Vol. 04<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Claude Edition</p>
     <h3>Everyday AI Tools</h3>
     <p class="sub">Chat assistants, prompting, research, writing, images, video, voice, phones, agents, privacy, and everyday recipes, explained for complete beginners</p>
-    <p class="meta">130 pages · 2.4 MB · PDF</p>
+    <p class="ed-note">Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4.</p>
+    <p class="meta">129 pages · 2.3 MB · PDF</p>
     <div class="actions">
       <a class="btn primary" href="output/ai-tools.pdf">Read</a>
       <a class="btn" href="output/ai-tools.pdf" download>Download</a>
     </div>
   </div>
 </li>
-<li class="book" style="--book: #2F6FDE" data-topic="AI &amp; agents" data-search="mcp the model context protocol, the universal way to plug ai into your apps, files, and tools, explained from zero to building and deploying your own servers ai &amp; agents vol 5">
-  <a class="cover" href="output/mcp.pdf" aria-label="Open MCP (PDF)"><img src="output/covers/mcp.jpg" alt="Cover of MCP" width="816" height="1056" loading="lazy"></a>
+<li class="book ed-grok" style="--book: #0B8A8A" data-topic="AI &amp; agents" data-search="everyday ai tools chat assistants, research, images, video, voice, and everyday ai, explained for beginners ai &amp; agents grok edition vol 4">
+  <a class="cover" href="output/ai-tools-grok.pdf" aria-label="Open Everyday AI Tools (Grok Edition) (PDF)"><img src="output/covers/ai-tools-grok.jpg" alt="Cover of Everyday AI Tools (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 04<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>Everyday AI Tools</h3>
+    <p class="sub">Chat assistants, research, images, video, voice, and everyday AI, explained for beginners</p>
+    <p class="ed-note">Concise edition, revised and fact-checked by Grok Bot in GrokAllManualsV1.</p>
+    <p class="meta">54 pages · 0.9 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/ai-tools-grok.pdf">Read</a>
+      <a class="btn" href="output/ai-tools-grok.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+  </ol>
+</li>
+<li class="pair" aria-label="Vol. 05: MCP, two editions">
+  <p class="pair-head"><span>Vol. 05</span> MCP <em>Claude Edition: 134 pages · Grok Edition: 56 pages</em></p>
+  <ol class="pair-books">
+<li class="book ed-claude" style="--book: #2F6FDE" data-topic="AI &amp; agents" data-search="mcp the model context protocol, the universal way to plug ai into your apps, files, and tools, explained from zero to building and deploying your own servers ai &amp; agents claude edition vol 5">
+  <a class="cover" href="output/mcp.pdf" aria-label="Open MCP (Claude Edition) (PDF)"><img src="output/covers/mcp.jpg" alt="Cover of MCP (Claude Edition)" width="816" height="1056" loading="lazy"></a>
   <div class="book-text">
     <p class="vol">Vol. 05<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Claude Edition</p>
     <h3>MCP</h3>
     <p class="sub">The Model Context Protocol, the universal way to plug AI into your apps, files, and tools, explained from zero to building and deploying your own servers</p>
-    <p class="meta">135 pages · 3.7 MB · PDF</p>
+    <p class="ed-note">Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4.</p>
+    <p class="meta">134 pages · 3.5 MB · PDF</p>
     <div class="actions">
       <a class="btn primary" href="output/mcp.pdf">Read</a>
       <a class="btn" href="output/mcp.pdf" download>Download</a>
     </div>
   </div>
 </li>
-<li class="book" style="--book: #E8456B" data-topic="Work smarter" data-search="n8n automate your work and build ai agents, visually, one node at a time, from your first click to your own server work smarter vol 6">
-  <a class="cover" href="output/n8n.pdf" aria-label="Open n8n (PDF)"><img src="output/covers/n8n.jpg" alt="Cover of n8n" width="816" height="1056" loading="lazy"></a>
+<li class="book ed-grok" style="--book: #2F6FDE" data-topic="AI &amp; agents" data-search="mcp the model context protocol, the universal way to plug ai into your apps, files, and tools ai &amp; agents grok edition vol 5">
+  <a class="cover" href="output/mcp-grok.pdf" aria-label="Open MCP (Grok Edition) (PDF)"><img src="output/covers/mcp-grok.jpg" alt="Cover of MCP (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 05<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>MCP</h3>
+    <p class="sub">The Model Context Protocol, the universal way to plug AI into your apps, files, and tools</p>
+    <p class="ed-note">Concise edition, revised and fact-checked by Grok Bot in GrokAllManualsV1.</p>
+    <p class="meta">56 pages · 1.4 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/mcp-grok.pdf">Read</a>
+      <a class="btn" href="output/mcp-grok.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+  </ol>
+</li>
+<li class="pair" aria-label="Vol. 06: n8n, two editions">
+  <p class="pair-head"><span>Vol. 06</span> n8n <em>Claude Edition: 177 pages · Grok Edition: 59 pages</em></p>
+  <ol class="pair-books">
+<li class="book ed-claude" style="--book: #E8456B" data-topic="Work smarter" data-search="n8n automate your work and build ai agents, visually, one node at a time, from your first click to your own server work smarter claude edition vol 6">
+  <a class="cover" href="output/n8n.pdf" aria-label="Open n8n (Claude Edition) (PDF)"><img src="output/covers/n8n.jpg" alt="Cover of n8n (Claude Edition)" width="816" height="1056" loading="lazy"></a>
   <div class="book-text">
     <p class="vol">Vol. 06<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Claude Edition</p>
     <h3>n8n</h3>
     <p class="sub">Automate your work and build AI agents, visually, one node at a time, from your first click to your own server</p>
-    <p class="meta">177 pages · 4.9 MB · PDF</p>
+    <p class="ed-note">Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4.</p>
+    <p class="meta">177 pages · 4.6 MB · PDF</p>
     <div class="actions">
       <a class="btn primary" href="output/n8n.pdf">Read</a>
       <a class="btn" href="output/n8n.pdf" download>Download</a>
     </div>
   </div>
 </li>
-<li class="book" style="--book: #C2711B" data-topic="Work smarter" data-search="notion one workspace for notes, docs, projects, and databases, with ai built in. a complete beginner's manual work smarter vol 7">
-  <a class="cover" href="output/notion.pdf" aria-label="Open Notion (PDF)"><img src="output/covers/notion.jpg" alt="Cover of Notion" width="816" height="1056" loading="lazy"></a>
+<li class="book ed-grok" style="--book: #E8456B" data-topic="Work smarter" data-search="n8n automate your work and build ai agents, visually, one node at a time work smarter grok edition vol 6">
+  <a class="cover" href="output/n8n-grok.pdf" aria-label="Open n8n (Grok Edition) (PDF)"><img src="output/covers/n8n-grok.jpg" alt="Cover of n8n (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 06<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>n8n</h3>
+    <p class="sub">Automate your work and build AI agents, visually, one node at a time</p>
+    <p class="ed-note">Concise edition, revised and fact-checked by Grok Bot in GrokAllManualsV1.</p>
+    <p class="meta">59 pages · 2.0 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/n8n-grok.pdf">Read</a>
+      <a class="btn" href="output/n8n-grok.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+  </ol>
+</li>
+<li class="pair" aria-label="Vol. 07: Notion, two editions">
+  <p class="pair-head"><span>Vol. 07</span> Notion <em>Claude Edition: 160 pages · Grok Edition: 52 pages</em></p>
+  <ol class="pair-books">
+<li class="book ed-claude" style="--book: #C2711B" data-topic="Work smarter" data-search="notion one workspace for notes, docs, projects, and databases, with ai built in. a complete beginner's manual work smarter claude edition vol 7">
+  <a class="cover" href="output/notion.pdf" aria-label="Open Notion (Claude Edition) (PDF)"><img src="output/covers/notion.jpg" alt="Cover of Notion (Claude Edition)" width="816" height="1056" loading="lazy"></a>
   <div class="book-text">
     <p class="vol">Vol. 07<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Claude Edition</p>
     <h3>Notion</h3>
     <p class="sub">One workspace for notes, docs, projects, and databases, with AI built in. A complete beginner's manual</p>
-    <p class="meta">160 pages · 4.5 MB · PDF</p>
+    <p class="ed-note">Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4.</p>
+    <p class="meta">160 pages · 3.9 MB · PDF</p>
     <div class="actions">
       <a class="btn primary" href="output/notion.pdf">Read</a>
       <a class="btn" href="output/notion.pdf" download>Download</a>
     </div>
   </div>
 </li>
-<li class="book" style="--book: #D9480F" data-topic="AI &amp; agents" data-search="maximum autonomy every setting, flag, config file, and token choice for hands-off ai agents, tool by tool ai &amp; agents vol 8">
-  <a class="cover" href="output/maximum-autonomy.pdf" aria-label="Open Maximum Autonomy (PDF)"><img src="output/covers/maximum-autonomy.jpg" alt="Cover of Maximum Autonomy" width="816" height="1056" loading="lazy"></a>
+<li class="book ed-grok" style="--book: #C2711B" data-topic="Work smarter" data-search="notion one workspace for notes, docs, projects, and databases, with ai built in work smarter grok edition vol 7">
+  <a class="cover" href="output/notion-grok.pdf" aria-label="Open Notion (Grok Edition) (PDF)"><img src="output/covers/notion-grok.jpg" alt="Cover of Notion (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 07<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>Notion</h3>
+    <p class="sub">One workspace for notes, docs, projects, and databases, with AI built in</p>
+    <p class="ed-note">Concise edition, revised and fact-checked by Grok Bot in GrokAllManualsV1.</p>
+    <p class="meta">52 pages · 1.4 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/notion-grok.pdf">Read</a>
+      <a class="btn" href="output/notion-grok.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+  </ol>
+</li>
+<li class="pair" aria-label="Vol. 08: Maximum Autonomy, two editions">
+  <p class="pair-head"><span>Vol. 08</span> Maximum Autonomy <em>Claude Edition: 111 pages · Grok Edition: 82 pages</em></p>
+  <ol class="pair-books">
+<li class="book ed-claude" style="--book: #D9480F" data-topic="AI &amp; agents" data-search="maximum autonomy every setting, flag, config file, and token choice for hands-off ai agents, tool by tool ai &amp; agents claude edition vol 8">
+  <a class="cover" href="output/maximum-autonomy.pdf" aria-label="Open Maximum Autonomy (Claude Edition) (PDF)"><img src="output/covers/maximum-autonomy.jpg" alt="Cover of Maximum Autonomy (Claude Edition)" width="816" height="1056" loading="lazy"></a>
   <div class="book-text">
     <p class="vol">Vol. 08<span>A Power-User's Guide</span></p>
+    <p class="edition-tag">Claude Edition</p>
     <h3>Maximum Autonomy</h3>
     <p class="sub">Every setting, flag, config file, and token choice for hands-off AI agents, tool by tool</p>
+    <p class="ed-note">Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4.</p>
     <p class="meta">111 pages · 3.2 MB · PDF</p>
     <div class="actions">
       <a class="btn primary" href="output/maximum-autonomy.pdf">Read</a>
@@ -481,33 +650,268 @@ h3 { font-size:clamp(18px,1.5vw,23px); line-height:1.1; letter-spacing:-.015em; 
     </div>
   </div>
 </li>
-<li class="book" style="--book: #5B4BDB" data-topic="AI &amp; agents" data-search="ai tools, connectors &amp; mcp directory more than 1,500 ai tools, connectors, and mcp servers, sorted into 23 categories, each with a plain-english description and a price label ai &amp; agents vol 9">
-  <a class="cover" href="output/ai-tools-directory.pdf" aria-label="Open AI Tools, Connectors &amp; MCP Directory (PDF)"><img src="output/covers/ai-tools-directory.jpg" alt="Cover of AI Tools, Connectors &amp; MCP Directory" width="816" height="1056" loading="lazy"></a>
+<li class="book ed-grok" style="--book: #D9480F" data-topic="AI &amp; agents" data-search="maximum autonomy every setting, flag, config file, and token choice for hands-off ai agents, tool by tool ai &amp; agents grok edition vol 8">
+  <a class="cover" href="output/maximum-autonomy-grok.pdf" aria-label="Open Maximum Autonomy (Grok Edition) (PDF)"><img src="output/covers/maximum-autonomy-grok.jpg" alt="Cover of Maximum Autonomy (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 08<span>A Power-User's Guide</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>Maximum Autonomy</h3>
+    <p class="sub">Every setting, flag, config file, and token choice for hands-off AI agents, tool by tool</p>
+    <p class="ed-note">Concise edition, revised and fact-checked by Grok Bot in GrokAllManualsV1.</p>
+    <p class="meta">82 pages · 3.7 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/maximum-autonomy-grok.pdf">Read</a>
+      <a class="btn" href="output/maximum-autonomy-grok.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+  </ol>
+</li>
+<li class="pair" aria-label="Vol. 09: AI Tools, Connectors &amp; MCP Directory, two editions">
+  <p class="pair-head"><span>Vol. 09</span> AI Tools, Connectors &amp; MCP Directory <em>Claude Edition: 133 pages · Grok Edition: 57 pages</em></p>
+  <ol class="pair-books">
+<li class="book ed-claude" style="--book: #5B4BDB" data-topic="AI &amp; agents" data-search="ai tools, connectors &amp; mcp directory more than 1,500 ai tools, connectors, and mcp servers, sorted into 23 categories, each with a plain-english description and a price label ai &amp; agents claude edition vol 9">
+  <a class="cover" href="output/ai-tools-directory.pdf" aria-label="Open AI Tools, Connectors &amp; MCP Directory (Claude Edition) (PDF)"><img src="output/covers/ai-tools-directory.jpg" alt="Cover of AI Tools, Connectors &amp; MCP Directory (Claude Edition)" width="816" height="1056" loading="lazy"></a>
   <div class="book-text">
     <p class="vol">Vol. 09<span>A Field Guide</span></p>
+    <p class="edition-tag">Claude Edition</p>
     <h3>AI Tools, Connectors &amp; MCP Directory</h3>
     <p class="sub">More than 1,500 AI tools, connectors, and MCP servers, sorted into 23 categories, each with a plain-English description and a price label</p>
-    <p class="meta">133 pages · 6.2 MB · PDF</p>
+    <p class="ed-note">Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4.</p>
+    <p class="meta">133 pages · 5.9 MB · PDF</p>
     <div class="actions">
       <a class="btn primary" href="output/ai-tools-directory.pdf">Read</a>
       <a class="btn" href="output/ai-tools-directory.pdf" download>Download</a>
     </div>
   </div>
 </li>
-<li class="book" style="--book: #0F8A5F" data-topic="Explore" data-search="autonomous ai trading build, test, and run a hands-off trading bot, step by step explore vol 10">
-  <a class="cover" href="output/ai-trading.pdf" aria-label="Open Autonomous AI Trading (PDF)"><img src="output/covers/ai-trading.jpg" alt="Cover of Autonomous AI Trading" width="816" height="1056" loading="lazy"></a>
+<li class="book ed-grok" style="--book: #5B4BDB" data-topic="AI &amp; agents" data-search="ai tools, connectors &amp; mcp directory hundreds of ai tools, connectors, and mcp servers, sorted by category, each with a plain-english description and a price label ai &amp; agents grok edition vol 9">
+  <a class="cover" href="output/ai-tools-directory-grok.pdf" aria-label="Open AI Tools, Connectors &amp; MCP Directory (Grok Edition) (PDF)"><img src="output/covers/ai-tools-directory-grok.jpg" alt="Cover of AI Tools, Connectors &amp; MCP Directory (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 09<span>A Field Guide</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>AI Tools, Connectors &amp; MCP Directory</h3>
+    <p class="sub">Hundreds of AI tools, connectors, and MCP servers, sorted by category, each with a plain-English description and a price label</p>
+    <p class="ed-note">Concise edition, revised and fact-checked by Grok Bot in GrokAllManualsV1.</p>
+    <p class="meta">57 pages · 2.4 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/ai-tools-directory-grok.pdf">Read</a>
+      <a class="btn" href="output/ai-tools-directory-grok.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+  </ol>
+</li>
+<li class="pair" aria-label="Vol. 10: Autonomous AI Trading, two editions">
+  <p class="pair-head"><span>Vol. 10</span> Autonomous AI Trading <em>Claude Edition: 110 pages · Grok Edition: 39 pages</em></p>
+  <ol class="pair-books">
+<li class="book ed-claude" style="--book: #0F8A5F" data-topic="Explore" data-search="autonomous ai trading build, test, and run a hands-off trading bot, step by step explore claude edition vol 10">
+  <a class="cover" href="output/ai-trading.pdf" aria-label="Open Autonomous AI Trading (Claude Edition) (PDF)"><img src="output/covers/ai-trading.jpg" alt="Cover of Autonomous AI Trading (Claude Edition)" width="816" height="1056" loading="lazy"></a>
   <div class="book-text">
     <p class="vol">Vol. 10<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Claude Edition</p>
     <h3>Autonomous AI Trading</h3>
     <p class="sub">Build, test, and run a hands-off trading bot, step by step</p>
-    <p class="meta">110 pages · 2.3 MB · PDF</p>
+    <p class="ed-note">Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4.</p>
+    <p class="meta">110 pages · 2.2 MB · PDF</p>
     <div class="actions">
       <a class="btn primary" href="output/ai-trading.pdf">Read</a>
       <a class="btn" href="output/ai-trading.pdf" download>Download</a>
     </div>
   </div>
 </li>
-    </ol>
+<li class="book ed-grok" style="--book: #2F7D5B" data-topic="Explore" data-search="autonomous ai trading for beginners build, test, and supervise a hands-off trading bot, step by step, with paper money first explore grok edition vol 10">
+  <a class="cover" href="output/ai-trading-grok.pdf" aria-label="Open Autonomous AI Trading for Beginners (Grok Edition) (PDF)"><img src="output/covers/ai-trading-grok.jpg" alt="Cover of Autonomous AI Trading for Beginners (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 10<span>A Beginner’s Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>Autonomous AI Trading for Beginners</h3>
+    <p class="sub">Build, test, and supervise a hands-off trading bot, step by step, with paper money first</p>
+    <p class="ed-note">Concise edition, revised and fact-checked by Grok Bot in GrokAllManualsV1.</p>
+    <p class="meta">39 pages · 0.8 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/ai-trading-grok.pdf">Read</a>
+      <a class="btn" href="output/ai-trading-grok.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+  </ol>
+</li>
+  </ol>
+</section>
+<section class="edition-shelf" data-shelf>
+  <div class="edition-head">
+    <h3 class="shelf-title">Vols 11–21: Grok Edition</h3>
+    <p class="shelf-note">New volumes written by Grok Bot, with facts checked against official sources.</p>
+  </div>
+  <ol class="shelf">
+<li class="book ed-grok" style="--book: #6B4FD8" data-topic="AI &amp; agents" data-search="running ai locally ollama, lm studio, jan and llama.cpp on your own pc, with honest gpu and memory tuning for beginners ai &amp; agents grok edition vol 11">
+  <a class="cover" href="output/local-ai.pdf" aria-label="Open Running AI Locally (Grok Edition) (PDF)"><img src="output/covers/local-ai.jpg" alt="Cover of Running AI Locally (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 11<span>A Beginner's Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>Running AI Locally</h3>
+    <p class="sub">Ollama, LM Studio, Jan and llama.cpp on your own PC, with honest GPU and memory tuning for beginners</p>
+    <p class="ed-note">Written by Grok Bot, with facts checked against official sources in October 2026.</p>
+    <p class="meta">54 pages · 1.4 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/local-ai.pdf">Read</a>
+      <a class="btn" href="output/local-ai.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+<li class="book ed-grok" style="--book: #C2410C" data-topic="AI &amp; agents" data-search="custom gpts, gems &amp; claude projects build your own reusable ai assistants in chatgpt, gemini, claude, perplexity and grok, including the 2026 move to plugins and skills ai &amp; agents grok edition vol 12">
+  <a class="cover" href="output/custom-assistants.pdf" aria-label="Open Custom GPTs, Gems &amp; Claude Projects (Grok Edition) (PDF)"><img src="output/covers/custom-assistants.jpg" alt="Cover of Custom GPTs, Gems &amp; Claude Projects (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 12<span>A Beginner's Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>Custom GPTs, Gems &amp; Claude Projects</h3>
+    <p class="sub">Build your own reusable AI assistants in ChatGPT, Gemini, Claude, Perplexity and Grok, including the 2026 move to plugins and skills</p>
+    <p class="ed-note">Written by Grok Bot, with facts checked against official sources in October 2026.</p>
+    <p class="meta">45 pages · 0.9 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/custom-assistants.pdf">Read</a>
+      <a class="btn" href="output/custom-assistants.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+<li class="book ed-grok" style="--book: #0F766E" data-topic="AI &amp; agents" data-search="ai agents &amp; multi-agent workflows hand off real work to chatgpt work, codex, claude cowork, gemini tasks, perplexity computer and grok bot, and fan one question out to five ais at once ai &amp; agents grok edition vol 13">
+  <a class="cover" href="output/ai-agents.pdf" aria-label="Open AI Agents &amp; Multi-Agent Workflows (Grok Edition) (PDF)"><img src="output/covers/ai-agents.jpg" alt="Cover of AI Agents &amp; Multi-Agent Workflows (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 13<span>A Beginner's Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>AI Agents &amp; Multi-Agent Workflows</h3>
+    <p class="sub">Hand off real work to ChatGPT Work, Codex, Claude Cowork, Gemini tasks, Perplexity Computer and Grok Bot, and fan one question out to five AIs at once</p>
+    <p class="ed-note">Written by Grok Bot, with facts checked against official sources in October 2026.</p>
+    <p class="meta">48 pages · 1.0 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/ai-agents.pdf">Read</a>
+      <a class="btn" href="output/ai-agents.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+<li class="book ed-grok" style="--book: #2F6FDE" data-topic="Build &amp; create" data-search="python for ai beginners from installing python to scripts that call chatgpt, claude, gemini, grok and local models, step by step build &amp; create grok edition vol 14">
+  <a class="cover" href="output/python-ai.pdf" aria-label="Open Python for AI Beginners (Grok Edition) (PDF)"><img src="output/covers/python-ai.jpg" alt="Cover of Python for AI Beginners (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 14<span>A Beginner's Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>Python for AI Beginners</h3>
+    <p class="sub">From installing Python to scripts that call ChatGPT, Claude, Gemini, Grok and local models, step by step</p>
+    <p class="ed-note">Written by Grok Bot, with facts checked against official sources in October 2026.</p>
+    <p class="meta">54 pages · 1.4 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/python-ai.pdf">Read</a>
+      <a class="btn" href="output/python-ai.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+<li class="book ed-grok" style="--book: #1F883D" data-topic="Build &amp; create" data-search="ai apis &amp; costs keys, tokens, prices and budgets for openai, anthropic, google and xai, explained for beginners build &amp; create grok edition vol 15">
+  <a class="cover" href="output/ai-apis.pdf" aria-label="Open AI APIs &amp; Costs (Grok Edition) (PDF)"><img src="output/covers/ai-apis.jpg" alt="Cover of AI APIs &amp; Costs (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 15<span>A Beginner's Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>AI APIs &amp; Costs</h3>
+    <p class="sub">Keys, tokens, prices and budgets for OpenAI, Anthropic, Google and xAI, explained for beginners</p>
+    <p class="ed-note">Written by Grok Bot, with facts checked against official sources in October 2026.</p>
+    <p class="meta">44 pages · 1.2 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/ai-apis.pdf">Read</a>
+      <a class="btn" href="output/ai-apis.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+<li class="book ed-grok" style="--book: #EA580C" data-topic="Work smarter" data-search="zapier &amp; make connect your apps, automate the boring parts, and add ai to everyday workflows without writing code work smarter grok edition vol 16">
+  <a class="cover" href="output/zapier-make.pdf" aria-label="Open Zapier &amp; Make (Grok Edition) (PDF)"><img src="output/covers/zapier-make.jpg" alt="Cover of Zapier &amp; Make (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 16<span>A Beginner's Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>Zapier &amp; Make</h3>
+    <p class="sub">Connect your apps, automate the boring parts, and add AI to everyday workflows without writing code</p>
+    <p class="ed-note">Written by Grok Bot, with facts checked against official sources in October 2026.</p>
+    <p class="meta">49 pages · 1.0 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/zapier-make.pdf">Read</a>
+      <a class="btn" href="output/zapier-make.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+<li class="book ed-grok" style="--book: #15803D" data-topic="Work smarter" data-search="ai for personal finance &amp; admin budgets, bills, subscriptions, debt plans, tax paperwork and life admin, with your data handled safely work smarter grok edition vol 17">
+  <a class="cover" href="output/ai-personal-finance.pdf" aria-label="Open AI for Personal Finance &amp; Admin (Grok Edition) (PDF)"><img src="output/covers/ai-personal-finance.jpg" alt="Cover of AI for Personal Finance &amp; Admin (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 17<span>A Beginner's Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>AI for Personal Finance &amp; Admin</h3>
+    <p class="sub">Budgets, bills, subscriptions, debt plans, tax paperwork and life admin, with your data handled safely</p>
+    <p class="ed-note">Written by Grok Bot, with facts checked against official sources in October 2026.</p>
+    <p class="meta">45 pages · 0.8 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/ai-personal-finance.pdf">Read</a>
+      <a class="btn" href="output/ai-personal-finance.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+<li class="book ed-grok" style="--book: #1D4ED8" data-topic="Work smarter" data-search="ai privacy &amp; security control what ai companies keep, protect your accounts, and use chatbots, connectors and agents without getting burned work smarter grok edition vol 18">
+  <a class="cover" href="output/ai-privacy-security.pdf" aria-label="Open AI Privacy &amp; Security (Grok Edition) (PDF)"><img src="output/covers/ai-privacy-security.jpg" alt="Cover of AI Privacy &amp; Security (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 18<span>A Beginner's Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>AI Privacy &amp; Security</h3>
+    <p class="sub">Control what AI companies keep, protect your accounts, and use chatbots, connectors and agents without getting burned</p>
+    <p class="ed-note">Written by Grok Bot, with facts checked against official sources in October 2026.</p>
+    <p class="meta">43 pages · 0.9 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/ai-privacy-security.pdf">Read</a>
+      <a class="btn" href="output/ai-privacy-security.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+<li class="book ed-grok" style="--book: #0E7490" data-topic="Work smarter" data-search="ai for healthcare workers save time on documentation, letters, patient education and study, while protecting patients and staying inside hipaa work smarter grok edition vol 19">
+  <a class="cover" href="output/ai-healthcare.pdf" aria-label="Open AI for Healthcare Workers (Grok Edition) (PDF)"><img src="output/covers/ai-healthcare.jpg" alt="Cover of AI for Healthcare Workers (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 19<span>A Beginner's Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>AI for Healthcare Workers</h3>
+    <p class="sub">Save time on documentation, letters, patient education and study, while protecting patients and staying inside HIPAA</p>
+    <p class="ed-note">Written by Grok Bot, with facts checked against official sources in October 2026.</p>
+    <p class="meta">42 pages · 0.6 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/ai-healthcare.pdf">Read</a>
+      <a class="btn" href="output/ai-healthcare.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+<li class="book ed-grok" style="--book: #7E22CE" data-topic="AI &amp; agents" data-search="get the most from every ai plan understand usage limits, stretch free and paid plans, batch your work, and rotate between chatgpt, claude, gemini, grok and perplexity ai &amp; agents grok edition vol 20">
+  <a class="cover" href="output/prompt-maximization.pdf" aria-label="Open Get the Most from Every AI Plan (Grok Edition) (PDF)"><img src="output/covers/prompt-maximization.jpg" alt="Cover of Get the Most from Every AI Plan (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 20<span>A Beginner's Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>Get the Most from Every AI Plan</h3>
+    <p class="sub">Understand usage limits, stretch free and paid plans, batch your work, and rotate between ChatGPT, Claude, Gemini, Grok and Perplexity</p>
+    <p class="ed-note">Written by Grok Bot, with facts checked against official sources in October 2026.</p>
+    <p class="meta">43 pages · 0.8 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/prompt-maximization.pdf">Read</a>
+      <a class="btn" href="output/prompt-maximization.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+<li class="book ed-grok" style="--book: #C2410C" data-topic="Build &amp; create" data-search="aws for beginners sign up safely, protect your bill, learn the core services, and build your first website, function and ai app on amazon web services build &amp; create grok edition vol 21">
+  <a class="cover" href="output/aws-beginners.pdf" aria-label="Open AWS for Beginners (Grok Edition) (PDF)"><img src="output/covers/aws-beginners.jpg" alt="Cover of AWS for Beginners (Grok Edition)" width="816" height="1056" loading="lazy"></a>
+  <div class="book-text">
+    <p class="vol">Vol. 21<span>A Beginner's Manual</span></p>
+    <p class="edition-tag">Grok Edition</p>
+    <h3>AWS for Beginners</h3>
+    <p class="sub">Sign up safely, protect your bill, learn the core services, and build your first website, function and AI app on Amazon Web Services</p>
+    <p class="ed-note">Written by Grok Bot, with facts checked against official sources in October 2026.</p>
+    <p class="meta">45 pages · 1.1 MB · PDF</p>
+    <div class="actions">
+      <a class="btn primary" href="output/aws-beginners.pdf">Read</a>
+      <a class="btn" href="output/aws-beginners.pdf" download>Download</a>
+    </div>
+  </div>
+</li>
+  </ol>
+</section>
     <p class="empty" id="guide-empty">No guides match that search yet. Try another title or topic.</p>
   </section>
 
@@ -553,7 +957,9 @@ h3 { font-size:clamp(18px,1.5vw,23px); line-height:1.1; letter-spacing:-.015em; 
       card.hidden = !show;
       if (show) visible++;
     }
-    result.textContent = `${visible} ${visible === 1 ? 'guide' : 'guides'}${query ? ` matching “${search.value.trim()}”` : ''}`;
+    for (const pair of document.querySelectorAll('.pair')) pair.hidden = ![...pair.querySelectorAll('.book')].some((b) => !b.hidden);
+    for (const shelf of document.querySelectorAll('[data-shelf]')) shelf.hidden = ![...shelf.querySelectorAll('.book')].some((b) => !b.hidden);
+    result.textContent = `${visible} ${visible === 1 ? 'edition' : 'editions'}${query ? ` matching “${search.value.trim()}”` : ''}`;
     empty.classList.toggle('is-visible', visible === 0);
   }
 

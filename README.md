@@ -107,6 +107,8 @@ That's it. No template or stylesheet changes are needed. Files whose names start
 | `chapter_break: false` | Chapters flow continuously (good for directories) |
 | `toc_depth: 1` | Contents shows chapters only |
 | `toc_compact: true` | Tightens Contents spacing (use if the last Contents page is nearly empty) |
+| `toc_compact: dense` | Tightens Contents spacing further, for very long manuals |
+| `glossary_compact: true` | Tightens Glossary spacing (use if the last Glossary page is nearly empty) |
 | `numbered: false` | No chapter/section numbers |
 | `blurb`, `disclaimer` | Inside-cover text (Markdown allowed in `blurb`) |
 

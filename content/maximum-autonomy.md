@@ -4,6 +4,7 @@ subtitle: Every setting, flag, config file, and token choice for hands-off AI ag
 volume: 8
 edition_label: Claude Edition
 edition_note: "Expanded edition written by Claude (Anthropic's AI) in Claude Code and published in GuidesForEverything PR #4."
+toc_compact: true
 edition: October 2026
 kicker: A Power-User's Guide
 audience: For people ready to let agents run
