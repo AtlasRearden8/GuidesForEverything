@@ -66,6 +66,9 @@ When AI misbehaves, the fix is usually simple. Find your problem in the table be
 - Account, file, and app problems
 :::
 
+> [!TIP]
+> Still stuck? Ask the assistant itself: "I'm trying to [do X] in [app] and [what happens]. What should I check?" Include a screenshot.
+
 ## Answers and quality
 
 | Problem | Likely cause | Fix |
@@ -105,9 +108,6 @@ When AI misbehaves, the fix is usually simple. Find your problem in the table be
 | Agent got stuck | Site blocked it or needs a login | Take over manually, then hand back |
 | Strange instructions in output | Possible prompt injection | Stop the task; don't follow it; remove that source |
 | Assistant "remembers" wrong things | Outdated memory | Open memory settings and delete or correct it |
-
-> [!TIP]
-> Still stuck? Ask the assistant itself: "I'm trying to [do X] in [app] and [what happens]. What should I check?" Include a screenshot.
 
 # Quick Reference {.unnumbered}
 

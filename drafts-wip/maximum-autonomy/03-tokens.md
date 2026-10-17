@@ -36,7 +36,7 @@ The rule for maximum autonomy is **narrow but complete**:
 - **Narrow:** grant nothing outside those projects. No personal repos, no billing, no admin unless it truly needs it.
 - **Expiring:** set an expiry date you'll remember, such as 90 days, and put a reminder in your calendar.
 
-Chapter 13 has the exact GitHub token settings.
+Chapter 12 has the exact GitHub token settings.
 
 ## Where each agent looks for credentials
 
@@ -87,7 +87,7 @@ Agents read files. If a secret sits in a file the agent can read, assume the age
 - **Hide credential files.** In Claude Code's sandbox, `sandbox.filesystem.denyRead` can hide `~/.aws/credentials`; in Cursor, `.cursorignore` blocks files from the agent.
 - **Redact environment variables.** Copilot CLI's `--secret-env-vars=VAR` hides a variable from shell and MCP server environments.
 - **Use separate `.env` files.** Keep production secrets on machines agents never run on.
-- **Turn on push protection.** GitHub blocks pushes that contain detected secrets (Chapter 13).
+- **Turn on push protection.** GitHub blocks pushes that contain detected secrets (Chapter 12).
 
 :::checklist
 - Agents have their own GitHub account or App

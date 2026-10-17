@@ -64,7 +64,7 @@ claude --bg "Upgrade all dependencies and fix what breaks"
 
 ## Git worktrees: parallel agents without collisions
 
-`claude -w feature-auth` starts Claude in its own **git worktree** (a second working copy of the repo on its own branch) at `.claude/worktrees/feature-auth`. Add `--tmux` to open it in a tmux session. Chapter 21 covers running several agents this way.
+`claude -w feature-auth` starts Claude in its own **git worktree** (a second working copy of the repo on its own branch) at `.claude/worktrees/feature-auth`. Add `--tmux` to open it in a tmux session. Chapter 20 covers running several agents this way.
 
 ## The Claude Code GitHub Action
 

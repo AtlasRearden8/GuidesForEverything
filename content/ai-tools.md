@@ -2255,8 +2255,7 @@ The same AI that writes your emails helps scammers write convincing ones, clone 
 
 A **deepfake** is a realistic fake image, video, or audio of a real person, made with AI. They're getting hard to spot by eye, so check the context more than the pixels.
 
-- **Check the source.** Who posted it first? Is it on the person's official account or a reliable news outlet?
-- **Look for other coverage.** Big real events are reported by many outlets.
+- **Check the source.** Who posted it first? Is it on an official account? Big real events are reported by many outlets.
 - **Look closely:** odd hands, text, jewelry, lighting, lip-sync, or blinking can give it away, but don't rely on this alone.
 - **Use Content Credentials:** upload an image at contentcredentials.org/verify to see if it carries a label showing how it was made or edited.
 - **Reverse image search** with Google Lens to find the original.
@@ -2341,6 +2340,9 @@ When AI misbehaves, the fix is usually simple. Find your problem in the table be
 - Account, file, and app problems
 :::
 
+> [!TIP]
+> Still stuck? Ask the assistant itself: "I'm trying to [do X] in [app] and [what happens]. What should I check?" Include a screenshot.
+
 ## Answers and quality
 
 | Problem | Likely cause | Fix |
@@ -2380,9 +2382,6 @@ When AI misbehaves, the fix is usually simple. Find your problem in the table be
 | Agent got stuck | Site blocked it or needs a login | Take over manually, then hand back |
 | Strange instructions in output | Possible prompt injection | Stop the task; don't follow it; remove that source |
 | Assistant "remembers" wrong things | Outdated memory | Open memory settings and delete or correct it |
-
-> [!TIP]
-> Still stuck? Ask the assistant itself: "I'm trying to [do X] in [app] and [what happens]. What should I check?" Include a screenshot.
 
 # Quick Reference {.unnumbered}
 

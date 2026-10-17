@@ -12,7 +12,7 @@
 
 ## Get Notion Calendar
 
-Notion Calendar runs on **Mac**, **Windows**, the **web**, **iPhone and iPad**, and **Android**. Download it from notion.com/calendar or your app store. {{Free}}
+Notion Calendar runs on **Mac**, **Windows**, the **web**, **iPhone and iPad**, and **Android**. Download it from the Notion website or your app store. {{Free}}
 
 :::steps Set it up
 1. **Sign up with your Notion account.** If you don't have one, Notion creates one with the same email.
