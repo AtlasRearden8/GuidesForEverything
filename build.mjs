@@ -439,7 +439,7 @@ function manualHtml(slug, file) {
     cover_art: coverArt(slug, meta.motif, meta.cover !== 'dark'),
     chapter_break: meta.chapter_break === false ? 'no-chapter-break' : 'chapter-break',
     toc: buildToc(toc, meta.toc_depth ?? 2),
-    toc_class: (meta.toc_depth ?? 2) >= 2 ? 'toc-deep' : 'toc-shallow',
+    toc_class: ((meta.toc_depth ?? 2) >= 2 ? 'toc-deep' : 'toc-shallow') + (meta.toc_compact ? ' toc-compact' : ''),
     body: html,
     disclaimer: escapeHtml(
       meta.disclaimer ||

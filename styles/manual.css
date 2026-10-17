@@ -679,3 +679,7 @@ dl.glossary { margin: 0.4em 0 0; }
 .steps-block.steps-head ol.steps > li:last-child { padding-bottom: 10pt; }
 .steps-block.steps-head ol.steps > li:last-child::after { display: block; bottom: 0; }
 .steps-block.steps-tail { margin-top: 0; }
+/* toc_compact: true in front matter tightens the contents to avoid a near-empty last TOC page */
+.toc-compact .toc-chapter > a { padding: 4pt 0 2pt; }
+.toc-compact .toc-section > a { padding: 0.8pt 0 0.8pt 2.1em; line-height: 1.25; }
+.toc-compact .toc-chapter > ol { margin-bottom: 3pt; }

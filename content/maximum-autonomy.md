@@ -108,8 +108,8 @@ You don't need one setting for your whole life. Most people end up with a mix.
 | **Cursor** | Approvals & Execution: **Auto-review** | Approvals & Execution: **Run Everything** |
 | **Cursor CLI** | Allow rules in `cli-config.json` | `agent --force` (alias `--yolo`) |
 | **VS Code + Copilot** | **Assisted permissions** (experimental) | **Allow all** / **Autopilot**, `chat.tools.global.autoApprove` |
-| **Copilot CLI** | `/permissions assisted` | `copilot --yolo` (alias of `--allow-all`) |
-| **OpenAI Codex** | `codex --approve-for-me` | `codex --yolo`, or `approval_policy = "never"` + `sandbox_mode = "danger-full-access"` |
+| **Copilot CLI** | `/permissions assisted` or allow rules | `copilot --yolo` (alias of `--allow-all`) |
+| **OpenAI Codex** | `codex --sandbox workspace-write` or `codex --approve-for-me` | `codex --yolo`, or `approval_policy = "never"` + `sandbox_mode = "danger-full-access"` |
 | **Gemini CLI** | `--approval-mode=auto_edit` | `gemini --approval-mode=yolo` |
 | **Devin Desktop (Windsurf)** | Auto-execution **Auto** | Auto-execution **Turbo** |
 | **Devin CLI** | `--permission-mode smart` | `--permission-mode bypass` |

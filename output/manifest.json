@@ -7,8 +7,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#0B8A8A",
-    "pages": 101,
-    "bytes": 2132761
+    "pages": 130,
+    "bytes": 2557904
   },
   "ai-tools-directory": {
     "slug": "ai-tools-directory",
@@ -18,8 +18,8 @@
     "kicker": "A Field Guide",
     "edition": "October 2026",
     "accent": "#5B4BDB",
-    "pages": 107,
-    "bytes": 5117334
+    "pages": 133,
+    "bytes": 6516144
   },
   "claude-code": {
     "slug": "claude-code",
@@ -29,8 +29,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#C8603C",
-    "pages": 152,
-    "bytes": 4944563
+    "pages": 201,
+    "bytes": 7362026
   },
   "github": {
     "slug": "github",
@@ -41,7 +41,7 @@
     "edition": "October 2026",
     "accent": "#1F883D",
     "pages": 146,
-    "bytes": 4000917
+    "bytes": 3936364
   },
   "maximum-autonomy": {
     "slug": "maximum-autonomy",
@@ -52,7 +52,7 @@
     "edition": "October 2026",
     "accent": "#D9480F",
     "pages": 111,
-    "bytes": 3491103
+    "bytes": 3398011
   },
   "mcp": {
     "slug": "mcp",
@@ -62,8 +62,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#2F6FDE",
-    "pages": 105,
-    "bytes": 3219615
+    "pages": 135,
+    "bytes": 3869779
   },
   "n8n": {
     "slug": "n8n",
@@ -73,8 +73,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#E8456B",
-    "pages": 136,
-    "bytes": 3659491
+    "pages": 177,
+    "bytes": 5143972
   },
   "notion": {
     "slug": "notion",
@@ -84,8 +84,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#C2711B",
-    "pages": 132,
-    "bytes": 3610985
+    "pages": 160,
+    "bytes": 4697215
   },
   "vibe-coding": {
     "slug": "vibe-coding",
@@ -95,8 +95,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#7C4DDB",
-    "pages": 110,
-    "bytes": 2412245
+    "pages": 141,
+    "bytes": 3005192
   },
   "ai-trading": {
     "slug": "ai-trading",
@@ -107,6 +107,6 @@
     "edition": "October 2026",
     "accent": "#0F8A5F",
     "pages": 110,
-    "bytes": 2485271
+    "bytes": 2403693
   }
 }

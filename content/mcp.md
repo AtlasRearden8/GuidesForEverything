@@ -2817,6 +2817,622 @@ Find your symptom, try the fix, and if that fails, follow the five-step method i
 5. **Ask an AI for help**, pasting your config (with secrets removed) and the first error from the log.
 :::
 
+# Configuration Reference by App
+
+Every MCP-capable app stores its server list slightly differently. This chapter puts them side by side, so you can translate one app's setup instructions into another's.
+
+:::summary In this chapter
+- The three transports
+- Claude Code `claude mcp` commands and scopes
+- The `mcpServers` JSON format used by most desktop apps
+- Translating a config between apps
+:::
+
+## The three transports
+
+| Transport | How it connects | Typical use |
+|---|---|---|
+| **stdio** | The app starts the server as a local program and talks through its input and output | Local tools: files, git, scripts |
+| **Streamable HTTP** | The app connects to a URL | Remote/hosted servers: Notion, GitHub, Sentry… |
+| **SSE** | Older HTTP streaming style | Legacy remote servers that haven't moved to HTTP yet |
+
+## Claude Code commands
+
+Source: [code.claude.com/docs/en/mcp](https://code.claude.com/docs/en/mcp).
+
+:::compact
+| Command | What it does |
+|---|---|
+| `claude mcp add --transport http notion https://mcp.notion.com/mcp` | Add a remote HTTP server |
+| `claude mcp add --transport sse <name> <url>` | Add a legacy SSE server |
+| `claude mcp add <name> --env KEY=value -- npx -y <package>` | Add a local stdio server; everything after `--` is the command |
+| `claude mcp add-json <name> '<json>'` | Add from a JSON snippet written for another app |
+| `claude mcp list` | List servers with health status (✔ Connected, ! Needs authentication, ✘ Failed) |
+| `claude mcp get <name>` | Details for one server |
+| `claude mcp remove <name>` | Remove a server |
+| `claude mcp login <name>` / `logout <name>` | Run or clear a server's OAuth sign-in |
+| `/mcp` (inside a session) | Manage, reconnect, enable or disable servers interactively |
+:::
+
+**Scopes** decide who gets a server. Add `--scope local` (the default: just you, this project), `--scope project` (written to `.mcp.json` in the repo, shared with your team), or `--scope user` (you, in every project).
+
+> [!NOTE]
+> Project servers from a shared `.mcp.json` show as *pending approval* until you approve them. That stops a cloned repository from silently running programs on your computer.
+
+## The `mcpServers` JSON format
+
+Claude Desktop, Cursor, and many other apps use the same basic shape:
+
+```json title=claude_desktop_config.json
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/you/Documents"]
+    },
+    "my-remote": {
+      "type": "http",
+      "url": "https://mcp.example.com/mcp",
+      "headers": { "Authorization": "Bearer ${MY_TOKEN}" }
+    }
+  }
+}
+```
+
+| Field | Meaning |
+|---|---|
+| `command` + `args` | Local program to start (stdio) |
+| `env` | Environment variables for that program, such as API keys |
+| `type` / `url` | Remote server address |
+| `headers` | Extra HTTP headers, usually for authentication |
+
+## Where each app keeps its config
+
+:::compact
+| App | Where to configure |
+|---|---|
+| Claude Code | `claude mcp add`, `.mcp.json` (project), `~/.claude.json` (user/local) |
+| Claude Desktop | [[Settings > Developer > Edit Config]] opens `claude_desktop_config.json`; remote connectors live under [[Settings > Connectors]] |
+| claude.ai (web) | [[Settings > Connectors]], remote servers only |
+| Cursor | `.cursor/mcp.json` (project) or `~/.cursor/mcp.json` (global), or install from the **Customize** page |
+| VS Code | `.vscode/mcp.json`, or the MCP: Add Server command |
+:::
+
+App menus move between versions. If a path above doesn't match your screen, search the app's settings for "MCP" or "Connectors."
+
+## Translate a config
+
+:::steps
+1. **Find the server's `command` and `args`,** or its `url`, in the instructions you have.
+2. **Note any `env` values.** These are usually API keys.
+3. **Rewrite it for your app.** For Claude Code, `command` + `args` becomes `claude mcp add <name> -- <command> <args…>`, and each env entry becomes `--env KEY=value`. Or paste the JSON into `claude mcp add-json`.
+4. **Restart or reconnect,** then check its status (`claude mcp list` or the app's MCP panel).
+:::
+
+# Build a Server Step by Step
+
+Chapter 8 introduced building your own server. This chapter takes you all the way from an empty folder to a tested server, in Python and TypeScript.
+
+:::summary In this chapter
+- The three things a server can offer
+- A Python server with the official SDK (MCPServer)
+- A TypeScript server
+- Testing with MCP Inspector
+- Connecting it to Claude
+:::
+
+## Tools, resources, and prompts
+
+| Building block | Who uses it | Example |
+|---|---|---|
+| **Tool** | The AI decides to call it | `get_weather(city)` |
+| **Resource** | Data the app can read in as context | `notes://today` |
+| **Prompt** | A reusable template the *user* picks | "Summarise this meeting" |
+
+## Python, with the official SDK
+
+> [!NOTE] SDK version
+> These examples target version 2.x of the official Python SDK (`pip install "mcp[cli]"`, tested with 2.3.0 in October 2026). In 2.x, the class many tutorials call `FastMCP` (`from mcp.server.fastmcp import FastMCP`) was renamed `MCPServer`. If you follow an older tutorial, either use the new import or pin `mcp<2`. See the migration guide at [py.sdk.modelcontextprotocol.io/v2/migration](https://py.sdk.modelcontextprotocol.io/v2/migration/).
+
+:::steps
+1. **Make a folder and environment.**
+   ```bash
+   mkdir notes-server && cd notes-server
+   python3 -m venv .venv && source .venv/bin/activate
+   pip install "mcp[cli]"
+   ```
+2. **Write the server.**
+   ```python title=server.py
+   from pathlib import Path
+   from mcp.server.mcpserver import MCPServer
+
+   mcp = MCPServer("notes")
+   NOTES = Path.home() / "mcp-notes.txt"
+
+   @mcp.tool()
+   def add_note(text: str) -> str:
+       """Append a note to the notes file."""
+       with NOTES.open("a") as f:
+           f.write(text.strip() + "\n")
+       return "Saved."
+
+   @mcp.tool()
+   def list_notes() -> str:
+       """Return all saved notes."""
+       return NOTES.read_text() if NOTES.exists() else "(no notes yet)"
+
+   @mcp.resource("notes://all")
+   def all_notes() -> str:
+       return list_notes()
+
+   if __name__ == "__main__":
+       mcp.run()          # stdio transport by default
+   ```
+3. **Test it with the Inspector.**
+   ```bash
+   npx @modelcontextprotocol/inspector .venv/bin/python server.py
+   ```
+   A browser page opens. Click **Connect**, then **Tools**, then **add_note**, and try it.
+4. **Connect it to Claude Code.**
+   ```bash
+   claude mcp add notes -- /full/path/to/notes-server/.venv/bin/python /full/path/to/notes-server/server.py
+   ```
+5. **Use it.** In Claude: "Add a note: buy printer toner," then "What are my notes?"
+:::
+
+> [!TIP]
+> The function's **docstring** becomes the tool description the AI reads. Clear descriptions mean the AI calls your tool at the right time.
+
+## TypeScript
+
+```bash
+mkdir ts-server && cd ts-server && npm init -y
+npm install @modelcontextprotocol/sdk zod
+```
+
+```js title=server.mjs
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
+
+const server = new McpServer({ name: "dice", version: "1.0.0" });
+
+server.tool("roll", { sides: z.number().int().min(2).max(100) },
+  async ({ sides }) => ({
+    content: [{ type: "text", text: String(1 + Math.floor(Math.random() * sides)) }],
+  }));
+
+await server.connect(new StdioServerTransport());
+```
+
+Test with `npx @modelcontextprotocol/inspector node server.mjs`. Tested with `@modelcontextprotocol/sdk` 1.32.1 and `zod` 4 in October 2026. SDK APIs evolve, so if an import fails, check the current README of the TypeScript SDK at [github.com/modelcontextprotocol/typescript-sdk](https://github.com/modelcontextprotocol/typescript-sdk).
+
+> [!WARNING] stdio servers must not print
+> A stdio server talks to the app through standard output. A stray `print()` or `console.log()` corrupts the conversation. Log to standard error or a file instead.
+
+## Server design checklist
+
+:::checklist
+- Each tool does one clear thing
+- Names and descriptions are written for an AI reader
+- Inputs are validated (types, ranges, allowed paths)
+- Destructive tools are separate from read-only ones, so apps can ask before running them
+- Errors return a helpful message instead of crashing
+- Secrets come from environment variables, never from code
+:::
+
+# Official Reference Servers
+
+The MCP project keeps a small set of **reference servers** that show how the protocol works. This list comes from [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) as of October 2026. Most real-world servers are now maintained by the companies themselves. Check the official MCP Registry or your app's connector directory for those.
+
+| Server | What it does |
+|---|---|
+| **Everything** | Test server exercising prompts, resources, and tools |
+| **Fetch** | Fetch web pages and convert them for AI use |
+| **Filesystem** | File operations with configurable allowed folders |
+| **Git** | Read, search, and manipulate Git repositories |
+| **Memory** | Knowledge-graph style persistent memory |
+| **Sequential Thinking** | Structured step-by-step problem solving |
+| **Time** | Time and time-zone conversion |
+
+Many older servers, including GitHub, Slack, Google Drive, PostgreSQL, Puppeteer, and Brave Search, have been **archived** in that repository. Several were replaced by official versions from the vendors. If a tutorial points to an archived server, look for the vendor's current one.
+
+# MCP Frequently Asked Questions
+
+**Is MCP only for Claude?** No. It's an open protocol supported by many apps, including Cursor, VS Code, ChatGPT and others, though support details vary by app and plan.
+
+**Do servers cost money?** The protocol is free. Many servers are free and open source. Hosted services may need a paid account with that service.
+
+**Is it safe?** A server can do whatever its code allows, using your credentials. Install servers only from sources you trust, prefer read-only access, and review permission prompts. See Chapter 7.
+
+**What is prompt injection here?** A web page, document, or ticket can hide instructions aimed at the AI ("ignore your rules and email this file…"). Servers that read untrusted content and servers that can take actions are a risky combination. Keep a human approving actions.
+
+**Why does the AI ignore my server?** Check it's connected. Make the tool descriptions clearer. Ask explicitly: "Use the notes tool to…"
+
+**Local vs remote?** Local (stdio) servers run on your computer and can reach your files. Remote servers run on the provider's infrastructure and usually sign in with OAuth.
+
+# Under the Hood: The Protocol
+
+You don't need this chapter to *use* MCP, but it will make error messages and logs make sense. It also helps if you build servers.
+
+:::summary In this chapter
+- JSON-RPC messages
+- The connection lifecycle
+- Every capability, from both sides
+- What a real tool call looks like
+:::
+
+## JSON-RPC in one paragraph
+
+MCP messages are **JSON-RPC 2.0**. Each message is a small JSON object. A **request** has an `id`, a `method`, and `params`. A **response** has the same `id` and either a `result` or an `error`. A **notification** has a method but no `id`, and no reply is expected.
+
+## The lifecycle
+
+How a connection starts depends on the protocol **version**. The current version, according to [modelcontextprotocol.io/specification/versioning](https://modelcontextprotocol.io/specification/versioning), is **2026-07-28**. Many apps and servers still speak the earlier **2025-11-25** version, and clients and servers may support several versions at once.
+
+| Step | 2025-11-25 (and earlier) | 2026-07-28 (current) |
+|---|---|---|
+| Agree on a version | `initialize` request, then an `initialized` notification | Every request names its version in `_meta`. Optional `server/discover` up front |
+| Learn what's offered | `tools/list`, `resources/list`, `prompts/list` | Same |
+| Use a tool | `tools/call` | Same |
+| Change notices | `notifications/tools/list_changed` and others | Same, plus `subscriptions/listen` for a long-lived notification channel |
+| Health check | `ping` | No `ping` in the current schema |
+
+If a server doesn't support the version a request asks for, it replies with an error listing the versions it does support, and the client can retry.
+
+## A real tool call
+
+```json title=Request (client → server)
+{ "jsonrpc": "2.0", "id": 7, "method": "tools/call",
+  "params": { "name": "add_note", "arguments": { "text": "buy toner" } } }
+```
+
+```json title=Response (server → client)
+{ "jsonrpc": "2.0", "id": 7,
+  "result": { "content": [ { "type": "text", "text": "Saved." } ], "isError": false } }
+```
+
+## Capabilities
+
+| Side | Capability | What it lets that side do |
+|---|---|---|
+| Server | **Tools** | Offer functions the AI can call |
+| Server | **Resources** | Offer readable data, identified by URIs |
+| Server | **Prompts** | Offer reusable prompt templates |
+| Server | **Logging** | Send log messages to the client |
+| Client | **Roots** | Tell the server which folders or URIs it may work in |
+| Client | **Sampling** | Let the server ask the client's AI model to generate text (with user approval) |
+| Client | **Elicitation** | Let the server ask the user a question mid-task, such as a confirmation |
+
+Not every app supports every capability. Check your app's documentation. The full specification is at [modelcontextprotocol.io](https://modelcontextprotocol.io).
+
+## Authentication for remote servers
+
+Remote servers usually use **OAuth**: the app opens a browser, you sign in with the service and approve access, and the app stores a token. That's why `claude mcp list` can show "Needs authentication." Running `/mcp` and choosing the server starts the sign-in.
+
+# Ten Things to Try with MCP
+
+Hands-on recipes, from easiest to most advanced. Each one lists the kind of server you need and a prompt to start with.
+
+:::summary In this chapter
+- Ten practical, beginner-friendly MCP projects
+:::
+
+| # | Project | Server type | Starter prompt |
+|---|---|---|---|
+| 1 | Tidy a downloads folder | Filesystem (limited to that folder) | "List files older than 90 days in Downloads and propose folders to sort them into. Don't move anything yet." |
+| 2 | Summarise web articles | Fetch | "Fetch this URL and give me a five-bullet summary with the key numbers." |
+| 3 | Notion meeting notes | Notion (remote) | "Create a page in my Meetings database for today with an agenda template." |
+| 4 | Explain a repository | Git or GitHub | "Summarise the last 20 commits in plain English." |
+| 5 | Triage issues | GitHub (remote) | "List open issues labelled bug and group them by likely cause." |
+| 6 | Calendar planning | Your calendar's connector | "Find two free hours next week for deep work and propose times." |
+| 7 | Database questions | Read-only database server | "How many orders did we get each week last month?" |
+| 8 | Error investigation | Sentry or another monitoring connector | "What are the top three new errors this week, and which release introduced them?" |
+| 9 | Personal memory | Memory | "Remember that my preferred file format is PDF." |
+| 10 | Your own tool | The server from Chapter 11 | "Add a note: renew passport." |
+
+> [!TIP]
+> Start every new server with **read-only** prompts. Once you trust what it's doing, move on to prompts that change things, and keep approvals turned on for those.
+
+## Safety checklist for each new server
+
+:::checklist
+- I know who publishes it and the source is reputable
+- It has only the access it needs (folders, scopes, read-only where possible)
+- Its secrets are in env vars or the app's secure storage
+- I've tried it with read-only prompts first
+- Approval prompts are on for anything that writes, sends, or deletes
+- I know how to disconnect it (`/mcp`, or the app's connector settings)
+:::
+
+# Troubleshooting Deep Dive
+
+Chapter 9 covered the basics. This chapter goes symptom by symptom, with the exact checks to run.
+
+:::compact
+| Symptom | Check | Fix |
+|---|---|---|
+| Server never appears | Is the config file valid JSON? (A trailing comma breaks it) | Paste it into a JSON validator. Restart the app fully |
+| "spawn npx ENOENT" or "command not found" | The app can't find Node or the command on its PATH | Install Node.js LTS. Use the full path to `npx` or `python` in `command` |
+| Connects, then disconnects | The server crashed on start | Run the exact command in a terminal to see the error |
+| Garbled or "invalid JSON-RPC" errors | The server prints normal output to stdout | Log to stderr only (Chapter 11) |
+| "Needs authentication" | OAuth not done or expired | `/mcp` → choose the server → sign in, or `claude mcp login <name>` |
+| 401 / 403 from a remote server | Wrong token, scopes, or account | Recreate the token with the right scopes. Check headers |
+| Tools listed but never used | Vague tool descriptions, or too many tools | Ask explicitly ("use the X tool"). Disconnect unused servers |
+| Everything is slow | Many servers loaded, using up context | `/context` in Claude Code. Disable servers you aren't using |
+| Works in Claude Desktop, not Claude Code | Different config files | `claude mcp add-json <name> '<json>'` to copy the config across |
+| Windows path errors | Backslashes in JSON | Use `\\` or forward slashes in paths |
+| Project server "pending approval" | Safety feature for `.mcp.json` | Start `claude` in the project and approve it |
+:::
+
+:::steps Universal debugging routine
+1. **Run the server command by hand** in a terminal. Does it start without errors?
+2. **Open it in MCP Inspector:** `npx @modelcontextprotocol/inspector <command> <args>`.
+3. **Check the app's logs.** For Claude Code, use `claude --debug` or `--debug=mcp`. Other apps usually have an MCP or developer log in settings.
+4. **Simplify.** Remove every other server and test this one alone.
+5. **Update** the app and the server package.
+:::
+
+# Protocol Method Reference
+
+Every JSON-RPC method in the two protocol versions you're most likely to meet. The lists were generated from the official schema files (`schema/2025-11-25/schema.ts` and `schema/2026-07-28/schema.ts` in [github.com/modelcontextprotocol/modelcontextprotocol](https://github.com/modelcontextprotocol/modelcontextprotocol)) in October 2026.
+
+:::summary In this chapter
+- Every method in the current (2026-07-28) version, with its purpose
+- What changed from 2025-11-25
+- How to read a method name
+:::
+
+## Reading a method name
+
+Methods are named `area/action`. `tools/call` means "in the tools area, call one." Anything starting with `notifications/` is fire-and-forget, so no reply comes back. Who sends each message matters. Most requests go **client → server** (the app asks the server). `sampling/createMessage`, `elicitation/create`, and `roots/list` go **server → client** (the server asks the app).
+
+## Current version: 2026-07-28
+
+:::compact
+| Method | Kind | Schema type | Purpose |
+|---|---|---|---|
+| `completion/complete` | Request | CompleteRequest | A request from the client to the server, to ask for completion options. |
+| `elicitation/create` | Request | ElicitRequest | A request from the server to elicit additional information from the user via the client. |
+| `notifications/cancelled` | Notification | CancelledNotification | This notification is sent by the client to indicate that it is cancelling a request it previously issued.  On stdio, the server also sends this notification, so |
+| `notifications/message` | Notification | LoggingMessageNotification | JSONRPCNotification of a log message passed from server to client. |
+| `notifications/progress` | Notification | ProgressNotification | An out-of-band notification used to inform the receiver of a progress update for a long-running request. |
+| `notifications/prompts/list_changed` | Notification | PromptListChangedNotification | An optional notification from the server to the client, informing it that the list of prompts it offers has changed. |
+| `notifications/resources/list_changed` | Notification | ResourceListChangedNotification | An optional notification from the server to the client, informing it that the list of resources it can read from has changed. |
+| `notifications/resources/updated` | Notification | ResourceUpdatedNotification | A notification from the server to the client, informing it that a resource has changed and may need to be read again. |
+| `notifications/subscriptions/acknowledged` | Notification | SubscriptionsAcknowledgedNotification | Sent by the server to acknowledge that a {. |
+| `notifications/tools/list_changed` | Notification | ToolListChangedNotification | An optional notification from the server to the client, informing it that the list of tools it offers has changed. |
+| `prompts/get` | Request | GetPromptRequest | Used by the client to get a prompt provided by the server. |
+| `prompts/list` | Request | ListPromptsRequest | Sent from the client to request a list of prompts and prompt templates the server has. |
+| `resources/list` | Request | ListResourcesRequest | Sent from the client to request a list of resources the server has. |
+| `resources/read` | Request | ReadResourceRequestParams | Parameters for a `resources/read` request. |
+| `resources/templates/list` | Request | ListResourceTemplatesRequest | Sent from the client to request a list of resource templates the server has. |
+| `roots/list` | Request | ListRootsRequest | Sent from the server to request a list of root URIs from the client. |
+| `sampling/createMessage` | Request | CreateMessageRequest | A request from the server to sample an LLM via the client. |
+| `server/discover` | Request | DiscoverRequest | A request from the client asking the server to advertise its supported protocol versions, capabilities, and other metadata. |
+| `subscriptions/listen` | Request | SubscriptionsListenRequest | Sent from the client to open a long-lived channel for receiving notifications outside the context of a specific request. |
+| `tools/call` | Request | CallToolRequest | Used by the client to invoke a tool provided by the server. |
+| `tools/list` | Request | ListToolsRequest | Sent from the client to request a list of tools the server has. |
+:::
+
+## What changed from 2025-11-25
+
+:::compact
+| In 2025-11-25 | In 2026-07-28 |
+|---|---|
+| `initialize` + `notifications/initialized` handshake | Removed. Each request carries its version in `_meta`. `server/discover` is mandatory for servers |
+| `ping` | Not in the current schema |
+| `logging/setLevel` | Not in the current schema. Servers still send `notifications/message` log lines |
+| `resources/subscribe`, `resources/unsubscribe` | Replaced by `subscriptions/listen` and `notifications/subscriptions/acknowledged` |
+| `tasks/get`, `tasks/list`, `tasks/result`, `tasks/cancel`, `notifications/tasks/status` | Not in the current schema |
+| `notifications/roots/list_changed`, `notifications/elicitation/complete` | Not in the current schema |
+:::
+
+> [!NOTE]
+> "Not in the current schema" means the method name doesn't appear in the 2026-07-28 schema file. The specification's deprecated-features registry explains migration paths. You only need this detail if you build servers or clients. The SDKs handle versions for you.
+
+# Projects: Build Three Useful Servers
+
+Three more complete servers to build after Chapter 11. Each adds one new skill. All use the Python `MCPServer` API shown there.
+
+:::summary In this chapter
+- Project A: a read-only folder search server (safe file access)
+- Project B: a weather server that calls a web API (HTTP and errors)
+- Project C: a to-do server with a confirmation step (safe writes)
+- Sharing your server with others
+:::
+
+## Project A: Folder search (read-only)
+
+```python title=search_server.py
+from pathlib import Path
+from mcp.server.mcpserver import MCPServer
+
+ROOT = Path.home() / "Documents"          # the ONLY folder it may read
+mcp = MCPServer("doc-search")
+
+def safe(p: str) -> Path:
+    full = (ROOT / p).resolve()
+    if not full.is_relative_to(ROOT.resolve()):
+        raise ValueError("Path outside allowed folder")
+    return full
+
+@mcp.tool()
+def find_files(word: str, limit: int = 20) -> list[str]:
+    """Find text files under Documents whose name or content contains `word`."""
+    hits = []
+    for f in ROOT.rglob("*.txt"):
+        try:
+            if word.lower() in f.name.lower() or word.lower() in f.read_text(errors="ignore").lower():
+                hits.append(str(f.relative_to(ROOT)))
+        except OSError:
+            continue
+        if len(hits) >= limit:
+            break
+    return hits
+
+@mcp.tool()
+def read_file(path: str, max_chars: int = 5000) -> str:
+    """Read a text file (relative to Documents), truncated to max_chars."""
+    return safe(path).read_text(errors="ignore")[:max_chars]
+
+if __name__ == "__main__":
+    mcp.run()
+```
+
+**What you learned:** restrict paths with `resolve()` plus `is_relative_to()` so `../../` tricks can't escape the folder, and cap output size so you don't flood the AI's context.
+
+## Project B: Weather from a web API
+
+This uses the free Open-Meteo API, which needs no key. Install `httpx` first: `pip install httpx`.
+
+```python title=weather_server.py
+import httpx
+from mcp.server.mcpserver import MCPServer
+
+mcp = MCPServer("weather")
+
+@mcp.tool()
+async def forecast(latitude: float, longitude: float) -> str:
+    """Today's max/min temperature (°C) for a location."""
+    url = "https://api.open-meteo.com/v1/forecast"
+    params = {"latitude": latitude, "longitude": longitude,
+              "daily": "temperature_2m_max,temperature_2m_min", "timezone": "auto",
+              "forecast_days": 1}
+    try:
+        async with httpx.AsyncClient(timeout=10) as c:
+            r = await c.get(url, params=params)
+            r.raise_for_status()
+    except httpx.HTTPError as e:
+        return f"Weather service error: {e}"
+    d = r.json()["daily"]
+    return f"Max {d['temperature_2m_max'][0]}°C, min {d['temperature_2m_min'][0]}°C"
+
+if __name__ == "__main__":
+    mcp.run()
+```
+
+**What you learned:** async tools, timeouts, and returning a readable error instead of crashing. Check the API's current docs at [open-meteo.com](https://open-meteo.com) if parameters change.
+
+## Project C: To-dos with a confirmation step
+
+```python title=todo_server.py
+import json
+from pathlib import Path
+from mcp.server.mcpserver import MCPServer
+
+DB = Path.home() / "mcp-todos.json"
+mcp = MCPServer("todos")
+
+def load():  return json.loads(DB.read_text()) if DB.exists() else []
+def save(x): DB.write_text(json.dumps(x, indent=2))
+
+@mcp.tool()
+def list_todos() -> list[dict]:
+    """List all to-dos."""
+    return load()
+
+@mcp.tool()
+def add_todo(title: str) -> str:
+    """Add a to-do."""
+    items = load(); items.append({"title": title, "done": False}); save(items)
+    return f"Added: {title}"
+
+@mcp.tool()
+def delete_todo(index: int, confirm: bool = False) -> str:
+    """Delete a to-do by its position. Requires confirm=true; first call without it to preview."""
+    items = load()
+    if not 0 <= index < len(items):
+        return "No such to-do."
+    if not confirm:
+        return f"Will delete '{items[index]['title']}'. Call again with confirm=true to proceed."
+    removed = items.pop(index); save(items)
+    return f"Deleted: {removed['title']}"
+
+if __name__ == "__main__":
+    mcp.run()
+```
+
+**What you learned:** keep destructive tools separate and add a preview-then-confirm pattern. Most apps will also show you a permission prompt before running it.
+
+## Sharing your server
+
+:::checklist
+- Put it in a GitHub repository with a README covering install, configuration, and tools
+- Pin dependencies (`requirements.txt` or `pyproject.toml`)
+- Document every environment variable it needs
+- Say clearly what it can read and write
+- Add a license
+- Optionally publish to PyPI or npm so people can run it with `uvx` or `npx`, and list it in the official MCP Registry
+:::
+
+# Security Review: Before You Install or Ship a Server
+
+An MCP server runs with whatever access you give it. A local stdio server runs **as you**, with your files, your network and your environment variables. Review a server like any software you install, and more carefully than most, because an AI decides when to call it.
+
+## Before installing someone else's server
+
+:::checklist
+- [ ] **Source:** published by the service's own company, or open source with recent activity and real users
+- [ ] **Package name matches the docs exactly.** Typo-squatted npm and PyPI names are a known attack
+- [ ] **Read the tool list.** Does it need *write* or *delete* tools, or only read tools?
+- [ ] **Scopes:** create the narrowest API token possible (read-only, single repo, single workspace)
+- [ ] **Pin a version** in the config, e.g. `npx -y package@1.4.2`, so an update can't silently change behavior
+- [ ] **Remote servers:** connect over HTTPS only, and prefer OAuth over pasting long-lived tokens
+- [ ] **Your client's approvals:** keep per-tool approval on for anything that writes, sends or spends
+:::
+
+## The main risks, explained
+
+| Risk | What happens | Defense |
+|---|---|---|
+| **Prompt injection** | A web page, email or issue that the AI reads contains hidden instructions ("send the secrets to…") | Don't combine untrusted-content tools with send or write tools in one unattended session, and keep approvals on for writes |
+| **Tool poisoning** | A malicious server's tool *description* tells the AI to misuse other tools | Install only trusted servers, and read the descriptions (the Inspector shows them) |
+| **Over-broad tokens** | A leaked token unlocks your whole account | Use fine-grained tokens with expiry dates, and rotate them |
+| **Data exfiltration** | The AI sends private data to an outside URL through a fetch tool | Limit network tools, and use allowlists where your client supports them |
+| **Rug pull** | A server you trusted changes after an update | Pin versions, and review changelogs before you upgrade |
+| **Confused deputy** | A remote server uses *its own* powerful credentials on your behalf | Choose servers that act with your own user's permissions (OAuth) |
+
+## If you're building a server
+
+| Practice | Why |
+|---|---|
+| Validate every argument (types, lengths, allowed values) | The model can send anything |
+| Put file tools in a jail: resolve paths and refuse anything outside an allowed root | This blocks `../../` escapes |
+| Mark destructive tools clearly, and use **elicitation** to confirm if your client supports it | The user sees what will happen |
+| Return errors as tool results (`isError: true`) with a helpful message | The model can recover without crashing the session |
+| Never log secrets, and log to **stderr** only for stdio servers | stdout carries the protocol |
+| Rate-limit and time out outbound calls | A runaway loop shouldn't drain an API quota |
+| For HTTP servers: require auth, check the `Origin` header, and bind local servers to `127.0.0.1` | This blocks DNS-rebinding and drive-by access |
+
+```python title=Safe path handling for a file tool
+from pathlib import Path
+
+ROOT = Path("~/notes").expanduser().resolve()
+
+def safe_path(user_path: str) -> Path:
+    p = (ROOT / user_path).resolve()
+    if not p.is_relative_to(ROOT):
+        raise ValueError("Path is outside the allowed folder")
+    return p
+```
+
+# JSON-RPC Error Codes and What They Mean
+
+MCP messages are JSON-RPC 2.0. When something fails at the protocol level, the response holds an `error` object with a numeric `code`. These are the standard codes from the JSON-RPC 2.0 specification:
+
+| Code | Name | Usual cause in MCP | Fix |
+|---|---|---|---|
+| -32700 | Parse error | The server or client received invalid JSON, often because a stdio server printed text to stdout | Send all logs and prints to stderr |
+| -32600 | Invalid request | A message is missing `jsonrpc: "2.0"` or `method`, or has the wrong shape | Use an official SDK instead of hand-writing messages |
+| -32601 | Method not found | Calling a method the other side doesn't support, or one from a different protocol version | Check the capabilities and protocol version the server advertises |
+| -32602 | Invalid params | Arguments don't match the tool's input schema, or an unknown tool name was used | Compare the call to the `inputSchema` in the tools list |
+| -32603 | Internal error | The server crashed while handling the request | Read the server's stderr log |
+| -32000 to -32099 | Server error (reserved range) | Implementation-defined errors | Check the server's docs |
+
+> [!NOTE]
+> A **tool that ran but failed**, such as "city not found", should not be a JSON-RPC error. It's a normal result with `isError: true`, so the AI can read the message and try again. Protocol errors are for broken messages, not for bad outcomes.
+
 # Quick Reference {.unnumbered}
 
 :::cheatsheet

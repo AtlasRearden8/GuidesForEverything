@@ -2562,7 +2562,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Say hello
         run: echo "Running checks on ${{ github.ref_name }}"
 ```
@@ -2573,7 +2573,7 @@ Line by line:
 - `on:` lists the events that start it: every push and every pull request.
 - `jobs:` holds one job, called `test`.
 - `runs-on: ubuntu-latest` asks for a fresh Linux runner.
-- `uses: actions/checkout@v6` copies your repository onto the runner. The `@v6` pins the version.
+- `uses: actions/checkout@v7` copies your repository onto the runner. The `@v6` pins the version.
 - `run:` executes a terminal command. `${{ github.ref_name }}` is an **expression** that inserts the branch name.
 
 > [!WARNING]
@@ -2672,7 +2672,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version: '20.x'
@@ -2693,7 +2693,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -2714,7 +2714,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version: '20.x'
@@ -2736,7 +2736,7 @@ jobs:
       matrix:
         node-version: ['20.x', '22.x']
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
@@ -2758,7 +2758,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - run: echo "Checking links on $(date)"
 ```
 
@@ -2847,7 +2847,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Deploy
         env:
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
@@ -2958,7 +2958,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
           node-version: '20.x'
