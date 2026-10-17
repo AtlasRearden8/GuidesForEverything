@@ -178,12 +178,24 @@ function renderManual(markdown, meta) {
       code({ text, lang }) {
         const [language, ...flags] = (lang || '').trim().split(/\s+/);
         const title = flags.join(' ').replace(/^title=/, '').replace(/^"|"$/g, '');
-        let body;
-        if (language && hljs.getLanguage(language)) {
-          body = hljs.highlight(text, { language, ignoreIllegals: true }).value;
-        } else {
-          body = escapeHtml(text);
-        }
+        const hl = (t) => (language && hljs.getLanguage(language)
+          ? hljs.highlight(t, { language, ignoreIllegals: true }).value
+          : escapeHtml(t));
+        // Very long blocks are split into several page-sized figures, because a
+        // single block taller than a page can vanish during Paged.js layout.
+        const allLines = text.split('\n');
+        const chunks = [];
+        if (allLines.length > 40) {
+          let start = 0;
+          while (start < allLines.length) {
+            let end = Math.min(start + 30, allLines.length);
+            if (end < allLines.length) {
+              for (let k = end; k > start + 18; k--) { if (allLines[k - 1].trim() === '') { end = k; break; } }
+            }
+            chunks.push(allLines.slice(start, end).join('\n'));
+            start = end;
+          }
+        } else chunks.push(text);
         const labels = {
           bash: 'Terminal', sh: 'Terminal', shell: 'Terminal', zsh: 'Terminal',
           powershell: 'PowerShell', ps1: 'PowerShell', cmd: 'Command Prompt',
@@ -193,11 +205,18 @@ function renderManual(markdown, meta) {
           text: 'Text', plaintext: 'Text', ini: 'Config', env: '.env', diff: 'Diff', sql: 'SQL', prompt: 'Prompt',
         };
         const label = title || labels[language] || (language ? language.toUpperCase() : '');
+        const langCls = escapeHtml(language || 'none');
+        if (chunks.length > 1) {
+          // Each chunk is its own unbreakable figure that always fits on a page.
+          return chunks.map((c, n) => `<figure class="code code-short code-chunk lang-${langCls}">${
+            label ? `<figcaption>${escapeHtml(label)}${n ? ' (continued)' : ''}</figcaption>` : ''
+          }<pre><code class="hljs">${hl(c)}</code></pre></figure>\n`).join('');
+        }
         const lines = text.split('\n').length;
         const size = lines <= 18 ? 'short' : 'long';
-        return `<figure class="code code-${size} lang-${escapeHtml(language || 'none')}">${
+        return `<figure class="code code-${size} lang-${langCls}">${
           label ? `<figcaption>${escapeHtml(label)}</figcaption>` : ''
-        }<pre><code class="hljs">${body}</code></pre></figure>\n`;
+        }<pre><code class="hljs">${hl(text)}</code></pre></figure>\n`;
       },
 
       blockquote({ tokens }) {

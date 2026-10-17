@@ -363,6 +363,9 @@ Click the **Executions** tab to see every run, its status (succeeded, failed, ru
 - Use **sub-workflows** (Execute Sub-workflow) for steps you repeat in many workflows
 :::
 
+> [!TIP]
+> Review these habits whenever a workflow fails in a way that surprised you. Most production problems in n8n trace back to an unnamed node nobody understands, a missing error workflow, or a trigger that runs far more often than it needs to. Fixing those three things prevents most late-night surprises.
+
 # Templates and Community
 
 You rarely need to start from scratch. **n8n.io/workflows** hosts thousands of free templates: lead capture, social media posting, invoice processing, AI support agents, and more. Click **Use workflow** to copy one into your n8n, then add your own credentials.

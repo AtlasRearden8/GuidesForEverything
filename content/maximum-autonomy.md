@@ -1386,6 +1386,9 @@ Admins use `requirements.toml` to enforce policy that users can't override. For 
 | `rules.prefix_rules[].justification` | `string` | Optional non-empty rationale surfaced in approval prompts or rejection messages. |
 :::
 
+> [!TIP]
+> You rarely need most of these keys. A practical starting point is to set only the approval policy, the sandbox mode and a few prefix rules for commands you run all the time, then add other settings when a specific need comes up. Re-check the official Codex configuration reference after each Codex update, because keys are added and renamed.
+
 # Gemini CLI settings.json Reference
 
 This chapter lists every setting in the Gemini CLI's `settings.json`. It was generated on October 16, 2026 from `docs/reference/configuration.md` in the google-gemini/gemini-cli repository, and descriptions are shortened.

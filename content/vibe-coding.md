@@ -405,6 +405,9 @@ Buy a domain (like `plantpal.app`) from a registrar such as Cloudflare, Namechea
 - Spending limits set on every paid service (AI APIs, hosting, database)
 :::
 
+> [!TIP]
+> Print this list and tick it off before every public launch, not just the first one. Ask your AI coding assistant to go through the list with you item by item and show you the evidence for each tick, such as where the secrets are stored or where the spending limit is set.
+
 # When You Get Stuck
 
 Every vibe coder hits the same wall: the AI keeps "fixing" a bug and it keeps coming back, or each fix breaks something new. Here's how to get unstuck.
