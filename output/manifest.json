@@ -163,5 +163,16 @@
     "accent": "#0F766E",
     "pages": 48,
     "bytes": 1027108
+  },
+  "zapier-make": {
+    "slug": "zapier-make",
+    "title": "Zapier & Make",
+    "subtitle": "Connect your apps, automate the boring parts, and add AI to everyday workflows without writing code",
+    "volume": 16,
+    "kicker": "A Beginner's Manual",
+    "edition": "October 2026",
+    "accent": "#EA580C",
+    "pages": 49,
+    "bytes": 1048777
   }
 }
