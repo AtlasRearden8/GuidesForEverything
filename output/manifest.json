@@ -218,5 +218,16 @@
     "accent": "#7E22CE",
     "pages": 43,
     "bytes": 800586
+  },
+  "aws-beginners": {
+    "slug": "aws-beginners",
+    "title": "AWS for Beginners",
+    "subtitle": "Sign up safely, protect your bill, learn the core services, and build your first website, function and AI app on Amazon Web Services",
+    "volume": 21,
+    "kicker": "A Beginner's Manual",
+    "edition": "October 2026",
+    "accent": "#C2410C",
+    "pages": 45,
+    "bytes": 1119643
   }
 }
