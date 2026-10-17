@@ -68,7 +68,10 @@ alias cop='copilot --yolo --no-ask-user'
 ```json title=~/.cursor/cli-config.json
 {
   "permissions": {
-    "allow": ["Shell(*)", "Read(**)", "Write(**)", "WebFetch(*)", "Mcp(*:*)"],
+    "allow": [
+      "Shell(*)", "Read(**)", "Write(**)",
+      "WebFetch(*)", "Mcp(*:*)"
+    ],
     "deny": ["Write(**/.env*)"]
   }
 }
