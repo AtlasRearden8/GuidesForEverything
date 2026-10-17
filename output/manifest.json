@@ -108,5 +108,16 @@
     "accent": "#2F7D5B",
     "pages": 39,
     "bytes": 800445
+  },
+  "python-ai": {
+    "slug": "python-ai",
+    "title": "Python for AI Beginners",
+    "subtitle": "From installing Python to scripts that call ChatGPT, Claude, Gemini, Grok and local models, step by step",
+    "volume": 14,
+    "kicker": "A Beginner's Manual",
+    "edition": "October 2026",
+    "accent": "#2F6FDE",
+    "pages": 56,
+    "bytes": 1421404
   }
 }
