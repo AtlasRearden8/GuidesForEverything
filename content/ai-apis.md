@@ -136,6 +136,9 @@ count = client.messages.count_tokens(
 print(count.input_tokens)
 ```
 
+> [!TIP]
+> Count tokens on a few real documents before you build anything that runs in a loop. Multiply the input count by your expected number of calls and the model's price per million tokens, and you have a first cost estimate before you spend a cent.
+
 # Getting Keys and Setting Limits
 
 Set up each provider in the same safe order: **account → billing → spending cap → key → test**. Never create the key first.

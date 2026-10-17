@@ -18,6 +18,17 @@ Each manual gets a designed cover, an inside cover with a reading legend, a tabl
 | 8 | Maximum Autonomy | [`content/maximum-autonomy.md`](content/maximum-autonomy.md) | [`output/maximum-autonomy.pdf`](output/maximum-autonomy.pdf) |
 | 9 | AI Tools, Connectors & MCP Directory | [`content/ai-tools-directory.md`](content/ai-tools-directory.md) | [`output/ai-tools-directory.pdf`](output/ai-tools-directory.pdf) |
 | 10 | Autonomous AI Trading for Beginners | [`content/ai-trading.md`](content/ai-trading.md) | [`output/ai-trading.pdf`](output/ai-trading.pdf) |
+| 11 | Running AI Locally | [`content/local-ai.md`](content/local-ai.md) | [`output/local-ai.pdf`](output/local-ai.pdf) |
+| 12 | Custom GPTs, Gems & Claude Projects | [`content/custom-assistants.md`](content/custom-assistants.md) | [`output/custom-assistants.pdf`](output/custom-assistants.pdf) |
+| 13 | AI Agents & Multi-Agent Workflows | [`content/ai-agents.md`](content/ai-agents.md) | [`output/ai-agents.pdf`](output/ai-agents.pdf) |
+| 14 | Python for AI Beginners | [`content/python-ai.md`](content/python-ai.md) | [`output/python-ai.pdf`](output/python-ai.pdf) |
+| 15 | AI APIs & Costs | [`content/ai-apis.md`](content/ai-apis.md) | [`output/ai-apis.pdf`](output/ai-apis.pdf) |
+| 16 | Zapier & Make | [`content/zapier-make.md`](content/zapier-make.md) | [`output/zapier-make.pdf`](output/zapier-make.pdf) |
+| 17 | AI for Personal Finance & Admin | [`content/ai-personal-finance.md`](content/ai-personal-finance.md) | [`output/ai-personal-finance.pdf`](output/ai-personal-finance.pdf) |
+| 18 | AI Privacy & Security | [`content/ai-privacy-security.md`](content/ai-privacy-security.md) | [`output/ai-privacy-security.pdf`](output/ai-privacy-security.pdf) |
+| 19 | AI for Healthcare Workers | [`content/ai-healthcare.md`](content/ai-healthcare.md) | [`output/ai-healthcare.pdf`](output/ai-healthcare.pdf) |
+| 20 | Get the Most from Every AI Plan | [`content/prompt-maximization.md`](content/prompt-maximization.md) | [`output/prompt-maximization.pdf`](output/prompt-maximization.pdf) |
+| 21 | AWS for Beginners | [`content/aws-beginners.md`](content/aws-beginners.md) | [`output/aws-beginners.pdf`](output/aws-beginners.pdf) |
 
 Facts (install commands, settings, menu paths, flags, pricing) were checked against official documentation in October 2026.
 
