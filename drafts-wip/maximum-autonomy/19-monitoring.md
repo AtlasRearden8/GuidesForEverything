@@ -23,14 +23,14 @@ The **Notification** hook fires on events such as `permission_prompt` (a prompt 
       {
         "matcher": "permission_prompt",
         "hooks": [
-          { "type": "command", "command": "~/bin/ping-phone.sh 'Agent needs you'" }
+          { "type": "command", "command": "~/bin/ping-phone.sh 'Needs you'" }
         ]
       }
     ],
     "Stop": [
       {
         "hooks": [
-          { "type": "command", "command": "~/bin/ping-phone.sh 'Agent done'" }
+          { "type": "command", "command": "~/bin/ping-phone.sh 'Done'" }
         ]
       }
     ]
