@@ -107,6 +107,13 @@
     });
   }
 
+  // Short checklists (up to 8 items) never split, so no page holds only a stray item or two.
+  function markShortChecklists(root) {
+    root.querySelectorAll('.block-checklist').forEach((c) => {
+      if (c.querySelectorAll('li').length <= 8) c.classList.add('checklist-short');
+    });
+  }
+
   window.PagedConfig = {
     auto: true,
     before: () => {
@@ -117,6 +124,7 @@
       splitLongSteps(root);
       keepHeadingsWithContent(root);
       markShortTables(root);
+      markShortChecklists(root);
     },
     after: () => {
       if (document.body.classList.contains('chapter-break')) {

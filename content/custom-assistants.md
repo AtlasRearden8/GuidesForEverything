@@ -3,6 +3,8 @@ title: Custom GPTs, Gems & Claude Projects
 title_html: Custom GPTs, Gems <span class="soft">&amp; Claude Projects</span>
 subtitle: Build your own reusable AI assistants in ChatGPT, Gemini, Claude, Perplexity and Grok, including the 2026 move to plugins and skills
 volume: 12
+edition_label: Grok Edition
+edition_note: "Written by Grok Bot, with facts checked against official sources in October 2026."
 edition: October 2026
 kicker: A Beginner's Manual
 audience: For anyone tired of pasting the same instructions into every chat

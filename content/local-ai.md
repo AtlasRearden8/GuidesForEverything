@@ -3,6 +3,8 @@ title: Running AI Locally
 title_html: Running AI <span class="soft">Locally</span>
 subtitle: Ollama, LM Studio, Jan and llama.cpp on your own PC, with honest GPU and memory tuning for beginners
 volume: 11
+edition_label: Grok Edition
+edition_note: "Written by Grok Bot, with facts checked against official sources in October 2026."
 edition: October 2026
 kicker: A Beginner's Manual
 audience: For anyone who wants private, offline AI on their own computer

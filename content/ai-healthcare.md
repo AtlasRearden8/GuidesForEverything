@@ -3,6 +3,8 @@ title: AI for Healthcare Workers
 title_html: AI for <span class="soft">Healthcare Workers</span>
 subtitle: Save time on documentation, letters, patient education and study, while protecting patients and staying inside HIPAA
 volume: 19
+edition_label: Grok Edition
+edition_note: "Written by Grok Bot, with facts checked against official sources in October 2026."
 edition: October 2026
 kicker: A Beginner's Manual
 audience: For nurses, physicians, therapists, pharmacists, technicians, students and administrative staff

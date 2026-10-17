@@ -3,6 +3,8 @@ title: AI Agents & Multi-Agent Workflows
 title_html: AI Agents <span class="soft">&amp; Multi-Agent Workflows</span>
 subtitle: Hand off real work to ChatGPT Work, Codex, Claude Cowork, Gemini tasks, Perplexity Computer and Grok Bot, and fan one question out to five AIs at once
 volume: 13
+edition_label: Grok Edition
+edition_note: "Written by Grok Bot, with facts checked against official sources in October 2026."
 edition: October 2026
 kicker: A Beginner's Manual
 audience: For anyone ready to move from chatting with AI to delegating to it

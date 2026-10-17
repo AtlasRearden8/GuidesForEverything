@@ -487,6 +487,7 @@ dl.glossary { margin: 0.4em 0 0; }
 }
 .gl-item dd { margin: 0; font-size: 9.6pt; line-height: 1.45; }
 .gl-item dd p { margin: 0; }
+.glossary-compact .gl-item { padding: 4pt 0 3pt; }
 
 /* ====================================================== COVER PAGE */
 
@@ -672,6 +673,7 @@ dl.glossary { margin: 0.4em 0 0; }
 /* Added before layout by the template script (see templates/manual.html). */
 .keep-together { break-inside: avoid; }
 .table-wrap.table-short { break-inside: avoid; }
+.block-checklist.checklist-short { break-inside: avoid; }
 /* A long table split in two: the head chunk stays with its heading. */
 .table-wrap.table-head-chunk { margin-bottom: 0; break-inside: avoid; }
 .table-wrap.table-tail { margin-top: 0 !important; }
@@ -683,4 +685,28 @@ dl.glossary { margin: 0.4em 0 0; }
 .toc-compact .toc-chapter > a { padding: 4pt 0 2pt; }
 .toc-compact .toc-section > a { padding: 0.8pt 0 0.8pt 2.1em; line-height: 1.25; }
 .toc-compact .toc-chapter > ol { margin-bottom: 3pt; }
+.toc-dense .toc-chapter > a { padding: 3pt 0 1.5pt; }
+.toc-dense .toc-section > a { padding: 0.3pt 0 0.3pt 2.1em; line-height: 1.18; font-size: 0.95em; }
+.toc-dense .toc-chapter > ol { margin-bottom: 2pt; }
 figure.code.code-chunk + figure.code.code-chunk { margin-top: 0.3em; }
+
+/* Edition labels (Claude Edition / Grok Edition): cover badge, title page line */
+.cover-labels { margin-bottom: 16pt; display: flex; gap: 8pt; align-items: center; flex-wrap: wrap; }
+.cover-labels .cover-kicker { margin-bottom: 0; }
+.cover-edition {
+  display: inline-block;
+  padding: 5pt 10pt;
+  border: 1pt solid currentColor;
+  border-radius: 3pt;
+  font: 700 8pt/1 var(--sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.cover-light .cover-edition { color: var(--ink); }
+.about-edition { margin: -8pt 0 18pt; font: 500 9.4pt/1.45 var(--sans); color: var(--ink-2); max-width: 6.1in; }
+.about-edition-label {
+  display: inline-block; margin-right: 6pt; padding: 2.5pt 7pt;
+  border: 0.8pt solid var(--accent-ink); border-radius: 3pt;
+  font: 700 7.2pt/1.2 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-ink);
+}

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>{{title}} — {{series}}</title>
+<title>{{title}} ({{edition_label}}) — {{series}}</title>
 <meta name="author" content="{{series}}">
 <meta name="description" content="{{subtitle}}">
 <link rel="stylesheet" href="/styles/fonts.css">
@@ -24,7 +24,7 @@
   </div>
   <div class="cover-art-wrap">{{cover_art}}</div>
   <div class="cover-main">
-    <div class="cover-kicker">{{kicker}}</div>
+    <div class="cover-labels"><span class="cover-kicker">{{kicker}}</span><span class="cover-edition">{{edition_label}}</span></div>
     <h1 class="cover-title">{{title_html}}</h1>
     <p class="cover-subtitle">{{subtitle}}</p>
   </div>
@@ -33,7 +33,7 @@
     <span class="cover-dot">•</span>
     <span>{{edition}} edition</span>
     <span class="cover-dot">•</span>
-    <span>Print edition · US Letter</span>
+    <span>{{edition_label}} · US Letter</span>
   </div>
 </section>
 
@@ -43,6 +43,7 @@
     <p class="about-series">{{series}}</p>
     <h2 class="about-title">{{title}}</h2>
     <p class="about-sub">{{subtitle}}</p>
+    <p class="about-edition"><span class="about-edition-label">{{edition_label}}</span> {{edition_note}}</p>
     <div class="about-blurb">{{blurb}}</div>
     <div class="about-legend">
       <p class="legend-head">How to read this manual</p>
@@ -63,7 +64,7 @@
 <!-- =============================== TOC =============================== -->
 <section class="frontmatter toc">
   <span class="running-title">{{title}}</span>
-  <span class="running-series">{{series}}</span>
+  <span class="running-series">{{series_line}}</span>
   <h2 class="toc-heading">Contents</h2>
   {{toc}}
 </section>

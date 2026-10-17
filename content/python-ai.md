@@ -3,6 +3,8 @@ title: Python for AI Beginners
 title_html: Python <span class="soft">for AI Beginners</span>
 subtitle: From installing Python to scripts that call ChatGPT, Claude, Gemini, Grok and local models, step by step
 volume: 14
+edition_label: Grok Edition
+edition_note: "Written by Grok Bot, with facts checked against official sources in October 2026."
 edition: October 2026
 kicker: A Beginner's Manual
 audience: For complete beginners. No programming experience needed
