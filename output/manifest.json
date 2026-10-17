@@ -196,5 +196,16 @@
     "accent": "#1D4ED8",
     "pages": 43,
     "bytes": 977799
+  },
+  "ai-healthcare": {
+    "slug": "ai-healthcare",
+    "title": "AI for Healthcare Workers",
+    "subtitle": "Save time on documentation, letters, patient education and study, while protecting patients and staying inside HIPAA",
+    "volume": 19,
+    "kicker": "A Beginner's Manual",
+    "edition": "October 2026",
+    "accent": "#0E7490",
+    "pages": 42,
+    "bytes": 676756
   }
 }
