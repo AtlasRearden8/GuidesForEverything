@@ -550,23 +550,27 @@ function buildSite(manifest, { out = path.join(ROOT, 'index.html'), pdfHref = (s
   const mb = (bytes) => `${(bytes / 1048576).toFixed(1)} MB`;
   const volLabel = (v) => (v != null ? `Vol. ${String(v).padStart(2, '0')}` : '');
   const edClass = (m) => (/claude/i.test(m.edition_label || '') ? 'ed-claude' : 'ed-grok');
-  const card = (m) => {
+  const card = (m, inPair = false) => {
     const topic = topicFor(m);
     const label = m.edition_label || '';
     const searchText = `${m.title} ${m.subtitle} ${topic} ${label} Vol ${m.volume ?? ''}`.toLowerCase();
     const fullTitle = label ? `${m.title} (${label})` : m.title;
+    // Inside a pair the volume and title live in the pair heading, so each half leads with its edition.
+    const head = inPair
+      ? `<h5 class="ed-title"><span class="sr-only">${escapeHtml(m.title)}, </span><span class="edition-tag">${escapeHtml(label)}</span></h5>`
+      : `<p class="vol">${volLabel(m.volume)}</p>
+    <h4 class="book-title">${escapeHtml(m.title)}</h4>
+    ${label ? `<p class="edition-tag">${escapeHtml(label)}</p>` : ''}`;
     return `<li class="book ${edClass(m)}" style="--book: ${escapeHtml(m.accent)}" data-topic="${escapeHtml(topic)}" data-search="${escapeHtml(searchText)}">
-  <a class="cover" href="${pdfHref(m.slug)}" aria-label="Open ${escapeHtml(fullTitle)} (PDF)"><img src="output/covers/${m.slug}.jpg" alt="Cover of ${escapeHtml(fullTitle)}" width="816" height="1056" loading="lazy"></a>
+  <a class="cover" href="${pdfHref(m.slug)}" aria-label="Open ${escapeHtml(fullTitle)} (PDF)"><img src="output/covers/${m.slug}.jpg" alt="Cover of ${escapeHtml(fullTitle)}" width="816" height="1056" decoding="async"></a>
   <div class="book-text">
-    <p class="vol">${volLabel(m.volume)}<span>${escapeHtml(m.kicker)}</span></p>
-    ${label ? `<p class="edition-tag">${escapeHtml(label)}</p>` : ''}
-    <h3>${escapeHtml(m.title)}</h3>
+    ${head}
     <p class="sub">${escapeHtml(m.subtitle)}</p>
     ${m.edition_note ? `<p class="ed-note">${escapeHtml(m.edition_note)}</p>` : ''}
     <p class="meta">${m.pages} pages · ${mb(m.bytes)} · PDF</p>
     <div class="actions">
-      <a class="btn primary" href="${pdfHref(m.slug)}">Read</a>
-      <a class="btn" href="${downloadHref(m.slug)}" download>Download</a>
+      <a class="btn primary" href="${pdfHref(m.slug)}">Read<span class="sr-only"> ${escapeHtml(fullTitle)}</span></a>
+      <a class="btn" href="${downloadHref(m.slug)}" download>Download<span class="sr-only"> ${escapeHtml(fullTitle)}</span></a>
     </div>
   </div>
 </li>`;
@@ -588,9 +592,9 @@ function buildSite(manifest, { out = path.join(ROOT, 'index.html'), pdfHref = (s
   }
   const pairHtml = pairs
     .map((g) => `<li class="pair" aria-label="${escapeHtml(volLabel(g[0].volume))}: ${escapeHtml(baseTitle(g))}, two editions">
-  <p class="pair-head"><span>${escapeHtml(volLabel(g[0].volume))}</span> ${escapeHtml(baseTitle(g))} <em>${g.map((m) => `${escapeHtml(m.edition_label || 'Edition')}: ${m.pages} pages`).join(' · ')}</em></p>
+  <div class="pair-head"><p class="pair-vol">${escapeHtml(volLabel(g[0].volume))}</p><h4 class="pair-title">${escapeHtml(baseTitle(g))}</h4><p class="pair-counts">${g.map((m) => `<span class="pc">${escapeHtml(m.edition_label || 'Edition')}: <b>${m.pages}</b> pages</span>`).join('<span class="pc-sep" aria-hidden="true"> · </span>')}</p></div>
   <ol class="pair-books">
-${g.map(card).join('\n')}
+${g.map((m) => card(m, true)).join('\n')}
   </ol>
 </li>`)
     .join('\n');
@@ -621,7 +625,7 @@ ${pairHtml}
     <p class="shelf-note">New volumes written by Grok Bot, with facts checked against official sources.</p>
   </div>
   <ol class="shelf">
-${singles.map(card).join('\n')}
+${singles.map((m) => card(m)).join('\n')}
   </ol>
 </section>`
       : '',
