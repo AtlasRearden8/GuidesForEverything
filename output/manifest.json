@@ -119,5 +119,16 @@
     "accent": "#2F6FDE",
     "pages": 56,
     "bytes": 1421404
+  },
+  "ai-apis": {
+    "slug": "ai-apis",
+    "title": "AI APIs & Costs",
+    "subtitle": "Keys, tokens, prices and budgets for OpenAI, Anthropic, Google and xAI, explained for beginners",
+    "volume": 15,
+    "kicker": "A Beginner's Manual",
+    "edition": "October 2026",
+    "accent": "#1F883D",
+    "pages": 45,
+    "bytes": 1243413
   }
 }
