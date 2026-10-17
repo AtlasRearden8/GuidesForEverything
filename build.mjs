@@ -550,21 +550,32 @@ function buildSite(manifest, { out = path.join(ROOT, 'index.html'), pdfHref = (s
   const mb = (bytes) => `${(bytes / 1048576).toFixed(1)} MB`;
   const volLabel = (v) => (v != null ? `Vol. ${String(v).padStart(2, '0')}` : '');
   const edClass = (m) => (/claude/i.test(m.edition_label || '') ? 'ed-claude' : 'ed-grok');
-  const card = (m, inPair = false) => {
+  const isClaude = (m) => edClass(m) === 'ed-claude';
+  const byVol = new Map();
+  for (const m of manuals) {
+    const k = m.volume ?? `x-${m.slug}`;
+    if (!byVol.has(k)) byVol.set(k, []);
+    byVol.get(k).push(m);
+  }
+  const twinOf = (m) => (byVol.get(m.volume ?? `x-${m.slug}`) || []).find((o) => o !== m);
+  // style: 'feature' = the Claude shelf (large covers), 'row' = the compact Grok shelf at the bottom.
+  const card = (m, style) => {
     const topic = topicFor(m);
     const label = m.edition_label || '';
     const searchText = `${m.title} ${m.subtitle} ${topic} ${label} Vol ${m.volume ?? ''}`.toLowerCase();
     const fullTitle = label ? `${m.title} (${label})` : m.title;
-    // Inside a pair the volume and title live in the pair heading, so each half leads with its edition.
-    const head = inPair
-      ? `<h5 class="ed-title"><span class="sr-only">${escapeHtml(m.title)}, </span><span class="edition-tag">${escapeHtml(label)}</span></h5>`
-      : `<p class="vol">${volLabel(m.volume)}</p>
-    <h4 class="book-title">${escapeHtml(m.title)}</h4>
-    ${label ? `<p class="edition-tag">${escapeHtml(label)}</p>` : ''}`;
-    return `<li class="book ${edClass(m)}" style="--book: ${escapeHtml(m.accent)}" data-topic="${escapeHtml(topic)}" data-search="${escapeHtml(searchText)}">
+    const twin = twinOf(m);
+    const twinLink = twin && isClaude(m)
+      ? `<a class="twin" href="#ed-${twin.slug}">Also in the ${escapeHtml(twin.edition_label || 'other edition')} · ${twin.pages} pages</a>`
+      : twin
+        ? `<a class="twin" href="#ed-${twin.slug}">${escapeHtml(twin.edition_label || 'Other edition')}: ${twin.pages} pages</a>`
+        : '';
+    return `<li class="book book-${style} ${edClass(m)}" id="ed-${m.slug}" style="--book: ${escapeHtml(m.accent)}" data-topic="${escapeHtml(topic)}" data-search="${escapeHtml(searchText)}">
   <a class="cover" href="${pdfHref(m.slug)}" aria-label="Open ${escapeHtml(fullTitle)} (PDF)"><img src="output/covers/${m.slug}.jpg" alt="Cover of ${escapeHtml(fullTitle)}" width="816" height="1056" decoding="async"></a>
   <div class="book-text">
-    ${head}
+    <p class="vol">${volLabel(m.volume)}</p>
+    <${style === 'feature' ? 'h3' : 'h4'} class="book-title">${escapeHtml(m.title)}</${style === 'feature' ? 'h3' : 'h4'}>
+    ${label ? `<p class="edition-tag">${escapeHtml(label)}</p>` : ''}
     <p class="sub">${escapeHtml(m.subtitle)}</p>
     ${m.edition_note ? `<p class="ed-note">${escapeHtml(m.edition_note)}</p>` : ''}
     <p class="meta">${m.pages} pages · ${mb(m.bytes)} · PDF</p>
@@ -572,68 +583,50 @@ function buildSite(manifest, { out = path.join(ROOT, 'index.html'), pdfHref = (s
       <a class="btn primary" href="${pdfHref(m.slug)}">Read<span class="sr-only"> ${escapeHtml(fullTitle)}</span></a>
       <a class="btn" href="${downloadHref(m.slug)}" download>Download<span class="sr-only"> ${escapeHtml(fullTitle)}</span></a>
     </div>
+    ${twinLink}
   </div>
 </li>`;
   };
-  // Group by volume: volumes with more than one edition are shown as side-by-side pairs.
-  const byVol = new Map();
-  for (const m of manuals) {
-    const k = m.volume ?? `x-${m.slug}`;
-    if (!byVol.has(k)) byVol.set(k, []);
-    byVol.get(k).push(m);
-  }
-  const edOrder = (m) => (edClass(m) === 'ed-claude' ? 0 : 1);
-  const pairs = [];
-  const singles = [];
-  for (const [, group] of byVol) {
-    group.sort((a, b) => edOrder(a) - edOrder(b));
-    if (group.length > 1) pairs.push(group);
-    else singles.push(group[0]);
-  }
-  const pairHtml = pairs
-    .map((g) => `<li class="pair" aria-label="${escapeHtml(volLabel(g[0].volume))}: ${escapeHtml(baseTitle(g))}, two editions">
-  <div class="pair-head"><p class="pair-vol">${escapeHtml(volLabel(g[0].volume))}</p><h4 class="pair-title">${escapeHtml(baseTitle(g))}</h4><p class="pair-counts">${g.map((m) => `<span class="pc">${escapeHtml(m.edition_label || 'Edition')}: <b>${m.pages}</b> pages</span>`).join('<span class="pc-sep" aria-hidden="true"> · </span>')}</p></div>
-  <ol class="pair-books">
-${g.map((m) => card(m, true)).join('\n')}
-  </ol>
-</li>`)
-    .join('\n');
-  function baseTitle(g) {
-    const t = g.find((m) => edClass(m) === 'ed-claude') || g[0];
-    return t.title;
-  }
-  const volsOf = (list) => list.map((m) => m.volume).filter((v) => v != null);
-  const range = (vs) => (vs.length ? `${Math.min(...vs)}–${Math.max(...vs)}` : '');
-  const pairVols = range(pairs.map((g) => g[0].volume).filter((v) => v != null));
-  const singleVols = range(volsOf(singles));
-  const shelves = [
-    pairs.length
-      ? `<section class="edition-shelf" data-shelf>
+  const claude = manuals.filter(isClaude);
+  const grok = manuals.filter((m) => !isClaude(m));
+  const grokTwins = grok.filter((m) => twinOf(m));
+  const grokOnly = grok.filter((m) => !twinOf(m));
+  const range = (list) => { const vs = list.map((m) => m.volume).filter((v) => v != null); return vs.length ? `${Math.min(...vs)}–${Math.max(...vs)}` : ''; };
+  const claudeShelf = claude.length
+    ? `<section class="edition-shelf claude-shelf" data-shelf aria-labelledby="claude-title">
   <div class="edition-head">
-    <h3 class="shelf-title">Vols ${pairVols}: two editions</h3>
-    <p class="shelf-note">Every volume here comes in two clearly labelled editions. <b class="tag-claude">Claude Edition</b> is the expanded edition, written by Claude (Anthropic's AI) in Claude Code. <b class="tag-grok">Grok Edition</b> is the concise edition, revised and fact-checked by Grok Bot.</p>
+    <h2 id="claude-title">The Claude Edition <span class="h-range">Vols ${range(claude)}</span></h2>
+    <p class="shelf-note">The expanded edition of the core library, written by Claude (Anthropic's AI) in Claude Code. Each volume is a complete, print-ready manual.</p>
   </div>
-  <ol class="pairs">
-${pairHtml}
+  <ol class="shelf shelf-feature">
+${claude.map((m) => card(m, 'feature')).join('\n')}
   </ol>
 </section>`
-      : '',
-    singles.length
-      ? `<section class="edition-shelf" data-shelf>
+    : '';
+  const grokShelf = grok.length
+    ? `<section class="edition-shelf grok-shelf" data-shelf aria-labelledby="grok-title">
   <div class="edition-head">
-    <h3 class="shelf-title">Vols ${singleVols}: Grok Edition</h3>
-    <p class="shelf-note">New volumes written by Grok Bot, with facts checked against official sources.</p>
+    <h2 id="grok-title">The Grok Edition</h2>
+    <p class="shelf-note">Written and fact-checked by Grok Bot: concise versions of Vols ${range(grokTwins)} and the new Vols ${range(grokOnly)}. Every manual is clearly labelled with its edition.</p>
   </div>
-  <ol class="shelf">
-${singles.map((m) => card(m)).join('\n')}
-  </ol>
+  ${grokTwins.length ? `<div class="subshelf" data-shelf><h3 class="shelf-title">Vols ${range(grokTwins)}, concise editions</h3>
+  <ol class="shelf shelf-row">
+${grokTwins.map((m) => card(m, 'row')).join('\n')}
+  </ol></div>` : ''}
+  ${grokOnly.length ? `<div class="subshelf" data-shelf><h3 class="shelf-title">Vols ${range(grokOnly)}, new volumes</h3>
+  <ol class="shelf shelf-row">
+${grokOnly.map((m) => card(m, 'row')).join('\n')}
+  </ol></div>` : ''}
 </section>`
-      : '',
-  ].join('\n');
+    : '';
+  const shelves = claudeShelf + '\n' + grokShelf;
   const editions = [...new Set(manuals.map((m) => m.edition).filter(Boolean))];
   const vars = {
     cards: shelves,
     shelves,
+    claude_shelf: claudeShelf,
+    grok_shelf: grokShelf,
+    claude_pages: String(claude.reduce((n, m) => n + m.pages, 0)),
     filters,
     count: String(manuals.length),
     volumes: String(byVol.size),
