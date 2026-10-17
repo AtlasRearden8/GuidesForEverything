@@ -48,7 +48,7 @@ Facts (install commands, settings, menu paths, flags, pricing) were checked agai
 
 ## The website
 
-Every build also writes **`index.html`**, a landing page with every manual's cover, page count, and Read/Download links, generated from `output/manifest.json` and [`templates/site.html`](templates/site.html). Covers are saved to `output/covers/`. The landing page uses a deep-space dark theme (Unbounded for headings, Atkinson Hyperlegible Next for text, a CSS/SVG starfield with gentle parallax that switches off under reduced motion); the PDFs stay print-friendly white.
+Every build also writes **`index.html`**, a landing page with every manual's cover, page count, and Read/Download links, generated from `output/manifest.json` and [`templates/site.html`](templates/site.html). Covers are saved to `output/covers/`. The landing page uses a deep-space dark theme (Bodoni Moda for headings, Manrope for text and letterspaced labels, a CSS/SVG starfield with gentle parallax that switches off under reduced motion); the PDFs stay print-friendly white.
 
 To publish it with **GitHub Pages** (free for public repos), do this once: repository **Settings › Pages**, then under **Build and deployment** set **Source** to **Deploy from a branch**, choose **`main`** and **`/ (root)`**, and click **Save**. The site appears at `https://<your-username>.github.io/GuidesForEverything/` and updates every time you push rebuilt manuals.
 
