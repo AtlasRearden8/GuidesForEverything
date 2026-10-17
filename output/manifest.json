@@ -40,8 +40,8 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#1F883D",
-    "pages": 148,
-    "bytes": 4007203
+    "pages": 146,
+    "bytes": 4000917
   },
   "maximum-autonomy": {
     "slug": "maximum-autonomy",
@@ -106,7 +106,7 @@
     "kicker": "A Beginner’s Manual",
     "edition": "October 2026",
     "accent": "#0F8A5F",
-    "pages": 12,
-    "bytes": 357784
+    "pages": 110,
+    "bytes": 2485271
   }
 }
