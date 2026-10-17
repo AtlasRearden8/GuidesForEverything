@@ -493,11 +493,31 @@ function manifestEntry(slug, pages, pdfPath) {
 function buildSite(manifest, { out = path.join(ROOT, 'index.html'), pdfHref = (s) => `output/${s}.pdf`, downloadHref = pdfHref } = {}) {
   if (!fs.existsSync(SITE_TEMPLATE)) return;
   const manuals = Object.values(manifest).sort((a, b) => (a.volume ?? 99) - (b.volume ?? 99) || a.title.localeCompare(b.title));
+  const topicBySlug = {
+    'claude-code': 'Build & create',
+    github: 'Build & create',
+    'vibe-coding': 'Build & create',
+    'ai-tools': 'AI & agents',
+    'ai-tools-directory': 'AI & agents',
+    mcp: 'AI & agents',
+    'maximum-autonomy': 'AI & agents',
+    n8n: 'Work smarter',
+    notion: 'Work smarter',
+    'ai-trading': 'Explore',
+  };
+  const topicFor = (manual) => topicBySlug[manual.slug] || 'Explore';
+  const topics = [...new Set(manuals.map(topicFor))];
+  const filters = [
+    '<button class="filter" type="button" data-filter="all" aria-pressed="true">All guides</button>',
+    ...topics.map((topic) => `<button class="filter" type="button" data-filter="${escapeHtml(topic)}" aria-pressed="false">${escapeHtml(topic)}</button>`),
+  ].join('\n');
   const mb = (bytes) => `${(bytes / 1048576).toFixed(1)} MB`;
   const cards = manuals
     .map((m) => {
       const vol = m.volume != null ? `Vol. ${String(m.volume).padStart(2, '0')}` : '';
-      return `<li class="book" style="--book: ${escapeHtml(m.accent)}">
+      const topic = topicFor(m);
+      const searchText = `${m.title} ${m.subtitle} ${topic} Vol ${m.volume ?? ''}`.toLowerCase();
+      return `<li class="book" style="--book: ${escapeHtml(m.accent)}" data-topic="${escapeHtml(topic)}" data-search="${escapeHtml(searchText)}">
   <a class="cover" href="${pdfHref(m.slug)}" aria-label="Open ${escapeHtml(m.title)} (PDF)"><img src="output/covers/${m.slug}.jpg" alt="Cover of ${escapeHtml(m.title)}" width="816" height="1056" loading="lazy"></a>
   <div class="book-text">
     <p class="vol">${vol}<span>${escapeHtml(m.kicker)}</span></p>
@@ -515,6 +535,7 @@ function buildSite(manifest, { out = path.join(ROOT, 'index.html'), pdfHref = (s
   const editions = [...new Set(manuals.map((m) => m.edition).filter(Boolean))];
   const vars = {
     cards,
+    filters,
     count: String(manuals.length),
     total_pages: String(manuals.reduce((n, m) => n + m.pages, 0)),
     edition: escapeHtml(editions.join(' & ') || ''),
